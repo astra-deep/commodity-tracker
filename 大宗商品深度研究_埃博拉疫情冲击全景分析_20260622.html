@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>大宗商品深度研究：刚果金埃博拉疫情冲击 × 锡业股份 × 铜价展望 × 化工品期限结构</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: #0a0e17;
+    color: #e0e6f0;
+    line-height: 1.8;
+  }
+  /* 顶部导航 */
+  .top-bar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: linear-gradient(135deg, #0f1628 0%, #1a1f3a 100%);
+    border-bottom: 1px solid #1e2a45;
+    padding: 12px 32px;
+    display: flex; align-items: center; gap: 24px;
+    backdrop-filter: blur(12px);
+  }
+  .top-bar .logo { font-size: 18px; font-weight: 700; color: #5cf0ff; letter-spacing: 1px; }
+  .top-bar .nav-links { display: flex; gap: 6px; margin-left: auto; }
+  .top-bar .nav-links a {
+    color: #8892a8; text-decoration: none; font-size: 13px;
+    padding: 6px 14px; border-radius: 6px; transition: all 0.2s;
+  }
+  .top-bar .nav-links a:hover { background: #1e2a45; color: #5cf0ff; }
+  .top-bar .nav-links a.active { background: #162040; color: #5cf0ff; border: 1px solid #1e3a6a; }
+
+  /* 主容器 */
+  .container { max-width: 1200px; margin: 0 auto; padding: 80px 32px 60px; }
+
+  /* hero */
+  .hero {
+    background: linear-gradient(135deg, #0d1321 0%, #111827 40%, #0d1321 100%);
+    border: 1px solid #1e2a45; border-radius: 16px;
+    padding: 48px; margin-bottom: 40px; position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; top: -50%; right: -20%;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(92,240,255,0.06) 0%, transparent 70%);
+    border-radius: 50%; pointer-events: none;
+  }
+  .hero-tag {
+    display: inline-block; background: rgba(92,240,255,0.1);
+    color: #5cf0ff; border: 1px solid rgba(92,240,255,0.2);
+    padding: 4px 14px; border-radius: 20px; font-size: 12px; font-weight: 600;
+    letter-spacing: 1px; margin-bottom: 20px;
+  }
+  .hero h1 { font-size: 36px; font-weight: 800; color: #f0f4ff; line-height: 1.3; margin-bottom: 16px; }
+  .hero h1 span { color: #5cf0ff; }
+  .hero p { font-size: 16px; color: #8892a8; max-width: 800px; margin-bottom: 28px; }
+  .hero-meta { display: flex; gap: 24px; flex-wrap: wrap; }
+  .hero-meta .meta-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #5a6478; }
+  .hero-meta .meta-item strong { color: #a0aabf; }
+
+  /* 时间线 */
+  .timeline-bar {
+    display: flex; gap: 0; background: #0d1117; border: 1px solid #1e2a45;
+    border-radius: 12px; padding: 20px 24px; margin-bottom: 40px; overflow-x: auto;
+  }
+  .timeline-item { display: flex; align-items: flex-start; gap: 12px; min-width: 180px; flex-shrink: 0; }
+  .timeline-dot {
+    width: 10px; height: 10px; border-radius: 50%; margin-top: 5px; flex-shrink: 0;
+  }
+  .timeline-dot.red { background: #ff6b6b; box-shadow: 0 0 8px rgba(255,107,107,0.4); }
+  .timeline-dot.orange { background: #ffa06b; box-shadow: 0 0 8px rgba(255,160,107,0.4); }
+  .timeline-dot.yellow { background: #ffd93d; box-shadow: 0 0 8px rgba(255,217,61,0.4); }
+  .timeline-dot.green { background: #6bffb8; box-shadow: 0 0 8px rgba(107,255,184,0.4); }
+  .timeline-dot.blue { background: #5cf0ff; box-shadow: 0 0 8px rgba(92,240,255,0.4); }
+  .timeline-content .date { font-size: 12px; color: #5a6478; }
+  .timeline-content .event { font-size: 13px; color: #c0c8e0; font-weight: 500; }
+
+  /* 章节通用 */
+  .section { margin-bottom: 48px; }
+  .section-header {
+    display: flex; align-items: center; gap: 14px; margin-bottom: 24px;
+    padding-bottom: 16px; border-bottom: 1px solid #1a2035;
+  }
+  .section-num {
+    width: 40px; height: 40px; border-radius: 10px;
+    background: linear-gradient(135deg, #162040, #1a2545);
+    border: 1px solid #1e3a6a;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; font-weight: 800; color: #5cf0ff; flex-shrink: 0;
+  }
+  .section-title { font-size: 22px; font-weight: 700; color: #f0f4ff; }
+  .section-subtitle { font-size: 13px; color: #5a6478; margin-top: 2px; }
+
+  /* 卡片 */
+  .card {
+    background: linear-gradient(135deg, #0f1525 0%, #111827 100%);
+    border: 1px solid #1a2035; border-radius: 14px;
+    padding: 28px; margin-bottom: 20px; position: relative; overflow: hidden;
+    transition: border-color 0.3s;
+  }
+  .card:hover { border-color: #1e3a6a; }
+  .card::after {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent, #5cf0ff33, transparent);
+  }
+  .card-title {
+    font-size: 16px; font-weight: 700; color: #f0f4ff; margin-bottom: 16px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .card-title .icon {
+    width: 28px; height: 28px; border-radius: 8px;
+    background: rgba(92,240,255,0.08); border: 1px solid rgba(92,240,255,0.15);
+    display: flex; align-items: center; justify-content: center; font-size: 14px;
+  }
+
+  /* 表格 */
+  .tbl-wrap { overflow-x: auto; margin: 16px 0; }
+  table {
+    width: 100%; border-collapse: collapse; font-size: 13px;
+  }
+  thead th {
+    background: #111827; color: #5cf0ff; font-weight: 600;
+    padding: 12px 16px; text-align: left; white-space: nowrap;
+    border-bottom: 2px solid #1e2a45; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  tbody td {
+    padding: 11px 16px; border-bottom: 1px solid #0d1117; color: #c0c8e0; vertical-align: top;
+  }
+  tbody tr:hover { background: #111827; }
+  tbody tr:last-child td { border-bottom: none; }
+  .num { font-family: 'SF Mono', 'Fira Code', monospace; text-align: right; white-space: nowrap; }
+  .highlight { color: #ffd93d; font-weight: 600; }
+  .highlight-green { color: #6bffb8; font-weight: 600; }
+  .highlight-red { color: #ff6b6b; font-weight: 600; }
+  .highlight-blue { color: #5cf0ff; font-weight: 600; }
+
+  /* 风险等级 */
+  .risk-badge {
+    display: inline-block; padding: 2px 10px; border-radius: 4px;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.5px;
+  }
+  .risk-high { background: rgba(255,107,107,0.15); color: #ff6b6b; border: 1px solid rgba(255,107,107,0.3); }
+  .risk-mid { background: rgba(255,217,61,0.15); color: #ffd93d; border: 1px solid rgba(255,217,61,0.3); }
+  .risk-low { background: rgba(107,255,184,0.15); color: #6bffb8; border: 1px solid rgba(107,255,184,0.3); }
+
+  /* 指标卡 */
+  .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin: 20px 0; }
+  .metric-card {
+    background: #0d1117; border: 1px solid #1a2035; border-radius: 12px; padding: 20px; text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .metric-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  }
+  .metric-card.blue::before { background: linear-gradient(90deg, #5cf0ff, transparent); }
+  .metric-card.green::before { background: linear-gradient(90deg, #6bffb8, transparent); }
+  .metric-card.red::before { background: linear-gradient(90deg, #ff6b6b, transparent); }
+  .metric-card.yellow::before { background: linear-gradient(90deg, #ffd93d, transparent); }
+  .metric-card.purple::before { background: linear-gradient(90deg, #a78bfa, transparent); }
+  .metric-value { font-size: 28px; font-weight: 800; color: #f0f4ff; font-family: 'SF Mono', monospace; }
+  .metric-label { font-size: 12px; color: #5a6478; margin-top: 4px; }
+  .metric-change { font-size: 12px; margin-top: 6px; font-weight: 600; }
+  .metric-change.up { color: #6bffb8; }
+  .metric-change.down { color: #ff6b6b; }
+
+  /* 两栏 */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 800px) { .two-col { grid-template-columns: 1fr; } }
+
+  /* 警示框 */
+  .alert-box {
+    border-radius: 12px; padding: 20px 24px; margin: 20px 0;
+    display: flex; gap: 14px; align-items: flex-start;
+  }
+  .alert-box.warning {
+    background: rgba(255,217,61,0.06); border: 1px solid rgba(255,217,61,0.2);
+  }
+  .alert-box.danger {
+    background: rgba(255,107,107,0.06); border: 1px solid rgba(255,107,107,0.2);
+  }
+  .alert-box.info {
+    background: rgba(92,240,255,0.06); border: 1px solid rgba(92,240,255,0.2);
+  }
+  .alert-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+  .alert-text { font-size: 14px; color: #c0c8e0; line-height: 1.7; }
+  .alert-text strong { color: #f0f4ff; }
+
+  /* 流程图 */
+  .flow-diagram {
+    background: #0d1117; border: 1px solid #1a2035; border-radius: 12px;
+    padding: 24px; margin: 20px 0;
+  }
+  .flow-step {
+    display: flex; align-items: center; gap: 16px; padding: 14px 18px;
+    background: #111827; border-radius: 10px; margin-bottom: 10px;
+    border: 1px solid #1a2035; position: relative;
+  }
+  .flow-step:not(:last-child)::after {
+    content: '↓'; position: absolute; bottom: -20px; left: 28px;
+    color: #2a3550; font-size: 14px;
+  }
+  .flow-num {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: rgba(92,240,255,0.1); border: 1px solid rgba(92,240,255,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700; color: #5cf0ff; flex-shrink: 0;
+  }
+  .flow-text { font-size: 14px; color: #c0c8e0; }
+  .flow-text strong { color: #f0f4ff; }
+
+  /* 判断结论 */
+  .verdict {
+    background: linear-gradient(135deg, #0f1628 0%, #111827 100%);
+    border: 1px solid #1e3a6a; border-radius: 14px;
+    padding: 28px; margin: 24px 0;
+  }
+  .verdict-title { font-size: 16px; font-weight: 700; color: #5cf0ff; margin-bottom: 14px; }
+  .verdict-body { font-size: 14px; color: #c0c8e0; line-height: 1.8; }
+  .verdict-body p { margin-bottom: 10px; }
+  .verdict-body .pro { color: #6bffb8; }
+  .verdict-body .con { color: #ff6b6b; }
+
+  /* 进度条 */
+  .progress-bar { background: #0d1117; border-radius: 4px; height: 8px; overflow: hidden; margin: 6px 0; }
+  .progress-fill { height: 100%; border-radius: 4px; transition: width 0.5s; }
+  .progress-fill.red { background: linear-gradient(90deg, #ff6b6b, #ff8a8a); }
+  .progress-fill.orange { background: linear-gradient(90deg, #ffa06b, #ffb88a); }
+  .progress-fill.yellow { background: linear-gradient(90deg, #ffd93d, #ffe080); }
+  .progress-fill.green { background: linear-gradient(90deg, #6bffb8, #8offc8); }
+  .progress-fill.blue { background: linear-gradient(90deg, #5cf0ff, #8offf); }
+
+  /* 底部 */
+  .footer {
+    text-align: center; padding: 32px; color: #3a4558; font-size: 12px;
+    border-top: 1px solid #0d1117; margin-top: 40px;
+  }
+
+  /* 标签 */
+  .tag {
+    display: inline-block; padding: 3px 10px; border-radius: 4px; font-size: 11px; font-weight: 600;
+  }
+  .tag-blue { background: rgba(92,240,255,0.1); color: #5cf0ff; }
+  .tag-green { background: rgba(107,255,184,0.1); color: #6bffb8; }
+  .tag-red { background: rgba(255,107,107,0.1); color: #ff6b6b; }
+  .tag-yellow { background: rgba(255,217,61,0.1); color: #ffd93d; }
+  .tag-purple { background: rgba(167,139,250,0.1); color: #a78bfa; }
+
+  /* 目录 */
+  .toc {
+    background: #0d1117; border: 1px solid #1a2035; border-radius: 14px;
+    padding: 24px 28px; margin-bottom: 40px;
+  }
+  .toc-title { font-size: 15px; font-weight: 700; color: #5cf0ff; margin-bottom: 16px; }
+  .toc-list { list-style: none; }
+  .toc-list li { padding: 8px 0; border-bottom: 1px solid #0a0e17; }
+  .toc-list li:last-child { border-bottom: none; }
+  .toc-list a { color: #8892a8; text-decoration: none; font-size: 14px; transition: color 0.2s; }
+  .toc-list a:hover { color: #5cf0ff; }
+  .toc-list .toc-num { color: #2a3550; margin-right: 10px; font-size: 12px; }
+
+  /* 地图区域 */
+  .map-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0; }
+  .map-card {
+    background: #0d1117; border: 1px solid #1a2035; border-radius: 12px; padding: 20px;
+  }
+  .map-card h4 { font-size: 14px; color: #f0f4ff; margin-bottom: 12px; }
+  .map-card .zone { margin-bottom: 8px; font-size: 13px; }
+  .zone-name { color: #5cf0ff; font-weight: 600; }
+  .zone-desc { color: #5a6478; font-size: 12px; }
+
+  /* 策略表格 */
+  .strategy-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin: 20px 0; }
+  .strategy-card {
+    background: #0d1117; border: 1px solid #1a2035; border-radius: 12px; padding: 20px;
+  }
+  .strategy-card h4 { font-size: 14px; color: #f0f4ff; margin-bottom: 10px; }
+  .strategy-card .sc-item { font-size: 13px; color: #8892a8; margin-bottom: 6px; }
+  .strategy-card .sc-item strong { color: #c0c8e0; }
+</style>
+</head>
+<body>
+
+<!-- 顶部导航 -->
+<div class="top-bar">
+  <div class="logo">⚡ 大宗商品深度研究</div>
+  <div class="nav-links">
+    <a href="#ebola">埃博拉冲击</a>
+    <a href="#drc-share">DRC矿产占比</a>
+    <a href="#xyny">锡业股份</a>
+    <a href="#copper">铜价展望</a>
+    <a href="#chemi">化工品结构</a>
+    <a href="#strategy">策略建议</a>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-tag">🦠 2026年6月22日 · 深度研究报告</div>
+  <h1>刚果（金）埃博拉疫情<span>大宗商品供给冲击</span>全景分析</h1>
+  <p>覆盖：DRC各矿产全球供应占比 × 锡业股份深度估值 × 铜价战略展望 × 化工品期限结构 × 跨期策略风险框架</p>
+  <div class="hero-meta">
+    <div class="meta-item">📅 <strong>报告日期：</strong>2026年6月22日</div>
+    <div class="meta-item">📍 <strong>疫区：</strong>伊图里/北基伍/南基伍省</div>
+    <div class="meta-item">🚨 <strong>确诊病例：</strong><span style="color:#ff6b6b">超900例</span></div>
+    <div class="meta-item">📈 <strong>核心品种：</strong>锡/钽/金/钴/铜</div>
+  </div>
+</div>
+
+<!-- 时间线 -->
+<div class="timeline-bar">
+  <div class="timeline-item">
+    <div class="timeline-dot red"></div>
+    <div class="timeline-content">
+      <div class="date">2026年5月初</div>
+      <div class="event">埃博拉疫情在伊图里省暴发</div>
+    </div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-dot orange"></div>
+    <div class="timeline-content">
+      <div class="date">5月17日</div>
+      <div class="event">WHO宣布PHEIC国际公共卫生紧急事件</div>
+    </div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-dot yellow"></div>
+    <div class="timeline-content">
+      <div class="date">5月25日</div>
+      <div class="event">Bisie锡矿实施封闭管理</div>
+    </div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-dot blue"></div>
+    <div class="timeline-content">
+      <div class="date">6月15日</div>
+      <div class="event">累计确诊808例，192人死亡</div>
+    </div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-dot blue"></div>
+    <div class="timeline-content">
+      <div class="date">6月21日</div>
+      <div class="event">确诊超900例，持续扩散</div>
+    </div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-dot green"></div>
+    <div class="timeline-content">
+      <div class="date">持续跟踪</div>
+      <div class="event">Bisie矿运输/WHO最新通报</div>
+    </div>
+  </div>
+</div>
+
+<!-- 目录 -->
+<div class="toc" id="toc">
+  <div class="toc-title">📋 报告目录</div>
+  <ul class="toc-list">
+    <li><a href="#ebola"><span class="toc-num">01</span>埃博拉疫情：暴发背景与最新进展</a></li>
+    <li><a href="#drc-share"><span class="toc-num">02</span>刚果（金）各矿产全球供应占比全景</a></li>
+    <li><a href="#xyny"><span class="toc-num">03</span>锡业股份（000960）深度估值分析</a></li>
+    <li><a href="#copper"><span class="toc-num">04</span>铜价战略展望：为什么看好铜</a></li>
+    <li><a href="#chemi"><span class="toc-num">05</span>化工品近强远弱格局拆解</a></li>
+    <li><a href="#arb"><span class="toc-num">06</span>跨期策略风险框架：正套vs反套</a></li>
+    <li><a href="#strategy"><span class="toc-num">07</span>综合策略建议与风险提示</a></li>
+  </ul>
+</div>
+
+<!-- ════════════════════════════════════════════════════╗ -->
+<!-- 01. 埃博拉疫情 -->
+<!-- ════════════════════════════════════════════════════╝ -->
+<div class="section" id="ebola">
+  <div class="section-header">
+    <div class="section-num">01</div>
+    <div>
+      <div class="section-title">埃博拉疫情：暴发背景与最新进展</div>
+      <div class="section-subtitle">本迪布焦型 · 无获批疫苗 · WHO已宣布PHEIC</div>
+    </div>
+  </div>
+
+  <!-- 疫情核心数据 -->
+  <div class="card">
+    <div class="card-title"><span class="icon">🦠</span> 疫情核心数据（截至6月21日）</div>
+    <div class="metrics-grid">
+      <div class="metric-card red">
+        <div class="metric-value">900+</div>
+        <div class="metric-label">累计确诊病例</div>
+        <div class="metric-change up">持续增加中</div>
+      </div>
+      <div class="metric-card red">
+        <div class="metric-value">232+</div>
+        <div class="metric-label">死亡病例</div>
+        <div class="metric-change up">病死率约25.9%</div>
+      </div>
+      <div class="metric-card orange">
+        <div class="metric-value">363</div>
+        <div class="metric-label">住院隔离治疗</div>
+        <div class="metric-change">过去24h新增26确诊</div>
+      </div>
+      <div class="metric-card yellow">
+        <div class="metric-value">48</div>
+        <div class="metric-label">已康复出院</div>
+        <div class="metric-change">康复率约5.3%</div>
+      </div>
+      <div class="metric-card purple">
+        <div class="metric-value">0</div>
+        <div class="metric-label">获批疫苗</div>
+        <div class="metric-change down">本迪布焦型无疫苗</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 疫区地图 -->
+  <div class="card">
+    <div class="card-title"><span class="icon">🗺️</span> 疫区分布 vs 矿产分布</div>
+    <div class="map-grid">
+      <div class="map-card">
+        <h4>🔴 埃博拉疫区（东部三省）</h4>
+        <div class="zone">
+          <span class="zone-name">伊图里省（Ituri）</span>
+          <div class="zone-desc">占全国确诊90%+，疫情最严重区域，与Kibali金矿邻近</div>
+        </div>
+        <div class="zone">
+          <span class="zone-name">北基伍省（North Kivu）</span>
+          <div class="zone-desc">Rubaya钽矿/Bisie锡矿所在地，M23武装控制区</div>
+        </div>
+        <div class="zone">
+          <span class="zone-name">南基伍省（South Kivu）</span>
+          <div class="zone-desc">疫区扩散方向，钽/钨矿分散开采区</div>
+        </div>
+      </div>
+      <div class="map-card">
+        <h4>🟢 主要矿产分布</h4>
+        <div class="zone">
+          <span class="zone-name">南部铜钴带（安全区）</span>
+          <div class="zone-desc">卢阿拉巴省/上加丹加省 · 距疫区约1,500km · 钴70%/铜12%</div>
+        </div>
+        <div class="zone">
+          <span class="zone-name">东部（高风险区）</span>
+          <div class="zone-desc">北基伍：锡6.3%/钽41% · 伊图里：金3-4% · 三国交界：钨5-10%</div>
+        </div>
+        <div class="zone">
+          <span class="zone-name">关键运输通道</span>
+          <div class="zone-desc">洛比托走廊（南部铜钴出口）· 戈马边境（已无限期关停）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 对大宗商品的影响路径 -->
+  <div class="card">
+    <div class="card-title"><span class="icon">⚡</span> 疫情对大宗商品的影响路径</div>
+    <div class="flow-diagram">
+      <div class="flow-step">
+        <div class="flow-num">1</div>
+        <div class="flow-text"><strong>直接冲击（东部矿区）：</strong>锡（Bisie矿）、钽（Rubaya矿）、金（Kibali矿）、钨 — 矿并未全面停产，但封闭管理+边境关停导致<strong class="highlight-red">精矿外运随时可能中断</strong></div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">2</div>
+        <div class="flow-text"><strong>间接冲击（南部铜钴带）：</strong>霍尔木兹海峡航运中断 → 硫酸/硫磺交付受阻 → 铜钴湿法冶炼厂化学品短缺 → 高盛估算<strong class="highlight-red">2026年DRC铜产量或减少12.5万吨</strong></div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">3</div>
+        <div class="flow-text"><strong>物流走廊风险：</strong>洛比托走廊是铜钴出口主通道。东部安全恶化历史上曾引发全国物流限制，需模拟<strong class="highlight-yellow">4-8周运输中断情景</strong></div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">4</div>
+        <div class="flow-text"><strong>情绪溢价：</strong>本迪布焦型埃博拉无获批疫苗，WHO警告"扩散速度超过当前应对能力" → 供应链避险溢价 ↑ → <strong class="highlight-green">锡/钽等低库存品种价格弹性最大</strong></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════╗ -->
+<!-- 02. DRC矿产占比 -->
+<!-- ════════════════════════════════════════════════════╝ -->
+<div class="section" id="drc-share">
+  <div class="section-header">
+    <div class="section-num">02</div>
+    <div>
+      <div class="section-title">刚果（金）各矿产全球供应占比全景</div>
+      <div class="section-subtitle">南部铜钴带（安全）vs 东部矿区（埃博拉疫区）</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📊</span> 各矿产全球供应占比 + 埃博拉风险评级</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>矿产</th>
+            <th>DRC全球占比</th>
+            <th>主产区</th>
+            <th>是否在疫区</th>
+            <th>代表矿山/公司</th>
+            <th>埃博拉风险</th>
+            <th>对价格影响</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>钴</strong></td>
+            <td class="num highlight-red">70-74%</td>
+            <td>南部铜钴带</td>
+            <td>❌ 否（距疫区1,500km）</td>
+            <td>CMOC（洛阳钼业）<br>KCC（嘉能可）</td>
+            <td><span class="risk-badge risk-low">低</span></td>
+            <td class="num">间接：化学品短缺</td>
+          </tr>
+          <tr>
+            <td><strong>铜</strong></td>
+            <td class="num">12-14%</td>
+            <td>南部铜钴带</td>
+            <td>❌ 否</td>
+            <td>Kamoa-Kakula<br>KOV等</td>
+            <td><span class="risk-badge risk-low">低</span></td>
+            <td class="num">间接：湿法冶炼受限</td>
+          </tr>
+          <tr style="background:rgba(255,107,107,0.05)">
+            <td><strong>锡</strong></td>
+            <td class="num highlight-red">6-8%</td>
+            <td>北基伍省</td>
+            <td>✅ <span class="highlight-red">是</span></td>
+            <td>Bisie矿（Alphamin）<br>占全球~6.3%</td>
+            <td><span class="risk-badge risk-high">高</span></td>
+            <td class="num highlight-red">运输中断→LME去库加速</td>
+          </tr>
+          <tr style="background:rgba(255,107,107,0.05)">
+            <td><strong>钽（Coltan）</strong></td>
+            <td class="num highlight-red">~41%</td>
+            <td>北基伍省</td>
+            <td>✅ <span class="highlight-red">是</span></td>
+            <td>Rubaya矿（M23控制）</td>
+            <td><span class="risk-badge risk-high">高</span></td>
+            <td class="num highlight-red">供应链追溯系统已失效</td>
+          </tr>
+          <tr style="background:rgba(255,160,107,0.05)">
+            <td><strong>金</strong></td>
+            <td class="num">3-4%</td>
+            <td>伊图里省</td>
+            <td>⚠️ <span class="highlight-yellow">邻近疫区</span></td>
+            <td>Kibali矿（Barrick）</td>
+            <td><span class="risk-badge risk-mid">中高</span></td>
+            <td class="num">Barrick已加强筛查</td>
+          </tr>
+          <tr style="background:rgba(255,107,107,0.05)">
+            <td><strong>钨</strong></td>
+            <td class="num">5-10%</td>
+            <td>东部三省</td>
+            <td>✅ <span class="highlight-red">是</span></td>
+            <td>分散手工开采</td>
+            <td><span class="risk-badge risk-high">高</span></td>
+            <td class="num">国防供应链风险</td>
+          </tr>
+          <tr>
+            <td><strong>钻石</strong></td>
+            <td class="num">5-8%（产量）<br>11-26%（储量）</td>
+            <td>东部+中部</td>
+            <td>⚠️ 部分在东部</td>
+            <td>手工开采为主</td>
+            <td><span class="risk-badge risk-mid">中等</span></td>
+            <td class="num">影响有限</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 风险矩阵 -->
+  <div class="card">
+    <div class="card-title"><span class="icon">🎯</span> 埃博拉疫情风险矩阵</div>
+    <div class="two-col">
+      <div>
+        <h4 style="color:#ff6b6b;margin-bottom:12px;font-size:14px;">🔴 高风险品种（东部疫区）</h4>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>品种</th><th>全球占比</th><th>当前状态</th><th>风险</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><strong>锡</strong></td>
+                <td class="num">6-8%</td>
+                <td>矿未停产<br>运输未中断</td>
+                <td><span class="tag tag-red">随时可能中断</span></td>
+              </tr>
+              <tr>
+                <td><strong>钽</strong></td>
+                <td class="num">~41%</td>
+                <td>ITSCI追溯<br>系统已失效</td>
+                <td><span class="tag tag-red">供应链断裂</span></td>
+              </tr>
+              <tr>
+                <td><strong>钨</strong></td>
+                <td class="num">5-10%</td>
+                <td>手工开采<br>难以监控</td>
+                <td><span class="tag tag-red">供应不稳定</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+        <h4 style="color:#5cf0ff;margin-bottom:12px;font-size:14px;">🟡 中低风险品种（南部为主）</h4>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>品种</th><th>全球占比</th><th>当前状态</th><th>风险</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><strong>钴</strong></td>
+                <td class="num highlight-red">70-74%</td>
+                <td>正常生产</td>
+                <td><span class="tag tag-yellow">化学品短缺</span></td>
+              </tr>
+              <tr>
+                <td><strong>铜</strong></td>
+                <td class="num">12-14%</td>
+                <td>正常生产</td>
+                <td><span class="tag tag-yellow">湿法冶炼受限</span></td>
+              </tr>
+              <tr>
+                <td><strong>金</strong></td>
+                <td class="num">3-4%</td>
+                <td>Kibali加强筛查</td>
+                <td><span class="tag tag-yellow">邻近疫区</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="alert-box warning">
+    <div class="alert-icon">⚠️</div>
+    <div class="alert-text">
+      <strong>核心结论：</strong>当前疫情对大宗商品的直接冲击集中在<strong>东部3TG矿产（锡/钽/钨）</strong>，这些品种的主产区与疫区重叠，供应链已受扰动。钴铜主产区在南部1,500公里外，目前受影响有限，但存在<strong>两条间接风险传导链</strong>：①霍尔木兹航运中断→化学品短缺→减产；②物流走廊中断→出口延迟。这两条链的任何一条如果恶化，钴铜将面临供给侧冲击。
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════╗ -->
+<!-- 03. 锡业股份 -->
+<!-- ════════════════════════════════════════════════════╝ -->
+<div class="section" id="xyny">
+  <div class="section-header">
+    <div class="section-num">03</div>
+    <div>
+      <div class="section-title">锡业股份（000960）深度估值分析</div>
+      <div class="section-subtitle">全球锡龙头 · 埃博拉疫情带来额外上行期权</div>
+    </div>
+  </div>
+
+  <!-- 核心指标 -->
+  <div class="card">
+    <div class="card-title"><span class="icon">📈</span> 核心估值指标（2026年6月18日收盘）</div>
+    <div class="metrics-grid">
+      <div class="metric-card blue">
+        <div class="metric-value">41.74</div>
+        <div class="metric-label">最新股价（元）</div>
+        <div class="metric-change up">+80% from 2025年8月</div>
+      </div>
+      <div class="metric-card blue">
+        <div class="metric-value">686.8亿</div>
+        <div class="metric-label">总市值</div>
+        <div class="metric-change">A股锡业唯一标的</div>
+      </div>
+      <div class="metric-card yellow">
+        <div class="metric-value">20.9~24.7x</div>
+        <div class="metric-label">2026E预测PE</div>
+        <div class="metric-change">对周期股不便宜</div>
+      </div>
+      <div class="metric-card green">
+        <div class="metric-value">27.83~32.95亿</div>
+        <div class="metric-label">2026E净利润（机构均值）</div>
+        <div class="metric-change up">同比高增</div>
+      </div>
+      <div class="metric-card red">
+        <div class="metric-value">33.41~41.00</div>
+        <div class="metric-label">机构目标价（元）</div>
+        <div class="metric-change down">当前价已超出均值</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 埃博拉对锡的影响 -->
+  <div class="card">
+    <div class="card-title"><span class="icon">🦠</span> 埃博拉疫情对锡供给的具体影响</div>
+    <div class="flow-diagram">
+      <div class="flow-step">
+        <div class="flow-num">1</div>
+        <div class="flow-text"><strong>Bisie矿现状：</strong>位于北基伍省Walikale地区，占全球锡供给约<strong class="highlight-red">6.3%</strong>。Alphamin于5月实施封闭管理，限制外部人员进入，但<strong>开采和精矿运输目前暂未中断</strong></div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">2</div>
+        <div class="flow-text"><strong>运输风险：</strong>戈马边境口岸已<strong class="highlight-red">无限期关停</strong>，矿产货运通道随时可能中断。乌干达路线目前仍通，但政策随时可能收紧</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">3</div>
+        <div class="flow-text"><strong>库存背景：</strong>LME锡库存处于<strong class="highlight-red">历史低位</strong>，任何供给中断都会导致价格剧烈波动。当前沪锡约39.8万元/吨，已从高点45万回落</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">4</div>
+        <div class="flow-text"><strong>对锡业股份的影响：</strong>锡价每上涨1万元/吨，锡业股份净利润约增加<strong>1.5-2亿元</strong>（弹性测算）。埃博拉导致的供给中断预期是<strong class="highlight-green">额外的上行期权</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 机构评级 -->
+  <div class="card">
+    <div class="card-title"><span class="icon">🏦</span> 机构评级汇总（近6个月，共8家）</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr><th>机构</th><th>评级</th><th>2026E净利润</th><th>目标价</th><th>日期</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>华泰证券</td><td><span class="tag tag-green">增持</span></td>
+            <td class="num">27.01亿</td>
+            <td class="num highlight-blue">41.00元</td>
+            <td>2026-04-28</td>
+          </tr>
+          <tr>
+            <td>兴业证券</td><td><span class="tag tag-green">增持</span></td>
+            <td class="num">40.55亿</td>
+            <td class="num">—</td>
+            <td>2026-04-24</td>
+          </tr>
+          <tr>
+            <td>德邦证券</td><td><span class="tag tag-blue">买入</span></td>
+            <td class="num">25.37亿</td>
+            <td class="num">—</td>
+            <td>2026-04-01</td>
+          </tr>
+          <tr style="background:rgba(255,217,61,0.05)">
+            <td>国联民生</td><td><span class="tag tag-green">推荐</span></td>
+            <td class="num highlight-green">45.91亿</td>
+            <td class="num">—</td>
+            <td>2026-03-31</td>
+          </tr>
+          <tr>
+            <td>甬兴证券</td><td><span class="tag tag-blue">买入</span></td>
+            <td class="num">27.83亿</td>
+            <td class="num">—</td>
+            <td>2026-02-01</td>
+          </tr>
+          <tr>
+            <td>长江证券</td><td><span class="tag tag-blue">买入</span></td>
+            <td class="num">40.07亿</td>
+            <td class="num">—</td>
+            <td>2026-01-19</td>
+          </tr>
+          <tr>
+            <td>国元证券</td><td><span class="tag tag-blue">买入</span></td>
+            <td class="num">29.78亿</td>
+            <td class="num">—</td>
+            <td>2025-11-08</td>
+          </tr>
+          <tr>
+            <td>平安证券</td><td><span class="tag tag-green">推荐</span></td>
+            <td class="num">27.06亿</td>
+            <td class="num">—</td>
+            <td>2025-10-30</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="margin-top:14px;font-size:13px;color:#8892a8;">
+      ⚠️ 机构预期分歧极大：最高45.91亿 vs 最低25.37亿（相差近1倍），说明<strong style="color:#ffd93d">锡价假设差异巨大</strong>
+    </div>
+  </div>
+
+  <!-- 综合判断 -->
+  <div class="verdict">
+    <div class="verdict-title">📊 锡业股份综合判断</div>
+    <div class="verdict-body">
+      <p class="pro">✅ 看多理由：
+        <br>① 全球锡龙头（国内市占率47.98%），资源壁垒不可复制
+        <br>② 锡价中枢上移（AI需求+供给无拐点），2026Q1净利润同比+64~84%
+        <br>③ 埃博拉疫情增加供给中断风险 → 锡价上行期权
+        <br>④ 8家机构全部看多，无一例看空
+        <br>⑤ AI服务器单机耗锡是传统服务器的4倍以上，结构性需求增长确定
+      </p>
+      <p class="con">❌ 谨慎理由：
+        <br>① 当前股价41.74元，已超出机构平均目标价（33.41元）
+        <br>② PE约21~25x，对周期股而言并不便宜
+        <br>③ 有息负债率33.46%，现金流偏紧
+        <br>④ 锡价已从45万/吨高点回落至39.8万，短期情绪脆弱
+        <br>⑤ 小金属流动性差，预期转向时踩踏快
+      </p>
+      <p style="color:#5cf0ff;font-weight:600;">🎯 操作建议：
+        <br>• 已持仓：41.74元附近可考虑分批减仓，锁定80%涨幅利润；留20-30%底仓博弈锡价进一步上行
+        <br>• 未持仓：当前价位不建议追高；等待锡价回调至35万/吨以下或股价回落至35元以下再介入
+        <br>• 激进策略：如果Bisie矿宣布运输实质性中断（LME库存单周下降>1000吨），可短线博弈锡价冲高，目标45-48万/吨
+        <br>• 止损：锡价跌破33万/吨 或 股价跌破36元
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════╗ -->
+<!-- 04. 铜价展望 -->
+<!-- ════════════════════════════════════════════════════╝ -->
+<div class="section" id="copper">
+  <div class="section-header">
+    <div class="section-num">04</div>
+    <div>
+      <div class="section-title">铜价战略展望：为什么看好铜</div>
+      <div class="section-subtitle">从周期性工业金属 → 与电气化/AI绑定的战略资产</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🔩</span> 铜的核心看涨逻辑</div>
+    <div class="two-col">
+      <div>
+        <h4 style="color:#5cf0ff;margin-bottom:14px;font-size:14px;">供给端：底部极硬</h4>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>指标</th><th>数据</th><th>含义</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>铜精矿TC指数</td>
+                <td class="num highlight-red">-110~-120美元</td>
+                <td>冶炼厂倒贴钱买矿<br>历史极端</td>
+              </tr>
+              <tr>
+                <td>6月检修产能</td>
+                <td class="num">年内峰值</td>
+                <td>精铜产出环比预期下降</td>
+              </tr>
+              <tr>
+                <td>LME铜库存</td>
+                <td class="num">35.75万吨</td>
+                <td>两月低点，持续去库</td>
+              </tr>
+              <tr>
+                <td>上期所铜库存</td>
+                <td class="num">约18.82万吨</td>
+                <td>年内低位</td>
+              </tr>
+              <tr>
+                <td>新矿投产周期</td>
+                <td class="num">10-15年</td>
+                <td>远水不解近渴</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+        <h4 style="color:#6bffb8;margin-bottom:14px;font-size:14px;">需求端：结构性增长</h4>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>领域</th><th>数据/判断</th><th>特点</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>新能源车</td>
+                <td class="num">产量同比+17.8%</td>
+                <td>高增速延续</td>
+              </tr>
+              <tr>
+                <td>AI数据中心</td>
+                <td class="num">用铜是传统数倍</td>
+                <td>认证绑定，价格不敏感</td>
+              </tr>
+              <tr>
+                <td>电网/特高压</td>
+                <td class="num">覆铜板/铜箔高增速</td>
+                <td>政策驱动，确定性强</td>
+              </tr>
+              <tr>
+                <td>光伏/风电/储能</td>
+                <td class="num">2026年约470万吨增量</td>
+                <td>绿色消费增量持续</td>
+              </tr>
+              <tr>
+                <td>传统需求</td>
+                <td class="num">地产/空调偏弱</td>
+                <td>被新动能对冲</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 铜价目标 -->
+  <div class="card">
+    <div class="card-title"><span class="icon">🎯</span> 机构铜价目标与情景分析</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr><th>机构</th><th>2026年铜价目标</th><th>对应SHFE铜</th><th>当前价格</th><th>上行空间</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>高盛（Goldman Sachs）</td>
+            <td class="num highlight-green">12,650美元/吨</td>
+            <td class="num">约10.7万元/吨</td>
+            <td class="num" rowspan="3">约10.4-10.5万/吨</td>
+            <td class="num highlight-green">+2-3%</td>
+          </tr>
+          <tr>
+            <td>Sprott</td>
+            <td class="num" colspan="2">供给缺口2026年开始显现，持续看多</td>
+            <td class="num">—</td>
+          </tr>
+          <tr>
+            <td>TradingKey</td>
+            <td class="num" colspan="2">2026年最佳投资机会之一</td>
+            <td class="num">—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="margin-top:16px;">
+      <div style="font-size:13px;color:#8892a8;margin-bottom:8px;">SHFE铜情景分析（以2607合约为例）：</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;">
+        <div style="background:#0d1117;border-radius:8px;padding:14px;text-align:center;">
+          <div style="font-size:12px;color:#6bffb8;margin-bottom:6px;">偏多情景（40%概率）</div>
+          <div style="font-size:18px;font-weight:700;color:#f0f4ff;font-family:monospace;">10.60-10.70万</div>
+          <div style="font-size:11px;color:#5a6478;margin-top:4px;">沃什偏鸽+关税征税预期</div>
+        </div>
+        <div style="background:#0d1117;border-radius:8px;padding:14px;text-align:center;">
+          <div style="font-size:12px;color:#ffd93d;margin-bottom:6px;">中性震荡（45%概率）</div>
+          <div style="font-size:18px;font-weight:700;color:#f0f4ff;font-family:monospace;">10.40-10.58万</div>
+          <div style="font-size:11px;color:#5a6478;margin-top:4px;">沃什中性+关税报告模糊</div>
+        </div>
+        <div style="background:#0d1117;border-radius:8px;padding:14px;text-align:center;">
+          <div style="font-size:12px;color:#ff6b6b;margin-bottom:6px;">偏空回调（15%概率）</div>
+          <div style="font-size:18px;font-weight:700;color:#f0f4ff;font-family:monospace;">10.32-10.35万</div>
+          <div style="font-size:11px;color:#5a6478;margin-top:4px;">沃什明确加息+PPI超预期</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="alert-box info">
+    <div class="alert-icon">💡</div>
+    <div class="alert-text">
+      <strong>铜与化工品期限结构的本质区别：</strong><br>
+      铜的期限结构通常是<strong>近月略强或平</strong>，因为矿端供给约束是<strong>结构性</strong>的（新矿投产需10-15年），远月也没有"供给恢复"的预期。远月反而不弱——因为AI/电网需求是逐年递增的，远月需求预期更强。所以铜更适合<strong>单边做多</strong>，而不是跨期套利。这与化工品（近强远弱，暂时性Backwardation）完全不同。
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════╗ -->
+<!-- 05. 化工品期限结构 -->
+<!-- ════════════════════════════════════════════════════╝ -->
+<div class="section" id="chemi">
+  <div class="section-header">
+    <div class="section-num">05</div>
+    <div>
+      <div class="section-title">化工品近强远弱格局拆解</div>
+      <div class="section-subtitle">PTA / 甲醇 / 乙二醇 / 聚丙烯 — 为什么近强远弱？</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🧪</span> 四大化工品近强远弱原因拆解</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>品种</th>
+            <th>近月强的原因</th>
+            <th>远月弱的原因</th>
+            <th>持续时间</th>
+            <th>确定性</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>PTA</strong></td>
+            <td>负荷降至<strong class="highlight-red">56.95%</strong>（历史新低）<br>连续6周去库<br>库存降至近5年同期最低</td>
+            <td>加工费<strong class="highlight-green">479元/吨</strong>（暴利区间）<br>高利润驱使装置提负<br>恒力/三房巷等检修后必然重启</td>
+            <td>2-4周</td>
+            <td><span class="risk-badge risk-mid">中</span><br>（装置重启确定）</td>
+          </tr>
+          <tr>
+            <td><strong>甲醇</strong></td>
+            <td>港口库存<strong class="highlight-red">53万吨</strong>（历史低位）<br>伊朗三套装置刚重启<br>尚未形成有效供给</td>
+            <td>美伊MOU签署→伊朗出口恢复<br><strong class="highlight-red">7月后进口显著增加</strong><br>沿海库存大方向止跌回升</td>
+            <td>1-2个月</td>
+            <td><span class="risk-badge risk-mid">中</span><br>（进口恢复速度）</td>
+          </tr>
+          <tr>
+            <td><strong>乙二醇</strong></td>
+            <td>社会库存降至<strong class="highlight-red">163万吨</strong><br>4月进口环比降20万吨<br>中东进口占比超65%</td>
+            <td>中东货源恢复预期<br>乙烯法装置6月后计划重启<br>远月供给增量确定</td>
+            <td>1-2个月</td>
+            <td><span class="risk-badge risk-mid">中</span></td>
+          </tr>
+          <tr>
+            <td><strong>聚丙烯（PP）</strong></td>
+            <td>上游开工率仅<strong class="highlight-red">64.71%</strong><br>厂库持续去化<br>中东C3原料供应受阻</td>
+            <td><strong class="highlight-red">下半年新装置投产计划</strong><br>聚丙烯产能过剩是长期问题<br>远月供给释放预期确定</td>
+            <td>2-3个月</td>
+            <td><span class="risk-badge risk-high">高</span><br>（新产能投放确定）</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 统一框架 -->
+  <div class="card">
+    <div class="card-title"><span class="icon">🔗</span> 近强远弱的通用框架</div>
+    <div style="background:#0d1117;border-radius:10px;padding:20px;margin-top:12px;">
+      <div style="font-size:14px;color:#5cf0ff;font-weight:600;margin-bottom:14px;">化工品近强远弱的本质：暂时性Backwardation</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div>
+          <div style="font-size:13px;color:#6bffb8;font-weight:600;margin-bottom:8px;">近期强（共同原因）</div>
+          <div style="font-size:13px;color:#c0c8e0;line-height:2;">
+            ✓ 装置检修/开工率低位（人为制造供给缺口）<br>
+            ✓ 库存降至低位（物理事实）<br>
+            ✓ 进口缺失或成本推升（外部冲击）
+          </div>
+        </div>
+        <div>
+          <div style="font-size:13px;color:#ff6b6b;font-weight:600;margin-bottom:8px;">远月弱（各自原因）</div>
+          <div style="font-size:13px;color:#c0c8e0;line-height:2;">
+            ✓ PTA：高加工费→装置必重启→远月供给增量确定<br>
+            ✓ 甲醇：美伊停战→伊朗进口恢复→远月累库确定<br>
+            ✓ 乙二醇：中东进口恢复+乙烯法重启<br>
+            ✓ PP：下半年新装置投产计划→远月产能过剩预期
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:16px;padding:14px;background:rgba(255,217,61,0.06);border-radius:8px;border:1px solid rgba(255,217,61,0.15);">
+        <div style="font-size:13px;color:#ffd93d;font-weight:600;">⚡ 核心结论</div>
+        <div style="font-size:13px;color:#c0c8e0;margin-top:6px;line-height:1.8;">
+          中国化工行业整体<strong>产能过剩</strong>，任何近月的价格上涨都是<strong>暂时性的供给冲击</strong>，远月必然反映"产能释放"的预期。这不是铜那种"结构性短缺"，而是"周期性紧缺"。化工品的正套（多近空远）更适合<strong>短线（2-4周内完成）</strong>，不适合中长期持仓。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PP盘面验证 -->
+  <div class="card">
+    <div class="card-title"><span class="icon">📊</span> PP盘面近强远弱验证（6月15日数据）</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr><th>合约</th><th>开盘价</th><th>昨收价</th><th>较近月价差</th><th>结构判断</th></tr>
+        </thead>
+        <tbody>
+          <tr style="background:rgba(107,255,184,0.05);">
+            <td><strong>PP2607（近月）</strong></td>
+            <td class="num highlight-green">9200</td>
+            <td class="num">9189</td>
+            <td class="num">—</td>
+            <td><span class="tag tag-green">最强</span></td>
+          </tr>
+          <tr>
+            <td>PP2609</td>
+            <td class="num">8590</td>
+            <td class="num">8596</td>
+            <td class="num highlight-red">-610</td>
+            <td>↓</td>
+          </tr>
+          <tr>
+            <td>PP2610</td>
+            <td class="num">8321</td>
+            <td class="num">8325</td>
+            <td class="num highlight-red">-879</td>
+            <td>↓</td>
+          </tr>
+          <tr style="background:rgba(255,107,107,0.05);">
+            <td><strong>PP2701（远月）</strong></td>
+            <td class="num highlight-red">7949</td>
+            <td class="num">7971</td>
+            <td class="num highlight-red">-1251</td>
+            <td><span class="tag tag-red">最弱</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="margin-top:10px;font-size:13px;color:#8892a8;">
+      2607 vs 2701价差 ≈ <strong style="color:#ffd93d">1250元/吨</strong>，典型的Backwardation（近强远弱）结构。
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════╗ -->
+<!-- 06. 跨期策略风险 -->
+<!-- ════════════════════════════════════════════════════╝ -->
+<div class="section" id="arb">
+  <div class="section-header">
+    <div class="section-num">06</div>
+    <div>
+      <div class="section-title">跨期策略风险框架：正套 vs 反套</div>
+      <div class="section-subtitle">赚钱的是价差，亏钱的是流动性和宏观冲击</div>
+    </div>
+  </div>
+
+  <!-- 正套风险 -->
+  <div class="card">
+    <div class="card-title"><span class="icon">🔒</span> 正套（多近空远）五大风险</div>
+    <div style="display:grid;gap:14px;">
+      <div style="background:#0d1117;border-radius:10px;padding:16px;border-left:3px solid #ff6b6b;">
+        <div style="font-size:14px;font-weight:600;color:#ff6b6b;margin-bottom:8px;">① 交割月流动性风险 ⚠️ 最致命</div>
+        <div style="font-size:13px;color:#8892a8;line-height:1.7;">
+          近月合约进入交割月前1-2周，持仓量骤降，买卖价差急剧拉大，想平仓但找不到对手盘，被迫砍在极差价位。<strong style="color:#ff6b6b;">甲醇MA2509如果持仓量低，9月进入交割月前可能平不掉近月多头，只能被动进入交割。</strong>
+        </div>
+      </div>
+      <div style="background:#0d1117;border-radius:10px;padding:16px;border-left:3px solid #ffa06b;">
+        <div style="font-size:14px;font-weight:600;color:#ffa06b;margin-bottom:8px;">② 宏观冲击打断"强现实"</div>
+        <div style="font-size:13px;color:#8892a8;line-height:1.7;">
+          正套赚的是"近月库存低→近月涨得多"，但如果宏观系统性风险同时打压远近月，<strong style="color:#ffa06b;">近月跌得可能比远月还惨</strong>（近月持仓集中，恐慌时踩踏更严重）。6/17沃什FOMC，沪银近月单日跌幅比远月更大就是例证。
+        </div>
+      </div>
+      <div style="background:#0d1117;border-radius:10px;padding:16px;border-left:3px solid #ffd93d;">
+        <div style="font-size:14px;font-weight:600;color:#ffd93d;margin-bottom:8px;">③ 远月"弱预期"被新故事推翻</div>
+        <div style="font-size:13px;color:#8892a8;line-height:1.7;">
+          正套的远月空单赚的是"远月预期差→远月跌"。但如果远月突然出现了新的利多逻辑（如中东局势再度升温），<strong style="color:#ffd93d;">远月空单会被轧空</strong>。甲醇/乙二醇的远月空单底层假设是"进口恢复"，但中东局势随时可能给远月注入新利多。
+        </div>
+      </div>
+      <div style="background:#0d1117;border-radius:10px;padding:16px;border-left:3px solid #a78bfa;">
+        <div style="font-size:14px;font-weight:600;color:#a78bfa;margin-bottom:8px;">④ 基差收敛不如预期（移仓成本风险）</div>
+        <div style="font-size:13px;color:#8892a8;line-height:1.7;">
+          近月上涨被交割压制（期现套利盘进场），远月下跌被政策预期托底，价差可能只扩大到一定宽度就不动了，<strong style="color:#a78bfa;">而你的资金成本可能已经吃掉大部分利润</strong>。
+        </div>
+      </div>
+      <div style="background:#0d1117;border-radius:10px;padding:16px;border-left:3px solid #5cf0ff;">
+        <div style="font-size:14px;font-weight:600;color:#5cf0ff;margin-bottom:8px;">⑤ 保证金占用与追加风险</div>
+        <div style="font-size:13px;color:#8892a8;line-height:1.7;">
+          正套是<strong>两个方向的仓位</strong>，保证金占用是双倍的。如果近月出现15%的极端波动，保证金会被追加，而正套的浮盈可能还没实现（远近月价差没扩大）——<strong style="color:#5cf0ff;">会出现"账面盈利但被强平"的尴尬局面</strong>。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 反套风险 -->
+  <div class="card">
+    <div class="card-title"><span class="icon">🔓</span> 反套（空近多远）三大特有风险</div>
+    <div style="display:grid;gap:14px;">
+      <div style="background:#0d1117;border-radius:10px;padding:16px;border-left:3px solid #ff6b6b;">
+        <div style="font-size:14px;font-weight:600;color:#ff6b6b;margin-bottom:8px;">① 滚仓成本（Contango下天然亏钱）</div>
+        <div style="font-size:13px;color:#8892a8;line-height:1.7;">
+          Contango市场中，时间站在反套的对立面。近月到期→移仓到下一个近月→新近月价格仍然<远月→<strong style="color:#ff6b6b;">每次移仓都在"低卖高买"，滚仓成本持续侵蚀利润</strong>。
+        </div>
+      </div>
+      <div style="background:#0d1117;border-radius:10px;padding:16px;border-left:3px solid #ffa06b;">
+        <div style="font-size:14px;font-weight:600;color:#ffa06b;margin-bottom:8px;">② 近月"强现实"持续超预期</div>
+        <div style="font-size:13px;color:#8892a8;line-height:1.7;">
+          反套空近月，赌的是"近月涨不动或下跌"。但如果近月的供给约束持续（如锌TC负值导致精炼锌库存持续下降），<strong style="color:#ffa06b;">近月会不断创新高，空近月的止损会被反复触发</strong>。
+        </div>
+      </div>
+      <div style="background:#0d1117;border-radius:10px;padding:16px;border-left:3px solid #ffd93d;">
+        <div style="font-size:14px;font-weight:600;color:#ffd93d;margin-bottom:8px;">③ 远月"弱预期"被证实→多远月亏</div>
+        <div style="font-size:13px;color:#8892a8;line-height:1.7;">
+          反套的多远月仓位赚的是"远月预期改善"。但如果远月的预期被证伪（如政策没有出台、或出台但效果不及预期），<strong style="color:#ffd93d;">远月会补跌，多远月反而亏钱</strong>。螺纹远月如果7月重要会议没有刺激政策，RB2605会补跌。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 各品种策略适配表 -->
+  <div class="card">
+    <div class="card-title"><span class="icon">🎯</span> 各品种期限结构策略适配表</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>品种</th>
+            <th>当前结构</th>
+            <th>正套（多近空远）</th>
+            <th>反套（空近多远）</th>
+            <th>单边方向</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background:rgba(107,255,184,0.05)">
+            <td><strong>甲醇</strong></td>
+            <td><span class="tag tag-green">近强远弱</span></td>
+            <td><span class="tag tag-green">✅ 有机会</span><br>（但需跟踪伊朗船货）</td>
+            <td><span class="tag tag-red">❌ 逆结构</span></td>
+            <td>短多（2-4周）</td>
+          </tr>
+          <tr style="background:rgba(107,255,184,0.05)">
+            <td><strong>乙二醇</strong></td>
+            <td><span class="tag tag-green">近强远弱</span></td>
+            <td><span class="tag tag-green">✅ 有机会</span></td>
+            <td><span class="tag tag-red">❌ 逆结构</span></td>
+            <td>短多（近月）</td>
+          </tr>
+          <tr style="background:rgba(107,255,184,0.05)">
+            <td><strong>PP</strong></td>
+            <td><span class="tag tag-green">近强远弱</span></td>
+            <td><span class="tag tag-green">✅ 有机会</span></td>
+            <td><span class="tag tag-red">❌ 逆结构</span></td>
+            <td>—</td>
+          </tr>
+          <tr style="background:rgba(255,217,61,0.05)">
+            <td><strong>螺纹钢</strong></td>
+            <td><span class="tag tag-yellow">近弱远强</span></td>
+            <td><span class="tag tag-red">❌ 逆结构</span></td>
+            <td><span class="tag tag-green">✅ 有机会</span><br>（但需等政策确认）</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>铜</strong></td>
+            <td><span class="tag tag-blue">近强/平</span></td>
+            <td><span class="tag tag-yellow">⚠️ 结构不清晰</span></td>
+            <td><span class="tag tag-red">❌ 不适合</span></td>
+            <td><span class="tag tag-green">✅ 单边做多</span></td>
+          </tr>
+          <tr>
+            <td><strong>沪锌</strong></td>
+            <td><span class="tag tag-green">近强远弱</span></td>
+            <td><span class="tag tag-green">✅ 有机会</span><br>（TC负值，确定性高）</td>
+            <td><span class="tag tag-red">❌ 逆结构</span></td>
+            <td><span class="tag tag-green">✅ 中线多</span></td>
+          </tr>
+          <tr>
+            <td><strong>碳酸锂</strong></td>
+            <td><span class="tag tag-red">全曲线弱</span></td>
+            <td><span class="tag tag-red">❌ 无着力点</span></td>
+            <td><span class="tag tag-red">❌ 无着力点</span></td>
+            <td>等企稳信号</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════╗ -->
+<!-- 07. 综合策略建议 -->
+<!-- ════════════════════════════════════════════════════╝ -->
+<div class="section" id="strategy">
+  <div class="section-header">
+    <div class="section-num">07</div>
+    <div>
+      <div class="section-title">综合策略建议与风险提示</div>
+      <div class="section-subtitle">基于当前市场环境的优先级排序</div>
+    </div>
+  </div>
+
+  <!-- 机会优先级 -->
+  <div class="card">
+    <div class="card-title"><span class="icon">🏆</span> 当前市场机会优先级排序</div>
+    <div style="display:grid;gap:16px;">
+      <!-- 第一梯队 -->
+      <div style="background:linear-gradient(135deg,#0f1a2e,#111827);border:1px solid #1e3a6a;border-radius:12px;padding:20px;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+          <span style="background:#6bffb8;color:#0a0e17;padding:3px 10px;border-radius:4px;font-size:12px;font-weight:700;">第一梯队</span>
+          <span style="color:#f0f4ff;font-weight:700;font-size:15px;">高确定性 + 好赔率</span>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div>
+            <div style="font-size:14px;color:#5cf0ff;font-weight:600;">沪锌中线多单</div>
+            <div style="font-size:12px;color:#8892a8;margin-top:4px;">TC负值=矿端物理性枯竭，不是人为检修能解决的。确定性最高。</div>
+            <div style="margin-top:8px;">
+              <span class="tag tag-green">多ZN2509</span>
+              <span class="tag tag-yellow">止损：TC转正</span>
+            </div>
+          </div>
+          <div>
+            <div style="font-size:14px;color:#5cf0ff;font-weight:600;">铜单边做多</div>
+            <div style="font-size:12px;color:#8892a8;margin-top:4px;">TC深度负值+AI/电网结构性需求，适合持有一段时间。</div>
+            <div style="margin-top:8px;">
+              <span class="tag tag-green">多CU2607</span>
+              <span class="tag tag-yellow">目标：10.7万</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 第二梯队 -->
+      <div style="background:#0d1117;border:1px solid #1a2035;border-radius:12px;padding:20px;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+          <span style="background:#ffd93d;color:#0a0e17;padding:3px 10px;border-radius:4px;font-size:12px;font-weight:700;">第二梯队</span>
+          <span style="color:#f0f4ff;font-weight:700;font-size:15px;">有窗口需择时</span>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div>
+            <div style="font-size:14px;color:#ffd93d;font-weight:600;">化工品正套</div>
+            <div style="font-size:12px;color:#8892a8;margin-top:4px;">甲醇/乙二醇多近空远，窗口2-4周。需跟踪伊朗船货到港数据。</div>
+          </div>
+          <div>
+            <div style="font-size:14px;color:#ffd93d;font-weight:600;">豆粕事件驱动</div>
+            <div style="font-size:12px;color:#8892a8;margin-top:4px;">6/30 USDA双报告，低风险高赔率的期权型布局。</div>
+          </div>
+        </div>
+      </div>
+      <!-- 第三梯队 -->
+      <div style="background:#0d1117;border:1px solid #1a2035;border-radius:12px;padding:20px;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+          <span style="background:#ff6b6b;color:#fff;padding:3px 10px;border-radius:4px;font-size:12px;font-weight:700;">观望/等待</span>
+          <span style="color:#f0f4ff;font-weight:700;font-size:15px;">需等待更好介入时机</span>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div>
+            <div style="font-size:14px;color:#ff6b6b;font-weight:600;">锡业股份</div>
+            <div style="font-size:12px;color:#8892a8;margin-top:4px;">当前价41.74元已超出机构目标，等回调至35元以下再介入。</div>
+          </div>
+          <div>
+            <div style="font-size:14px;color:#ff6b6b;font-weight:600;">碳酸锂</div>
+            <div style="font-size:12px;color:#8892a8;margin-top:4px;">全曲线下跌，未见底。等宜春政策落地+澳洲高成本矿减产信号。</div>
+          </div>
+        </griv>
+      </div>
+    </div>
+  </div>
+
+  <!-- 风险跟踪清单 -->
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 持续跟踪风险清单</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+      <div>
+        <h4 style="color:#ff6b6b;font-size:14px;margin-bottom:10px;">🦠 埃博拉疫情跟踪</h4>
+        <div style="font-size:13px;color:#8892a8;line-height:2;">
+          ☐ 确诊数是否突破1,000例<br>
+          ☐ Bisie矿是否宣布停产<br>
+          ☐ 乌干达边境是否进一步收紧<br>
+          ☐ LME锡库存周度变化<br>
+          ☐ 锡价是否突破前高45万/吨
+        </div>
+      </div>
+      <div>
+        <h4 style="color:#5cf0ff;font-size:14px;margin-bottom:10px;">🇺🇸 宏观事件跟踪</h4>
+        <div style="font-size:13px;color:#8892a8;line-height:2;">
+          ☐ 6月末美商务部铜关税调查报告<br>
+          ☐ 美联储后续加息预期演变<br>
+          ☐ 7月重要会议是否有刺激政策<br>
+          ☐ 美元指数是否突破100.5<br>
+          ☐ 美伊停战执行进度
+        </div>
+      </div>
+      <div>
+        <h4 style="color:#ffd93d;font-size:14px;margin-bottom:10px;">📦 库存/供给跟踪</h4>
+        <div style="font-size:13px;color:#8892a8;line-height:2;">
+          ☐ LME铜库存周度数据<br>
+          ☐ 港口甲醇库存周度数据<br>
+          ☐ PTA装置开工率（是否提负）<br>
+          ☐ 伊朗船货到港数据<br>
+          ☐ 锌TC加工费是否反弹
+        </div>
+      </div>
+      <div>
+        <h4 style="color:#6bffb8;font-size:14px;margin-bottom:10px;">📅 重要时间节点</h4>
+        <div style="font-size:13px;color:#8892a8;line-height:2;">
+          ☐ <strong>6月30日</strong>：USDA种植面积+季度库存报告<br>
+          ☐ <strong>7月中</strong>：国内重要会议（政策预期）<br>
+          ☐ <strong>7-9月</strong>：原油补库反弹窗口<br>
+          ☐ <strong>持续</strong>：刚果金疫情周度通报<br>
+          ☐ <strong>Q3末</strong>：钴配额到港增量验证
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="alert-box danger">
+    <div class="alert-icon">🚨</div>
+    <div class="alert-text">
+      <strong>免责声明：</strong>本报告所有数据来源于公开信息（SMM、生意社、新浪财经、富途牛牛、10jqka、WHO等），不构成任何投资建议。大宗商品投资存在重大风险，历史表现不代表未来收益，请谨慎决策并严格控制仓位。埃博拉疫情数据以WHO和刚果（金）卫生部官方通报为准，本报告数据截至2026年6月22日。
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <div style="color:#5cf0ff;font-size:14px;font-weight:600;margin-bottom:8px;">⚡ 大宗商品深度研究系统</div>
+  <div>报告生成时间：2026年6月22日 09:32 GMT+8</div>
+  <div style="margin-top:6px;">数据来源：SMM / 生意社 / 新浪财经 / 富途牛牛 / 10jqka / WHO / 东方财富</div>
+  <div style="margin-top:6px;color:#2a3550;">⚡ Powered by WorkBuddy</div>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>全球产业投资全景深度报告 | 2026.06.16</title>
+<style>
+:root {
+  --bg: #0f1419; --card: #1a1f2b; --border: #2a3040; --text: #c9d1d9;
+  --blue: #58a6ff; --green: #3fb950; --red: #f85149; --yellow: #d2991d;
+  --purple: #a371f7; --orange: #f0883e; --teal: #39d353;
+  --header-bg: linear-gradient(135deg, #1a1f2b 0%, #161b24 100%);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:"Microsoft YaHei","PingFang SC",sans-serif; line-height:1.7; }
+.container { max-width:1400px; margin:0 auto; padding:20px; }
+.header { background:var(--header-bg); border:1px solid var(--border); border-radius:16px; padding:40px; margin-bottom:24px; text-align:center; }
+.header h1 { font-size:2em; color:#fff; margin-bottom:12px; }
+.header .meta { color:#8b949e; font-size:0.9em; }
+.header .tags { margin-top:16px; display:flex; gap:8px; justify-content:center; flex-wrap:wrap; }
+.tag { padding:4px 14px; border-radius:20px; font-size:0.8em; font-weight:600; }
+.tag-macro { background:rgba(88,166,255,.15); color:var(--blue); }
+.tag-bull { background:rgba(63,185,80,.15); color:var(--green); }
+.tag-bear { background:rgba(248,81,73,.15); color:var(--red); }
+.tag-neutral { background:rgba(210,153,29,.15); color:var(--yellow); }
+
+.section { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:28px; margin-bottom:20px; }
+.section h2 { font-size:1.4em; color:#fff; margin-bottom:20px; padding-bottom:12px; border-bottom:2px solid var(--border); display:flex; align-items:center; gap:10px; }
+.section h2 .icon { font-size:1.2em; }
+.section h3 { font-size:1.1em; color:var(--blue); margin:16px 0 10px; }
+.section h4 { font-size:1em; color:var(--purple); margin:12px 0 8px; }
+
+table { width:100%; border-collapse:collapse; margin:16px 0; font-size:0.9em; }
+th { background:rgba(88,166,255,.1); padding:10px 12px; text-align:left; font-weight:600; color:#fff; border-bottom:2px solid var(--border); }
+td { padding:10px 12px; border-bottom:1px solid var(--border); }
+tr:hover { background:rgba(255,255,255,.03); }
+
+.grade-a { color:var(--green); font-weight:700; }
+.grade-b { color:var(--yellow); font-weight:700; }
+.grade-c { color:var(--red); font-weight:700; }
+
+.callout { padding:16px 20px; border-radius:8px; margin:16px 0; }
+.callout-info { background:rgba(88,166,255,.08); border-left:4px solid var(--blue); }
+.callout-warn { background:rgba(248,81,73,.08); border-left:4px solid var(--red); }
+.callout-good { background:rgba(63,185,80,.08); border-left:4px solid var(--green); }
+
+.grid { display:grid; gap:16px; }
+.grid-2 { grid-template-columns:1fr 1fr; }
+.grid-3 { grid-template-columns:repeat(3,1fr); }
+.grid-4 { grid-template-columns:repeat(4,1fr); }
+
+.chain-card { background:rgba(255,255,255,.02); border:1px solid var(--border); border-radius:10px; padding:16px; }
+.chain-card:hover { border-color:var(--blue); }
+.chain-card h3 { margin:0 0 8px; font-size:1em; }
+.chain-card .score { font-size:1.4em; font-weight:700; }
+.chain-card .date { color:#8b949e; font-size:0.8em; }
+
+.bottleneck { background:rgba(210,153,29,.05); border:1px solid rgba(210,153,29,.2); border-radius:8px; padding:14px; margin:10px 0; }
+.bottleneck .blabel { color:var(--yellow); font-weight:700; font-size:0.85em; }
+
+.badge { display:inline-block; padding:2px 10px; border-radius:12px; font-size:0.78em; font-weight:600; }
+.badge-up { background:rgba(248,81,73,.15); color:var(--red); }
+.badge-down { background:rgba(63,185,80,.15); color:var(--green); }
+.badge-flat { background:rgba(210,153,29,.15); color:var(--yellow); }
+
+.price-up { color:var(--red); }
+.price-down { color:var(--green); }
+
+.divider { border:none; border-top:1px solid var(--border); margin:24px 0; }
+
+.source { font-size:0.8em; color:#8b949e; margin-top:4px; }
+.source a { color:#58a6ff; }
+
+@media(max-width:900px) { .grid-2, .grid-3, .grid-4 { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <h1>全球产业投资全景深度报告</h1>
+  <div class="meta">2026年6月16日（更新版）| 基于瓶颈理论 + 沃什美联储政策 + 地缘政治 + AI产业链的系统性分析</div>
+  <div class="tags">
+    <span class="tag tag-bull">低估机会</span>
+    <span class="tag tag-bull">补库拐点</span>
+    <span class="tag tag-bear">高位回调风险</span>
+    <span class="tag tag-macro">宏观框架</span>
+    <span class="tag tag-neutral">大宗商品映射</span>
+  </div>
+</div>
+
+<!-- ============ PART 1: GLOBAL MACRO ============ -->
+<div class="section">
+  <h2><span class="icon">🌍</span> 第一章：全球宏观三大变量</h2>
+
+  <h3>1.1 美联储"沃什时代"：降息方向确定，缩表并行创造新范式</h3>
+  
+  <div class="callout callout-info" style="margin-bottom:16px;">
+    <strong>🔄 时间线更新：</strong>沃什已于2026年5月22日正式宣誓就任美联储主席，6月已召开首次FOMC议息会议。以下所有分析基于沃什已实行的政策框架，而非候任预测。
+  </div>
+
+  <div class="grid grid-2">
+    <div>
+      <p><strong>沃什就任时间线：</strong></p>
+      <table>
+        <tr><th>日期</th><th>事件</th></tr>
+        <tr><td>2026.01.30</td><td>特朗普正式提名凯文·沃什</td></tr>
+        <tr><td>2026.04.21</td><td>参议院提名听证会，系统阐述政策框架</td></tr>
+        <tr><td>2026.05.13</td><td>参议院投票通过，任期4年</td></tr>
+        <tr><td style="color:var(--yellow);font-weight:700;">2026.05.22</td><td style="color:var(--yellow);">白宫宣誓就任美联储主席</td></tr>
+        <tr><td>2026.06.03</td><td>发布致全体员工备忘录：改革+务实清醒</td></tr>
+      </table>
+      <p class="source">来源：中国新闻网 2026.05.23；格隆汇 2026.06.03</p>
+    </div>
+    <div>
+      <p><strong>鲍威尔去向：</strong>主席任期5月15日到期，留任美联储理事至2028年1月。中信证券提醒：若鲍威尔后续宣布辞去理事职务，特朗普将获得额外一次提名理事的机会。</p>
+      <p class="source">来源：中信证券 2026.04.30</p>
+    </div>
+  </div>
+
+  <h4 style="color:var(--yellow);">🔶 核心政策框架：三大制度变革（"紧缩换宽松"）</h4>
+  <div class="grid grid-3">
+    <div class="chain-card">
+      <h3>① 重构通胀框架</h3>
+      <ul>
+        <li>用<span class="badge badge-up">截尾均值通胀</span>替代核心PCE</li>
+        <li>认为当前高通胀仅由关税/能源等<span style="color:var(--yellow);">少数极端项目</span>驱动</li>
+        <li><strong>"AI通缩论"：</strong>AI生产率提升压制中长期通胀</li>
+        <li>认同2021-22年宽松是通胀"扎根"的致命错误</li>
+      </ul>
+    </div>
+    <div class="chain-card">
+      <h3>② 重构沟通机制</h3>
+      <ul>
+        <li>大幅<span class="badge badge-down">减少前瞻指引</span>和点阵图依赖</li>
+        <li>减少例行新闻发布会频次</li>
+        <li>回归格林斯潘时代"神秘主义"风格</li>
+        <li>决策更依赖<span style="color:var(--blue);">实时数据</span>而非预设预测</li>
+        <li>⚠️ 年内不会落地，短期无实质冲击</li>
+      </ul>
+    </div>
+    <div class="chain-card">
+      <h3>③ 降息+缩表并行</h3>
+      <ul>
+        <li>利率工具为<span style="color:var(--green);">核心抓手</span>（支持实体经济）</li>
+        <li>渐进缩表对冲通胀风险，为降息<span style="color:var(--yellow);">创造空间</span></li>
+        <li>降息方向确定，节奏谨慎——<strong>看重质量而非频率</strong></li>
+        <li>批评大型资产负债表"不成比例利好"华尔街</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout callout-warn">
+    <strong>⚠️ 沃什不是传统的"鹰派"或"鸽派"——他的降息逻辑并非"预防衰退式"宽松，而是以资产负债表纪律为前提、以AI通缩论为支点、以地缘+债务压力为对冲的新型框架。简言之：用QT纪律换降息空间。</strong>
+  </div>
+
+  <h4>📊 利率路径预判（已执行状态）</h4>
+  <table>
+    <tr><th>机构</th><th>判断</th><th>细节</th></tr>
+    <tr>
+      <td><strong>中信证券</strong></td>
+      <td><span class="badge badge-up">H2降息1次25bp</span></td>
+      <td>基准情形，2026下半年仅降息1次；4月会议已维持利率不变，Hammack/Kashkari/Logan三位鹰派不支持保留宽松倾向</td>
+    </tr>
+    <tr>
+      <td>东吴证券 芦哲</td>
+      <td><span class="badge badge-up">上任首年偏鸽</span></td>
+      <td>边际上更宽松，利好美元以外所有大类资产</td>
+    </tr>
+    <tr>
+      <td>东方金诚 白雪</td>
+      <td><span class="badge badge-flat">节奏显著慢于预期</span></td>
+      <td>以抗通胀为优先目标，降息节奏显著慢于市场前期乐观预期</td>
+    </tr>
+    <tr>
+      <td>法国巴黎银行</td>
+      <td><span class="badge badge-flat">FOMC分歧制约降息</span></td>
+      <td>FOMC内部分歧严重，沃什难以推动激进降息</td>
+    </tr>
+    <tr>
+      <td>上证观察家 连平/刘涛</td>
+      <td><span class="badge badge-flat">三重约束渐进式</span></td>
+      <td>政治+经济+市场三重约束，政策落地为渐进式：短期预期引导→中期久期调整→长期实质性缩表</td>
+    </tr>
+  </table>
+  <p class="source">来源：中信证券 2026.04.30《预计沃什担任美联储主席后 H2降息1次》；上海证券报 2026.06.13《沃什的美联储政策改革主张可行性几何》；中国外汇 2026.04.29《从沃什政策主张研判美联储转向》；界面新闻 2026.04.22《沃什"首秀"》；CNN 2026.02.15</p>
+
+  <h4>🌐 大类资产影响矩阵（沃什框架下）</h4>
+  <table>
+    <tr><th>资产类别</th><th>沃什政策影响</th><th>方向</th><th>关键逻辑</th></tr>
+    <tr>
+      <td><strong>美元</strong></td><td><span class="badge badge-down">中长期贬值</span></td><td>↓</td>
+      <td>降息压缩利差优势 + 特朗普财政扩张 + 全球去美元化 + 关税"武器化"削弱储备地位</td>
+    </tr>
+    <tr>
+      <td><strong>美债</strong></td><td><span class="badge badge-flat">曲线陡峭化</span></td><td>短↓长↑</td>
+      <td>短端降息压低短债收益率；长端因缩表+财政扩张承压；QT压制长端需求</td>
+    </tr>
+    <tr>
+      <td><strong>黄金</strong></td><td><span class="badge badge-up">牛市核心支撑仍在</span></td><td>↑</td>
+      <td>降息+弱美元+央行购金支撑；但若沃什启动大规模缩表将成重要拐点（类比沃尔克终结黄金牛市）</td>
+    </tr>
+    <tr>
+      <td><strong>铜/工业金属</strong></td><td><span class="badge badge-up">供给收缩+弱美元利好</span></td><td>↑</td>
+      <td>降息有利实体经济需求，弱美元计价支撑；但QT紧缩效应制约涨幅</td>
+    </tr>
+    <tr>
+      <td><strong>新兴市场</strong></td><td><span class="badge badge-flat">资本流动分化</span></td><td>↑↓</td>
+      <td>美元贬值利好资本流入；但美债长端上行+波动加大→部分EM面临利差压力</td>
+    </tr>
+    <tr>
+      <td><strong>A股</strong></td><td><span class="badge badge-up">结构性利好</span></td><td>↑</td>
+      <td>海外流动性改善+人民币贬值压力缓解；但需关注外溢波动传导</td>
+    </tr>
+  </table>
+
+  <div class="callout callout-info">
+    <strong>🔑 沃什时代的核心投资含义：</strong><br>
+    ① 降息方向确定但节奏慢——<strong>不要押注激进降息，要做"弱美元+低利率"方向性配置</strong><br>
+    ② 缩表+降息并行创造独特环境——短端利率下行利好黄金和成长股，但QT压制风险资产V型反弹<br>
+    ③ "AI通缩论"若被验证——生产率提升压制通胀→更多降息空间→科技/成长显著受益<br>
+    ④ 沟通机制转变——前瞻指引减少意味<strong>市场波动加大</strong>，需适应从"透明主义"到"神秘主义"的切换
+  </div>
+
+  <h3>1.2 美伊停火 + 俄乌走向：战后重建逻辑链成型</h3>
+  <div class="grid grid-2">
+    <div>
+      <p><strong>美伊进展：</strong></p>
+      <ul>
+        <li>4月7日：特朗普宣布两周停火</li>
+        <li>4月21日：停火到期，但谈判在推进中</li>
+        <li>澳联邦银行：冲突可能在5月结束（非此前预期的6月）</li>
+        <li>霍尔木兹海峡重新开放——和平协议取得实质性进展</li>
+      </ul>
+      <p class="source">来源：格隆汇 2026.04.08/04.21；半岛电视台</p>
+    </div>
+    <div>
+      <p><strong>俄乌进展：</strong></p>
+      <ul>
+        <li>乌克兰国防部情报总局：冲突可能在2026年底前结束</li>
+        <li>特朗普政府推动复活节前停火（但时间推迟）</li>
+        <li>乌克兰重建资金缺口：7500亿美元+</li>
+        <li>基建修复占重建需求60%以上</li>
+      </ul>
+      <p class="source">来源：格隆汇 2025.09.06；彭博 2025.02.17</p>
+    </div>
+  </div>
+  <div class="callout callout-good">
+    <strong>🎯 双停火共振：</strong>中钢国际(000928, PE 11.3x)、中材国际(600970, PE 12.3x)、北方国际(000065)、中工国际(002051)四大国际工程公司直接受益。中材国际PE全名单最低，PB破净0.96x，ROE 7.6%最高。
+  </div>
+
+  <h3>1.3 AI产业链：算力军备竞赛进入第二阶段</h3>
+  <p><strong>关键数据：</strong></p>
+  <ul>
+    <li>北美四大CSP 2026Q1资本开支同比+70.25%，全年预计7100亿美元</li>
+    <li>谷歌指引2028年投资还会大幅增长</li>
+    <li>大模型公司ARR可能在2026年达到2000亿美元</li>
+    <li>中信建投推荐环节：GPU、光模块、光芯片、光纤光缆、液冷、电源</li>
+  </ul>
+  <p class="source">来源：中信建投 2026.06.06《持续看好人工智能产业链》</p>
+</div>
+
+<!-- ============ PART 2: SECTOR LANDSCAPE ============ -->
+<div class="section">
+  <h2><span class="icon">📊</span> 第二章：十二大产业全景图</h2>
+
+  <table>
+    <tr><th>#</th><th>产业</th><th>定位</th><th>核心逻辑</th><th>大宗商品映射</th><th>评级</th></tr>
+    <tr><td>1</td><td><strong>MLCC/被动元件</strong></td><td>瓶颈②(粉体)不可缓解</td><td>缺货至2028年+AI用量8-12x+国产替代</td><td>钛酸钡/镍/银</td><td class="grade-a">★★★★★</td></tr>
+    <tr><td>2</td><td><strong>铜产业链</strong></td><td>供需缺口扩大</td><td>矿端供应中断+AI/EV需求+战略储备</td><td>铜(LME 12525$/t)</td><td class="grade-a">★★★★★</td></tr>
+    <tr><td>3</td><td><strong>黄金/白银</strong></td><td>去美元化结构性牛市</td><td>美元信用动摇+央行购金+ETF流入</td><td>金(~5000$/oz)/银(100$+)</td><td class="grade-a">★★★★★</td></tr>
+    <tr><td>4</td><td><strong>电力设备/变压器</strong></td><td>AI+电网双驱动</td><td>变压器交期128-144周，出口价7x国内</td><td>硅钢/铜/铝</td><td class="grade-a">★★★★☆</td></tr>
+    <tr><td>5</td><td><strong>锂/电池材料</strong></td><td>补库拐点2026H2</td><td>连续9周去库+矿端延期+价格触底</td><td>碳酸锂(8万→15万)</td><td class="grade-a">★★★★☆</td></tr>
+    <tr><td>6</td><td><strong>AI算力芯片</strong></td><td>高位震荡</td><td>CAPEX+70%但估值透支(PE 250x+)</td><td>硅/稀土</td><td class="grade-b">★★★☆☆</td></tr>
+    <tr><td>7</td><td><strong>光模块/光通信</strong></td><td>景气高位</td><td>1.6T升级周期，PE 60x合理偏贵</td><td>—</td><td class="grade-b">★★★☆☆</td></tr>
+    <tr><td>8</td><td><strong>半导体材料/设备</strong></td><td>国产替代加速</td><td>粉体/靶材/抛光垫国产突破</td><td>硅/电子气/稀土</td><td class="grade-a">★★★★☆</td></tr>
+    <tr><td>9</td><td><strong>光伏硅片</strong></td><td>去产能底部博弈</td><td>全行业亏损，出清进行中，反转待确认</td><td>多晶硅/工业硅/银</td><td class="grade-b">★★★☆☆</td></tr>
+    <tr><td>10</td><td><strong>石油/天然气</strong></td><td>地缘支撑+供给受限</td><td>美伊停火→供给恢复 vs 战略补库</td><td>原油(65$/bbl)</td><td class="grade-b">★★★☆☆</td></tr>
+    <tr><td>11</td><td><strong>钢铁/煤炭</strong></td><td>反内卷压制</td><td>去产能政策执行中，需求弱，价格底部</td><td>铁矿石/焦煤/热卷</td><td class="grade-c">★★☆☆☆</td></tr>
+    <tr><td>12</td><td><strong>铝产业链</strong></td><td>供给天花板</td><td>中国4500万吨产能上限+50%美关税</td><td>铝(LME 2992→23500元)</td><td class="grade-a">★★★★☆</td></tr>
+  </table>
+</div>
+
+<!-- ============ PART 3: UNDERVALUED SECTORS ============ -->
+<div class="section">
+  <h2><span class="icon">💎</span> 第三章：三大低估板块（存在重大价值洼地）</h2>
+
+  <h3>3.1 锂/电池材料 — 补库周期拐点最明确的板块</h3>
+  <div class="grid grid-2">
+    <div>
+      <p><strong>低估逻辑：</strong></p>
+      <ul>
+        <li>碳酸锂从60万跌至6万(-90%)，目前反弹至7-8万</li>
+        <li>GGII预测：2026H2进入新一轮上涨周期</li>
+        <li>全球锂供给增速已大幅低于需求增速</li>
+        <li>矿端资本开支阻断，未来2-3年新增供给有限</li>
+        <li>2025年全球锂需求165万吨→2026年186万吨(+37万吨)</li>
+      </ul>
+      <div class="bottleneck">
+        <span class="blabel">🔶 瓶颈节点：</span>
+        锂矿扩产从决定→投产需要3-5年，2024-2025年矿端大规模延期意味着2027-2028年之前无新增供给。
+      </div>
+      <p class="source">来源：GGII《锂电研究所》2025.08.12；生意社 2024.11.06；国泰君安 2024.09.11</p>
+    </div>
+    <div>
+      <p><strong>映射大宗商品：碳酸锂</strong></p>
+      <table>
+        <tr><th>供需维度</th><th>分析</th></tr>
+        <tr><td>供给</td><td>矿端延期+江西合规治理→2025年供给增速已大幅放缓</td></tr>
+        <tr><td>需求</td><td>储能超预期+动力电池15-20%增速→2026年+37万吨LCE</td></tr>
+        <tr><td>库存</td><td>连续9周去库(冶炼厂降9.1%)，补库周期开启信号</td></tr>
+        <tr><td>价格</td><td>底部7-8万，GGII预测年内冲击8.5-9万，2026H2涨至15万</td></tr>
+      </table>
+      <p><strong>A股映射：</strong></p>
+      <table>
+        <tr><th>代码</th><th>名称</th><th>现价</th><th>PE</th><th>逻辑纯度</th></tr>
+        <tr><td>002460</td><td>赣锋锂业</td><td class="price-down">70.57(-1.05%)</td><td>20.1x</td><td>锂盐+电池全链条</td></tr>
+        <tr><td>002466</td><td>天齐锂业</td><td class="price-down">63.05(-1.05%)</td><td>14.4x</td><td>上游矿端最纯</td></tr>
+        <tr><td>603799</td><td>华友钴业</td><td class="price-up">53.71(+2.40%)</td><td>10.2x</td><td>钴+锂+前驱体</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <h3>3.2 半导体材料/设备 — 国产替代加速中的估值洼地</h3>
+  <div class="grid grid-2">
+    <div>
+      <p><strong>低估逻辑：</strong></p>
+      <ul>
+        <li>MLCC粉体：国瓷材料120nm量产，唯一打入三星/国巨供应链的国产</li>
+        <li>CMP抛光垫：鼎龙股份国内唯一</li>
+        <li>靶材：江丰电子/有研新材</li>
+        <li>湿电子化学品：江化微</li>
+        <li>估值普遍低于芯片设计板块，PE多在40-60x vs 寒武纪205x/海光250x</li>
+      </ul>
+      <p class="source">来源：TDX行业分类；中信证券半导体研究</p>
+    </div>
+    <div>
+      <p><strong>瓶颈理论视角：</strong></p>
+      <div class="bottleneck">
+        <span class="blabel">🔶 瓶颈节点①：超细陶瓷粉体</span><br>
+        堺化学80nm vs 国瓷120nm，物理级差距。粉体粒径决定MLCC性能上限。国产粉体突破是MLCC产业升级的"钥匙"。
+      </div>
+      <div class="bottleneck">
+        <span class="blabel">🔶 瓶颈节点②：高纯电子化学品</span><br>
+        湿电子化学品纯度为G4→G5级，晶圆厂对纯度要求ppm级。国内仅少数企业可量产。
+      </div>
+    </div>
+  </div>
+
+  <h3>3.3 国际工程/战后重建 — 双停火共振，PE仅11-12x</h3>
+  <p><strong>逻辑链：</strong>美伊谈判推进(霍尔木兹重开) + 俄乌2026年底结束 → 伊朗解冻240亿美元 → 乌克兰重建7500亿美元 → 中东+东欧双重建周期 → 四大国际工程公司直接受益。</p>
+  <p><strong>中材国际(600970) PE 12.3x + PB 0.96x——全名单估值最低。</strong></p>
+</div>
+
+<!-- ============ PART 4: RESTOCKING CYCLE ============ -->
+<div class="section">
+  <h2><span class="icon">📦</span> 第四章：补库周期拐点产业</h2>
+
+  <div class="grid grid-3">
+    <div class="chain-card">
+      <h3>🥇 锂/电池材料</h3>
+      <p><strong>库存状态：</strong>连续9周去库存，冶炼厂库存降9.1%</p>
+      <p><strong>拐点信号：</strong>2026H2进入补库+涨价周期</p>
+      <p><strong>催化剂：</strong>矿端延期+反内卷政策+储能需求爆发</p>
+      <p><strong>领先股价：</strong>3-6个月</p>
+      <p class="source">来源：GGII 2025.08；生意社</p>
+    </div>
+    <div class="chain-card">
+      <h3>🥈 MLCC/被动元件</h3>
+      <p><strong>库存状态：</strong>渠道库存耗尽，BB Ratio>1</p>
+      <p><strong>拐点信号：</strong>太阳诱电已涨价6-13%</p>
+      <p><strong>催化剂：</strong>AI服务器MLCC需求年增20%+</p>
+      <p><strong>领先股价：</strong>仍在进行中</p>
+      <p class="source">来源：中信证券 2026.06；华新科</p>
+    </div>
+    <div class="chain-card">
+      <h3>🥉 铜矿/有色金属</h3>
+      <p><strong>库存状态：</strong>LME铜库存低位，供应短缺</p>
+      <p><strong>拐点信号：</strong>战略储备+矿端中断→供需缺口</p>
+      <p><strong>催化剂：</strong>AI数据中心+电网投资+EV</p>
+      <p><strong>领先股价：</strong>0-3个月</p>
+      <p class="source">来源：汇丰研究 2026.02；路透调查</p>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <p><strong>历史规律参考：</strong>中信证券指出，PPI拐点领先补库拐点1-4个季度，上游采矿业和中游装备制造业最早迎来补库拐点。股票/商品在主动补库期和被动去库期表现最好。</p>
+  <p class="source">来源：中信证券 2023.08《哪些行业有可能最早迎来补库拐点？》</p>
+</div>
+
+<!-- ============ PART 5: HIGH RISK SECTORS ============ -->
+<div class="section">
+  <h2><span class="icon">⚠️</span> 第五章：高位回调风险板块</h2>
+
+  <div class="grid grid-2">
+    <div>
+      <h3>5.1 AI芯片 — PE泡沫最严重的领域</h3>
+      <table>
+        <tr><th>代码</th><th>名称</th><th>现价</th><th>PE(TTM)</th><th>风险评级</th></tr>
+        <tr><td>688256</td><td>寒武纪</td><td class="price-down">1325.79(-0.69%)</td><td class="price-up">205.5x</td><td class="grade-c">🔴高</td></tr>
+        <tr><td>688041</td><td>海光信息</td><td class="price-down">295.07(-1.42%)</td><td class="price-up">249.5x</td><td class="grade-c">🔴高</td></tr>
+      </table>
+      <div class="callout callout-warn">
+        <strong>⚠️ 风险提示：</strong>北美CSP CAPEX+70%已充分定价。一旦CAPEX指引放缓或Claude禁令缓解，估值将剧烈回调。2016年至今AI芯片板块PE中位数约80-100x，当前250x已远超合理范围。
+      </div>
+    </div>
+    <div>
+      <h3>5.2 光模块 — 高景气但估值不低</h3>
+      <table>
+        <tr><th>代码</th><th>名称</th><th>现价</th><th>PE(TTM)</th><th>风险评级</th></tr>
+        <tr><td>300308</td><td>中际旭创</td><td>1245.67(+0.05%)</td><td>60.6x</td><td class="grade-b">🟡中</td></tr>
+      </table>
+      <p>1.6T升级周期确定性强，但PE 60x处于历史高位区间。进入2026H2后需关注订单增速放缓信号。</p>
+    </div>
+  </div>
+
+  <h3>5.3 MLCC概念 — 短期涨幅过大风险</h3>
+  <table>
+    <tr><th>代码</th><th>名称</th><th>现价</th><th>PE</th><th>今日涨幅</th><th>追高风险</th></tr>
+    <tr><td>000636</td><td>风华高科</td><td class="price-up">71.50(+9.95%涨停)</td><td>233.5x</td><td class="price-up">+9.95%</td><td class="grade-c">🔴极高</td></tr>
+    <tr><td>300408</td><td>三环集团</td><td class="price-up">151.94(+1.12%)</td><td>92.0x</td><td>昨+18.77%</td><td class="grade-b">🟡高</td></tr>
+    <tr><td>300285</td><td>国瓷材料</td><td class="price-up">66.70(+5.37%)</td><td>116.9x</td><td class="price-up">+5.37%</td><td class="grade-b">🟡中高</td></tr>
+  </table>
+  <div class="callout callout-warn">
+    <strong>⚠️ 关键提醒：</strong>MLCC缺货逻辑正确，但风华高科今日涨停板PE已达233x。产业链瓶颈分析告诉我们：国瓷材料(瓶颈②粉体)和博杰股份(瓶颈③设备)才是真正的价值洼地——它们的PE远低于MLCC制造商，但卡的是全链条的"阀门"。
+  </div>
+</div>
+
+<!-- ============ PART 6: BOTTLENECK DEEP DIVES ============ -->
+<div class="section">
+  <h2><span class="icon">🔬</span> 第六章：瓶颈理论深挖 — 五大产业链</h2>
+
+  <!-- 6.1 MLCC -->
+  <h3>6.1 MLCC产业链 — 五层嵌套瓶颈</h3>
+  <table>
+    <tr><th>瓶颈层</th><th>卡脖子程度</th><th>不可替代性</th><th>缓解周期</th><th>A股映射</th><th>大宗</th></tr>
+    <tr>
+      <td>①MLCC芯片</td><td>⭐⭐⭐⭐</td><td>村田1600层 vs 国产800层</td><td>2-3年</td><td>风华高科/三环集团</td><td>—</td>
+    </tr>
+    <tr>
+      <td><strong>②陶瓷粉体</strong></td><td><strong>⭐⭐⭐⭐⭐</strong></td><td>堺化学80nm vs 国瓷120nm</td><td><strong>不可预测</strong></td><td><strong>国瓷材料(300285)</strong></td><td>钛酸钡</td>
+    </tr>
+    <tr>
+      <td>③核心设备</td><td>⭐⭐⭐⭐</td><td>叠层机交期12-18月</td><td>1-2年</td><td>博杰股份(002975)</td><td>—</td>
+    </tr>
+    <tr>
+      <td>④产能转换</td><td>⭐⭐⭐</td><td>消费转AI→全品缺货</td><td>1-2年</td><td>无法映射</td><td>—</td>
+    </tr>
+    <tr>
+      <td><strong>⑤时间壁垒</strong></td><td><strong>⭐⭐⭐⭐⭐</strong></td><td>建厂2-3年+设备1-1.5年</td><td><strong>最早2029</strong></td><td>无</td><td>—</td>
+    </tr>
+  </table>
+  <div class="callout callout-info">
+    <strong>🔑 瓶颈理论结论：</strong>瓶颈②(粉体)和⑤(时间)不可缓解。国瓷材料是全链条最关键的"阀门"——它的粉体技术突破决定了所有下游MLCC厂商的上限。当前MLCC芯片股已暴涨，但瓶颈节点的价值尚未充分定价。
+  </div>
+
+  <!-- 6.2 Copper -->
+  <h3>6.2 铜产业链 — 供给端不可逆收缩</h3>
+  <div class="grid grid-2">
+    <div>
+      <p><strong>瓶颈拆解：</strong></p>
+      <table>
+        <tr><th>环节</th><th>瓶颈</th><th>不可替代性</th></tr>
+        <tr><td>矿端</td><td>新矿开发周期8-10年，现有矿山品位下降</td><td>极高</td></tr>
+        <tr><td>冶炼</td><td>中国TC/RC持续走低，矿端卡冶炼</td><td>高</td></tr>
+        <tr><td>需求</td><td>AI数据中心+电网+EV三大引擎</td><td>需求刚性</td></tr>
+        <tr><td>战略储备</td><td>全球主要消费国加速收储</td><td>额外需求</td></tr>
+      </table>
+      <p><strong>供需：</strong>2026年预计缺口扩大，LME铜价中位数11975$/t，但年初曾冲击14527$创纪录。中国铝产量已触及4500万吨产能上限，2027年将转为短缺。</p>
+    </div>
+    <div>
+      <p><strong>大宗商品映射：铜(Cu)</strong></p>
+      <ul>
+        <li>LME三个月期货：12525$/t（2025年全年+42%）</li>
+        <li>路透调查：铜2026年涨20%(vs 2025均价)</li>
+        <li>中信Q1预测：13000$/t</li>
+        <li>TD证券：未来6个月创新高</li>
+      </ul>
+      <p><strong>A股映射：</strong></p>
+      <table>
+        <tr><th>代码</th><th>名称</th><th>现价</th><th>PE</th></tr>
+        <tr><td>601899</td><td>紫金矿业</td><td class="price-down">30.86(-1.44%)</td><td>10.2x</td></tr>
+        <tr><td>603799</td><td>华友钴业</td><td class="price-up">53.71(+2.40%)</td><td>10.2x</td></tr>
+        <tr><td>000630</td><td>铜陵有色</td><td>—</td><td>—</td></tr>
+      </table>
+    </div>
+  </div>
+  <p class="source">来源：汇丰研究 2026.02.20/03.15；中信证券 2026.02.12；路透调查 2026.02.04；TD证券</p>
+
+  <!-- 6.3 Gold/Silver -->
+  <h3>6.3 黄金/白银 — 去美元化的结构性趋势</h3>
+  <p><strong>四大支柱（汇丰研究框架）：</strong>AI及数据中心 + 电动车需求 + 储能系统 + 去美元化主题</p>
+  <div class="grid grid-2">
+    <div>
+      <p><strong>黄金：</strong></p>
+      <ul>
+        <li>美元信用动摇：美国长债供需压力，黄金替代美债的长逻辑</li>
+        <li>ETF持续流入：沃什降息方向确定（尽管缩表并行），短端利率下行利好黄金</li>
+        <li>央行购金：黄金占外汇储备升至25.94%(2026.01)</li>
+        <li>GlobalData：2026年金价再涨8-15%</li>
+        <li>中信Q1预测：5250$/oz均价，目前约4700$+</li>
+      </ul>
+    </div>
+    <div>
+      <p><strong>白银：</strong></p>
+      <ul>
+        <li>三大工业需求：光伏+电动汽车+数据中心</li>
+        <li>库存下降造就现货紧张</li>
+        <li>部分国家将其储备资产化</li>
+        <li>GlobalData：2026年银价再涨20-35%</li>
+        <li>中信Q1预测：85$/oz均价，年初已突破100$</li>
+      </ul>
+    </div>
+  </div>
+  <table>
+    <tr><th>代码</th><th>名称</th><th>现价</th><th>PE</th><th>映射商品</th></tr>
+    <tr><td>601899</td><td>紫金矿业</td><td class="price-down">30.86(-1.44%)</td><td>10.2x</td><td>铜+金</td></tr>
+    <tr><td>600547</td><td>山东黄金</td><td class="price-down">28.48(-0.63%)</td><td>22.7x</td><td>纯黄金</td></tr>
+  </table>
+  <p class="source">来源：中邮证券 2026.01.21/01.26；国联民生证券；GlobalData 2025.12.27</p>
+
+  <!-- 6.4 Transformer -->
+  <h3>6.4 电力设备/变压器 — 时间壁垒不可压缩</h3>
+  <table>
+    <tr><th>瓶颈层</th><th>数据</th><th>持续时间</th><th>A股映射</th></tr>
+    <tr><td>①高端变压器</td><td>发电升压变交期144周(+274%需求)</td><td>≥3年</td><td>金盘科技/伊戈尔</td></tr>
+    <tr><td>②硅钢片</td><td>取向硅钢产能扩张慢</td><td>2-3年</td><td>望变电气(唯一垂直整合)</td></tr>
+    <tr><td>③铜/铝导体</td><td>铜铝供应已紧张</td><td>持续</td><td>铜铝矿企</td></tr>
+  </table>
+  <p><strong>大宗商品映射：</strong>铜（导体）、铝（轻量化壳体）、硅钢（铁芯）——变压器需求直接拉动铜铝需求。</p>
+  <p class="source">来源：变压器专题分析 2026.06.15</p>
+
+  <!-- 6.5 Solar -->
+  <h3>6.5 光伏硅片 — 全行业亏损底部的博弈</h3>
+  <div class="grid grid-2">
+    <div>
+      <p><strong>供需：</strong></p>
+      <ul>
+        <li>供给：产能严重过剩，去产能进行中</li>
+        <li>需求：全球装机仍高增长(年增15-20%)</li>
+        <li>库存：硅片/电池/组件全链条高库存</li>
+        <li>价格：多晶硅50000元/吨(中信Q1预测)，工业硅9000元/吨</li>
+      </ul>
+      <p><strong>A股：</strong>TCL中环(002129)：10.26元，亏损状态，PB 2.07x，反弹中</p>
+    </div>
+    <div>
+      <p><strong>瓶颈分析：</strong></p>
+      <ul>
+        <li>硅料→硅片→电池→组件全链条产能过剩</li>
+        <li>真正的瓶颈在下游：电网消纳能力</li>
+        <li>去产能政策执行力度决定反转时间</li>
+        <li>高纯石英砂(坩埚)仍存在一定进口依赖</li>
+      </ul>
+      <div class="callout callout-warn">
+        <strong>⚠️ 博弈性质：</strong>激进去产能博弈反转可关注，但基本面拐点尚未确认。TCL中环2025年亏92.64亿，2026Q1亏16.47亿，PB 2.07x在亏损状态下不算低。
+      </div>
+    </div>
+  </div>
+  <p class="source">来源：中信证券 2026.02.12；TCL中环专题分析 2026.06.15</p>
+</div>
+
+<!-- ============ PART 7: COMMODITY MAPPING ============ -->
+<div class="section">
+  <h2><span class="icon">🛢️</span> 第七章：大宗商品映射全表</h2>
+
+  <table>
+    <tr><th>大宗商品</th><th>当前价格</th><th>2026预测</th><th>供需格局</th><th>驱动产业</th><th>A股映射</th></tr>
+    <tr>
+      <td><strong>铜(LME)</strong></td>
+      <td>~12525$/t</td>
+      <td class="price-up">13000$(+20%)</td>
+      <td>缺口扩大</td>
+      <td>AI+电网+EV</td>
+      <td>紫金矿业/铜陵有色/江西铜业</td>
+    </tr>
+    <tr>
+      <td><strong>黄金</strong></td>
+      <td>~4700$/oz</td>
+      <td class="price-up">5250$(+12%)</td>
+      <td>结构性牛市</td>
+      <td>去美元化+避险</td>
+      <td>山东黄金/赤峰黄金/紫金矿业</td>
+    </tr>
+    <tr>
+      <td><strong>白银</strong></td>
+      <td>~100$/oz</td>
+      <td class="price-up">85-100$+</td>
+      <td>供需两旺</td>
+      <td>光伏+AI+储备</td>
+      <td>兴业矿业/盛达资源</td>
+    </tr>
+    <tr>
+      <td><strong>铝(LME)</strong></td>
+      <td>~2992$/t</td>
+      <td class="price-up">23500元(+12%)</td>
+      <td>2027转短缺</td>
+      <td>轻量化+电力</td>
+      <td>中国铝业/云铝股份</td>
+    </tr>
+    <tr>
+      <td><strong>碳酸锂</strong></td>
+      <td>7-8万元/t</td>
+      <td class="price-up">15万+(+100%)</td>
+      <td>H2反转</td>
+      <td>储能+动力电池</td>
+      <td>赣锋锂业/天齐锂业</td>
+    </tr>
+    <tr>
+      <td><strong>原油</strong></td>
+      <td>~65$/bbl</td>
+      <td>65$(持平)</td>
+      <td>地缘博弈</td>
+      <td>交通+化工</td>
+      <td>中国海油/中国石油</td>
+    </tr>
+    <tr>
+      <td><strong>锡(LME)</strong></td>
+      <td>40545$/t</td>
+      <td class="price-up">+16%</td>
+      <td>供给受限</td>
+      <td>半导体+光伏</td>
+      <td>锡业股份</td>
+    </tr>
+    <tr>
+      <td><strong>镍</strong></td>
+      <td>16750$/t</td>
+      <td>19000$(+13%)</td>
+      <td>改善中</td>
+      <td>电池+不锈钢</td>
+      <td>华友钴业/格林美</td>
+    </tr>
+    <tr>
+      <td><strong>铁矿石</strong></td>
+      <td>95$/t</td>
+      <td>95$(持平)</td>
+      <td>需求弱</td>
+      <td>钢铁(反内卷)</td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <td><strong>多晶硅</strong></td>
+      <td>~50000元/t</td>
+      <td>底部震荡</td>
+      <td>严重过剩</td>
+      <td>光伏</td>
+      <td>通威股份/大全能源</td>
+    </tr>
+  </table>
+  <p class="source">来源：汇丰研究/中信证券 2026Q1大宗商品展望；路透调查 2026.02；GGII锂电研究所</p>
+</div>
+
+<!-- ============ PART 8: SUMMARY MATRIX ============ -->
+<div class="section">
+  <h2><span class="icon">🎯</span> 第八章：综合投资矩阵</h2>
+
+  <table>
+    <tr><th>排序</th><th>产业/标的</th><th>逻辑类型</th><th>现阶段</th><th>建议操作</th><th>风险等级</th></tr>
+    <tr>
+      <td>🥇</td>
+      <td><strong>铜(紫金矿业 PE 10.2x)</strong></td>
+      <td>低估+供给瓶颈</td>
+      <td>趋势中</td>
+      <td>分批建仓</td>
+      <td>中低</td>
+    </tr>
+    <tr>
+      <td>🥈</td>
+      <td><strong>锂(赣锋PE 20x /天齐PE 14x)</strong></td>
+      <td>低估+补库拐点</td>
+      <td>底部反转前</td>
+      <td>左侧布局</td>
+      <td>中</td>
+    </tr>
+    <tr>
+      <td>🥉</td>
+      <td><strong>黄金(山东黄金 PE 22x)</strong></td>
+      <td>结构性牛市</td>
+      <td>趋势中</td>
+      <td>逢回调加仓</td>
+      <td>中低</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td><strong>铝(产能上限+2027短缺)</strong></td>
+      <td>供给天花板</td>
+      <td>趋势中</td>
+      <td>关注</td>
+      <td>中低</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td><strong>MLCC瓶颈②(国瓷材料)</strong></td>
+      <td>瓶颈理论</td>
+      <td>发酵初期</td>
+      <td>优先于风华/三环</td>
+      <td>中</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td><strong>变压器出口(金盘/伊戈尔)</strong></td>
+      <td>时间壁垒</td>
+      <td>已大涨</td>
+      <td>等回调</td>
+      <td>中高</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td><strong>国际工程(中材PE12x/中钢PE11x)</strong></td>
+      <td>战后重建</td>
+      <td>发酵中</td>
+      <td>关注</td>
+      <td>中</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td><strong>AI芯片(寒武纪PE205x)</strong></td>
+      <td>高位回调风险</td>
+      <td>泡沫区间</td>
+      <td>减仓/回避</td>
+      <td>高</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td><strong>光伏硅片(TCL中环PB2x)</strong></td>
+      <td>去产能博弈</td>
+      <td>底部</td>
+      <td>小仓位试探</td>
+      <td>高</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td><strong>钢铁/煤炭</strong></td>
+      <td>反内卷承压</td>
+      <td>底部</td>
+      <td>回避</td>
+      <td>中</td>
+    </tr>
+  </table>
+</div>
+
+<!-- ============ PART 9: DATA SOURCES ============ -->
+<div class="section">
+  <h2><span class="icon">📚</span> 附录：数据来源与参考依据</h2>
+
+  <table>
+    <tr><th>#</th><th>来源</th><th>标题/内容</th><th>日期</th></tr>
+    <tr><td>1</td><td>中国新闻网</td><td>凯文·沃什宣誓就任美联储主席</td><td>2026.05.23</td></tr>
+    <tr><td>2</td><td>中国新闻网</td><td>美联储新主席宣誓就任 "沃什时代"政策迷雾待解</td><td>2026.05.23</td></tr>
+    <tr><td>3</td><td>上海证券报</td><td>上证观察家：沃什的美联储政策改革主张可行性几何（刘涛/连平）</td><td>2026.06.13</td></tr>
+    <tr><td>4</td><td>中国外汇</td><td>从沃什政策主张研判美联储转向及市场影响</td><td>2026.04.29</td></tr>
+    <tr><td>5</td><td>界面新闻</td><td>沃什"首秀"：主张"制度变革"，降息方向确定但节奏存疑</td><td>2026.04.22</td></tr>
+    <tr><td>6</td><td>中信证券</td><td>预计沃什担任美联储主席后 H2降息1次25bps</td><td>2026.04.30</td></tr>
+    <tr><td>7</td><td>格隆汇</td><td>沃什：将在继承美联储优良传统的同时展开"务实清醒"改革</td><td>2026.06.03</td></tr>
+    <tr><td>8</td><td>格隆汇</td><td>进入倒计时！美伊停火协议到期时间版本不一</td><td>2026.04.21</td></tr>
+    <tr><td>9</td><td>格隆汇</td><td>策略师：美伊冲突可能在5月而非6月结束</td><td>2026.04.08</td></tr>
+    <tr><td>10</td><td>格隆汇</td><td>乌官员：俄乌冲突可能在2026年底前结束</td><td>2025.09.06</td></tr>
+    <tr><td>11</td><td>格隆汇/中信建投</td><td>持续看好人工智能产业链（CAPEX+70.25%，全年7100亿美元）</td><td>2026.06.06</td></tr>
+    <tr><td>12</td><td>汇丰研究</td><td>大宗商品2026年开局强劲，看好铜铝贵金属及电池原材料</td><td>2026.02.20</td></tr>
+    <tr><td>13</td><td>汇丰研究</td><td>2025年金属市场创三十年最佳表现，四大支柱框架</td><td>2026.03.15</td></tr>
+    <tr><td>14</td><td>中信证券</td><td>避险情绪升温催化商品大涨，贵金属和原油显著受益</td><td>2026.02.12</td></tr>
+    <tr><td>15</td><td>路透社调查</td><td>铜锡铝领跑2026基本金属，涨幅20%/16%/12%</td><td>2026.02.04</td></tr>
+    <tr><td>16</td><td>TD证券</td><td>铜作为货币贬值主要受益者，半年内或创新高</td><td>2026.02</td></tr>
+    <tr><td>17</td><td>中邮证券</td><td>黄金白银：美元信用动摇+ETF流入+央行购金</td><td>2026.01.21</td></tr>
+    <tr><td>18</td><td>GlobalData</td><td>贵金属"战略性反应"，金+8-15%，银+20-35%</td><td>2025.12.27</td></tr>
+    <tr><td>19</td><td>GGII锂电研究所</td><td>锂盐价格持续调整，2026H2有望进入新一轮上涨周期</td><td>2025.08.12</td></tr>
+    <tr><td>20</td><td>国泰君安</td><td>锂板块最快于2026年前进入上行周期</td><td>2024.09.11</td></tr>
+    <tr><td>21</td><td>中信证券</td><td>去产能/补库周期历史规律（上游→中游→下游）</td><td>2023.08.15</td></tr>
+    <tr><td>22</td><td>浙商银行</td><td>新周期开启保持乐观态度（旧动能企稳+新动能崛起）</td><td>2026.02.24</td></tr>
+    <tr><td>23</td><td>TDX通达信</td><td>全部22只标的实时行情+PE/PB/ROE数据</td><td>2026.06.16 10:20</td></tr>
+  </table>
+</div>
+
+<div class="section" style="text-align:center; color:#8b949e; font-size:0.85em;">
+  <p><strong>免责声明：</strong>本报告仅供学习研究参考，不构成任何投资建议。所有数据来源已在各章节和附录中标注。</p>
+  <p>股票数据来源：通达信(TDX)实时行情 | 生成时间：2026年6月16日 10:20 CST</p>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>玉米期货入门基本面教程 | 从产地、面积、产量到现状</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'PingFang SC','Microsoft YaHei',sans-serif; background: #f0f4f0; color: #222; line-height: 1.9; }
+  .container { max-width: 1080px; margin: 0 auto; background: #fff; min-height: 100vh; }
+  
+  /* 头部 */
+  .header { background: linear-gradient(135deg, #2e7d32 0%, #388e3c 40%, #43a047 100%);
+    color: #fff; padding: 36px 44px 28px; position: relative; }
+  .header::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+    height: 4px; background: linear-gradient(90deg, #ffd54f, #ffb300, #ffd54f); }
+  .header .subtitle { font-size: 13px; opacity: 0.8; margin-bottom: 12px; }
+  .header h1 { font-size: 28px; font-weight: 800; margin-bottom: 10px; letter-spacing: 1px; }
+  .header .subtitle2 { font-size: 15px; opacity: 0.9; }
+  .level-badge { display: inline-block; background: rgba(255,255,255,0.2); border-radius: 20px;
+    padding: 4px 16px; font-size: 13px; margin-top: 12px; }
+  
+  .content { padding: 32px 44px 56px; }
+  .section { margin-bottom: 40px; }
+  .section-title { font-size: 20px; font-weight: 700; color: #2e7d32;
+    border-left: 5px solid #2e7d32; padding-left: 14px; margin-bottom: 18px; }
+  .section-title .num { display: inline-block; background: #2e7d32; color: #fff;
+    border-radius: 50%; width: 28px; height: 28px; text-align: center; line-height: 28px;
+    font-size: 14px; margin-right: 8px; }
+  
+  /* 新手提示框 */
+  .beginner-tip { background: #e8f5e9; border-radius: 8px; padding: 14px 18px; margin: 14px 0;
+    border-left: 4px solid #43a047; font-size: 13px; }
+  .beginner-tip::before { content: '💡 新手提示：'; font-weight: 700; color: #2e7d32; }
+  
+  /* 产区地图 - 用CSS模拟 */
+  .map-container { background: #f1f8e9; border-radius: 12px; padding: 24px; margin: 16px 0;
+    border: 1px solid #c8e6c9; }
+  .map-title { text-align: center; font-size: 16px; font-weight: 700; color: #33691e; margin-bottom: 16px; }
+  .region-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .region-card { background: #fff; border-radius: 8px; padding: 14px 16px; text-align: center;
+    border: 2px solid #a5d6a7; transition: all 0.2s; }
+  .region-card:hover { border-color: #2e7d32; box-shadow: 0 2px 8px rgba(46,125,50,0.2); }
+  .region-card .province { font-size: 16px; font-weight: 700; color: #2e7d32; margin-bottom: 6px; }
+  .region-card .output { font-size: 13px; color: #555; margin-bottom: 4px; }
+  .region-card .pct { font-size: 12px; color: #888; }
+  .region-card.core { border-color: #f57c00; background: #fff8e1; }
+  .region-card.core .province { color: #e65100; }
+  .region-card.core .tag { display: inline-block; background: #f57c00; color: #fff; border-radius: 4px;
+    padding: 1px 8px; font-size: 11px; margin-top: 4px; }
+  
+  /* 数据表格 */
+  .data-table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 13px; }
+  .data-table th { background: #2e7d32; color: #fff; padding: 10px 14px; text-align: center;
+    font-weight: 600; }
+  .data-table td { padding: 9px 14px; border-bottom: 1px solid #e0e0e0; text-align: center; }
+  .data-table tr:nth-child(even) td { background: #f9fbe7; }
+  .data-table tr:hover td { background: #e8f5e9; }
+  
+  /* 概念解释框 */
+  .concept-box { background: #f9fbe7; border-radius: 10px; padding: 18px 22px; margin: 16px 0;
+    border: 1px dashed #aed581; }
+  .concept-box h4 { font-size: 15px; color: #558b2f; margin-bottom: 10px; }
+  .concept-box p { font-size: 13px; color: #444; margin-bottom: 6px; }
+  .concept-box .term { font-weight: 700; color: #33691e; }
+  
+  /* 供需平衡表 */
+  .balance-table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 13px; }
+  .balance-table th { background: #33691e; color: #fff; padding: 9px 12px; text-align: center; }
+  .balance-table td { padding: 8px 12px; border-bottom: 1px solid #e0e0e0; text-align: center; }
+  .balance-table tr:nth-child(even) td { background: #f1f8e9; }
+  .balance-table .highlight-row td { background: #dcedc8; font-weight: 600; }
+  
+  /* 现状卡片 */
+  .status-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 16px 0; }
+  .status-card { background: #f9fbe7; border-radius: 10px; padding: 16px 20px;
+    border-left: 4px solid #689f38; }
+  .status-card h4 { font-size: 14px; color: #33691e; margin-bottom: 8px; }
+  .status-card p { font-size: 13px; color: #444; }
+  .status-card.bear { border-left-color: #2e7d32; background: #e8f5e9; }
+  .status-card.bull { border-left-color: #d32f2f; background: #ffebee; }
+  .status-card.neutral { border-left-color: #f57c00; background: #fff8e1; }
+  
+  /* 价格走势模拟 */
+  .price-chart { background: #fff; border-radius: 10px; padding: 18px 22px; margin: 16px 0;
+    border: 1px solid #c8e6c9; }
+  .price-chart .chart-title { font-size: 15px; font-weight: 700; color: #33691e; margin-bottom: 12px; }
+  .price-row { display: flex; align-items: center; margin: 8px 0; }
+  .price-row .contract { width: 80px; font-size: 13px; font-weight: 600; color: #444; }
+  .price-row .bar-container { flex: 1; height: 28px; background: #f5f5f5; border-radius: 4px;
+    position: relative; overflow: hidden; }
+  .price-row .bar { height: 100%; border-radius: 4px; display: flex; align-items: center;
+    padding-left: 10px; font-size: 12px; color: #fff; font-weight: 600; }
+  .price-row .bar.up { background: linear-gradient(90deg, #d32f2f, #ef5350); }
+  .price-row .bar.down { background: linear-gradient(90deg, #2e7d32, #66bb6a); }
+  .price-row .price-val { margin-left: 10px; font-size: 13px; font-weight: 600; }
+  
+  /* 学习路径 */
+  .learning-path { background: linear-gradient(135deg, #e8f5e9, #f1f8e9);
+    border-radius: 12px; padding: 22px 26px; margin: 20px 0; border: 1px solid #a5d6a7; }
+  .learning-path h4 { font-size: 16px; color: #2e7d32; margin-bottom: 12px; }
+  .path-steps { display: flex; gap: 0; }
+  .path-step { flex: 1; text-align: center; position: relative; padding: 10px 6px; }
+  .path-step:not(:last-child)::after { content: '→'; position: absolute; right: -8px; top: 50%;
+    transform: translateY(-50%); font-size: 18px; color: #a5d6a7; font-weight: 700; }
+  .path-step .step-num { display: inline-block; width: 28px; height: 28px; background: #2e7d32;
+    color: #fff; border-radius: 50%; line-height: 28px; font-size: 13px; margin-bottom: 6px; }
+  .path-step .step-name { font-size: 12px; color: #444; }
+  
+  .footnote { font-size: 12px; color: #999; margin-top: 32px; padding-top: 16px;
+    border-top: 1px solid #e0e0e0; line-height: 1.8; }
+  .up { color: #d32f2f; font-weight: 700; }
+  .down { color: #2e7d32; font-weight: 700; }
+  .neutral { color: #f57c00; font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- 头部 -->
+  <div class="header">
+    <div class="subtitle">📘 期货入门系列 · 基本面分析教程</div>
+    <h1>🌽 玉米期货入门：从产地、面积、产量到现状</h1>
+    <div class="subtitle2">一份专门写给新手的超详细基本面教程——零基础也能看懂</div>
+    <div class="level-badge">🎓 难度：入门级（适合刚开始学习期货的朋友）</div>
+  </div>
+
+  <div class="content">
+
+    <!-- 学习路径 -->
+    <div class="learning-path">
+      <h4>🗺️ 本教程学习路径</h4>
+      <div class="path-steps">
+        <div class="path-step"><div class="step-num">1</div><div class="step-name">玉米是什么<br>在哪用</div></div>
+        <div class="path-step"><div class="step-num">2</div><div class="step-name">中国主产地<br>在哪</div></div>
+        <div class="path-step"><div class="step-num">3</div><div class="step-name">种多少<br>产多少</div></div>
+        <div class="path-step"><div class="step-num">4</div><div class="step-name">供需平衡<br>全景</div></div>
+        <div class="path-step"><div class="step-num">5</div><div class="step-name">期货怎么看<br>现状如何</div></div>
+      </div>
+    </div>
+
+    <!-- 第一章：玉米是什么 -->
+    <div class="section">
+      <div class="section-title"><span class="num">一</span>玉米是什么？用在哪里？</div>
+      
+      <div class="beginner-tip">
+        玉米（Maize/Corn）是全球最重要的粮食作物之一，也是中国产量最大的谷物。在中国，玉米主要用于饲料（养猪养鸡），其次是工业加工（淀粉、酒精、糖浆），最后才是直接食用。
+      </div>
+      
+      <table class="data-table">
+        <tr><th>用途</th><th>占比</th><th>说明</th><th>对价格的影响</th></tr>
+        <tr><td>🐷 <strong>饲料用</strong></td><td class="up">约60%~65%</td>
+          <td>猪饲料、禽饲料的主要原料</td><td>猪价涨跌→饲料需求→玉米需求→玉米价格</td></tr>
+        <tr><td>🏭 <strong>工业用</strong></td><td class="neutral">约25%~30%</td>
+          <td>淀粉、酒精、果葡糖浆、赖氨酸等</td><td>经济好坏→工业需求→玉米价格</td></tr>
+        <tr><td>🍚 <strong>食用+种用</strong></td><td>约5%~8%</td>
+          <td>直接食用、种子</td><td>影响较小</td></tr>
+        <tr><td>📦 <strong>期末库存</strong></td><td>约10%~15%</td>
+          <td>国家储备、企业库存</td><td>库存高低决定价格天花板</td></tr>
+      </table>
+      
+      <div class="concept-box">
+        <h4>📖 基本概念：什么是DCE玉米期货？</h4>
+        <p>🏛️ <span class="term">DCE</span> = 大连商品交易所（Dalian Commodity Exchange），是中国三大期货交易所之一。</p>
+        <p>🌽 <span class="term">玉米期货</span> = 以玉米为标的的标准化合约，在DCE交易，代码是 <span class="term">C</span>（Corn）。</p>
+        <p>📅 <span class="term">合约月份</span> = 每年1、3、5、7、9、11月都有合约，最常见的是 <span class="term">C2609</span>（2026年9月到期）、<span class="term">C2701</span>（2027年1月到期）。</p>
+        <p>💰 <span class="term">交易单位</span> = 10吨/手，最小变动价位 1元/吨（即跳一下=10元）。</p>
+      </div>
+    </div>
+
+    <!-- 第二章：主产地 -->
+    <div class="section">
+      <div class="section-title"><span class="num">二</span>中国玉米主产地在哪里？</div>
+      
+      <div class="beginner-tip">
+        中国玉米生产高度集中，形成"北粮南运"格局。记住一句话：<strong>东北产玉米，华北也产，但东北品质更好、产量更大</strong>。
+      </div>
+      
+      <div class="map-container">
+        <div class="map-title">🗺️ 中国玉米主产区分布（2024年数据，产量前10省）</div>
+        <div class="region-grid">
+          <div class="region-card core">
+            <div class="province">🥇 黑龙江</div>
+            <div class="output">产量：约 <span class="up">4,585万吨</span></div>
+            <div class="pct">占全国 <span class="up">15.5%</span></div>
+            <div class="tag">核心产区</div>
+          </div>
+          <div class="region-card core">
+            <div class="province">🥈 吉林省</div>
+            <div class="output">产量：约 <span class="up">3,500~4,000万吨</span></div>
+            <div class="pct">占全国 <span class="up">约12%~13%</span></div>
+            <div class="tag">核心产区</div>
+          </div>
+          <div class="region-card core">
+            <div class="province">🥉 内蒙古</div>
+            <div class="output">产量：约 <span class="up">3,000~3,500万吨</span></div>
+            <div class="pct">占全国 <span class="up">约10%~12%</span></div>
+            <div class="tag">核心产区</div>
+          </div>
+          <div class="region-card">
+            <div class="province">山东省</div>
+            <div class="output">产量：约 2,500~3,000万吨</div>
+            <div class="pct">占全国 约9%~10%</div>
+          </div>
+          <div class="region-card">
+            <div class="province">河南省</div>
+            <div class="output">产量：约 2,000~2,500万吨</div>
+            <div class="pct">占全国 约7%~8%</div>
+          </div>
+          <div class="region-card">
+            <div class="province">河北省</div>
+            <div class="output">产量：约 1,500~2,000万吨</div>
+            <div class="pct">占全国 约5%~6%</div>
+          </div>
+          <div class="region-card">
+            <div class="province">辽宁省</div>
+            <div class="output">产量：约 1,500~2,000万吨</div>
+            <div class="pct">占全国 约5%~6%</div>
+          </div>
+          <div class="region-card">
+            <div class="province">新疆</div>
+            <div class="output">产量：约 1,000~1,500万吨</div>
+            <div class="pct">占全国 约4%~5%</div>
+          </div>
+          <div class="region-card">
+            <div class="province">四川/云南</div>
+            <div class="output">产量：各约 800~1,200万吨</div>
+            <div class="pct">占全国 各约3%~4%</div>
+          </div>
+        </div>
+        <p style="text-align:center;margin-top:14px;font-size:13px;color:#666;">
+          📊 <strong>结论：</strong>黑龙江+吉林+内蒙古 = 占全国产量 <span class="up">约38%~40%</span>；前10省合计占全国 <span class="up">80%+</span>
+        </p>
+      </div>
+
+      <div class="concept-box">
+        <h4>🌦️ 为什么产地很重要？——天气炒作的基础</h4>
+        <p>① <span class="term">东北产区</span>：玉米生长关键期是 <span class="up">7~8月</span>（拔节+灌浆期），这段时间如果干旱→减产→期货价格上涨！</p>
+        <p>② <span class="term">厄尔尼诺年</span>：通常让东北 <span class="down">偏干偏热</span>（不利玉米），让华南 <span class="up">偏多雨</span>（影响甘蔗和水稻）。</p>
+        <p>③ <span class="term">收获期</span>：东北玉米 10~11月 收获，收获后大量新粮上市→短期供给增加→价格承压（这就是"季节性"）。</p>
+      </div>
+    </div>
+
+    <!-- 第三章：种植面积和产量 -->
+    <div class="section">
+      <div class="section-title"><span class="num">三</span>种多少？产多少？（种植面积 & 产量数据）</div>
+      
+      <div class="beginner-tip">
+        "种植面积"和"单位产量"共同决定总产量。种植面积受政策（补贴）、利润（玉米 vs 大豆 vs 小麦比价）影响；单位产量受天气、种子技术、化肥影响。
+      </div>
+      
+      <table class="data-table">
+        <tr><th>年份</th><th>种植面积</th><th>单位产量</th><th>总产量</th><th>同比变化</th><th>备注</th></tr>
+        <tr><td><strong>2022</strong></td><td>6.63亿亩</td><td>约429公斤/亩</td><td>约2.80亿吨</td><td>—</td><td>基准年</td></tr>
+        <tr><td><strong>2023</strong></td><td>6.68亿亩</td><td>约435公斤/亩</td><td>约2.89亿吨</td><td class="up">+3.2%</td><td>增产</td></tr>
+        <tr><td><strong>2024</strong></td><td>6.71亿亩</td><td>439公斤/亩</td><td>2.95亿吨</td><td class="up">+2.1%</td><td>继续增产</td></tr>
+        <tr class="highlight-row"><td><strong>2025</strong></td><td>6.74亿亩</td><td>447公斤/亩</td><td><span class="up">3.01亿吨</span></td><td class="up">+2.1%</td><td>📈 历史新高</td></tr>
+        <tr><td><strong>2026（预）</strong></td><td>约6.75亿亩</td><td>约448公斤/亩</td><td>约3.06亿吨</td><td class="up">+1.6%</td><td>CASDE 5月预测</td></tr>
+      </table>
+      
+      <div class="status-grid">
+        <div class="status-card bull">
+          <h4>📈 产量为什么连年增加？</h4>
+          <p>① <strong>单产提升</strong>：种子技术改良（转基因玉米推广）+ 化肥施用优化</p>
+          <p>② <strong>政策鼓励</strong>：玉米是饲料主粮，国家保障供给安全</p>
+          <p>③ <strong>种植收益</strong>：相比大豆，玉米种植收益更稳定</p>
+        </div>
+        <div class="status-card bear">
+          <h4>📉 增产对价格意味着什么？</h4>
+          <p>① <strong>供给增加</strong> → 价格承压（供过于求）</p>
+          <p>② <strong>但需求也在增</strong>：生猪产能恢复+工业化用粮增加</p>
+          <p>③ <strong>关键在缺口</strong>：中国玉米产不足需，每年需进口约600万吨+小麦替代</p>
+        </div>
+      </div>
+
+      <div class="concept-box">
+        <h4>📖 关键概念：种植成本（为什么成本很重要？）</h4>
+        <p>🌱 <span class="term">地租</span>：黑龙江2026年地租约 500~700元/亩（同比+120~170元），是最大的成本项！</p>
+        <p>💊 <span class="term">化肥农药</span>：约 150~200元/亩，受天然气/磷矿价格影响。</p>
+        <p>💧 <span class="term">总种植成本</span>：黑龙江约 1,000~1,200元/亩，按447公斤/亩算，<span class="term">盈亏平衡点约2,200~2,400元/吨</span>。</p>
+        <p>⚡ <span class="term">对期货的意义</span>：当期货价格跌破种植成本→农民惜售→价格有支撑；当价格远高于成本→农民增加种植→明年产量增加→远月价格承压。</p>
+      </div>
+    </div>
+
+    <!-- 第四章：供需平衡表 -->
+    <div class="section">
+      <div class="section-title"><span class="num">四</span>供需平衡表：中国玉米到底够不够吃？</div>
+      
+      <div class="beginner-tip">
+        供需平衡表是期货分析的"圣经"。核心公式：<strong>期末库存 = 期初库存 + 产量 + 进口 - 消费 - 出口</strong>。库存消费比越低，价格越容易上涨（供给紧张）。
+      </div>
+      
+      <table class="balance-table">
+        <tr><th>项目（单位：万吨）</th><th>2024/25年度</th><th>2025/26年度（预估）</th><th>2026/27年度（预测）</th><th>变化趋势</th></tr>
+        <tr><td>📦 期初库存</td><td>约12,000</td><td>约11,900</td><td>—</td><td class="neutral">基本稳定</td></tr>
+        <tr><td>🌽 <span class="term">产量</span></td><td><strong>29,492</strong></td><td><strong>30,124</strong></td><td><strong>30,600</strong></td><td class="up">连年增产 ↑</td></tr>
+        <tr><td>📥 <span class="term">进口</span></td><td>183</td><td>600</td><td>600</td><td class="up">进口恢复 ↑</td></tr>
+        <tr style="background:#fff9c4;"><td>📤 <span class="term">总消费</span></td><td><strong>29,786</strong></td><td><strong>31,292</strong></td><td><strong>31,189</strong></td><td class="up">饲料+工业双增 ↑</td></tr>
+        <tr><td>📦 期末结余</td><td>-111（缺口）</td><td>-569（缺口扩大）</td><td>+10（基本平衡）</td><td class="down">缺口收窄 ↓</td></tr>
+        <tr style="background:#dcedc8;"><td>📊 <span class="term">库存消费比</span></td><td>约40%</td><td>约38%</td><td>约38%</td><td class="neutral">中性偏低</td></tr>
+      </table>
+      
+      <div class="beginner-tip">
+        上面这个表怎么看？简单说：中国玉米每年 <span class="up">消费量 > 产量</span>，存在几百万吨的供给缺口，需要进口和替代粮（小麦、稻谷）来填补。2025/26年度缺口扩大至569万吨，说明供需偏紧，对价格有支撑。
+      </div>
+
+      <div class="concept-box">
+        <h4>🔑 两个最重要的价格驱动因素</h4>
+        <p>① <span class="term">小麦替代</span>：当小麦价格比玉米便宜（或价差小于150元/吨）时，饲料厂会用小麦替代玉米→玉米需求下降→玉米价格下跌。反之则玉米价格上涨。<span class="up">当前（2026年6月）小麦比玉米贵约120元/吨，替代窗口已打开！</span></p>
+        <p>② <span class="term">进口谷物到港</span>：中国每月进口玉米、高粱、大麦约几十万吨，集中到港时供给增加→压制国内玉米价格。<span class="down">2026年上半年进口谷物集中到港，是压制近月价格的重要因素</span>。</p>
+      </div>
+    </div>
+
+    <!-- 第五章：期货市场现状 -->
+    <div class="section">
+      <div class="section-title"><span class="num">五</span>期货市场现状：DCE玉米怎么看？</div>
+      
+      <div class="beginner-tip">
+        期货价格反映的是<span class="term">市场对未来价格的预期</span>。近月合约（C2607/C2609）反映短期供需，远月合约（C2701/C2705）反映长期预期（天气、种植面积变化）。
+      </div>
+      
+      <div class="price-chart">
+        <div class="chart-title">📊 DCE玉米期货各合约价格结构（2026年6月22日）</div>
+        <div class="price-row">
+          <div class="contract">C2607</div>
+          <div class="bar-container">
+            <div class="bar down" style="width:70%;">2,329元/吨</div>
+          </div>
+          <div class="price-val down">近月 · 偏弱</div>
+        </div>
+        <div class="price-row">
+          <div class="contract">C2609</div>
+          <div class="bar-container">
+            <div class="bar neutral" style="width:70.5%;background:linear-gradient(90deg,#f57c00,#ffa726);">2,332元/吨</div>
+          </div>
+          <div class="price-val neutral">主力合约</div>
+        </div>
+        <div class="price-row">
+          <div class="contract">C2701</div>
+          <div class="bar-container">
+            <div class="bar up" style="width:72%;">2,350~2,400元/吨</div>
+          </div>
+          <div class="price-val up">远月 · 成本支撑</div>
+        </div>
+        <p style="margin-top:12px;font-size:12px;color:#888;">注：价格结构呈"近低远高"=正向市场（Contango），说明当前供给充足，但市场预期未来（天气风险+成本抬升）价格会更高。</p>
+      </div>
+
+      <table class="data-table">
+        <tr><th>分析维度</th><th>当前状态（2026年6月）</th><th>对价格影响</th><th>未来催化</th></tr>
+        <tr><td>📦 供给压力</td><td class="down">政策粮投放+进口到港+新麦替代</td><td class="down">短期压制</td><td>7月后进口到港量减少</td></tr>
+        <tr><td>🌦️ 天气炒作</td><td class="neutral">厄尔尼诺概率≥90%，尚未确认</td><td class="neutral">潜在上行</td><td>7~8月东北降雨确认</td></tr>
+        <tr><td>💰 种植成本</td><td class="up">黑龙江成本同比+19%，支撑强</td><td class="up">底部支撑</td><td>远月贴近成本可试多</td></tr>
+        <tr><td>🐷 下游需求</td><td class="neutral">生猪产能稳定，饲料需求平稳</td><td class="neutral">中性</td><td>猪价上涨→饲料需求增</td></tr>
+        <tr><td>📈 技术面</td><td class="down">C2609在2,300~2,350区间震荡</td><td class="neutral">区间操作</td><td>突破2,350或跌破2,280</td></tr>
+      </table>
+
+      <div class="concept-box">
+        <h4>🎯 中信期货给出的操作建议（新手参考）</h4>
+        <p>📉 <span class="term">近月（C2607/C2609）</span>：区间操作，压力位 <span class="down">2,350~2,400</span>，支撑位 <span class="up">2,280~2,300</span>。适合：高抛低吸，不追涨杀跌。</p>
+        <p>📈 <span class="term">远月（C2701）</span>：若价格贴近或跌破种植成本（约2,300~2,350），可<span class="up">轻仓试多</span>。止损设在成本下方约50~80点。适合：有耐心的趋势交易者。</p>
+        <p>⚠️ <span class="term">风险提示</span>：新作生长正常+政策粮持续投放→价格下跌；厄尔尼诺未兑现+进口减少→价格上涨。两边都有可能，务必轻仓！</p>
+      </div>
+    </div>
+
+    <!-- 第六章：新手如何开始跟踪 -->
+    <div class="section">
+      <div class="section-title"><span class="num">六</span>新手如何开始跟踪玉米期货？（实操指南）</div>
+      
+      <div class="beginner-tip">
+        学会了基本面，还需要知道<span class="term">每天看什么数据</span>。下面是一份"玉米期货日常跟踪清单"，建议收藏。
+      </div>
+      
+      <table class="data-table">
+        <tr><th>跟踪频率</th><th>看什么</th><th>哪里看</th><th>为什么要看</th></tr>
+        <tr><td>📅 每天</td><td>DCE玉米主力合约收盘价、持仓量、成交量</td><td>文华财经 / 通达信 / 东方财富</td><td>价格方向 + 资金热度</td></tr>
+        <tr><td>📅 每天</td><td>CBOT美玉米夜盘价格</td><td>文华财经外盘 / Investing.com</td><td>国际联动，美玉米涨跌影响次日开盘</td></tr>
+        <tr><td>📅 每周</td><td>USDA供需报告（北京时间周五凌晨）</td><td>USDA官网 / 期货日报</td><td>全球供应预期调整→影响国内</td></tr>
+        <tr><td>📅 每周</td><td>国内玉米港口库存（北港+南港）</td><td>我的农产品网 / 粮油商务网</td><td>库存高低=现货紧张程度</td></tr>
+        <tr><td>📅 每月</td><td>CASDE中国农产品供需报告（农业农村部）</td><td>农业农村部官网</td><td>官方对中国玉米产量/消费的权威预测</td></tr>
+        <tr><td>🌦️ 生长季</td><td>东北降雨预报、土壤墒情</td><td>中央气象台 / 我的农产品网</td><td>7~8月降雨决定单产→期货炒作核心</td></tr>
+        <tr><td>📈 随时</td><td>小麦-玉米价差</td><td>自行计算（郑麦-C）</td><td>价差&lt;150→小麦替代→玉米承压</td></tr>
+      </table>
+      
+      <div class="status-grid">
+        <div class="status-card neutral">
+          <h4>📚 推荐学习资源</h4>
+          <p>① 大连商品交易所官网：玉米期货合约规则</p>
+          <p>②  USDA WADSE报告：全球农产品供需（每月10日左右）</p>
+          <p>③ 中信期货/招商期货：农产品月报（桌面"国内报告"文件夹）</p>
+        </div>
+        <div class="status-card bull">
+          <h4>🎯 给新手的建议</h4>
+          <p>① 先模拟交易，不急着实盘</p>
+          <p>② 关注"成本支撑"逻辑，比追涨杀跌更稳</p>
+          <p>③ 7~8月是玉米关键期，天气炒作最剧烈，要特别留意</p>
+          <p>④ 永远轻仓，玉米期货波动虽不如股指，但杠杆风险依然存在</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="footnote">
+      <p>📌 <strong>数据来源：</strong>国家统计局2025年粮食产量公告 + 农业农村部CASDE供需报告（2026年5月）+ 中信期货玉米半年度策略报告 + 百度百家号《2026年中国玉米市场及成本收益分析》</p>
+      <p>⚠️ <strong>免责声明：</strong>本报告为教育教程，不构成投资建议。期货交易有风险，入市需谨慎。新手建议先从模拟交易开始。</p>
+      <p>🕐 报告生成时间：2026年6月23日 | 编写：小智（WorkBuddy AI）</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>

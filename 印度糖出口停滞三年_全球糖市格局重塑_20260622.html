@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>印度糖出口停滞三年 · 全球糖市格局重塑 · 2026.06.22</title>
+<style>
+:root {
+  --bg: #0a0e14;
+  --bg2: #12161e;
+  --bg3: #1a1f2b;
+  --text: #e0e0e0;
+  --text2: #8b95a5;
+  --red: #e74c3c;
+  --green: #27ae60;
+  --orange: #f39c12;
+  --blue: #3498db;
+  --gold: #d4a574;
+  --accent: #c9a96e;
+  --border: #2a3040;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:-apple-system,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif; line-height:1.7; }
+.container { max-width:960px; margin:0 auto; padding:24px 20px 60px; }
+
+/* Header */
+.hero { text-align:center; padding:40px 0 30px; border-bottom:2px solid var(--accent); margin-bottom:30px; }
+.hero h1 { font-size:28px; font-weight:800; color:#fff; margin-bottom:10px; }
+.hero .subtitle { font-size:15px; color:var(--accent); }
+.hero .date { font-size:12px; color:var(--text2); margin-top:8px; }
+.hero .source { font-size:12px; color:var(--text2); margin-top:4px; }
+
+/* Key metrics row */
+.metrics-row { display:flex; gap:12px; margin-bottom:30px; flex-wrap:wrap; }
+.metric-card { flex:1; min-width:140px; background:var(--bg3); border:1px solid var(--border); border-radius:8px; padding:16px; text-align:center; }
+.metric-card .label { font-size:11px; color:var(--text2); text-transform:uppercase; margin-bottom:4px; }
+.metric-card .value { font-size:22px; font-weight:700; }
+.metric-card .detail { font-size:11px; color:var(--text2); margin-top:2px; }
+.up { color:var(--red); }
+.down { color:var(--green); }
+.neutral { color:var(--orange); }
+
+/* Sections */
+h2 { font-size:20px; color:#fff; margin:36px 0 16px; padding-bottom:8px; border-bottom:1px solid var(--border); }
+h3 { font-size:16px; color:var(--accent); margin:20px 0 10px; }
+h4 { font-size:14px; color:#ccc; margin:16px 0 8px; }
+
+/* Cards */
+.card { background:var(--bg2); border:1px solid var(--border); border-radius:10px; padding:20px; margin:16px 0; }
+.card2 { background:var(--bg3); border-radius:8px; padding:16px; margin:12px 0; }
+.highlight { background:rgba(212,167,116,0.08); border-left:3px solid var(--accent); padding:14px 18px; border-radius:4px; margin:16px 0; }
+.warning { background:rgba(231,76,60,0.08); border-left:3px solid var(--red); padding:14px 18px; border-radius:4px; margin:16px 0; }
+.insight { background:rgba(39,174,96,0.08); border-left:3px solid var(--green); padding:14px 18px; border-radius:4px; margin:16px 0; }
+
+/* Tables */
+table { width:100%; border-collapse:collapse; font-size:13px; margin:12px 0; }
+th { background:var(--bg3); color:var(--accent); padding:10px 12px; text-align:left; font-weight:600; border-bottom:2px solid var(--border); }
+td { padding:9px 12px; border-bottom:1px solid var(--border); }
+tr:hover { background:rgba(212,167,116,0.04); }
+.price-up { color:var(--red); font-weight:600; }
+.price-down { color:var(--green); font-weight:600; }
+
+/* Tags */
+.tag { display:inline-block; font-size:11px; padding:2px 8px; border-radius:3px; margin:2px; }
+.tag-red { background:rgba(231,76,60,0.15); color:var(--red); }
+.tag-green { background:rgba(39,174,96,0.15); color:var(--green); }
+.tag-blue { background:rgba(52,152,219,0.15); color:var(--blue); }
+.tag-gold { background:rgba(212,167,116,0.15); color:var(--accent); }
+.tag-orange { background:rgba(243,156,18,0.15); color:var(--orange); }
+
+/* Timeline */
+.timeline { display:flex; gap:0; margin:20px 0; overflow-x:auto; }
+.tl-item { flex:1; min-width:130px; text-align:center; padding:16px 10px; border-top:4px solid var(--border); position:relative; }
+.tl-item.done { border-top-color:var(--green); }
+.tl-item.active { border-top-color:var(--orange); }
+.tl-item.future { border-top-color:var(--red); }
+.tl-item .tl-year { font-size:12px; color:var(--text2); }
+.tl-item .tl-event { font-size:13px; font-weight:600; margin:4px 0; }
+.tl-item .tl-detail { font-size:11px; color:var(--text2); }
+
+/* Strategy */
+.strat-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:16px 0; }
+.strat-card { background:var(--bg3); border-radius:10px; padding:18px; position:relative; }
+.strat-card .rank { font-size:20px; margin-bottom:6px; }
+.strat-card h4 { margin:0 0 8px; color:#fff; }
+.strat-card p { font-size:13px; color:var(--text2); line-height:1.6; }
+@media(max-width:640px){ .strat-grid{grid-template-columns:1fr;} }
+
+/* Footer */
+.footnote { margin-top:40px; padding:16px; background:var(--bg3); border-radius:8px; font-size:11px; color:var(--text2); line-height:1.8; }
+.footnote strong { color:var(--accent); }
+
+/* Divergence viz */
+.diverge { display:flex; gap:0; margin:16px 0; border-radius:8px; overflow:hidden; }
+.diverge .bar { height:36px; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; }
+.diverge .bar.short { background:var(--red); color:#fff; }
+.diverge .bar.long { background:var(--green); color:#fff; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- Hero -->
+<div class="hero">
+<h1>印度糖出口停滞三年 · 全球糖市格局重塑</h1>
+<div class="subtitle">厄尔尼诺 + 乙醇燃料 双重夹击下的供给缺口量化分析</div>
+<div class="date">数据截止：2026年6月22日 21:40</div>
+<div class="source">文章来源：华尔街见闻 (2026.06.22) · 路透社独家报道 · 综合USDA/ISO/StoneX/Green Pool/UNICA</div>
+</div>
+
+<!-- Key Metrics -->
+<div class="metrics-row">
+<div class="metric-card">
+<div class="label">印度产量 (本榨季)</div>
+<div class="value down">2790万吨</div>
+<div class="detail">vs 预测3095万 → 下调-305万</div>
+</div>
+<div class="metric-card">
+<div class="label">印度年度消费</div>
+<div class="value">~2850万吨</div>
+<div class="detail">产量已低于消费量 ⚠️</div>
+</div>
+<div class="metric-card">
+<div class="label">印度期初库存 (10月1日)</div>
+<div class="value down">~350万吨</div>
+<div class="detail">逾三十年最低水平</div>
+</div>
+<div class="metric-card">
+<div class="label">印度历史出口量 (年均)</div>
+<div class="value down">680万吨/年</div>
+<div class="detail">全球贸易量的 10%</div>
+</div>
+<div class="metric-card">
+<div class="label">ICE 11号原糖</div>
+<div class="value up">14.10–14.50￠/lb</div>
+<div class="detail">52周范围 13.39–17.05</div>
+</div>
+<div class="metric-card">
+<div class="label">郑商所 SR2701</div>
+<div class="value">~5446元/吨</div>
+<div class="detail">6月15日主连 ~5315</div>
+</div>
+</div>
+
+<!-- ====== Chapter 1: India Dual Pressure ====== -->
+<h2>一、印度：双压夹击的供给侧断裂</h2>
+
+<div class="highlight">
+<strong>核心命题：</strong>全球第二大食糖出口国（占全球贸易量10%）将在至少三个榨季内"几近无糖可出口"——甚至可能首次重启进口（2016-17以来首次）。这不是周期性减产，而是<strong>结构性供需断裂</strong>。
+</div>
+
+<div class="card">
+<h3>压力一：厄尔尼诺 — 季风降雨11年最低</h3>
+<div class="card2">
+<table>
+<tr><th style="width:35%">指标</th><th>数据</th><th>评级</th></tr>
+<tr><td>季风降雨</td><td><span class="price-down">11年来最低水平</span></td><td>🔴 极负面</td></tr>
+<tr><td>6月降水量</td><td><span class="price-down">较均值偏低逾40%</span></td><td>🔴 极负面</td></tr>
+<tr><td>本榨季产量预期</td><td>预测3095万 → <strong>下调至2790万吨</strong>（-9.9%）</td><td>🔴 大幅下调</td></tr>
+<tr><td>产量 vs 消费</td><td>2790万 vs 2850万 → <strong>缺口-60万吨</strong></td><td>🔴 产不足需</td></tr>
+<tr><td>农民行为</td><td>大规模转种大豆/木豆等低耗水作物</td><td>🔴 远期拖累</td></tr>
+<tr><td>主要影响区域</td><td>马哈拉施特拉邦（最大产糖邦）</td><td>🔴 核心区冲击</td></tr>
+<tr><td>2027-28远期影响</td><td>种植面积和供应量将受拖累</td><td>🟡 预期恶化</td></tr>
+</table>
+</div>
+
+<div class="warning" style="margin-top:12px;">
+<strong>⚠️ 关键机制 — 农民改种是不可逆的：</strong><br>
+马哈拉施特拉邦Sangli地区的农民已经取消甘蔗种植计划，改种大豆。甘蔗是多年生作物（种植一次收获3-4年），一旦农民翻掉宿根蔗改种一年生作物，<strong>要恢复到原有甘蔗种植面积至少需要2-3年</strong>。这意味着即使2027年季风回归正常，2027-28和2028-29榨季的甘蔗供应仍然受限。
+</div>
+</div>
+
+<div class="card">
+<h3>压力二：乙醇政策 — 史上最强甘蔗争夺者</h3>
+<div class="card2">
+<table>
+<tr><th style="width:35%">政策/措施</th><th>具体内容</th><th>对糖的冲击</th></tr>
+<tr><td>税收激励</td><td>取消高比例乙醇混合汽油的<strong>生产税</strong></td><td><span class="price-down">乙醇比糖更有利可图</span></td></tr>
+<tr><td>混合比例突破</td><td>推出含乙醇高达<strong>85%</strong>（E85）的燃料</td><td>🔴 甘蔗分流大幅增加</td></tr>
+<tr><td>灵活燃料汽车</td><td>马鲁蒂铃木首款FFV乘用车 + 英雄摩托FFV</td><td>🔴 需求端革命性扩容</td></tr>
+<tr><td>当前乙醇需求</td><td><strong>120-130亿升/年</strong></td><td>基准线</td></tr>
+<tr><td>远期需求预测</td><td>到2039-40年增至 <strong>300亿升</strong>（+130%）</td><td>🔴 甘蔗需求指数级增长</td></tr>
+<tr><td>政策偏好</td><td>政府明确支持乙醇而非出口</td><td>🔴 结构性的长期利空糖</td></tr>
+</table>
+</div>
+
+<div class="highlight" style="margin-top:12px;">
+<strong>乙醇对印度糖市的颠覆性：</strong>印度政府已经把乙醇从"辅助性需求"提升为"战略性需求"——灵活燃料汽车的推广意味着<strong>乙醇需求不受油价波动影响</strong>（不像巴西，巴西乙醇经济性依赖原油价格）。印度乙醇需求从120亿升→300亿升的增长轨迹≈需要额外分走<strong>2000-3000万吨甘蔗</strong>——这足以抹消印度所有出口潜能。
+</div>
+</div>
+
+<div class="card">
+<h3>双压夹击的结果：三重断裂</h3>
+<div class="card2">
+<table>
+<tr><th>断裂层面</th><th>2022-23前（出口时代）</th><th>2025-26当前（断裂时代）</th><th>2026-29（冻结时代）</th></tr>
+<tr><td><strong>甘蔗供应</strong></td><td>丰收，间歇性过剩</td><td>2790万吨（↓9.9%）</td><td>改种效应+干旱滞后 → 更低</td></tr>
+<tr><td><strong>糖vs乙醇分流</strong></td><td>乙醇占比~15%</td><td>乙醇加速抢占（FFV启动）</td><td>乙醇占比推向30-40%</td></tr>
+<tr><td><strong>出口</strong></td><td>年均680万吨（10%全球贸易）</td><td>仅出口80万吨后全面禁止</td><td>至少三年 ≈ 0</td></tr>
+<tr><td><strong>库存</strong></td><td>800-1000万吨正常</td><td>降至~350万吨（30年低）</td><td>或跌破300万吨→被迫进口</td></tr>
+</table>
+</div>
+
+<div class="warning" style="margin-top:8px;">
+<strong>⚠️ 极端情景 — 印度重启进口：</strong>路透社和MEIR Commodities董事总经理Rahil Shaikh指出，如果厄尔尼诺导致种植面积大幅萎缩，印度<strong>可能被迫重启食糖进口</strong>——将是2016-17和2017-18榨季以来的首次。全球大型贸易商的印度业务团队已开始向总部预警。2009年和2010年印度大规模进口曾推动全球糖价飙升至此前水平的<strong>近三倍</strong>。
+</div>
+</div>
+
+<!-- ====== Chapter 2: Global Supply Picture ====== -->
+<h2>二、全球供给面：印度缺席后的"三缺一"牌局</h2>
+
+<div class="card">
+<h3>巴西：史上最矛盾的生产季 — 压榨创纪录，制糖意愿却创新低</h3>
+<div class="card2">
+<table>
+<tr><th>指标</th><th>2026/27（截至5月1日）</th><th>同比变化</th></tr>
+<tr><td>累计压榨甘蔗</td><td>6045.8万吨</td><td class="price-up">+74.58% 🔥 创纪录</td></tr>
+<tr><td>累计产糖</td><td>247.5万吨</td><td class="price-up">+55.24%</td></tr>
+<tr><td>累计乙醇产量</td><td>32.88亿升</td><td class="price-up">+71.84% 🚀</td></tr>
+<tr style="background:rgba(212,167,116,0.08);"><td><strong>制糖比例</strong></td><td><strong>38.16%</strong></td><td class="price-down">-7.07pp（从45.23%降至38.16%）</td></tr>
+<tr><td>制乙醇比例</td><td><strong>61.84%</strong></td><td class="price-up">+7.07pp</td></tr>
+</table>
+</div>
+
+<div class="highlight" style="margin-top:8px;">
+<strong>核心悖论：</strong>巴西2026/27甘蔗预计7.091亿吨（Conab，+5.3%），压榨进度比去年快了74.58%——<strong>但糖产量仅增55%，乙醇产量增72%</strong>。因为制糖比从45.23%暴跌至38.16%。三分之二的甘蔗被用于乙醇而非制糖。
+</div>
+
+<p style="color: var(--text2); margin-top:12px; font-size:13px;">
+<strong>原因：</strong>（1）国际原油价格高企 → 乙醇对糖存在溢价（无水乙醇19.73￠/lb vs ICE糖~14.3￠/lb）→ 糖厂主动多产乙醇；（2）巴西同样推行高乙醇混合政策（E85）→ 国内乙醇需求旺盛。Green Pool：预计巴西中南部全年制糖比仅45%（此前估计48.1%）。
+</p>
+
+<p style="color:var(--text2); font-size:13px;">
+<strong>厄尔尼诺风险叠加：</strong>USDA指出，强厄尔尼诺预计从8月起给巴西中南部带来超常降雨 → 9-10月加剧 → <strong>可能严重干扰甘蔗采收作业</strong>，导致数十家工厂提前结束榨季。S&P Global Energy预测5月上半月产量同比-14%。
+</p>
+</div>
+
+<div class="card">
+<h3>泰国 + 欧盟：同步减产的"第三第四大产区"</h3>
+<div class="card2">
+<table>
+<tr><th>产区</th><th>StoneX 2026/27产量预测</th><th>同比变化</th><th>减产原因</th></tr>
+<tr><td><strong>泰国</strong></td><td>1020万吨</td><td class="price-down">-15%</td><td>糖价低迷→农民改种木薯；厄尔尼诺威胁</td></tr>
+<tr><td><strong>欧盟+英国</strong></td><td>1530万吨</td><td class="price-down">-12.5%</td><td>种植面积缩减+单产下降</td></tr>
+<tr style="background:rgba(231,76,60,0.06);"><td><strong>合计减产量</strong></td><td colspan="2">约 <strong>405万吨</strong>（泰国-180万+欧盟-225万）</td><td>—</td></tr>
+</table>
+</div>
+</div>
+
+<div class="card">
+<h3>全球四机构供需预测：惊人的分歧</h3>
+<div class="card2">
+<table>
+<tr><th>机构</th><th>2025/26状态</th><th>2026/27预测</th><th>缺口/盈余</th><th>关键假设</th></tr>
+<tr><td><strong>USDA</strong></td><td>盈余613万吨<br>（从1140万吨大幅下调）</td><td>产量1.849亿吨<br>消费1.800亿吨</td><td class="price-up">盈余 480万吨</td><td>可能仍假设印度部分出口</td></tr>
+<tr><td><strong>ISO</strong></td><td>紧平衡</td><td>产量1.80亿吨<br>（-1.15%）</td><td class="price-down">缺口 26.2万吨</td><td>厄尔尼诺影响印度/泰国</td></tr>
+<tr><td><strong>StoneX</strong></td><td>盈余 229万吨</td><td>产量1.937亿吨<br>（-1%）</td><td class="price-down">缺口 55万吨</td><td>印度/泰国/欧盟减产</td></tr>
+<tr style="background:rgba(231,76,60,0.06);"><td><strong>Green Pool</strong></td><td>缺口166万吨</td><td>缺口扩大</td><td class="price-down"><strong>缺口 430万吨</strong></td><td>乙醇制糖比大幅下调</td></tr>
+</table>
+</div>
+
+<div class="warning" style="margin-top:12px;">
+<strong>⚠️ 为什么四家分歧如此巨大？</strong><br>
+分歧的核心在于<strong>三个变量的处理方式不同</strong>：<br>
+（1）<strong>印度的出口假设</strong>：USDA的480万吨盈余可能仍假设印度会出口一定量糖，而Green Pool/StoneX假设印度=0出口。<br>
+（2）<strong>巴西的制糖比</strong>：Green Pool假设45%，但如果4月实际仅38.16%，全年均值可能低于45%，供给会更紧。<br>
+（3）<strong>厄尔尼诺量化</strong>：USDA对厄尔尼诺影响的量化可能偏保守（印度6月降雨已-40%，远超模型预期）。<br>
+<span style="color:var(--accent);">→ 市场当前定价的可能是"USDA场景"（盈余480万），但实际在走向"Green Pool场景"（缺口430万）。这个预期差的修正=糖价潜在的上行动力。</span>
+</div>
+</div>
+
+<!-- ====== Chapter 3: Timeline ====== -->
+<h2>三、时间轴：缺口释放的三个阶段</h2>
+
+<div class="card">
+<div class="timeline">
+<div class="tl-item done">
+<div class="tl-year">2026年Q2</div>
+<div class="tl-event">矛盾孕育期</div>
+<div class="tl-detail">· 印度禁令延续至9/30<br>· 巴西压榨进度加快但制糖比低<br>· ICE糖 14-15¢ 横盘<br>· 市场尚未定价"三年零出口"</div>
+</div>
+<div class="tl-item active">
+<div class="tl-year">2026年Q3</div>
+<div class="tl-event">供给缺口验证期</div>
+<div class="tl-detail">· 印度库存降至350万吨<br>· 8-9月巴西降雨干扰采收<br>· 印度季风偏弱数据完全兑现<br>· 机构可能集中下调预测</div>
+</div>
+<div class="tl-item future">
+<div class="tl-year">2026年Q4–2027Q1</div>
+<div class="tl-event">缺口加速爆发期</div>
+<div class="tl-detail">· 印度库存或跌破300万<br>· 进口讨论浮现<br>· 北半球进入压榨季<br>· 泰国/欧盟减产数据兑现<br>· 🌟 糖价可能出现主升浪</div>
+</div>
+<div class="tl-item future">
+<div class="tl-year">2027年Q2–2028</div>
+<div class="tl-event">结构性短缺高潮</div>
+<div class="tl-detail">· 印度确认三年零出口<br>· 农民改种效应体现<br>· 全球缺口或扩大至300-500万吨<br>· 🌟 价格滞后厄尔尼诺峰值4季度</div>
+</div>
+</div>
+</div>
+
+<!-- ====== Chapter 4: Cross-verification with El Niño framework ====== -->
+<h2>四、与厄尔尼诺框架的交叉验证</h2>
+
+<div class="card">
+<p style="color:var(--text2); font-size:13px;">
+我们在上一份报告（<em>厄尔尼诺2026投资映射框架</em>）中提出了白糖的"6年周期"和"无长滞后"逻辑。印度出口停滞三年的新信息<strong>大幅强化了白糖的多头叙事</strong>：
+</p>
+
+<div class="card2">
+<table>
+<tr><th>维度</th><th>6/22上午的判断（厄尔尼诺框架）</th><th>6/22晚上更新（印度出口停滞）</th><th>修正</th></tr>
+<tr><td><strong>白糖确定性</strong></td><td>⭐⭐⭐⭐</td><td><strong>⭐⭐⭐⭐⭐</strong></td><td class="price-up">上调</td></tr>
+<tr><td><strong>关键催化剂</strong></td><td>印度季风偏弱 → 甘蔗减产</td><td>季风偏弱 + <strong>乙醇分流</strong> + <strong>农民改种</strong> + <strong>政府出口禁令</strong></td><td>三重升级</td></tr>
+<tr><td><strong>时间窗口</strong></td><td>现在可布局（无长滞后）</td><td>现在的紧迫性更高——印度库存只够消化到Q3</td><td>窗口缩短</td></tr>
+<tr><td><strong>最大上行风险</strong></td><td>印度减产超预期</td><td><strong>印度被迫重启进口</strong>（2009年情景重演→价格翻三倍）</td><td>尾部风险升格</td></tr>
+<tr><td><strong>与棕榈油的对比</strong></td><td>白糖=第二确定</td><td><strong>白糖=第一确定</strong>（超越棕榈油）</td><td>排序逆转</td></tr>
+</table>
+</div>
+
+<div class="highlight" style="margin-top:8px;">
+<strong>排序修正：</strong>白糖（⭐⭐⭐⭐⭐） > 棕榈油（⭐⭐⭐⭐⭐）——两者确定性等级相同，但白糖的时间窗口更短（印度库存告急在眼前），棕榈油需要咬住6-9个月震荡。
+</div>
+</div>
+
+<!-- ====== Chapter 5: Strategy ====== -->
+<h2>五、投资策略矩阵</h2>
+
+<div class="strat-grid">
+<div class="strat-card" style="border-top:4px solid var(--red);">
+<div class="rank">⭐⭐⭐⭐⭐</div>
+<h4>策略1：多郑糖 SR2701/SR2705</h4>
+<p><strong>核心逻辑：</strong>印度三年零出口+乙醇分流+巴西制糖比低+泰国/欧盟同步减产 → 全球糖市从USDA的"盈余480万"转向"缺口200-400万"。当前SR2701=5446元/吨已部分反映预期，但如果印度Q4库存告急引发进口讨论，上行空间巨大。</p>
+<div class="card2" style="margin:10px 0; padding:10px;">
+<strong>建仓区间：</strong>5300-5500 · <strong>第一目标：</strong>6200-6500 · <strong>极端目标：</strong>7000+（印度进口情景）<br>
+<strong>止损：</strong>5100（季风意外转强+巴西制糖比回升）<br>
+<span style="color:var(--text2); font-size:11px;">⚠️ 保证金~3500元/手，10吨/手</span>
+</div>
+</div>
+
+<div class="strat-card" style="border-top:4px solid var(--orange);">
+<div class="rank">⭐⭐⭐⭐</div>
+<h4>策略2：多ICE原糖 + 空SR 内外反套</h4>
+<p><strong>核心逻辑：</strong>印度缺席 = 全球可贸易糖供给缩减680万吨/年 = ICE原糖（全球定价）直接受益。而中国进口量1-4月已增37万吨，进口需求旺盛。ICE 14¢→ 看18-20¢。内外价差（进口成本 vs SR）可能走扩。</p>
+<div class="card2" style="margin:10px 0; padding:10px;">
+<strong>入场：</strong>ICE 14-15¢ · <strong>目标：</strong>18-20¢ (+28-43%)<br>
+<strong>止损：</strong>ICE 13¢以下<br>
+<span style="color:var(--text2); font-size:11px;">⚠️ 外盘波动大，建议通过跨境收益互换或外盘期货账户操作</span>
+</div>
+</div>
+
+<div class="strat-card" style="border-top:4px solid var(--blue);">
+<div class="rank">⭐⭐⭐⭐</div>
+<h4>策略3：白糖期权 — 买虚值看涨</h4>
+<p><strong>核心逻辑：</strong>如果印度真的重启进口（10年首次）→ 历史上糖价涨3倍。买SR2701-C-6200或C-6500虚值看涨期权，用极低成本押注尾部风险。当前隐含波动率可能尚未充分反映这种极端情景。</p>
+<div class="card2" style="margin:10px 0; padding:10px;">
+<strong>合约：</strong>SR2701-C-6200 / SR2705-C-6500<br>
+<strong>最大损失：</strong>权利金（有限）<br>
+<strong>收益：</strong>无限（如果印度进口情景兑现）<br>
+<span style="color:var(--text2); font-size:11px;">⚠️ 时间价值衰减是主要风险</span>
+</div>
+</div>
+
+<div class="strat-card" style="border-top:4px solid var(--green);">
+<div class="rank">⭐⭐⭐</div>
+<h4>策略4：A股糖业标的</h4>
+<p><strong>核心逻辑：</strong>中粮糖业(600737)/南宁糖业(000911)/粤桂股份(000833)。国内糖价上行→制糖企业利润弹性巨大（糖价每涨500元/吨，中粮糖业利润+约6亿）。适合不想操作期货的投资者。</p>
+<div class="card2" style="margin:10px 0; padding:10px;">
+<strong>标的：</strong>中粮糖业/南宁糖业 · <strong>催化：</strong>SR突破5700<br>
+<strong>目标：</strong>SR每涨10%，糖业股涨15-20%（利润弹性）<br>
+<span style="color:var(--text2); font-size:11px;">⚠️ 个股风险包括公司治理/非糖业务拖累</span>
+</div>
+</div>
+</div>
+
+<!-- ====== Chapter 6: Risks ====== -->
+<h2>六、风险矩阵</h2>
+
+<div class="card">
+<table>
+<tr><th>风险因素</th><th>概率</th><th>影响</th><th>触发条件</th></tr>
+<tr>
+<td><strong>巴西制糖比突然回升</strong></td>
+<td>中 25%</td>
+<td class="price-down">糖价回落5-8%</td>
+<td>原油暴跌 → 乙醇经济性消失 → 糖厂切换回制糖。当前原油$70+暂不支持此情景</td>
+</tr>
+<tr>
+<td><strong>印度季风意外转强</strong></td>
+<td>低 15%</td>
+<td class="price-down">部分修复供给预期</td>
+<td>7-8月季风超预期恢复。但NOAA预测90%概率维持偏弱，且农民已改种大豆——即使降雨恢复，种植面积已不可逆减少</td>
+</tr>
+<tr>
+<td><strong>全球经济衰退 → 糖需求萎缩</strong></td>
+<td>中低 20%</td>
+<td class="price-down">需求端利空</td>
+<td>糖需求弹性低（食品刚需），历史上GDP下行对糖消费影响有限（-1-2%）。但需关注</td>
+</tr>
+<tr>
+<td><strong>中国进口配额超预期释放</strong></td>
+<td>中 30%</td>
+<td class="price-up">利多ICE原糖，利空SR</td>
+<td>政府为平抑国内糖价释放额外进口配额→国际糖价涨、国内糖价受抑</td>
+</tr>
+<tr style="background:rgba(231,76,60,0.06);">
+<td><strong>印度被迫重启进口</strong></td>
+<td>中 25%</td>
+<td class="price-up"><strong>极端利多（历史涨3倍）</strong></td>
+<td>Q1/Q2库存跌破250-300万吨→政府被迫开放进口。2009/2010年先例：糖价涨3倍</td>
+</tr>
+</table>
+</div>
+
+<!-- ====== Chapter 7: Conclusion ====== -->
+<h2>七、核心结论</h2>
+
+<div class="card">
+<ol style="font-size:14px; line-height:2.2; padding-left:20px;">
+<li><strong>印度不是减产——是"消失"：</strong>厄尔尼诺（甘蔗减产）+ 乙醇（甘蔗分流）+ 农民改种（不可逆的结构性变化）→ 全球可贸易糖供给减少<strong>680万吨/年</strong>（过去五个榨季年均出口量），相当于全球贸易量的10%。这个量至少三年不会回来。</li>
+
+<li><strong>巴西"补不上"这个窟窿：</strong>虽然甘蔗产量创纪录（7.09亿吨），但62%的甘蔗正在流向乙醇而非制糖。因为原油高企 + FFV推广 + 乙醇溢价。巴西增加的甘蔗绝大部分变成了乙醇，不是糖。</li>
+
+<li><strong>泰国和欧盟在同步"掉链子"：</strong>泰国-15%（1020万吨）、欧盟-12.5%（1530万吨），两家合计减产约405万吨。加上印度缺席的680万吨，三大产区合计从全球市场抹去<strong>1085万吨</strong>潜在供给。</li>
+
+<li><strong>USDA的480万吨盈余是"最乐观"场景——很可能被下修：</strong>USDA的盈余480万吨可能仍暗含印度部分出口的假设。如果印度Q4库存跌破300万吨→USDA会在后续报告中大幅下修→这是糖价的主要"预期差"驱动力。Green Pool已经给出430万吨缺口的判断（与USDA差了910万吨，是近十年来最大的机构分歧）。</li>
+
+<li><strong>白糖已超越棕榈油成为厄尔尼诺框架下"第一确定性"品种：</strong>原因——（A）无长滞后（甘蔗是一年生+当年体现减产）、（B）印度库存告急在眼前（Q3库存仅350万吨→Q4可能跌破300万）、（C）政治敏感性更高（印度政府优先保障国内供应→出口禁令是政治刚需）、（D）巴西的"增产不增糖"矛盾已经确认。</li>
+
+<li><strong>最重要的观察节点：</strong>
+  <ul style="margin-left:20px; margin-top:6px;">
+  <li><strong>2026年7-8月</strong> — 印度季风实际降雨 vs 预测 → 决定甘蔗减产幅度</li>
+  <li><strong>2026年9月</strong> — 印度禁令到期是否延续 → 大概率延续</li>
+  <li><strong>2026年10月</strong> — 新榨季开启，印度期初库存实际数字（预测350万吨）</li>
+  <li><strong>2027年Q1</strong> — 印度库存是否跌破300万 → 进口讨论是否出现</li>
+  </ul>
+</li>
+</ol>
+</div>
+
+<div class="highlight" style="margin-top:16px;">
+<strong>一句话总结：</strong>全球糖市正从"过剩叙事"向"赤字叙事"进行结构性切换，而印度是这场切换的"扳机"。680万吨/年的供给消失 + 巴西"增蔗不增糖" + 泰国/欧盟同步减产 = 全球糖价面临至少2-3年的上行周期。当前ICE原糖14¢/SR 5300-5500的价格，尚未充分反映这个结构性转变。
+</div>
+
+<!-- Footnote -->
+<div class="footnote">
+<strong>数据来源：</strong><br>
+· 华尔街见闻 (2026.06.22) — 路透社独家报道 / 印度食品部 / MEIR Commodities India / Godavari Biorefineries / Natural Sugar<br>
+· 巴西蔗糖工业协会 (UNICA) — 截至2026年5月1日累计生产数据 / 巴西国家供应公司 (Conab)<br>
+· USDA WASDE 2026/27 全球糖供需预测 (2026.06.06)<br>
+· 国际糖业组织 (ISO) — 2026/27 全球糖供需预测 (2026.05)<br>
+· StoneX — 2026/27 全球糖供需平衡预测<br>
+· Green Pool Commodity Specialists — 2026/27 全球糖缺口预测<br>
+· S&P Global Energy — 巴西中南部5月上半月产量预测<br>
+· 五矿期货 (2026.06.16) / 东方财富 / 金投网 / 新浪财经 / Investing.com<br>
+报告生成时间：2026年6月22日 · 仅供研究参考，不构成投资建议
+</div>
+
+</div>
+</body>
+</html>

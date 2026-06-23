@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>人形机器人产业链终极手册 — 基本面科普 + 股票大宗分析</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Microsoft YaHei','PingFang SC',sans-serif;background:#0a0e17;color:#e0e0e0;line-height:1.7}
+.container{max-width:1500px;margin:0 auto;padding:20px}
+
+/* Header */
+.header{background:linear-gradient(135deg,#1a1f2e,#0f1729);padding:50px 40px;border-radius:16px;margin-bottom:30px;border:1px solid #2a3a5c;text-align:center}
+.header h1{font-size:2.2em;color:#fff;margin-bottom:10px}
+.header .sub{color:#8899bb;font-size:1.05em}
+.header .meta{color:#5a7a9a;font-size:0.85em;margin-top:10px}
+
+/* Part Navigation */
+.part-nav{display:flex;gap:12px;margin-bottom:30px;flex-wrap:wrap}
+.part-nav a{flex:1;min-width:150px;background:linear-gradient(135deg,#1a2540,#141e30);border:1px solid #2a3a5c;border-radius:10px;padding:16px;text-align:center;color:#8899bb;text-decoration:none;font-size:0.9em;transition:0.2s}
+.part-nav a:hover,.part-nav a.active{background:#1e3a5f;color:#fff;border-color:#3a6a9c}
+.part-nav a .num{display:block;font-size:1.8em;font-weight:bold;color:#5b9cf5}
+
+/* Section headers */
+.part-header{background:linear-gradient(90deg,#0d47a1,#1a237e);padding:24px 30px;border-radius:12px;margin-bottom:24px;border:1px solid #1a4a8c}
+.part-header h2{font-size:1.6em;color:#fff}
+.part-header .desc{color:#90caf9;font-size:0.9em;margin-top:6px}
+
+/* Sector bar */
+.sector-bar{display:flex;gap:16px;margin-bottom:24px;flex-wrap:wrap}
+.sector-card{flex:1;min-width:180px;background:linear-gradient(135deg,#1a2540,#141e30);border-radius:12px;padding:20px;border:1px solid #2a3a5c;text-align:center}
+.sector-card .label{color:#7a9ab8;font-size:0.8em}
+.sector-card .value{font-size:1.3em;font-weight:bold;color:#fff}
+.sector-card .chg{font-size:0.85em;margin-top:4px}
+.up{color:#ff4d4f}.down{color:#52c41a}
+
+/* Chapter card */
+.chapter{background:#111827;border-radius:12px;border:1px solid #1e3a50;margin-bottom:28px;overflow:hidden}
+.chapter-header{background:linear-gradient(90deg,#1e3050,#152238);padding:16px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #1e3a50;cursor:pointer}
+.chapter-header h3{font-size:1.15em;color:#fff}
+.chapter-header .badge{background:#1a4a8c;color:#5b9cf5;padding:4px 12px;border-radius:20px;font-size:0.8em;font-weight:bold}
+.chapter-body{padding:24px}
+
+/* Edu section */
+.edu-block{background:#0d1421;border-radius:10px;padding:20px;margin-bottom:20px;border:1px solid #1e3050}
+.edu-block h4{color:#5b9cf5;font-size:1em;margin-bottom:10px}
+.edu-block p{color:#b0c4de;font-size:0.88em;margin-bottom:10px}
+.edu-block ul{padding-left:20px;margin-bottom:10px}
+.edu-block li{color:#a0b4ce;font-size:0.85em;margin-bottom:4px}
+.edu-block .highlight{color:#ff8c00;font-weight:bold}
+.edu-block .key{background:#1a3050;padding:2px 8px;border-radius:4px;color:#64b5f6;font-size:0.85em}
+
+.summary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-bottom:20px}
+.summary-card{background:#0d1421;border-radius:10px;padding:18px;border:1px solid #1e3050}
+.summary-card .sc-label{color:#7a9ab8;font-size:0.8em;margin-bottom:6px}
+.summary-card .sc-value{font-size:1.2em;color:#fff;font-weight:bold}
+.summary-card .sc-detail{color:#90caf9;font-size:0.82em;margin-top:4px}
+
+/* Tables */
+.table-wrap{overflow-x:auto;border:1px solid #1e3050;border-radius:8px;margin-bottom:16px}
+table{width:100%;border-collapse:collapse;font-size:0.78em;min-width:1300px}
+thead{background:#152238}
+th{padding:10px 6px;text-align:center;color:#5b9cf5;font-weight:600;border-bottom:2px solid #2a4a5c;white-space:nowrap;font-size:0.85em}
+td{padding:8px 6px;text-align:center;border-bottom:1px solid #141e30;color:#c0c8d0}
+tr:hover{background:#1a2a40}
+td.name{text-align:left;color:#fff;font-weight:600}
+td.code{color:#7a9ab8;font-size:0.8em}
+
+/* Risk row */
+.risk-row{margin-top:6px;padding:8px 14px;background:#0d1421;border-radius:8px;border:1px solid #1e3050;font-size:0.78em;display:flex;gap:16px;flex-wrap:wrap}
+.risk-row .rl{color:#7a9ab8;min-width:65px}
+.risk-row .rt{color:#ff8c00;font-weight:bold}
+.risk-row .rs{color:#52c41a;font-weight:bold}
+.risk-row .rr{color:#faad14;font-weight:bold}
+
+/* Commodity card */
+.commodity-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:20px;margin-bottom:24px}
+.commodity-card{background:#111827;border-radius:12px;border:1px solid #1e3a50;overflow:hidden}
+.commodity-card .cc-header{background:linear-gradient(90deg,#3e2723,#1b0e0e);padding:14px 20px;border-bottom:1px solid #4e342e}
+.commodity-card .cc-header h4{color:#ff8c00;font-size:1em}
+.commodity-card .cc-header .cc-price{color:#fff;font-size:1.3em;font-weight:bold;margin-top:4px}
+.commodity-card .cc-body{padding:16px 20px}
+.commodity-card .cc-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #141e30;font-size:0.83em}
+.commodity-card .cc-row:last-child{border-bottom:none}
+.commodity-card .cc-row .k{color:#7a9ab8}
+.commodity-card .cc-row .v{color:#e0e0e0;font-weight:500}
+
+/* Strategy box */
+.strategy-box{background:linear-gradient(135deg,#1a2e1a,#0d2110);border:1px solid #2d4a2d;border-radius:12px;padding:24px;margin-bottom:24px}
+.strategy-box h3{color:#66bb6a;font-size:1.1em;margin-bottom:12px}
+.strategy-box p{color:#a5d6a7;font-size:0.88em;line-height:1.8}
+
+/* Warning */
+.warn{color:#ff8c00;font-size:0.82em;background:#1a1a0d;padding:4px 10px;border-radius:4px;border:1px solid #3a3a1a}
+
+/* TOC */
+.toc{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;margin-bottom:20px}
+.toc a{display:block;padding:10px 14px;background:#141e30;border-radius:8px;color:#90caf9;font-size:0.85em;text-decoration:none;border:1px solid #1e3050}
+.toc a:hover{background:#1e3a5f;color:#fff}
+
+/* Footer */
+.footer{text-align:center;padding:30px;color:#5a7a9a;font-size:0.8em;border-top:1px solid #1e3050;margin-top:40px}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- ===== HEADER ===== -->
+<div class="header">
+<h1>人形机器人产业链终极手册</h1>
+<div class="sub">第一编 基本面深度科普 &nbsp;|&nbsp; 第二编 股票估值与风险收益 &nbsp;|&nbsp; 第三编 大宗商品映射</div>
+<div class="meta">数据日期：2026-06-18 &nbsp;|&nbsp; 数据源：腾讯自选股(TDX)实时行情 + 一致预期 &nbsp;|&nbsp; 52只标的全覆盖</div>
+</div>
+
+<!-- PART NAV -->
+<div class="part-nav">
+<a href="#part0"><span class="num">0</span>全局概览与BOM拆解</a>
+<a href="#part1"><span class="num">1</span>基本面科普：十大环节</a>
+<a href="#part2"><span class="num">2</span>股票估值与风险收益</a>
+<a href="#part3"><span class="num">3</span>大宗商品映射分析</a>
+<a href="#part4"><span class="num">4</span>策略总纲与建议</a>
+</div>
+
+<!-- ===== PART 0: 全局概览 ===== -->
+<div id="part0">
+<div class="part-header"><h2>0. 全局概览与人形机器人BOM成本金字塔</h2><div class="desc">板块行情 &bull; 单机成本拆解 &bull; 产业现状速览</div></div>
+
+<div class="sector-bar">
+<div class="sector-card"><div class="label">人形机器人板块</div><div class="value">1967.09</div><div class="chg up">+1.44%</div></div>
+<div class="sector-card"><div class="label">机器人执行器概念</div><div class="value">2134.68</div><div class="chg up">+2.20%</div></div>
+<div class="sector-card"><div class="label">机器人概念</div><div class="value">6753.06</div><div class="chg up">+0.58%</div></div>
+<div class="sector-card"><div class="label">人形机器人PE</div><div class="value">55.99x</div><div class="chg" style="color:#90caf9">60日 +14.81%</div></div>
+<div class="sector-card"><div class="label">执行器概念PE</div><div class="value">50.35x</div><div class="chg" style="color:#90caf9">60日 +11.52%</div></div>
+</div>
+
+<div class="chapter">
+<div class="chapter-header"><h3>Optimus Gen-3 单机BOM成本金字塔</h3><span class="badge">当前BOM ~¥35-45万/台</span></div>
+<div class="chapter-body">
+<div class="summary-grid">
+<div class="summary-card"><div class="sc-label">🥇 执行器总成</div><div class="sc-value">35-60%</div><div class="sc-detail">28个执行器，含电机+减速器+丝杠+编码器</div></div>
+<div class="summary-card"><div class="sc-label">🥈 行星滚柱丝杠</div><div class="sc-value">19-27%</div><div class="sc-detail">14根/台，单价3000-6000元，承载3倍于滚珠丝杠</div></div>
+<div class="summary-card"><div class="sc-label">🥉 无框力矩电机</div><div class="sc-value">16-20%</div><div class="sc-detail">28个/台，扭矩密度30N·m/kg</div></div>
+<div class="summary-card"><div class="sc-label">4. 精密减速器</div><div class="sc-value">13-20%</div><div class="sc-detail">谐波(轻载)+RV/行星(重载)，~28个/台</div></div>
+<div class="summary-card"><div class="sc-label">5. 传感器系统</div><div class="sc-value">10-36%</div><div class="sc-detail">六维力4-6个+IMU+视觉+触觉+编码器</div></div>
+<div class="summary-card"><div class="sc-label">6. 灵巧手</div><div class="sc-value">~7%</div><div class="sc-detail">22DOF，~20个空心杯电机，微型丝杠</div></div>
+<div class="summary-card"><div class="sc-label">7. 控制器与AI芯片</div><div class="sc-value">5→13%</div><div class="sc-detail">SOC+MCU+驱动芯片，AI算力需求驱动占比提升</div></div>
+<div class="summary-card"><div class="sc-label">8. 结构件与轴承</div><div class="sc-value">12%+5.5%</div><div class="sc-detail">PEEK/碳纤维/铝合金/镁合金+各类轴承</div></div>
+<div class="summary-card"><div class="sc-label">9. 电池与能源</div><div class="sc-value">0.4-15%</div><div class="sc-detail">2.3kWh/台，固态电池过渡中</div></div>
+</div>
+<div class="edu-block">
+<h4>⚡ 2026年关键数字</h4>
+<p>Tesla Optimus Gen-3 <span class="highlight">7月底启动量产</span>（弗里蒙特工厂），2026年目标产能6-8万台。中国头部企业（宇树/智元/优必选/傅利叶）合计出货预计<span class="highlight">11-20万台</span>。全球2026年人形机器人出货量预计突破15-25万台，2030年有望达到100-500万台。</p>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ===== PART 1: 基本面科普 ===== -->
+<div id="part1">
+<div class="part-header"><h2>第一编 基本面深度科普 — 十大环节逐层拆解</h2><div class="desc">每层覆盖：是什么 / 为什么重要 / 怎么做出来的 / 关键数据 / 技术壁垒</div></div>
+
+<div class="toc">
+<a href="#c1">1.执行器总成</a><a href="#c2">2.精密减速器</a><a href="#c3">3.丝杠与线性传动</a><a href="#c4">4.电机系统</a><a href="#c5">5.传感器系统</a>
+<a href="#c6">6.灵巧手</a><a href="#c7">7.控制器与芯片</a><a href="#c8">8.结构件与新材料</a><a href="#c9">9.电池与能源</a><a href="#c10">10.整机集成</a>
+</div>
+
+<!-- C1: 执行器 -->
+<div class="chapter" id="c1">
+<div class="chapter-header"><h3>第一层：执行器总成（旋转+线性）</h3><span class="badge">BOM 35-60%｜28个/台</span></div>
+<div class="chapter-body">
+<div class="edu-block">
+<h4>什么是执行器？</h4>
+<p>执行器是机器人的"肌肉+关节"一体化模组。一个完整的执行器包含：<span class="key">电机</span>（动力源）+ <span class="key">减速器</span>（降速增扭）+ <span class="key">丝杠</span>（旋转→直线）+ <span class="key">编码器</span>（位置反馈）+ <span class="key">力传感器</span>（力矩反馈）。</p>
+<p>分为两类：<span class="highlight">旋转执行器</span>（用于肩/肘/腕等转动关节，核心是谐波减速器）和<span class="highlight">线性执行器</span>（用于髋/膝/踝等推拉关节，核心是行星滚柱丝杠）。Tesla Optimus Gen-3共28个执行器，其中旋转14个、线性14个。</p>
+<h4>为什么执行器是最大的成本项？</h4>
+<ul>
+<li>一台Optimus的28个执行器，仅裸零件成本就超过<span class="highlight">10-15万元</span></li>
+<li>执行器决定了机器人的<span class="highlight">负载能力、运动精度、响应速度</span>——这三个指标直接决定机器人能干什么活</li>
+<li>线性和旋转执行器的精度要求是<span class="highlight">微米级</span>（0.001mm），不是一般制造业能做的</li>
+</ul>
+<h4>技术壁垒</h4>
+<p><span class="highlight">微米级装配精度</span>：减速器与电机的同轴度要求≤5μm（头发丝的1/15）。<span class="highlight">热管理</span>：28个执行器同时工作，散热是巨大挑战。<span class="highlight">一体化设计</span>：电机+减速器+编码器+驱动器一体化集成，不是简单拼装。</p>
+</div>
+</div>
+</div>
+
+<!-- C2: 减速器 -->
+<div class="chapter" id="c2">
+<div class="chapter-header"><h3>第二层：精密减速器</h3><span class="badge">BOM 13-20%｜28个/台｜国产化率 >90%</span></div>
+<div class="chapter-body">
+<div class="edu-block">
+<h4>什么是精密减速器？</h4>
+<p>电机转速通常高达3000-10000rpm，但机器人关节需要的是低速（几十到几百rpm）大力矩。减速器的作用就是把<span class="highlight">高速低扭矩→低速高扭矩</span>，就像一个齿轮变速箱。人形机器人主要用三种：</p>
+<ul>
+<li><span class="highlight">谐波减速器</span>（轻载关节：肩/肘/腕）：柔轮+刚轮+波发生器，单级减速比可达30-320，精度高、体积小。绿的谐波全球份额超60%。</li>
+<li><span class="highlight">RV减速器</span>（重载关节：腰/髋）：摆线针轮结构，刚性好、抗冲击。双环传动国内领先。</li>
+<li><span class="highlight">行星减速器</span>（灵巧手/末端）：体积最小，精度稍低但成本低。</li>
+</ul>
+<h4>为什么是"国产替代最成功的环节"？</h4>
+<p>绿的谐波用10年时间从日本哈默纳科手里抢下<span class="highlight">全球60%+份额</span>。国产化率已超90%。单个谐波减速器国产价格约<span class="highlight">1000-3000元</span>（日本同类3000-8000元），一台机器人用14-28个，减速器总成本约3-8万元。</p>
+</div>
+</div>
+</div>
+
+<!-- C3: 丝杠 -->
+<div class="chapter" id="c3">
+<div class="chapter-header"><h3>第三层：丝杠与线性传动</h3><span class="badge">BOM 19-27%｜14根/台｜国产化率 30%→60%</span></div>
+<div class="chapter-body">
+<div class="edu-block">
+<h4>什么是行星滚柱丝杠？</h4>
+<p>普通丝杠（如滚珠丝杠）通过滚珠在螺纹间滚动来传动，但承载力有限。人形机器人的髋、膝、踝关节需要承受数倍于自身重量的冲击力（跳跃/奔跑时），必须用<span class="highlight">行星滚柱丝杠</span>：用多个带螺纹的滚柱代替滚珠，接触面积大，承载力是滚珠丝杠的<span class="highlight">3倍</span>，寿命是<span class="highlight">15倍</span>。</p>
+<p>一台Optimus需要<span class="highlight">14根</span>行星滚柱丝杠（髋×2 + 膝×2 + 踝×4 + 其他）。进口单价约<span class="highlight">6000-12000元</span>（瑞士ROLLVIS/瑞典SKF），国产单价约<span class="highlight">2000-5000元</span>。</p>
+<h4>为什么是BOM第一大户？</h4>
+<p>14根 × 3000-6000元 = <span class="highlight">4.2-8.4万/台</span>，即便国产化后也是机器人成本中占比最高的单项零件。核心难点在于<span class="highlight">螺纹磨削精度</span>（螺母内螺纹公差≤2μm），全球能做好的不超过10家企业。</p>
+<h4>恒立液压的"30分钟加工突破"</h4>
+<p>传统行星滚柱丝杠需要4-6小时/根的多道工序加工。恒立液压开发了<span class="highlight">旋风铣+精密磨削</span>一体化工序，将单根加工时间压缩到30分钟，如果量产验证成功，将把这个环节的产能天花板彻底打开。</p>
+</div>
+</div>
+</div>
+
+<!-- C4: 电机 -->
+<div class="chapter" id="c4">
+<div class="chapter-header"><h3>第四层：电机系统</h3><span class="badge">BOM 24%｜无框28个 + 空心杯~20个/台</span></div>
+<div class="chapter-body">
+<div class="edu-block">
+<h4>两种关键电机</h4>
+<ul>
+<li><span class="highlight">无框力矩电机</span>（Frameless Torque Motor）：去掉外壳和轴承，只留转子和定子，直接集成到执行器里。优势是扭矩密度极高（30N·m/kg），体积小。Optimus的28个执行器全部使用无框力矩电机。汇川技术、步科股份是国内核心供应商。</li>
+<li><span class="highlight">空心杯电机</span>（Coreless Motor）：转子没有铁芯，惯性极小，适合需要快速启停的精细动作——主要用在<span class="highlight">灵巧手</span>。Optimus每只手需要~10个空心杯电机，两只手共~20个，单价200-600元，手部电机总成本4000-12000元。</li>
+</ul>
+<h4>空心杯电机为什么是"最大短板"？</h4>
+<p>国产化率仅<span class="highlight">10-30%</span>。核心难点是<span class="highlight">绕线工艺</span>：需要在指甲盖大小的空间里绕数百圈漆包线，不能有交叉、间隙必须均匀。瑞士Maxon和德国Faulhaber垄断了高端市场，单只要价300-800元。鸣志电器是国内少数通过Tier 1认证的，空心杯电机C轮认证如果能过，将是一个重大突破。峰岹科技的BLDC驱动芯片也在替代TI的方案。</p>
+</div>
+</div>
+</div>
+
+<!-- C5: 传感器 -->
+<div class="chapter" id="c5">
+<div class="chapter-header"><h3>第五层：传感器系统</h3><span class="badge">BOM 10-36%｜降本空间最大环节</span></div>
+<div class="chapter-body">
+<div class="edu-block">
+<h4>六维力传感器：机器人最重要的"触觉"</h4>
+<p>六维力传感器可以同时测量<span class="highlight">三个方向的力（Fx, Fy, Fz）和三个方向的力矩（Mx, My, Mz）</span>。装在机器人的脚踝和手腕上，让它知道踩到了什么、抓到了什么、用了多大劲。</p>
+<p>每台Optimus需要<span class="highlight">4-6个</span>六维力传感器（双脚×2 + 双手×2 + 可选腰部），当前价格<span class="highlight">8000-20000元/个</span>，传感器总成本3.2-12万元。这是BOM占比波动最大的环节——如果降价到2000元/个（敏芯股份的MEMS路线目标），占比就只有2-3%。</p>
+<h4>三种技术路线的降本竞赛</h4>
+<ul>
+<li><span class="highlight">传统应变片式</span>（柯力传感、安培龙）：精度高、成熟可靠，但成本高（8000-20000元/个），需要逐个标定</li>
+<li><span class="highlight">MEMS硅基式</span>（敏芯股份）：用半导体工艺在硅片上做传感器，量产后成本可降到<span class="highlight">2000元/个</span>，但精度和可靠性还在验证</li>
+<li><span class="highlight">压电/电容式</span>（宇称电子等）：介于两者之间</li>
+</ul>
+<p>传感器的另一个大项是<span class="highlight">视觉/IMU/触觉</span>：3D摄像头+激光雷达+惯性测量单元+电子皮肤，这些在V2.0/Optimus上会不断加量。</p>
+</div>
+</div>
+</div>
+
+<!-- C6: 灵巧手 -->
+<div class="chapter" id="c6">
+<div class="chapter-header"><h3>第六层：灵巧手</h3><span class="badge">BOM ~7%｜22DOF｜"机器人里的小机器人"</span></div>
+<div class="chapter-body">
+<div class="edu-block">
+<h4>灵巧手为什么是机器人里最复杂的子系统？</h4>
+<p>Tesla Optimus Gen-3灵巧手有<span class="highlight">22个自由度（DOF）</span>——人手是27个DOF，灵巧手已经非常接近人手的灵活度。每个自由度需要一套独立的微型驱动系统：空心杯电机+微型行星减速器+微型丝杠/腱绳。</p>
+<ul>
+<li>每只手~10个空心杯电机 + 10个微型减速器 + 大量触觉传感器 + 腱绳/传动机构</li>
+<li><span class="highlight">兆威机电</span>的TR2层级微型传动系统是Optimus灵巧手的独家方案之一</li>
+<li><span class="highlight">新剑传动</span>已获得千台级别的微型丝杠订单</li>
+<li><span class="highlight">鸣志电器</span>的空心杯电机也在送样验证</li>
+</ul>
+<p>灵巧手的成本目前约<span class="highlight">2-4万/双</span>（含电机+减速器+传动+传感器+外壳），但它的战略价值远超成本占比——没有灵巧手，机器人就只能推箱子而不能拧螺丝。</p>
+</div>
+</div>
+</div>
+
+<!-- C7: 控制器与芯片 -->
+<div class="chapter" id="c7">
+<div class="chapter-header"><h3>第七层：控制器与AI芯片</h3><span class="badge">BOM 5%→13%｜AI芯片卡脖子</span></div>
+<div class="chapter-body">
+<div class="edu-block">
+<h4>机器人的"大脑"和"小脑"</h4>
+<ul>
+<li><span class="highlight">主控芯片（大脑）</span>：运行AI模型（视觉识别、路径规划、自然语言理解），需要高算力的SOC/GPU。特斯拉用自研Dojo芯片，国内用瑞芯微/地平线/华为昇腾。</li>
+<li><span class="highlight">运动控制MCU（小脑）</span>：控制28个执行器的实时运动（每秒数千次的位置/力矩调整），需要低延迟、高可靠性的工业级MCU。峰岹科技的BLDC专用MCU正在替代TI的C2000系列。</li>
+<li><span class="highlight">驱动芯片</span>：每个电机都需要一个驱动IC来把MCU的PWM信号变成电流。目前主要以TI/ST/英飞凌为主，峰岹/纳芯微在突破。</li>
+</ul>
+<p>控制器的BOM占比正在快速提升——随着机器人从"预编程"走向"AI驱动"，AI芯片的算力需求是指数级的。从2025年的~5%到2030年预计达到<span class="highlight">13%</span>。</p>
+<h4>关键卡脖子点</h4>
+<p>高端AI训练/推理芯片（英伟达H100/B200级别）完全依赖进口。运动控制MCU虽然峰岹在突破，但车规/机器人级的可靠性验证周期极长（2-3年）。</p>
+</div>
+</div>
+</div>
+
+<!-- C8: 结构件 -->
+<div class="chapter" id="c8">
+<div class="chapter-header"><h3>第八层：结构件与新材料</h3><span class="badge">BOM 12%+5.5%｜PEEK/碳纤维/铝合金</span></div>
+<div class="chapter-body">
+<div class="edu-block">
+<h4>轻量化材料竞争</h4>
+<p>机器人每减重1kg，续航可以增加约<span class="highlight">15-20分钟</span>，或者负载能力相应提升。所以在结构件上，轻量化是压倒一切的需求：</p>
+<ul>
+<li><span class="highlight">PEEK（聚醚醚酮）</span>：最理想的结构材料。密度仅1.3g/cm³（铝的1/2、钢的1/6），强度接近铝合金，耐高温250°C，自润滑。Optimus Gen-2已大量使用。当前价格<span class="highlight">1000-1500元/kg</span>，一台机器人用5-10kg，成本5000-15000元。<span class="highlight">金发科技</span>是国内PEEK改性龙头，<span class="highlight">会通股份</span>也在布局。</li>
+<li><span class="highlight">碳纤维</span>：强度是钢的5倍、重量仅1/4，但成本更高（300-800元/kg）。<span class="highlight">中复神鹰</span>是国内碳纤维龙头，T700/T800级产线全球前三。</li>
+<li><span class="highlight">铝合金（6061/7075）</span>：传统方案，成本低（~25元/kg），但重量大。旭升集团供应Optimus铝合金结构件。</li>
+<li><span class="highlight">镁合金</span>：比铝轻1/3，但成本高、加工难度大。万朗合金开发了替代PEEK的PA6/MXD6/POK合金（成本仅200-300元/kg vs PEEK的1000-1500元/kg）。</li>
+</ul>
+<h4>轴承：小而关键的环节</h4>
+<p>28个旋转执行器每处至少需要2-3个轴承，总数<span class="highlight">60-80个</span>，以交叉滚子轴承、薄壁轴承为主。单价几十到几百元，总成本约<span class="highlight">2000-5000元/台</span>。长盛轴承是国产自润滑轴承龙头，双飞集团、五洲新春也有机器人轴承产品。</p>
+</div>
+</div>
+</div>
+
+<!-- C9: 电池 -->
+<div class="chapter" id="c9">
+<div class="chapter-header"><h3>第九层：电池与能源系统</h3><span class="badge">BOM 0.4-15%｜2.3kWh/台</span></div>
+<div class="chapter-body">
+<div class="edu-block">
+<h4>机器人需要多大电池？</h4>
+<p>Optimus Gen-3搭载<span class="highlight">2.3kWh</span>电池包（约等于一台电动自行车电池的2倍），可持续工作<span class="highlight">4-8小时</span>。电池成本约2000-5000元/台（当前占比较小），但如果未来机器人需要全天候工作（如工厂三班倒），可能需要换电方案或更大电池，BOM占比会提升。</p>
+<ul>
+<li><span class="highlight">宁德时代</span>：特斯拉Optimus当前电池Pack供应商（复用汽车供应链），同时也是BMS（电池管理系统）供应商</li>
+<li><span class="highlight">亿纬锂能</span>：圆柱电池在机器人领域有天然适配（体积小、能量密度高）</li>
+<li><span class="highlight">欣旺达</span>：消费电子Pack经验可复用，正在拓展机器人电池业务</li>
+</ul>
+<h4>固态电池是新变量</h4>
+<p>固态电池的能量密度是当前锂离子电池的<span class="highlight">2-3倍</span>，如果能导入机器人（2027-2028年），一台Optimus的工作时间可能翻倍。宁德时代、赣锋锂业、清陶能源都在这个方向上布局。</p>
+</div>
+</div>
+</div>
+
+<!-- C10: 整机 -->
+<div class="chapter" id="c10">
+<div class="chapter-header"><h3>第十层：整机集成与格局</h3><span class="badge">中国出货占全球86%</span></div>
+<div class="chapter-body">
+<div class="edu-block">
+<h4>全球人形机器人格局（2026年）</h4>
+<ul>
+<li><span class="highlight">第一梯队</span>：Tesla（Optimus Gen-3，7月量产）+ 宇树科技（H1/H1-2，科创版过会）+ 智元机器人（A2，2026年目标数万台）</li>
+<li><span class="highlight">第二梯队</span>：Figure AI（Figure 02，宝马工厂实测）+ 傅利叶智能（GR-2）+ 优必选（Walker S）</li>
+<li><span class="highlight">第三梯队</span>：1X Technologies（EVE）+ Agility Robotics（Digit）+ 小米（CyberOne）</li>
+</ul>
+<p><span class="highlight">中国整机出货占全球86%</span>，但Tesla在高端（单价>50万）和AI算法上有绝对优势。宇树科技的H1-2起售价仅<span class="highlight">9.9万元</span>，是全球性价比最高的人形机器人。</p>
+<h4>埃斯顿今天涨停的背后</h4>
+<p>埃斯顿(002747)作为国内少数同时掌握机器人控制器+伺服+整机能力的公司，今天涨停（+10.01%），市场在交易"国产整机+核心零部件一体化"的逻辑。但注意：埃斯顿一致预期目标价仅23.42元（现价36.50元差距-35.8%），估值已经大幅超前。</p>
+</div>
+</div>
+</div>
+
+</div><!-- /part1 -->
+
+<!-- ===== PART 2: 股票分析（估值+风险收益全覆盖） ===== -->
+<div id="part2">
+<div class="part-header"><h2>第二编 股票估值与风险收益分析</h2><div class="desc">34只核心标的，均来自TDX实时行情+一致预期，含：PE/PB/PS/市值/目标价/止损/盈亏比</div></div>
+
+<script>
+// All stock data preloaded for dynamic rendering
+const STOCK_DATA = {
+'拓普集团':{code:'601689',p:61.92,chg:'+3.01%',pe:38.91,peE:48.75,pb:4.53,ps:3.43,mcap:'1076亿',y52h:86.39,y52l:42.81,chg60:'+7.2%',chgYTD:'-19.26%',tg:'74.72',tg_up:'+20.7%',eps26:'1.94',eps27:'2.34',eps28:'2.81',stop:'52.63',ratio:'1.38'},
+'三花智控':{code:'002050',p:45.85,chg:'+2.80%',pe:47.21,peE:52,pb:5.91,ps:6.03,mcap:'1929亿',y52h:60.77,y52l:23.68,chg60:'+3.66%',chgYTD:'-16.92%',tg:'55.27',tg_up:'+20.5%',eps26:'1.13',eps27:'1.33',eps28:'1.54',stop:'38.97',ratio:'1.37'},
+'恒立液压':{code:'601100',p:119.02,chg:'+0.86%',pe:57.64,peE:61.17,pb:8.92,ps:13.49,mcap:'1596亿',y52h:125.98,y52l:64.82,chg60:'+19.41%',chgYTD:'+8.29%',tg:'129.77',tg_up:'+9.0%',eps26:'2.63',eps27:'3.24',eps28:'3.88',stop:'101.17',ratio:'0.60'},
+'绿的谐波':{code:'688017',p:404.97,chg:'+6.12%',pe:542.9,peE:568.75,pb:20.8,ps:114.16,mcap:'742亿',y52h:450.20,y52l:113.59,chg60:'+117.7%',chgYTD:'+110.81%',tg:'333.44',tg_up:'-17.6%',eps26:'1.07',eps27:'1.55',eps28:'2.18',stop:'344.22',ratio:'-1.18'},
+'双环传动':{code:'002472',p:43.67,chg:'+4.57%',pe:29.23,peE:32.66,pb:3.60,ps:3.88,mcap:'371亿',y52h:53.32,y52l:29.62,chg60:'+13.52%',chgYTD:'-7.89%',tg:'49.36',tg_up:'+13.0%',eps26:'1.70',eps27:'2.02',eps28:'2.35',stop:'37.12',ratio:'0.87'},
+'中大力德':{code:'002896',p:82.11,chg:'+3.04%',pe:286.26,peE:364.68,pb:13.39,ps:14.88,mcap:'161亿',y52h:109.35,y52l:52.53,chg60:'+17.3%',chgYTD:'-8.11%',tg:'89.29',tg_up:'+8.7%',eps26:'0.50',eps27:'0.57',eps28:'0.68',stop:'69.79',ratio:'0.58'},
+'五洲新春':{code:'603667',p:67.72,chg:'+1.80%',pe:307.64,peE:210.61,pb:6.58,ps:8.03,mcap:'259亿',y52h:96.57,y52l:31.17,chg60:'+3.59%',chgYTD:'-3.06%',tg:'84.61',tg_up:'+24.9%',eps26:'0.40',eps27:'0.55',eps28:'0.77',stop:'57.56',ratio:'1.66'},
+'浙江荣泰':{code:'603119',p:73.90,chg:'+3.50%',pe:120.23,peE:121.69,pb:17.25,ps:22.73,mcap:'349亿',y52h:95.61,y52l:29.10,chg60:'+29.58%',chgYTD:'-16.78%',tg:'N/A',tg_up:'-',eps26:'-',eps27:'-',eps28:'-',stop:'62.82',ratio:'-'},
+'汇川技术':{code:'300124',p:71.40,chg:'+2.37%',pe:40.78,peE:47.69,pb:5.52,ps:4.08,mcap:'1933亿',y52h:90.50,y52l:59.63,chg60:'+4.62%',chgYTD:'-4.58%',tg:'85.63',tg_up:'+19.9%',eps26:'2.24',eps27:'2.70',eps28:'3.18',stop:'60.69',ratio:'1.33'},
+'XD鸣志电器':{code:'603728',p:64.05,chg:'+4.47%',pe:395.97,peE:485.44,pb:9.05,ps:8.96,mcap:'268亿',y52h:87.98,y52l:52.52,chg60:'+12.06%',chgYTD:'-11.44%',tg:'74.34',tg_up:'+16.1%',eps26:'0.29',eps27:'0.36',eps28:'0.46',stop:'54.44',ratio:'1.07'},
+'步科股份':{code:'688160',p:111.60,chg:'+2.10%',pe:135.75,peE:190.35,pb:7.88,ps:12.72,mcap:'101亿',y52h:171.70,y52l:77.71,chg60:'+5.77%',chgYTD:'-26.68%',tg:'140.67',tg_up:'+26.0%',eps26:'1.19',eps27:'1.49',eps28:'1.86',stop:'94.86',ratio:'1.74'},
+'柯力传感':{code:'603662',p:70.40,chg:'+0.11%',pe:64.61,peE:120.20,pb:7.09,ps:12.34,mcap:'198亿',y52h:84.49,y52l:52.44,chg60:'+24.07%',chgYTD:'-2.22%',tg:'72.18',tg_up:'+2.5%',eps26:'1.24',eps27:'1.40',eps28:'1.60',stop:'59.84',ratio:'0.17'},
+'安培龙':{code:'301413',p:80.39,chg:'-0.62%',pe:139.98,peE:831.52,pb:8.29,ps:8.74,mcap:'103亿',y52h:153.73,y52l:51.77,chg60:'-8.09%',chgYTD:'-22.30%',tg:'103.58',tg_up:'+28.8%',eps26:'0.88',eps27:'1.23',eps28:'1.66',stop:'68.33',ratio:'1.92'},
+'敏芯股份':{code:'688286',p:80.40,chg:'+0.11%',pe:197.86,peE:'亏损',pb:4.25,ps:7.60,mcap:'45亿',y52h:113.80,y52l:57.00,chg60:'+20.72%',chgYTD:'+1.84%',tg:'N/A',tg_up:'-',eps26:'-',eps27:'-',eps28:'-',stop:'68.34',ratio:'-'},
+'兆威机电':{code:'003021',p:98.43,chg:'+1.74%',pe:109.49,peE:160.78,pb:5.23,ps:15.18,mcap:'263亿',y52h:156.34,y52l:91.62,chg60:'-4.57%',chgYTD:'-20.49%',tg:'134.55',tg_up:'+36.7%',eps26:'1.31',eps27:'1.68',eps28:'2.08',stop:'83.67',ratio:'2.44'},
+'雷赛智能':{code:'002979',p:55.37,chg:'-1.05%',pe:72.16,peE:60.45,pb:9.34,ps:8.77,mcap:'174亿',y52h:66.94,y52l:34.32,chg60:'+55.62%',chgYTD:'+31.61%',tg:'58.02',tg_up:'+4.8%',eps26:'1.02',eps27:'1.27',eps28:'1.53',stop:'47.06',ratio:'0.32'},
+'峰岹科技':{code:'688279',p:210.95,chg:'+0.28%',pe:94.57,peE:68.78,pb:4.75,ps:28.39,mcap:'243亿',y52h:301.22,y52l:143.22,chg60:'+29.14%',chgYTD:'+4.06%',tg:'255.86',tg_up:'+21.3%',eps26:'3.20',eps27:'4.63',eps28:'6.07',stop:'179.31',ratio:'1.42'},
+'瑞芯微':{code:'603893',p:181.72,chg:'+3.28%',pe:65.97,peE:58.10,pb:16.21,ps:15.69,mcap:'765亿',y52h:249.69,y52l:139.05,chg60:'+16.43%',chgYTD:'+2.10%',tg:'234.24',tg_up:'+28.9%',eps26:'3.22',eps27:'4.11',eps28:'5.16',stop:'154.46',ratio:'1.95'},
+'金发科技':{code:'600143',p:16.72,chg:'+0.72%',pe:36.99,peE:36.62,pb:2.22,ps:0.68,mcap:'447亿',y52h:24.08,y52l:9.79,chg60:'+4.70%',chgYTD:'-14.43%',tg:'21.64',tg_up:'+29.4%',eps26:'0.69',eps27:'0.90',eps28:'1.09',stop:'14.21',ratio:'1.96'},
+'中复神鹰':{code:'688295',p:51.43,chg:'-1.83%',pe:269.32,peE:379.97,pb:9.80,ps:19.99,mcap:'463亿',y52h:66.85,y52l:18.63,chg60:'-4.56%',chgYTD:'+56.91%',tg:'69.57',tg_up:'+35.3%',eps26:'0.26',eps27:'0.42',eps28:'0.63',stop:'43.72',ratio:'2.35'},
+'长盛轴承':{code:'300718',p:67.55,chg:'+1.34%',pe:77.22,peE:82.66,pb:11.69,ps:14.93,mcap:'202亿',y52h:109.35,y52l:63.58,chg60:'-1.30%',chgYTD:'-20.62%',tg:'N/A',tg_up:'-',eps26:'0.97',eps27:'1.13',eps28:'1.33',stop:'57.42',ratio:'-'},
+'宁德时代':{code:'300750',p:394.27,chg:'-1.19%',pe:23.10,peE:21.99,pb:5.58,ps:3.94,mcap:'18241亿',y52h:468.75,y52l:230.12,chg60:'-2.91%',chgYTD:'+9.41%',tg:'550.82',tg_up:'+39.7%',eps26:'20.51',eps27:'25.16',eps28:'31.46',stop:'335.13',ratio:'2.65'},
+'欣旺达':{code:'300207',p:20.80,chg:'-1.09%',pe:48.96,peE:84.26,pb:1.57,ps:0.58,mcap:'384亿',y52h:37.81,y52l:18.11,chg60:'-23.84%',chgYTD:'-20.18%',tg:'34.43',tg_up:'+65.5%',eps26:'1.39',eps27:'1.96',eps28:'2.63',stop:'17.68',ratio:'4.37'},
+'亿纬锂能':{code:'300014',p:66.35,chg:'-1.76%',pe:32.19,peE:24.93,pb:3.34,ps:2.12,mcap:'1442亿',y52h:94.21,y52l:41.04,chg60:'-5.97%',chgYTD:'+1.26%',tg:'99.37',tg_up:'+49.8%',eps26:'3.28',eps27:'4.47',eps28:'5.66',stop:'56.40',ratio:'3.32'},
+'埃斯顿':{code:'002747',p:36.50,chg:'+10.01%',pe:271.36,peE:90.26,pb:10.91,ps:6.61,mcap:'353亿',y52h:39.90,y52l:18.35,chg60:'+78.75%',chgYTD:'+54.01%',tg:'23.42',tg_up:'-35.8%',eps26:'0.22',eps27:'0.29',eps28:'0.39',stop:'31.03',ratio:'-2.39'},
+'禾川科技':{code:'688320',p:38.60,chg:'+2.47%',pe:'亏损',peE:'亏损',pb:4.80,ps:5.37,mcap:'58亿',y52h:55.89,y52l:28.70,chg60:'+28.62%',chgYTD:'+3.43%',tg:'N/A',tg_up:'-',eps26:'-',eps27:'-',eps28:'-',stop:'32.81',ratio:'-'},
+'拓斯达':{code:'300607',p:38.79,chg:'+3.27%',pe:156.66,peE:96.20,pb:6.37,ps:6.67,mcap:'185亿',y52h:40.78,y52l:23.99,chg60:'+55.42%',chgYTD:'+17.87%',tg:'N/A',tg_up:'-',eps26:'0.30',eps27:'0.39',eps28:'0.48',stop:'32.97',ratio:'-'},
+'新时达':{code:'002527',p:14.72,chg:'+6.44%',pe:1593,peE:'亏损',pb:7.85,ps:2.54,mcap:'98亿',y52h:21.86,y52l:12.41,chg60:'+5.67%',chgYTD:'-17.02%',tg:'N/A',tg_up:'-',eps26:'0.12',eps27:'0.29',eps28:'-',stop:'12.51',ratio:'-'},
+'秦川机床':{code:'000837',p:12.19,chg:'+1.33%',pe:251.08,peE:128.49,pb:2.53,ps:2.94,mcap:'125亿',y52h:16.27,y52l:10.11,chg60:'+12.35%',chgYTD:'-5.36%',tg:'N/A',tg_up:'-',eps26:'-',eps27:'-',eps28:'-',stop:'10.36',ratio:'-'},
+'丰立智能':{code:'301368',p:44.37,chg:'+0.59%',pe:'亏损',peE:5078,pb:5.65,ps:10.33,mcap:'53亿',y52h:85.50,y52l:41.33,chg60:'-15.66%',chgYTD:'-29.20%',tg:'N/A',tg_up:'-',eps26:'-',eps27:'-',eps28:'-',stop:'37.71',ratio:'-'},
+'昊志机电':{code:'300503',p:86.99,chg:'+7.41%',pe:137.78,peE:73.71,pb:18.58,ps:13.84,mcap:'268亿',y52h:93.80,y52l:19.87,chg60:'+75.28%',chgYTD:'+36.73%',tg:'N/A',tg_up:'-',eps26:'1.37',eps27:'1.97',eps28:'2.56',stop:'73.94',ratio:'-'},
+'双飞集团':{code:'300817',p:18.02,chg:'+1.52%',pe:57.24,peE:59.13,pb:3.83,ps:3.92,mcap:'39亿',y52h:24.85,y52l:16.87,chg60:'+0.16%',chgYTD:'-14.52%',tg:'N/A',tg_up:'-',eps26:'-',eps27:'-',eps28:'-',stop:'15.32',ratio:'-'},
+'贝斯特':{code:'300580',p:22.84,chg:'-0.44%',pe:40.74,peE:39.27,pb:3.49,ps:7.48,mcap:'115亿',y52h:31.98,y52l:20.52,chg60:'+6.08%',chgYTD:'-12.66%',tg:'N/A',tg_up:'-',eps26:'0.68',eps27:'0.83',eps28:'0.85',stop:'19.41',ratio:'-'},
+'鼎智科技':{code:'873593',p:199.96,chg:'停牌',pe:1562,peE:1345,pb:53.07,ps:'-',mcap:'380亿',y52h:'-',y52l:'-',chg60:'-',chgYTD:'-',tg:'N/A',tg_up:'-',eps26:'-',eps27:'-',eps28:'-',stop:'169.97',ratio:'-'}
+};
+
+function renderStockRow(name, d) {
+  let peE = d.peE, peColor = '';
+  if(typeof peE === 'number') peColor = peE > 100 ? '#ff6b6b' : peE > 50 ? '#ff8c00' : '#52c41a';
+  let tgUp = d.tg_up;
+  let tgStyle = '';
+  if(tgUp.startsWith('-')) tgStyle = 'color:#52c41a';
+  else if(tgUp === '-' || tgUp === 'N/A') tgStyle = 'color:#7a9ab8';
+  else { let v = parseFloat(tgUp); if(v > 20) tgStyle = 'color:#ff4d4f;font-weight:bold'; else tgStyle = 'color:#ff8c00'; }
+  let chg60col = d.chg60.startsWith('+') ? '#ff4d4f' : '#52c41a';
+  let mcapCol = d.mcap.includes('亿') ? '#fff' : '#ff8c00';
+  return `<tr>
+<td class="name">${name}</td><td class="code">${d.code}</td><td style="color:#fff;font-weight:bold">${d.p}</td><td style="color:${d.chg.startsWith('+')?'#ff4d4f':'#52c41a'}">${d.chg}</td>
+<td style="color:${peColor}">${typeof peE==='number'?peE.toFixed(1)+'x':peE}</td>
+<td>${d.pb.toFixed(2)}</td><td>${d.ps.toFixed(2)}</td><td style="color:${mcapCol}">${d.mcap}</td>
+<td style="color:${chg60col}">${d.chg60}</td><td style="color:${d.chgYTD.startsWith('+')?'#ff4d4f':'#52c41a'}">${d.chgYTD}</td>
+<td style="${tgStyle}">${tgUp}</td>
+<td style="color:#ff8c00;font-weight:bold">${typeof d.ratio==='number'&&d.ratio>1.5?'⭐'+d.ratio.toFixed(2):typeof d.ratio==='number'?d.ratio.toFixed(2):d.ratio}</td>
+</tr>`;
+}
+</script>
+
+<!-- 第一层 -->
+<div class="chapter"><div class="chapter-header"><h3>第一层：执行器总成</h3><span class="badge">BOM 35-60%</span></div>
+<div class="chapter-body">
+<div class="table-wrap"><table>
+<thead><tr><th>股票</th><th>代码</th><th>现价</th><th>涨跌</th><th>2026E PE</th><th>PB</th><th>PS</th><th>市值</th><th>60日</th><th>YTD</th><th>上行空间</th><th>盈亏比</th></tr></thead>
+<tbody id="tier1"></tbody></table></div>
+<script>
+document.getElementById('tier1').innerHTML = renderStockRow('拓普集团',STOCK_DATA['拓普集团']) + renderStockRow('三花智控',STOCK_DATA['三花智控']) + renderStockRow('恒立液压',STOCK_DATA['恒立液压']);
+</script>
+<div class="risk-row"><span class="rl">策略</span><span>拓普/三花确定性最高（已定点Tier 1），恒立液压30分钟加工突破为最大弹性变量。三花PE 47x处于合理区间上沿。</span></div>
+</div></div>
+
+<!-- 第二层 -->
+<div class="chapter"><div class="chapter-header"><h3>第二层：精密减速器</h3><span class="badge">BOM 13-20%</span></div>
+<div class="chapter-body">
+<div class="table-wrap"><table>
+<thead><tr><th>股票</th><th>代码</th><th>现价</th><th>涨跌</th><th>2026E PE</th><th>PB</th><th>PS</th><th>市值</th><th>60日</th><th>YTD</th><th>上行空间</th><th>盈亏比</th></tr></thead>
+<tbody id="tier2"></tbody></table></div>
+<script>
+document.getElementById('tier2').innerHTML = renderStockRow('绿的谐波',STOCK_DATA['绿的谐波']) + renderStockRow('双环传动',STOCK_DATA['双环传动']) + renderStockRow('中大力德',STOCK_DATA['中大力德']);
+</script>
+<div class="risk-row"><span class="rl">⚠️ 风险</span><span>绿的谐波一致预期目标价333.44 < 现价404.97（缺口-17.6%），PE 543x已严重透支。双环传动29x相对合理。</span></div>
+</div></div>
+
+<!-- 第三层 -->
+<div class="chapter"><div class="chapter-header"><h3>第三层：丝杠与线性传动</h3><span class="badge">BOM 19-27%</span></div>
+<div class="chapter-body">
+<div class="table-wrap"><table>
+<thead><tr><th>股票</th><th>代码</th><th>现价</th><th>涨跌</th><th>2026E PE</th><th>PB</th><th>PS</th><th>市值</th><th>60日</th><th>YTD</th><th>上行空间</th><th>盈亏比</th></tr></thead>
+<tbody id="tier3"></tbody></table></div>
+<script>
+document.getElementById('tier3').innerHTML = renderStockRow('恒立液压',STOCK_DATA['恒立液压']) + renderStockRow('五洲新春',STOCK_DATA['五洲新春']) + renderStockRow('浙江荣泰',STOCK_DATA['浙江荣泰']);
+</script>
+<div class="risk-row"><span class="rl">策略</span><span>恒立液压估值合理偏低（57x vs 增速29%），五洲新春210x偏贵但24.9%上行空间+1.66盈亏比有博弈价值。浙江荣泰需注意122x PE。</span></div>
+</div></div>
+
+<!-- 第四层 -->
+<div class="chapter"><div class="chapter-header"><h3>第四层：电机系统</h3><span class="badge">BOM 24%</span></div>
+<div class="chapter-body">
+<div class="table-wrap"><table>
+<thead><tr><th>股票</th><th>代码</th><th>现价</th><th>涨跌</th><th>2026E PE</th><th>PB</th><th>PS</th><th>市值</th><th>60日</th><th>YTD</th><th>上行空间</th><th>盈亏比</th></tr></thead>
+<tbody id="tier4"></tbody></table></div>
+<script>
+document.getElementById('tier4').innerHTML = renderStockRow('汇川技术',STOCK_DATA['汇川技术']) + renderStockRow('鸣志电器',STOCK_DATA['XD鸣志电器']) + renderStockRow('步科股份',STOCK_DATA['步科股份']);
+</script>
+<div class="risk-row"><span class="rl">策略</span><span>汇川技术确定性高+估值合理（PE 41x），是不错的底仓。鸣志电器485xPE但C轮认证是关键催化剂。步科1.74盈亏比，小市值弹性大。</span></div>
+</div></div>
+
+<!-- 第五层 -->
+<div class="chapter"><div class="chapter-header"><h3>第五层：传感器系统</h3><span class="badge">BOM 10-36%｜降本空间最大</span></div>
+<div class="chapter-body">
+<div class="table-wrap"><table>
+<thead><tr><th>股票</th><th>代码</th><th>现价</th><th>涨跌</th><th>2026E PE</th><th>PB</th><th>PS</th><th>市值</th><th>60日</th><th>YTD</th><th>上行空间</th><th>盈亏比</th></tr></thead>
+<tbody id="tier5"></tbody></table></div>
+<script>
+document.getElementById('tier5').innerHTML = renderStockRow('柯力传感',STOCK_DATA['柯力传感']) + renderStockRow('安培龙',STOCK_DATA['安培龙']) + renderStockRow('敏芯股份',STOCK_DATA['敏芯股份']);
+</script>
+<div class="risk-row"><span class="rl">⚠️ 关键</span><span>柯力传感目标价仅72.18（上行空间+2.5%），已基本兑现。安培龙28.8%上行+1.92盈亏比，10月Tesla验证是关键窗口。敏芯MEMS路线是最大变量但盈利未验证。</span></div>
+</div></div>
+
+<!-- 第六层 -->
+<div class="chapter"><div class="chapter-header"><h3>第六层：灵巧手</h3><span class="badge">BOM ~7%</span></div>
+<div class="chapter-body">
+<div class="table-wrap"><table>
+<thead><tr><th>股票</th><th>代码</th><th>现价</th><th>涨跌</th><th>2026E PE</th><th>PB</th><th>PS</th><th>市值</th><th>60日</th><th>YTD</th><th>上行空间</th><th>盈亏比</th></tr></thead>
+<tbody id="tier6"></tbody></table></div>
+<script>
+document.getElementById('tier6').innerHTML = renderStockRow('兆威机电',STOCK_DATA['兆威机电']) + renderStockRow('鸣志电器',STOCK_DATA['XD鸣志电器']);
+</script>
+<div class="risk-row"><span class="rl">策略</span><span>兆威机电2.44盈亏比全产业链最高之一，TR2层级独供灵巧手传动。鸣志电器空心杯电机是灵巧手"心脏"，C轮认证+灵巧手双重催化。</span></div>
+</div></div>
+
+<!-- 第七层 -->
+<div class="chapter"><div class="chapter-header"><h3>第七层：控制器与芯片</h3><span class="badge">BOM 5%→13%</span></div>
+<div class="chapter-body">
+<div class="table-wrap"><table>
+<thead><tr><th>股票</th><th>代码</th><th>现价</th><th>涨跌</th><th>2026E PE</th><th>PB</th><th>PS</th><th>市值</th><th>60日</th><th>YTD</th><th>上行空间</th><th>盈亏比</th></tr></thead>
+<tbody id="tier7"></tbody></table></div>
+<script>
+document.getElementById('tier7').innerHTML = renderStockRow('峰岹科技',STOCK_DATA['峰岹科技']) + renderStockRow('瑞芯微',STOCK_DATA['瑞芯微']) + renderStockRow('雷赛智能',STOCK_DATA['雷赛智能']);
+</script>
+<div class="risk-row"><span class="rl">策略</span><span>峰岹科技PE 69x vs 68%增速（PEG~1），是控制器环节最合理的风险收益比。瑞芯微1.95盈亏比+28.9%上行，AI端侧芯片逻辑硬。雷赛智能已达目标价附近（+4.8%空间有限）。</span></div>
+</div></div>
+
+<!-- 第八层 -->
+<div class="chapter"><div class="chapter-header"><h3>第八层：结构件与新材料</h3><span class="badge">BOM 12%+5.5%</span></div>
+<div class="chapter-body">
+<div class="table-wrap"><table>
+<thead><tr><th>股票</th><th>代码</th><th>现价</th><th>涨跌</th><th>2026E PE</th><th>PB</th><th>PS</th><th>市值</th><th>60日</th><th>YTD</th><th>上行空间</th><th>盈亏比</th></tr></thead>
+<tbody id="tier8"></tbody></table></div>
+<script>
+document.getElementById('tier8').innerHTML = renderStockRow('金发科技',STOCK_DATA['金发科技']) + renderStockRow('中复神鹰',STOCK_DATA['中复神鹰']) + renderStockRow('长盛轴承',STOCK_DATA['长盛轴承']);
+</script>
+<div class="risk-row"><span class="rl">策略</span><span>金发科技1.96盈亏比+PS 0.68极度低估（PE 37x也不贵），PEEK改性龙头逻辑最顺畅。中复神鹰2.35盈亏比但PE 270x需耐心。长盛轴承11.69x PB偏高。</span></div>
+</div></div>
+
+<!-- 第九层 -->
+<div class="chapter"><div class="chapter-header"><h3>第九层：电池与能源</h3><span class="badge">BOM 0.4-15%</span></div>
+<div class="chapter-body">
+<div class="table-wrap"><table>
+<thead><tr><th>股票</th><th>代码</th><th>现价</th><th>涨跌</th><th>2026E PE</th><th>PB</th><th>PS</th><th>市值</th><th>60日</th><th>YTD</th><th>上行空间</th><th>盈亏比</th></tr></thead>
+<tbody id="tier9"></tbody></table></div>
+<script>
+document.getElementById('tier9').innerHTML = renderStockRow('宁德时代',STOCK_DATA['宁德时代']) + renderStockRow('欣旺达',STOCK_DATA['欣旺达']) + renderStockRow('亿纬锂能',STOCK_DATA['亿纬锂能']);
+</script>
+<div class="risk-row"><span class="rl">⭐ TOP1</span><span>欣旺达盈亏比4.37冠绝全产业链！PB 1.57全市场最便宜电池股，2026E净利+143%，目标价上行65.5%。亿纬锂能3.32盈亏比排名第二。宁德时代2.65位列第三——这三只是底仓首选。</span></div>
+</div></div>
+
+<!-- 第十层 -->
+<div class="chapter"><div class="chapter-header"><h3>第十层：整机集成与其他</h3><span class="badge">中国出货占全球86%</span></div>
+<div class="chapter-body">
+<div class="table-wrap"><table>
+<thead><tr><th>股票</th><th>代码</th><th>现价</th><th>涨跌</th><th>2026E PE</th><th>PB</th><th>PS</th><th>市值</th><th>60日</th><th>YTD</th><th>上行空间</th><th>盈亏比</th></tr></thead>
+<tbody id="tier10"></tbody></table></div>
+<script>
+document.getElementById('tier10').innerHTML = renderStockRow('埃斯顿',STOCK_DATA['埃斯顿']) + renderStockRow('禾川科技',STOCK_DATA['禾川科技']) + renderStockRow('拓斯达',STOCK_DATA['拓斯达']) + renderStockRow('新时达',STOCK_DATA['新时达']) + renderStockRow('秦川机床',STOCK_DATA['秦川机床']) + renderStockRow('丰立智能',STOCK_DATA['丰立智能']) + renderStockRow('昊志机电',STOCK_DATA['昊志机电']) + renderStockRow('双飞集团',STOCK_DATA['双飞集团']) + renderStockRow('贝斯特',STOCK_DATA['贝斯特']) + renderStockRow('鼎智科技',STOCK_DATA['鼎智科技']);
+</script>
+<div class="risk-row"><span class="rl">⚠️ 高风险</span><span>埃斯顿目标价差距-35.8%，今日涨停已大幅透支。昊志机电75%的60日涨幅+无一致预期覆盖，纯炒作。这一层标的多数估值极高+无业绩支撑。</span></div>
+</div></div>
+
+</div><!-- /part2 -->
+
+<!-- ===== PART 3: 大宗商品映射 ===== -->
+<div id="part3">
+<div class="part-header"><h2>第三编 大宗商品映射分析</h2><div class="desc">铜 / 稀土&钕铁硼 / PEEK&碳纤维 / 铝合金 / 硅钢 / 锂 &mdash; 价格、供给、受益股票</div></div>
+
+<div class="commodity-grid">
+
+<!-- 铜 -->
+<div class="commodity-card">
+<div class="cc-header"><h4>铜 Copper</h4><div class="cc-price">沪铜 105,400元/吨 | LME 13,560美元/吨</div></div>
+<div class="cc-body">
+<div class="cc-row"><span class="k">机器人用量/台</span><span class="v">~15-20kg（电机绕组+线束+散热器）</span></div>
+<div class="cc-row"><span class="k">2026年机器人需求</span><span class="v">20万台×18kg=3,600吨（全球铜消费0.01%）</span></div>
+<div class="cc-row"><span class="k">更大需求源</span><span class="v">AI数据中心+电网改造（远大于机器人）</span></div>
+<div class="cc-row"><span class="k">沪铜核心区间</span><span class="v">102,000-108,000元/吨（高位震荡）</span></div>
+<div class="cc-row"><span class="k">矿端TC</span><span class="v">深负TC（铜矿紧缺信号）</span></div>
+<div class="cc-row"><span class="k">核心受益</span><span class="v">江西铜业(PE16x)+紫金矿业(PE10x)</span></div>
+<div class="cc-row"><span class="k">策略研判</span><span class="v" style="color:#ff8c00">铜的机器人逻辑属于"锦上添花"而非核心驱动，真正弹性来自AI数据中心用铜。紫金PE10x+目标价上行55%→盈亏比高。</span></div>
+</div>
+</div>
+
+<!-- 稀土 & 钕铁硼 -->
+<div class="commodity-card">
+<div class="cc-header"><h4>稀土 & 钕铁硼磁材</h4><div class="cc-price">氧化镨钕 69.43万/吨 | 氧化镝 133万/吨 | 氧化铽 615万/吨</div></div>
+<div class="cc-body">
+<div class="cc-row"><span class="k">机器人用量/台</span><span class="v"><span class="highlight">3.5-4kg</span> 高性能钕铁硼磁材</span></div>
+<div class="cc-row"><span class="k">每台磁材价值</span><span class="v">约1500-2500元（烧结钕铁硼50-60万/吨）</span></div>
+<div class="cc-row"><span class="k">2026年机器人需求</span><span class="v">20万台×3.8kg=760吨（总需求~30万吨，占比0.25%）</span></div>
+<div class="cc-row"><span class="k">2030年潜力</span><span class="v">200万台×3.8kg=7,600吨→50亿市场</span></div>
+<div class="cc-row"><span class="k">单台用量 vs 新能源车</span><span class="v">机器人3.5-4kg > 新能源车2-3kg ⚡</span></div>
+<div class="cc-row"><span class="k">核心受益</span><span class="v">北方稀土+金力永磁+宁波韵升+中国稀土</span></div>
+<div class="cc-row"><span class="k">策略研判</span><span class="v" style="color:#ff8c00">钕铁硼是唯一"机器人用量>新能源车"的大宗，逻辑最纯。金力永磁43x PE+27%上行，宁波韵升为新晋机器人磁材龙头。</span></div>
+</div>
+</div>
+
+<!-- PEEK & 碳纤维 -->
+<div class="commodity-card">
+<div class="cc-header"><h4>PEEK & 碳纤维</h4><div class="cc-price">PEEK 1000-1500元/kg | 碳纤维 300-800元/kg</div></div>
+<div class="cc-body">
+<div class="cc-row"><span class="k">机器人用量/台</span><span class="v">PEEK: 5-10kg（关节齿轮+外壳+轴承）</span></div>
+<div class="cc-row"><span class="k">每台PEEK价值</span><span class="v">5,000-15,000元</span></div>
+<div class="cc-row"><span class="k">碳纤维用量/台</span><span class="v">3-5kg（骨架+外壳加强）</span></div>
+<div class="cc-row"><span class="k">替代品威胁</span><span class="v">万朗合金PA6/MXD6/POK: 200-300元/kg（PEEK的1/6）</span></div>
+<div class="cc-row"><span class="k">PEEK降本路线</span><span class="v">规模化→1500→500元/kg（2030E）</span></div>
+<div class="cc-row"><span class="k">核心受益</span><span class="v">金发科技(PEEK改性)+中复神鹰(碳纤维)+会通股份</span></div>
+<div class="cc-row"><span class="k">策略研判</span><span class="v" style="color:#52c41a">金发PS 0.68极度低估，PEEK改性机器人逻辑未被定价。但需关注低价替代品（万朗合金）对PEEK价格的长期压力。</span></div>
+</div>
+</div>
+
+<!-- 铝合金 -->
+<div class="commodity-card">
+<div class="cc-header"><h4>铝合金 & 镁合金</h4><div class="cc-price">铝锭 ~20,000元/吨 | 6061铝板 ~25元/kg</div></div>
+<div class="cc-body">
+<div class="cc-row"><span class="k">机器人用量/台</span><span class="v">铝合金: 10-20kg（结构件框架）</span></div>
+<div class="cc-row"><span class="k">每台铝价值</span><span class="v">~500-1000元（成本低但不是轻量化最优）</span></div>
+<div class="cc-row"><span class="k">镁合金优势</span><span class="v">比铝轻1/3，但成本高2-3倍</span></div>
+<div class="cc-row"><span class="k">趋势判断</span><span class="v">短期铝为主→中期PEEK替代→长期碳纤维/PEEK/铝混用</span></div>
+<div class="cc-row"><span class="k">核心受益</span><span class="v">云铝股份(PE6x)+南山铝业(PE12x)+旭升集团</span></div>
+<div class="cc-row"><span class="k">策略研判</span><span class="v" style="color:#ff8c00">云铝PE仅6x+目标价上行56%，是铝板块最低估值。但铝合金在机器人中属于"被替代"方向，弹性受限于轻量化材料升级。</span></div>
+</div>
+</div>
+
+<!-- 硅钢 -->
+<div class="commodity-card">
+<div class="cc-header"><h4>硅钢（电工钢）</h4><div class="cc-price">宝钢B10AHV900M 0.1mm极薄（全球首发）｜6月调价+200元/吨</div></div>
+<div class="cc-body">
+<div class="cc-row"><span class="k">机器人用量/台</span><span class="v">~5-8kg（无框力矩电机+空心杯电机定转子）</span></div>
+<div class="cc-row"><span class="k">每台硅钢价值</span><span class="v">~200-500元（高牌号溢价显著）</span></div>
+<div class="cc-row"><span class="k">核心突破</span><span class="v">宝钢全球首发B10AHV900M（铁损<9W/kg），专为机器人灵巧手空心杯电机+无框力矩电机开发</span></div>
+<div class="cc-row"><span class="k">竞争格局</span><span class="v">宝钢全球独供→首钢追赶→日韩退出</span></div>
+<div class="cc-row"><span class="k">核心受益</span><span class="v">宝钢股份+首钢股份</span></div>
+<div class="cc-row"><span class="k">策略研判</span><span class="v" style="color:#ff8c00">宝钢的"蝉翼硅钢"是真正意义上的技术突破（打破9W/kg的全球天花板），且机器人电机硅钢对应极薄规格（0.1mm），壁垒极高。但对宝钢千亿市值而言弹性有限。</span></div>
+</div>
+</div>
+
+<!-- 锂 -->
+<div class="commodity-card">
+<div class="cc-header"><h4>锂 & 电池材料</h4><div class="cc-price">电池级碳酸锂 162,000元/吨 | 氢氧化锂 159,000元/吨</div></div>
+<div class="cc-body">
+<div class="cc-row"><span class="k">机器人电池/台</span><span class="v">2.3kWh，约30-40kg（含Pack）</span></div>
+<div class="cc-row"><span class="k">每台锂用量</span><span class="v">~1.5-2kg碳酸锂当量</span></div>
+<div class="cc-row"><span class="k">2026年机器人需求</span><span class="v">20万台×1.8kg=360吨（全球~90万吨，占比0.04%）</span></div>
+<div class="cc-row"><span class="k">碳酸锂趋势</span><span class="v">16万/吨→12-18万区间震荡，下行空间有限</span></div>
+<div class="cc-row"><span class="k">固态电池增量</span><span class="v">2027-2028年导入，能量密度2-3x</span></div>
+<div class="cc-row"><span class="k">核心受益</span><span class="v">宁德时代+赣锋锂业+天齐锂业</span></div>
+<div class="cc-row"><span class="k">策略研判</span><span class="v" style="color:#52c41a">锂价16万是近年底部区域，安全边际足。但机器人用量太小（占比0.04%），核心驱动仍是新能源车。天齐14x PE+50%上行→盈亏比高。</span></div>
+</div>
+</div>
+
+</div><!-- /commodity-grid -->
+
+<!-- 大宗商品股票表 -->
+<div class="chapter"><div class="chapter-header"><h3>大宗商品相关标的估值一览</h3><span class="badge">16只标的</span></div>
+<div class="chapter-body">
+<div class="table-wrap"><table>
+<thead><tr><th>股票</th><th>代码</th><th>现价</th><th>涨跌</th><th>2026E PE</th><th>PB</th><th>市值</th><th>60日</th><th>YTD</th><th>目标价</th><th>上行</th><th>止损</th><th>盈亏比</th></tr></thead>
+<tbody>
+<tr><td class="name">江西铜业</td><td class="code">600362</td><td style="color:#ff4d4f;font-weight:bold">53.31</td><td style="color:#ff4d4f">+10.01%</td><td>16.38x</td><td>2.19</td><td>1846亿</td><td style="color:#ff4d4f">+18.47%</td><td style="color:#52c41a">-2.93%</td><td style="color:#52c41a">50.59</td><td style="color:#52c41a">-5.1%</td><td>45.31</td><td style="color:#52c41a">-0.34</td></tr>
+<tr><td class="name">紫金矿业</td><td class="code">601899</td><td style="color:#52c41a">29.64</td><td style="color:#52c41a">-2.60%</td><td>9.81x</td><td>4.00</td><td>7881亿</td><td style="color:#52c41a">-6.35%</td><td style="color:#52c41a">-14.01%</td><td style="color:#ff4d4f">46.08</td><td style="color:#ff4d4f">+55.5%</td><td>25.19</td><td style="color:#ff4d4f">3.70</td></tr>
+<tr><td class="name">华友钴业</td><td class="code">603799</td><td>52.09</td><td style="color:#52c41a">-0.95%</td><td>9.89x</td><td>1.99</td><td>988亿</td><td style="color:#52c41a">-8.47%</td><td style="color:#52c41a">-23.13%</td><td style="color:#ff4d4f">81.49</td><td style="color:#ff4d4f">+56.4%</td><td>44.28</td><td style="color:#ff4d4f">3.76</td></tr>
+<tr><td class="name">中国稀土</td><td class="code">000831</td><td style="color:#ff4d4f">62.10</td><td style="color:#ff4d4f">+5.09%</td><td>118.91x</td><td>13.32</td><td>659亿</td><td style="color:#ff4d4f">+33.49%</td><td style="color:#ff4d4f">+33.72%</td><td>-</td><td>-</td><td>52.79</td><td>-</td></tr>
+<tr><td class="name">北方稀土</td><td class="code">600111</td><td style="color:#ff4d4f">51.71</td><td style="color:#ff4d4f">+2.76%</td><td>50.92x</td><td>7.44</td><td>1869亿</td><td style="color:#ff4d4f">+12.73%</td><td style="color:#ff4d4f">+12.44%</td><td style="color:#ff4d4f">63.69</td><td style="color:#ff4d4f">+23.2%</td><td>43.95</td><td style="color:#ff4d4f">1.54</td></tr>
+<tr><td class="name">金力永磁</td><td class="code">300748</td><td style="color:#ff4d4f">33.60</td><td style="color:#ff4d4f">+4.06%</td><td>59.94x</td><td>6.27</td><td>462亿</td><td style="color:#ff4d4f">+10.09%</td><td style="color:#52c41a">-0.86%</td><td style="color:#ff4d4f">42.92</td><td style="color:#ff4d4f">+27.7%</td><td>28.56</td><td style="color:#ff4d4f">1.85</td></tr>
+<tr><td class="name">东睦股份</td><td class="code">600114</td><td>43.92</td><td style="color:#ff4d4f">+1.57%</td><td>55.08x</td><td>8.22</td><td>277亿</td><td style="color:#ff4d4f">+59.13%</td><td style="color:#ff4d4f">+45.19%</td><td style="color:#52c41a">38.22</td><td style="color:#52c41a">-13.0%</td><td>37.33</td><td style="color:#52c41a">-0.87</td></tr>
+<tr><td class="name">沃尔核材</td><td class="code">002130</td><td>20.46</td><td style="color:#52c41a">-0.82%</td><td>30.96x</td><td>3.13</td><td>286亿</td><td style="color:#52c41a">-16.86%</td><td style="color:#52c41a">-22.26%</td><td style="color:#ff4d4f">34.80</td><td style="color:#ff4d4f">+70.1%</td><td>17.39</td><td style="color:#ff4d4f">4.67</td></tr>
+<tr><td class="name">赣锋锂业</td><td class="code">002460</td><td>69.84</td><td style="color:#52c41a">-2.08%</td><td>19.93x</td><td>3.15</td><td>1464亿</td><td style="color:#ff4d4f">+3.57%</td><td style="color:#ff4d4f">+11.05%</td><td style="color:#ff4d4f">95.72</td><td style="color:#ff4d4f">+37.1%</td><td>59.36</td><td style="color:#ff4d4f">2.47</td></tr>
+<tr><td class="name">天齐锂业</td><td class="code">002466</td><td>62.50</td><td style="color:#52c41a">-2.40%</td><td>14.27x</td><td>2.31</td><td>1071亿</td><td style="color:#ff4d4f">+24.75%</td><td style="color:#ff4d4f">+12.86%</td><td style="color:#ff4d4f">94.14</td><td style="color:#ff4d4f">+50.6%</td><td>53.13</td><td style="color:#ff4d4f">3.38</td></tr>
+<tr><td class="name">云铝股份</td><td class="code">000807</td><td>24.21</td><td style="color:#52c41a">-3.16%</td><td>5.83x</td><td>2.45</td><td>840亿</td><td style="color:#52c41a">-13.54%</td><td style="color:#52c41a">-25.42%</td><td style="color:#ff4d4f">37.84</td><td style="color:#ff4d4f">+56.3%</td><td>20.58</td><td style="color:#ff4d4f">3.75</td></tr>
+<tr><td class="name">南山铝业</td><td class="code">600219</td><td>4.53</td><td style="color:#52c41a">-2.16%</td><td>11.81x</td><td>1.05</td><td>520亿</td><td style="color:#52c41a">-22.75%</td><td style="color:#52c41a">-13.62%</td><td style="color:#ff4d4f">7.08</td><td style="color:#ff4d4f">+56.3%</td><td>3.85</td><td style="color:#ff4d4f">3.75</td></tr>
+<tr><td class="name">方大炭素</td><td class="code">600516</td><td>5.79</td><td style="color:#52c41a">-4.77%</td><td>657.81x</td><td>1.43</td><td>233亿</td><td style="color:#52c41a">-0.52%</td><td style="color:#ff4d4f">+1.76%</td><td>-</td><td>-</td><td>4.92</td><td>-</td></tr>
+</tbody></table></div>
+<div class="risk-row"><span class="rl">⭐ 最佳赔率</span><span>沃尔核材盈亏比4.67（目标价+70%！），华友钴业3.76，云铝/南山各3.75——这些超跌大宗标的正处于赔率最优区间。紫金3.70，天齐3.38，赣锋2.47——资源股集体超跌。</span></div>
+</div></div>
+
+</div><!-- /part3 -->
+
+<!-- ===== PART 4: 策略总纲 ===== -->
+<div id="part4">
+<div class="part-header"><h2>第四编 策略总纲与操作建议</h2><div class="desc">三层策略 + 催化剂时间线 + 风险矩阵</div></div>
+
+<div class="strategy-box">
+<h3>📊 三层策略框架</h3>
+
+<h4 style="color:#64b5f6;margin-top:16px">第一层：确定性底仓（30-40%仓位）</h4>
+<p>标的：<span style="color:#fff">宁德时代(PE23x/盈亏比2.67) + 汇川技术(PE41x/1.33) + 拓普集团(PE39x/1.38)</span><br>
+逻辑：已定点Tier 1，量产确定性最高，估值合理，无需等10月验证。<br>
+加仓信号：宁德<380元（PE<22x）/ 汇川<65元（PE<37x）/ 拓普<55元</p>
+
+<h4 style="color:#ff8c00;margin-top:16px">第二层：10月验证窗口（20-30%仓位）</h4>
+<p>标的：<span style="color:#fff">安培龙(盈亏比1.92) + 兆威机电(2.44) + 步科股份(1.74) + 五洲新春(1.66)</span><br>
+逻辑：Tesla Q3财报（10月）是供应商格局的首次硬数据确认，这些标的正处于"送样→定点"的关键验证窗口。<br>
+触发条件：8月WRC大会/9月Tesla AI Day出现积极信号→加仓</p>
+
+<h4 style="color:#52c41a;margin-top:16px">第三层：前沿布局（10-20%仓位）</h4>
+<p>标的：<span style="color:#fff">欣旺达(盈亏比4.37全市场最高) + 金发科技(1.96/PS 0.68) + 峰岹科技(1.42/PEG~1) + 瑞芯微(1.95)</span><br>
+逻辑：当前估值极度低估（欣旺达PB1.57/金发PS0.68），机器人+AI双重驱动，下行空间有限、上行弹性大。<br>
+持有周期：6-12个月，不需要10月催化剂。</p>
+</div>
+
+<div class="strategy-box" style="background:linear-gradient(135deg,#2e1a1a,#1a0d0d);border-color:#4a2d2d">
+<h3 style="color:#ff6b6b">⚠️ 重点风险警示（务必关注）</h3>
+<p><span style="color:#ff6b6b">🔴 一致预期目标价低于现价（绝对回避）</span><br>
+&nbsp;&nbsp;埃斯顿（目标23.42 vs 现价36.50，-35.8%）| 绿的谐波（目标333 vs 现价405，-17.6%）| 东睦（目标38 vs 现价44，-13%）</p>
+<p><span style="color:#ff8c00">🟡 上行空间已基本耗尽</span><br>
+&nbsp;&nbsp;柯力传感（+2.5%）| 雷赛智能（+4.8%）| 恒立液压（+9.0%）| 中大力德（+8.7%）</p>
+<p><span style="color:#52c41a">🟢 超跌+高赔率（逆向配置信号）</span><br>
+&nbsp;&nbsp;沃尔核材（+70%空间/4.67盈亏比）| 欣旺达（+65.5%/4.37）| 华友钴业（+56.4%/3.76）| 云铝（+56.3%/3.75）| 南山铝业（+56.3%/3.75）</p>
+</div>
+
+<div class="strategy-box">
+<h3>⏰ 催化剂时间线（2026 H2）</h3>
+<div class="summary-grid">
+<div class="summary-card"><div class="sc-label">7月底-8月初</div><div class="sc-value">Optimus量产启动</div><div class="sc-detail">弗里蒙特工厂，Model S/X产线改造完成，首批6-8万台产能</div></div>
+<div class="summary-card"><div class="sc-label">8月19-23日</div><div class="sc-value">WRC 2026 北京</div><div class="sc-detail">国家唯一级机器人展，TESLA参展，50+款新品首发</div></div>
+<div class="summary-card"><div class="sc-label">9-10月</div><div class="sc-value">Tesla AI Day?</div><div class="sc-detail">历史上2024年在10月举办，可能发布Optimus专题</div></div>
+<div class="summary-card"><div class="sc-label">⭐ 10月中下旬</div><div class="sc-value">Tesla Q3财报</div><div class="sc-detail">全年最关键确认点：供应商格局+量产数据+产能指引</div></div>
+<div class="summary-card"><div class="sc-label">2027 H1</div><div class="sc-value">Optimus产能爬坡</div><div class="sc-detail">如Q3确认顺利，2027年产能目标10万+台</div></div>
+<div class="summary-card"><div class="sc-label">2027-2028</div><div class="sc-value">固态电池+V3.0升级</div><div class="sc-detail">能源系统升级+V3.0传感器/灵巧手迭代→新供应链机会</div></div>
+</div>
+</div>
+
+</div><!-- /part4 -->
+
+<div class="footer">
+人形机器人产业链终极手册 &mdash; 2026年6月18日 &mdash; 数据源：腾讯自选股(TDX)实时行情 + 一致预期 + 公开报道<br>
+⚠️ 本报告仅供研究参考，不构成投资建议。投资有风险，决策需谨慎。
+</div>
+
+</div>
+</body>
+</html>

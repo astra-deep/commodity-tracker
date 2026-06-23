@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>国内玉米期货（DCE）深度分析报告 2026年6月</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: "PingFang SC","Microsoft YaHei",sans-serif; background: #f5f5f5; color: #222; line-height: 1.8; }
+  .container { max-width: 1100px; margin: 0 auto; background: #fff; min-height: 100vh; }
+  .header { background: linear-gradient(135deg, #e65100 0%, #f57c00 50%, #fb8c00 100%); color: #fff; padding: 40px 48px 32px; }
+  .header h1 { font-size: 26px; font-weight: 700; margin-bottom: 8px; }
+  .header .subtitle { font-size: 14px; opacity: 0.85; margin-bottom: 16px; }
+  .header .meta { display: flex; gap: 24px; font-size: 13px; opacity: 0.75; flex-wrap: wrap; }
+  .tag { display: inline-block; background: rgba(255,255,255,0.18); border-radius: 4px; padding: 2px 10px; font-size: 12px; margin-right: 8px; }
+  .content { padding: 36px 48px 48px; }
+  .section { margin-bottom: 36px; }
+  .section-title { font-size: 18px; font-weight: 700; color: #e65100; border-left: 4px solid #e65100; padding-left: 12px; margin-bottom: 16px; }
+  .subsection { font-size: 15px; font-weight: 600; color: #333; margin: 16px 0 10px; }
+  .source { font-size: 12px; color: #999; font-style: italic; margin-bottom: 8px; }
+  p { margin-bottom: 12px; font-size: 14px; color: #333; text-align: justify; }
+  ul { margin: 0 0 12px 20px; }
+  li { font-size: 14px; color: #333; margin-bottom: 6px; }
+  table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 13px; }
+  th { background: #e65100; color: #fff; padding: 8px 12px; text-align: left; font-weight: 600; }
+  td { padding: 8px 12px; border-bottom: 1px solid #e0e0e0; }
+  tr:nth-child(even) td { background: #fff8f0; }
+  .highlight-box { background: #e8f5e9; border-left: 4px solid #2e7d32; padding: 14px 18px; margin: 14px 0; border-radius: 0 6px 6px 0; }
+  .risk-box { background: #fff3e0; border-left: 4px solid #e65100; padding: 14px 18px; margin: 14px 0; border-radius: 0 6px 6px 0; }
+  .neg-box { background: #fce4ec; border-left: 4px solid #c62828; padding: 14px 18px; margin: 14px 0; border-radius: 0 6px 6px 0; }
+  .up { color: #d32f2f; font-weight: 600; }
+  .down { color: #2e7d32; font-weight: 600; }
+  .neutral { color: #f57c00; font-weight: 600; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 14px 0; }
+  .card { background: #fff8f0; border-radius: 8px; padding: 16px; border: 1px solid #ffe0b2; }
+  .card h4 { font-size: 14px; color: #e65100; margin-bottom: 8px; }
+  .card p { font-size: 13px; }
+  .price-table { margin: 14px 0; }
+  .price-table th { background: #f57c00; }
+  .stage-box { background: #f5f5f5; border-radius: 8px; padding: 16px; margin: 10px 0; border-left: 4px solid #9e9e9e; }
+  .stage-box.stage1 { border-left-color: #4caf50; }
+  .stage-box.stage2 { border-left-color: #ff9800; }
+  .stage-box.stage3 { border-left-color: #2196f3; }
+  .strategy-box { background: linear-gradient(135deg, #fff8e1, #fffde7); border: 2px solid #f9a825; border-radius: 8px; padding: 18px; margin: 14px 0; }
+  .footnote { font-size: 12px; color: #999; margin-top: 32px; padding-top: 16px; border-top: 1px solid #e0e0e0; }
+  @media print { .header { background: #e65100 !important; -webkit-print-color-adjust: exact; } th { background: #e65100 !important; -webkit-print-color-adjust: exact; } }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div class="subtitle"><span class="tag">DCE 大连商品交易所</span><span class="tag">玉米期货</span><span class="tag">2026年6月</span></div>
+    <h1>🌽 国内玉米期货（DCE）深度分析报告</h1>
+    <div class="meta">
+      <span>📅 报告日期：2026年6月23日</span>
+      <span>🏦 主要来源：中信期货 / 文华财经 / 钢联数据</span>
+      <span>📊 覆盖合约：C2607 / C2609 / C2701</span>
+      <span>⚡ 核心主题：近月承压看替代，远月支撑看天气</span>
+    </div>
+  </div>
+
+  <div class="content">
+    <!-- 一、最新行情数据 -->
+    <div class="section">
+      <div class="section-title">📊 一、最新行情数据（截至 2026年6月22日）</div>
+      <p class="source">数据来源：东方财富 / 文华财经 / 中信期货研究所</p>
+      <table class="price-table">
+        <tr><th>合约代码</th><th>收盘价（元/吨）</th><th>周环比</th><th>持仓量（万手）</th><th>状态</th><th>核心逻辑</th></tr>
+        <tr><td><strong>C2607</strong>（近月）</td><td>2329</td><td class="down">-20元（-0.85%）</td><td>约91</td><td>震荡偏弱</td><td>小麦替代+政策粮投放压制</td></tr>
+        <tr><td><strong>C2609</strong>（主力）</td><td>2332</td><td class="neutral">震荡</td><td>86.64</td><td>区间震荡</td><td>多空博弈，等待方向选择</td></tr>
+        <tr><td><strong>C2701</strong>（远月）</td><td>约2350-2400</td><td class="up">偏强</td><td>—</td><td>成本支撑</td><td>种植成本抬升+天气溢价</td></tr>
+      </table>
+      <div class="highlight-box">
+        <p><strong>🔑 现货参考：</strong>鲅鱼圈港玉米现货2375元/吨（周环比+5元）；现货基差C2607+46（较上周+25）。吉林玉米淀粉现货2830元/吨，基差CS2607+132。</p>
+        <p><strong>📉 上半年价格区间：</strong>DCE玉米加权合约2104元/吨（2025年10月）→2442元/吨（2026年3月高点，累计+16%）→2300元/吨（5月回调）→2350元/吨（6月反弹）。</p>
+      </div>
+    </div>
+
+    <!-- 二、2026上半年行情复盘 -->
+    <div class="section">
+      <div class="section-title">📈 二、2026上半年行情复盘：三阶段走势</div>
+      <p class="source">数据来源：中信期货研究部（程也 / 刘丽芳 / 李艺华）</p>
+      
+      <div class="stage-box stage1">
+        <h4 style="color:#4caf50;font-size:15px;margin-bottom:8px;">第一阶段（1-3月）：逆季节冲高 📈</h4>
+        <p><strong>驱动：</strong>25/26年度期初库存偏低+华北粮质毒素偏高+西北价差倒挂→有效流通粮源减少，饲用需求集中锚定东北优质粮。</p>
+        <p><strong>表现：</strong>现货锦州港从2070元/吨涨至2370元/吨（+14.5%）；期货DCE加权从2104涨至2442元/吨（+16%）。</p>
+        <p><strong>关键：</strong>上游惜售情绪强化，港口累库缓慢，现货逆季节性上涨。</p>
+      </div>
+
+      <div class="stage-box stage2">
+        <h4 style="color:#ff9800;font-size:15px;margin-bottom:8px;">第二阶段（4月）：高位盘整 ⚖️</h4>
+        <p><strong>驱动：</strong>政策粮（进口玉米拍卖、托市小麦）持续投放+进口高粱大麦集中到港→前期供需错配逐步缓解。</p>
+        <p><strong>表现：</strong>现货涨势受阻，期价率先调整，维持在2400元/吨附近高位震荡。</p>
+      </div>
+
+      <div class="stage-box stage3">
+        <h4 style="color:#2196f3;font-size:15px;margin-bottom:8px;">第三阶段（5-6月）：承压回落筑底 📉</h4>
+        <p><strong>驱动：</strong>陈化稻谷定向拍卖预期+新麦上市（部分芽麦）+进口玉米拍卖重启→多重利空压制。</p>
+        <p><strong>表现：</strong>期货回调至2300元/吨附近支撑位；6月利空出尽后企稳反弹至2330-2350元/吨区间。</p>
+        <p><strong>现状：</strong>估值偏低、向下驱动衰减，进入"低周转、高成本、多元补充"博弈阶段。</p>
+      </div>
+    </div>
+
+    <!-- 三、供给端分析 -->
+    <div class="section">
+      <div class="section-title">🌾 三、供给端深度分析</div>
+
+      <div class="subsection">① 国内产量：余粮见底，新作成本抬升</div>
+      <table>
+        <tr><th>指标</th><th>2025/26年度（旧作）</th><th>2026/27年度（新作）</th><th>变化</th></tr>
+        <tr><td>售粮进度</td><td>97%（截至5月底）</td><td>—</td><td>余粮已基本转移至贸易商</td></tr>
+        <tr><td>流通格局</td><td>"点多量小"，中小贸易商库存2-3成</td><td>—</td><td>惜售情绪强，集港量低位</td></tr>
+        <tr><td>种植面积</td><td>—</td><td>6.24亿亩（预计）</td><td class="up">+1526万亩（+2.5%）</td></tr>
+        <tr><td>黑龙江地租</td><td>—</td><td>同比+120~170元/亩</td><td>种植成本+19.2%</td></tr>
+        <tr><td>吉林地租</td><td>—</td><td>同比+100~200元/亩</td><td>种植成本+14.8%</td></tr>
+        <tr><td>辽宁地租</td><td>—</td><td>同比+150元/亩左右</td><td>种植成本+13.3%</td></tr>
+      </table>
+      <p><strong>中信期货核心判断：</strong>新季种植成本抬升为远月（C2701及以后）估值奠定基础，盘面价格在种植成本附近有较强支撑。</p>
+
+      <div class="subsection">② 进口：利润推动同比回暖，政策限制维持低位</div>
+      <table>
+        <tr><th>品类</th><th>25/26年度累计（截至4月）</th><th>同比变化</th><th>备注</th></tr>
+        <tr><td>玉米进口</td><td>约253万吨</td><td class="up">+90.2%</td><td>进口利润0-500元/吨</td></tr>
+        <tr><td>核心能量谷物进口总量</td><td>约2025万吨</td><td class="up">+379万吨</td><td>含高粱、大麦、小麦等</td></tr>
+        <tr><td>25/26全年预估进口</td><td>约3021万吨</td><td class="up">+293万吨</td><td>仍在政策限制低位</td></tr>
+      </table>
+
+      <div class="subsection">③ 替代品：三重替代压力，但影响逐步消化</div>
+      <div class="grid2">
+        <div class="card">
+          <h4>🌾 小麦替代（最大变量）</h4>
+          <p><strong>价差：</strong>山东菏泽小麦-玉米价差仅120元/吨（<150元/吨替代阈值）</p>
+          <p><strong>替代规模：</strong>华北黄淮饲料企业新麦添加比例已达25-30%</p>
+          <p><strong>芽麦规模：</strong>鄂豫皖苏四省可入饲芽麦约800-1000万吨（远低于2023年）</p>
+          <p><strong>结论：</strong>替代存在但规模有限，不会造成极大冲击</p>
+        </div>
+        <div class="card">
+          <h4>🍚 陈化稻谷拍卖</h4>
+          <p><strong>投放：</strong>5月29日启动，前两次各100万吨</p>
+          <p><strong>成交：</strong>成交率约63%，平均溢价7-13元/吨</p>
+          <p><strong>底价：</strong>1500元/吨（偏高，性价比不足）</p>
+          <p><strong>结论：</strong>实质冲击有限，但需关注底价调整</p>
+        </div>
+        <div class="card">
+          <h4>🌍 进口玉米拍卖</h4>
+          <p><strong>重启：</strong>6月重启，两次共投放约35.8万吨</p>
+          <p><strong>成交：</strong>成交率九成以上，溢价60元/吨以上</p>
+          <p><strong>均价：</strong>2270-2300元/吨</p>
+          <p><strong>结论：</strong>高成交高溢价形成短期价格托底</p>
+        </div>
+        <div class="card">
+          <h4>📦 进口谷物到港</h4>
+          <p><strong>南港库存：</strong>进口高粱+大麦库存持续补充</p>
+          <p><strong>到货节奏：</strong>6-7月进口谷物集中到港</p>
+          <p><strong>结论：</strong>南方销区替代充足，压制玉米需求</p>
+        </div>
+      </div>
+
+      <div class="neg-box">
+        <p><strong>⚠️ 供给端小结（中信期货）：</strong>替代端压制行情，成本与拍卖托底。短期能量供应相对充裕（新麦+拍卖+进口到港），对价格形成压制；但贸易商前期较高屯粮成本和进口玉米拍卖高成交、高溢价形成短期价格托底。远月关注种植成本抬升+厄尔尼诺天气市。</p>
+      </div>
+    </div>
+
+    <!-- 四、需求端分析 -->
+    <div class="section">
+      <div class="section-title">🏭 四、需求端分析：刚性底盘稳固，边际动能不足</div>
+      <p class="source">数据来源：中国饲料工业协会 / 农业农村部 / 涌益咨询 / 钢联数据</p>
+
+      <div class="grid2">
+        <div class="card">
+          <h4>🐷 饲用需求——生猪（底盘稳固）</h4>
+          <p><strong>能繁母猪：</strong>正常保有量稳定在3750万头左右（政策目标）</p>
+          <p><strong>出栏均重：</strong>128.56公斤/头（偏高，单位能耗抬升）</p>
+          <p><strong>养殖利润：</strong>自繁自养持续亏损，压制补库节奏</p>
+          <p><strong>玉米添比：</strong>小麦替代预期下，饲料企业玉米采购放缓</p>
+          <p><strong>库存策略：</strong>全国饲料企业玉米库存降至近4年低位，随用随采</p>
+        </div>
+        <div class="card">
+          <h4>🐔 饲用需求——禽料（结构分化）</h4>
+          <p><strong>白羽肉鸡：</strong>祖代引种高位（2025年Q4同比+76%），父母代存栏9197万套（+9.6%），禽料需求同比小增</p>
+          <p><strong>蛋禽：</strong>在产蛋鸡存栏12.9亿只（环比-0.5%，同比+1.2%），暂无断崖式下滑风险</p>
+          <p><strong>结论：</strong>禽料对玉米消费形成一定托底，但增幅有限</p>
+        </div>
+      </div>
+
+      <table>
+        <tr><th>需求指标</th><th>最新数据</th><th>同比变化</th><th>评价</th></tr>
+        <tr><td>全国工业饲料产量（1-5月累计）</td><td>13937万吨</td><td class="up">+5.66%</td><td>总量韧性较强</td></tr>
+        <tr><td>5月单月饲料产量</td><td>2890万吨</td><td class="up">+4.33%</td><td>同比扩张</td></tr>
+        <tr><td>25/26年度饲用消费（USDA China CASDE 5月）</td><td>21090万吨</td><td class="up">上调（从19350万吨）</td><td>畜禽产能高位支撑</td></tr>
+        <tr><td>深加工玉米消耗（6月11-17日）</td><td>135.24万吨</td><td class="neutral">+0.05万吨</td><td>环比基本持平</td></tr>
+      </table>
+
+      <div class="subsection">工业需求：产能扩张，但利润承压</div>
+      <p>玉米淀粉产能延续扩张，但低利润环境下实际投料增长有限。山东玉米淀粉利润偏低，酒精等弱势品种开机承压。全国主要深加工企业玉米库存维持高位（统计范围内），但利润约束下难以大幅补库。</p>
+    </div>
+
+    <!-- 五、库存与贸易流 -->
+    <div class="section">
+      <div class="section-title">📦 五、库存与贸易流分析</div>
+      <table>
+        <tr><th>库存指标</th><th>最新数据</th><th>周环比</th><th>同比</th><th>含义</th></tr>
+        <tr><td>北方四港玉米库存</td><td>284.6万吨</td><td class="down">-27.3万吨</td><td>—</td><td>集港量偏低，港存去化</td></tr>
+        <tr><td>北方四港下海量</td><td>41.8万吨</td><td class="up">+22.70万吨</td><td>—</td><td>发货有所恢复</td></tr>
+        <tr><td>广东港内贸玉米库存</td><td>27万吨</td><td class="up">+0.80万吨</td><td>—</td><td>南方库存偏低</td></tr>
+        <tr><td>全国饲料企业玉米库存（天）</td><td>近4年低位</td><td>—</td><td>偏低</td><td>随用随采，无主动建库</td></tr>
+        <tr><td>全国深加工企业玉米库存</td><td>偏高</td><td>—</td><td>偏高</td><td>利润约束，难大幅补库</td></tr>
+      </table>
+      <p><strong>贸易流核心矛盾：</strong>吉林-山东贸易利润为负，南北港即期发运倒挂约30元/吨→贸易商惜售，港口以自集为主，外卖粮较少。这是近期集港量和加工量低于历史均值的重要原因。</p>
+    </div>
+
+    <!-- 六、天气与厄尔尼诺风险 -->
+    <div class="section">
+      <div class="section-title">🌡️ 六、天气风险：厄尔尼诺形成，三季度"北旱"概率上升</div>
+      <p class="source">数据来源：NOAA / 澳大利亚气象局 / 中信期货研究所</p>
+      <div class="highlight-box">
+        <p><strong>🔑 厄尔尼诺最新预测（NOAA 6月11日）：</strong></p>
+        <ul>
+          <li>6-8月转向中等级以上厄尔尼诺概率：<span class="up">67%</span></li>
+          <li>8-10月转向强等级以上概率：<span class="up">69%</span></li>
+          <li>10-12月转向超强等级以上概率：<span class="up">62%</span></li>
+          <li>强等级以上厄尔尼诺预计至少持续至2027年初</li>
+        </ul>
+      </div>
+      <table>
+        <tr><th>影响区域</th><th>厄尔尼诺典型气候</th><th>对玉米的具体影响</th><th>概率/程度</th></tr>
+        <tr><td>东北（黑龙江/吉林/辽宁）</td><td>降水偏少、气温偏高（"北旱"）</td><td>7-8月灌浆期高温干旱→单产下降</td><td class="up">中等偏高</td></tr>
+        <tr><td>华北（山东/河南）</td><td>降水偏少</td><td>夏玉米关键期缺水</td><td class="up">中等</td></tr>
+        <tr><td>南方（长江中下游）</td><td>降水偏多（洪涝）</td><td>对玉米影响相对较小</td><td class="neutral">低</td></tr>
+        <tr><td>东北（低温冷害）</td><td>冷空气势力加强（"冷夏"）</td><td>玉米灌浆受限，产量受损隐患</td><td class="up">中等</td></tr>
+      </table>
+      <div class="risk-box">
+        <p><strong>⚠️ 中信期货天气展望：</strong>当前东北三省土壤墒情已偏少，厄尔尼诺影响或已初步显现。若三季度（7-8月）东北遭遇"北旱"，玉米单产将受直接冲击，远月（C2701）有望迎来天气市炒作行情，是下半年最重要的上行催化。</p>
+      </div>
+    </div>
+
+    <!-- 七、海外联动 -->
+    <div class="section">
+      <div class="section-title">🌍 七、海外联动：CBOT玉米与全球供需</div>
+      <p class="source">数据来源：USDA 2026年5月报告 / BofA Global Research</p>
+      <table>
+        <tr><th>国家/地区</th><th>26/27产量预估</th><th>同比变化</th><th>对国内影响</th></tr>
+        <tr><td>🌍 全球合计</td><td>约13.0亿吨</td><td class="down">-2629万吨</td><td>全球库存消费比-1.9pct→国际价格有支撑</td></tr>
+        <tr><td>🇺🇸 美国</td><td>4.06亿吨</td><td class="down">-6.0%（-2605万吨）</td><td>美玉米减产→CBOT玉米上行→带动国内情绪</td></tr>
+        <tr><td>🇧🇷 巴西</td><td>1.39亿吨</td><td class="up">+0.7%（+100万吨）</td><td>二季玉米丰产，但厄尔尼诺干燥构成风险</td></tr>
+        <tr><td>🇦🇷 阿根廷</td><td>5500万吨（USDA）</td><td class="down">-9.8%（-600万吨）</td><td>减产预期支撑国际价格</td></tr>
+      </table>
+      <p><strong>CBOT玉米参考：</strong>近期CBOT玉米在418-440美分/蒲式耳区间震荡，美伊地缘冲突暂缓后回落。若厄尔尼诺导致美国中西部夏季干旱，CBOT玉米可能冲击450-480美分/蒲式耳，对国内有情绪传导。</p>
+    </div>
+
+    <!-- 八、投资策略 -->
+    <div class="section">
+      <div class="section-title">💡 八、投资策略与风险提示</div>
+
+      <div class="strategy-box">
+        <h4 style="color:#e65100;font-size:16px;margin-bottom:12px;">🎯 中信期货核心策略建议</h4>
+        <div class="grid2">
+          <div>
+            <p><strong>近月合约（C2607/C2609）：</strong></p>
+            <p>→ 区间灵活操作，震荡思路</p>
+            <p>→ 压力区间：2350-2400元/吨</p>
+            <p>→ 支撑区间：2280-2300元/吨</p>
+            <p>→ 核心风险：小麦替代+政策粮投放+进口到港</p>
+          </div>
+          <div>
+            <p><strong>远月合约（C2701及以后）：</strong></p>
+            <p>→ <span class="up">若贴近或跌破新季种植成本可轻仓试多</span></p>
+            <p>→ 成本区间：约2300-2350元/吨（黑龙江）</p>
+            <p>→ 催化：厄尔尼诺"北旱"天气市（7-8月）</p>
+            <p>→ 天气适宜则及时止盈</p>
+          </div>
+        </div>
+      </div>
+
+      <table>
+        <tr><th>情景</th><th>概率</th><th>价格区间（C2701）</th><th>操作建议</th></tr>
+        <tr><td>厄尔尼诺"北旱"确认，东北减产</td><td>30%</td><td class="up">2500-2700元/吨</td><td>远月多单持有，止损2250</td></tr>
+        <tr><td>厄尔尼诺温和，天气正常</td><td>50%</td><td class="neutral">2300-2450元/吨</td><td>区间操作，高抛低吸</td></tr>
+        <tr><td>厄尔尼诺偏弱+替代品大量投放</td><td>20%</td><td class="down">2200-2300元/吨</td><td>近月偏空，远月观望</td></tr>
+      </table>
+
+      <div class="risk-box">
+        <p><strong>⚠️ 核心风险提示：</strong></p>
+        <ul>
+          <li><strong>政策风险：</strong>粮食政策变化（抛储/进口政策/补贴调整）是最主要的下行风险</li>
+          <li><strong>天气风险：</strong>厄尔尼诺强度不及预期，或实际天气影响有限→天气炒作落空</li>
+          <li><strong>替代冲击：</strong>小麦丰产+芽麦规模超预期→玉米饲用需求被大量替代</li>
+          <li><strong>宏观风险：</strong>全球经济衰退→饲用需求下滑+CBOT玉米下跌</li>
+          <li><strong>渠道库存释放：</strong>贸易商集中出货（特别是三季度）→现货抛压</li>
+          <li><strong>生猪产能去化加速：</strong>若三季度产能去化进一步加速→年度饲用消费高位回落</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 九、A股相关标的 -->
+    <div class="section">
+      <div class="section-title">🏢 九、A股相关投资标的</div>
+      <table>
+        <tr><th>标的</th><th>代码</th><th>逻辑</th><th>最新价</th><th>PE(TTM)</th><th>评级</th></tr>
+        <tr><td>北大荒</td><td>600598</td><td>国内最大玉米种植企业，玉米涨价直接受益</td><td>14.85</td><td>21x</td><td>⭐⭐⭐⭐</td></tr>
+        <tr><td>隆平高科</td><td>000998</td><td>玉米种子龙头，种植面积扩大受益</td><td>21.00</td><td>311x（偏高）</td><td>⭐⭐⭐</td></tr>
+        <tr><td>云天化</td><td>600096</td><td>化肥龙头，玉米种植成本抬升→化肥需求+涨价</td><td>今日涨停</td><td>11x ⭐</td><td>⭐⭐⭐⭐⭐</td></tr>
+      </table>
+      <p><strong>注：</strong>A股标的仅作参考，不构成投资建议。云天化今日涨停，短期需警惕过热风险。</p>
+    </div>
+
+    <div class="footnote">
+      <p>📌 <strong>数据来源：</strong>中信期货《农业2026年半年度策略报告（玉米）：近月承压看替代，远月支撑看天气》+ 东方财富/文华财经行情数据 + 钢联/涌益咨询/农业农村部数据 + NOAA气候预测</p>
+      <p>⚠️ <strong>免责声明：</strong>本报告仅供参考，不构成投资建议。玉米期货价格受天气、政策、宏观等多重因素影响，投资有风险，入市需谨慎。</p>
+      <p>🕐 报告生成时间：2026年6月23日 07:09 | 编写：小智（WorkBuddy AI）</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>

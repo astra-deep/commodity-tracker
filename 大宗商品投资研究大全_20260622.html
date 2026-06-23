@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>大宗商品 & 股票投资研究大全</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, 'Microsoft YaHei', sans-serif; background: #0a0e17; color: #e1e8f0; line-height: 1.7; }
+
+  /* ── 顶部导航 ── */
+  .top-nav { position: sticky; top: 0; z-index: 100; background: #0d1220; border-bottom: 1px solid #1a2540; padding: 10px 0; }
+  .top-nav-inner { max-width: 1400px; margin: 0 auto; padding: 0 24px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .nav-btn { background: #131b2e; border: 1px solid #1e3050; color: #8899b4; padding: 6px 14px; border-radius: 6px; cursor: pointer; font-size: 13px; transition: all .2s; }
+  .nav-btn:hover, .nav-btn.active { background: #1a3a6a; color: #5b9cf5; border-color: #2a5ad5; }
+
+  /* ── 搜索栏 ── */
+  .search-bar { max-width: 1400px; margin: 16px auto; padding: 0 24px; }
+  .search-input { width: 100%; background: #111827; border: 1px solid #1e3050; border-radius: 8px; padding: 10px 16px; color: #e1e8f0; font-size: 14px; }
+  .search-input::placeholder { color: #4a5a7a; }
+  .search-input:focus { outline: none; border-color: #3b6fd5; }
+
+  /* ── 主容器 ── */
+  .container { max-width: 1400px; margin: 0 auto; padding: 0 24px 60px; }
+
+  /* ── 板块卡片 ── */
+  .sector { margin-bottom: 32px; }
+  .sector-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; padding: 12px 0; border-bottom: 2px solid; cursor: pointer; }
+  .sector-header:hover { opacity: .85; }
+  .sector-icon { font-size: 28px; }
+  .sector-title { font-size: 20px; font-weight: 700; }
+  .sector-count { font-size: 12px; color: #6a7a9a; margin-left: auto; }
+
+  .sector-body { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 16px; }
+
+  /* ── 品种卡片 ── */
+  .card { background: #0f1525; border: 1px solid #1a2540; border-radius: 10px; overflow: hidden; transition: all .25s; }
+  .card:hover { border-color: #2a5ad5; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(30,60,180,.2); }
+  .card-head { padding: 14px 18px; border-bottom: 1px solid #1a2540; display: flex; align-items: center; gap: 10px; }
+  .card-tag { font-size: 11px; padding: 2px 8px; border-radius: 4px; font-weight: 600; }
+  .card-name { font-size: 16px; font-weight: 700; }
+  .card-code { font-size: 12px; color: #6a7a9a; margin-left: auto; }
+  .card-body { padding: 14px 18px; font-size: 13px; }
+  .card-section { margin-bottom: 10px; }
+  .card-label { font-size: 11px; color: #5a6a8a; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+  .card-value { font-size: 14px; font-weight: 600; }
+  .card-metrics { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin: 10px 0; }
+  .metric { background: #111827; border-radius: 6px; padding: 8px; text-align: center; }
+  .metric-label { font-size: 10px; color: #5a6a8a; }
+  .metric-val { font-size: 14px; font-weight: 700; margin-top: 2px; }
+  .card-opinion { padding: 8px 12px; border-radius: 6px; margin-top: 8px; font-size: 13px; line-height: 1.6; }
+  .card-risks { margin-top: 8px; font-size: 12px; color: #8a9aba; line-height: 1.6; }
+  .card-risks strong { color: #f0a050; }
+  .card-catalyst { margin-top: 8px; font-size: 12px; padding: 6px 10px; background: #0a1525; border-left: 3px solid #5b9cf5; border-radius: 0 4px 4px 0; }
+  .card-actions { padding: 10px 18px; border-top: 1px solid #1a2540; display: flex; gap: 8px; }
+  .act-btn { flex: 1; padding: 6px; border-radius: 6px; border: none; cursor: pointer; font-size: 12px; font-weight: 600; text-align: center; }
+
+  /* ── 颜色主题 ── */
+  .c-metal   { border-color: #f0b050; }.c-metal .sector-title   { color: #f0b050; }.c-metal .card-head { background: #1a1500; }
+  .c-black   { border-color: #808090; }.c-black .sector-title   { color: #9090a0; }.c-black .card-head { background: #12121a; }
+  .c-chem    { border-color: #50c0a0; }.c-chem .sector-title   { color: #50c0a0; }.c-chem .card-head { background: #0a1515; }
+  .c-energy  { border-color: #f07060; }.c-energy .sector-title  { color: #f07060; }.c-energy .card-head { background: #1a0a08; }
+  .c-agri    { border-color: #80c050; }.c-agri .sector-title    { color: #80c050; }.c-agri .card-head { background: #0a1a08; }
+  .c-newenergy { border-color: #5090f0; }.c-newenergy .sector-title { color: #5090f0; }.c-newenergy .card-head { background: #080d1a; }
+  .c-stock   { border-color: #c080f0; }.c-stock .sector-title  { color: #c080f0; }.c-stock .card-head { background: #150a1a; }
+  .c-chain   { border-color: #f0d050; }.c-chain .sector-title  { color: #f0d050; }.c-chain .card-head { background: #1a1508; }
+
+  .tag-bull   { background: #0a2a15; color: #50d070; }
+  .tag-bear   { background: #2a0a0a; color: #f05050; }
+  .tag-neutral { background: #1a1a1a; color: #a0a0a0; }
+  .tag-watch  { background: #1a1a2a; color: #70a0f0; }
+
+  .op-bull   { background: #0a2015; border: 1px solid #1a4a2a; color: #80e0a0; }
+  .op-bear   { background: #200a0a; border: 1px solid #4a1a1a; color: #f08080; }
+  .op-neutral { background: #1a1a1a; border: 1px solid #2a2a2a; color: #a0a0a0; }
+
+  .val-green  { color: #50d070; }
+  .val-red    { color: #f05050; }
+  .val-yellow { color: #f0d050; }
+  .val-blue   { color: #5090f0; }
+
+  /* ── 折叠 ── */
+  .sector-body.collapsed { display: none; }
+
+  /* ── 免责声明 ── */
+  .disclaimer { max-width: 1400px; margin: 40px auto 0; padding: 20px 24px; background: #0a0e17; border: 1px solid #1a2540; border-radius: 10px; font-size: 12px; color: #5a6a8a; line-height: 1.8; }
+  .disclaimer strong { color: #f07060; }
+
+  /* ── 搜索高亮 ── */
+  .highlight { background: #3a2a00; color: #f0d050; border-radius: 2px; padding: 0 2px; }
+
+  /* ── 响应式 ── */
+  @media (max-width: 800px) {
+    .sector-body { grid-template-columns: 1fr; }
+    .top-nav-inner { gap: 5px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     顶部导航
+═══════════════════════════════════════════ -->
+<div class="top-nav">
+  <div class="top-nav-inner">
+    <button class="nav-btn active" onclick="filterSector('all')">全部</button>
+    <button class="nav-btn" onclick="filterSector('metal')">⚡ 有色金属</button>
+    <button class="nav-btn" onclick="filterSector('black')">🏗️ 黑色系</button>
+    <button class="nav-btn" onclick="filterSector('chem')">🧪 能化</button>
+    <button class="nav-btn" onclick="filterSector('energy')">🛢️ 能源</button>
+    <button class="nav-btn" onclick="filterSector('agri')">🌾 农产品</button>
+    <button class="nav-btn" onclick="filterSector('newenergy')">🔋 新能源</button>
+    <button class="nav-btn" onclick="filterSector('stock')">📈 A股标的</button>
+    <button class="nav-btn" onclick="filterSector('chain')">🔗 产业链</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     搜索栏
+═══════════════════════════════════════════ -->
+<div class="search-bar">
+  <input class="search-input" id="searchInput" placeholder="搜索品种、股票代码、关键词（如：铜、000960、埃博拉、正套）..." oninput="searchCards()">
+</div>
+
+<div class="container">
+
+<!-- ═══════════════════════════════════════════
+     板块一：有色金属
+═══════════════════════════════════════════ -->
+<div class="sector c-metal" data-sector="metal">
+  <div class="sector-header" onclick="toggleSector(this)">
+    <span class="sector-icon">⚡</span>
+    <span class="sector-title">有色金属</span>
+    <span class="sector-count">6 个品种</span>
+  </div>
+  <div class="sector-body">
+
+    <!-- 铜 -->
+    <div class="card" data-tags="铜 沪铜 供给缺口 AI用电 电网 TC负值">
+      <div class="card-head">
+        <span class="card-tag tag-bull">看多</span>
+        <span class="card-name">沪铜 / 伦铜</span>
+        <span class="card-code">SHFE:CU</span>
+      </div>
+      <div class="card-body">
+        <div class="card-section">
+          <div class="card-label">核心逻辑</div>
+          <div>矿端TC深度负值（-110~-120美元/干吨），冶炼厂倒贴钱买矿；AI+电网需求结构性增长；全球库存低位</div>
+        </div>
+        <div class="card-metrics">
+          <div class="metric"><div class="metric-label">SHFE价格</div><div class="metric-val val-yellow">10.4~10.5万/t</div></div>
+          <div class="metric"><div class="metric-label">LME库存</div><div class="metric-val val-green">35.75万吨↓</div></div>
+          <div class="metric"><div class="metric-label">高盛目标</div><div class="metric-val val-blue">12,650 $/t</div></div>
+        </div>
+        <div class="card-opinion op-bull">
+          <strong>📊 操作建议：</strong>中线单边做多。TC负值是最硬的供给约束，远月也不弱（AI需求逐年递增），适合持有一段时间。关注6月末美商务部铜关税调查报告。
+        </div>
+        <div class="card-risks">
+          <strong>⚠️ 风险：</strong>沃什鹰派加息预期压制；Grasberg/Kamoa供应扰动；关税政策不确定性
+        </div>
+        <div class="card-catalyst">
+          📅 <strong>近期催化剂：</strong>6月末美商务部铜关税报告 · 伦铜库存变化 · 国内电网投资数据
+        </div>
+      </div>
+    </div>
+
+    <!-- 锌 -->
+    <div class="card" data-tags="锌 沪锌 TC加工费 供给约束 冶炼减产">
+      <div class="card-head">
+        <span class="card-tag tag-bull">看多</span>
+        <span class="card-name">沪锌</span>
+        <span class="card-code">SHFE:ZN</span>
+      </div>
+      <div class="card-body">
+        <div class="card-section">
+          <div class="card-label">核心逻辑</div>
+          <div>锌精矿TC进入<strong>-500元/吨</strong>负值区间，冶炼厂每处理一吨矿倒贴钱，被迫减产；矿端物理性枯竭（非人为检修），供给约束最硬</div>
+        </div>
+        <div class="card-metrics">
+          <div class="metric"><div class="metric-label">现货周涨</div><div class="metric-val val-green">+5.22%</div></div>
+          <div class="metric"><div class="metric-label">TC数值</div><div class="metric-val val-red">-500元/t</div></div>
+          <div class="metric"><div class="metric-label">确定性</div><div class="metric-val val-yellow">⭐⭐⭐⭐⭐</div></div>
+        </div>
+        <div class="card-opinion op-bull">
+          <strong>📊 操作建议：</strong>当前大宗商品中<strong>确定性最高</strong>的多头品种。可做单边多，也可做跨期正套（多近空远）。TC负值传导至精炼锌库存需2-3个月，时间窗口充裕。
+        </div>
+        <div class="card-risks">
+          <strong>⚠️ 风险：</strong>全球经济衰退压制需求；若新矿项目提前投产（概率低）
+        </div>
+        <div class="card-catalyst">
+          📅 <strong>近期催化剂：</strong>冶炼厂减产公告 · 精炼锌库存拐点 · 7月基建数据
+        </div>
+      </div>
+    </div>
+
+    <!-- 锡 -->
+    <div class="card" data-tags="锡 沪锡 埃博拉 刚果金 Bisie 半导体 AI">
+      <div class="card-head">
+        <span class="card-tag tag-watch">事件驱动</span>
+        <span class="card-name">沪锡</span>
+        <span class="card-code">SHFE:SN</span>
+      </div>
+      <div class="card-body">
+        <div class="card-section">
+          <div class="card-label">核心逻辑</div>
+          <div>AI算力耗锡是传统4倍+供给无拐点+刚果金埃博拉疫情威胁Bisie矿（占全球~6.3%）；LME锡库存历史低位，任何中断引发剧烈波动</div>
+        </div>
+        <div class="card-metrics">
+          <div class="metric"><div class="metric-label">当前价格</div><div class="metric-val val-yellow">~39.8万/t</div></div>
+          <div class="metric"><div class="metric-label">年内高点</div><div class="metric-val val-red">45万/t</div></div>
+          <div class="metric"><div class="metric-label">AI需求增速</div><div class="metric-val val-green">4年翻倍</div></div>
+        </div>
+        <div class="card-opinion op-neutral">
+          <strong>📊 操作建议：</strong>锡价回调至35万以下或股价回落至35元以下再介入锡业股份。埃博拉疫情是额外上行期权，但当前价位风险收益比不佳。
+        </div>
+        <div class="card-risks">
+          <strong>⚠️ 风险：</strong>博通业绩不及预期压制情绪；Bisie矿未实质中断前，疫情只是期权而非现实；小金属流动性差
+        </div>
+        <div class="card-catalyst">
+          📅 <strong>近期催化剂：</strong>埃博拉确诊数突破1000 · Bisie矿运输中断公告 · LME锡库存周度数据 · 博通下一季财报
+        </div>
+      </div>
+    </div>
+
+    <!-- 铝 -->
+    <div class="card" data-tags="铝 沪铝 产能天花板 新能源 地产拖累">
+      <div class="card-head">
+        <span class="card-tag tag-neutral">中性</span>
+        <span class="card-name">沪铝</span>
+        <span class="card-code">SHFE:AL</span>
+      </div>
+      <div class="card-body">
+        <div class="card-section">
+          <div class="card-label">核心逻辑</div>
+          <div>产能天花板（4500万吨）硬约束 vs 地产需求持续拖累；新能源（光伏/电动车）用铝增量部分对冲；本周长江现货铝-0.19%，窄幅震荡</div>
+        </div>
+        <div class="card-metrics">
+          <div class="metric"><div class="metric-label">价格区间</div><div class="metric-val val-yellow">1.8~2.0万/t</div></div>
+          <div class="metric"><div class="metric-label">产能天花板</div><div class="metric-val val-red">4500万/t</div></div>
+          <div class="metric"><div class="metric-label">周度涨跌</div><div class="metric-val val-green">-0.19%</div></div>
+        </div>
+        <div class="card-opinion op-neutral">
+          <strong>📊 操作建议：</strong>区间操作（1.8万以下多，2.0万以上空）。缺乏趋势性机会，等待地产数据明确好转或产能天花板被突破（概率极低）。
+        </div>
+        <div class="card-risks">
+          <strong>⚠️ 风险：</strong>地产政策不及预期；电解铝成本（煤/电）大幅下行；海外铝土矿供应中断
+        </div>
+      </div>
+    </div>
+
+    <!-- 镍 -->
+    <div class="card" data-tags="镍 沪镍 不锈钢 印尼 过剩">
+      <div class="card-head">
+        <span class="card-tag tag-bear">偏空</span>
+        <span class="card-name">沪镍</span>
+        <span class="card-code">SHFE:NI</span>
+      </div>
+      <div class="card-body">
+        <div class="card-section">
+          <div class="card-label">核心逻辑</div>
+          <div>印尼镍铁/中间品持续放量，全球供给过剩；不锈钢需求偏弱；本周+460元小幅反弹，但趋势未改。印尼镍矿出口政策是最大变量</div>
+        </div>
+        <div class="card-metrics">
+          <div class="metric"><div class="metric-label">周度涨跌</div><div class="metric-val val-green">+0.77%</div></div>
+          <div class="metric"><div class="metric-label">供给压力</div><div class="metric-val val-red">过剩</div></div>
+          <div class="metric"><div class="metric-label">主要需求</div><div class="metric-val val-yellow">不锈钢</div></div>
+        </div>
+        <div class="card-opinion op-bear">
+          <strong>📊 操作建议：</strong>偏空思路。印尼供给释放是持续性压力，不锈钢需求未见好转。短期反弹可布局空单，关注印尼出口政策变化。
+        </div>
+        <div class="card-risks">
+          <strong>⚠️ 风险：</strong>印尼突然收紧出口；电动汽车用镍需求超预期反弹
+        </div>
+      </div>
+    </div>
+
+    <!-- 贵金属（银） -->
+    <div class="card" data-tags="白银 沪银 贵金属 工业属性 光伏 美联储">
+      <div class="card-head">
+        <span class="card-tag tag-watch">观望</span>
+        <span class="card-name">沪银 / 白银</span>
+        <span class="card-code">SHFE:AG</span>
+      </div>
+      <div class="card-body">
+        <div class="card-section">
+          <div class="card-label">核心逻辑</div>
+          <div>工业属性（光伏+AI）+金融属性（美联储降息预期）双轮驱动；本周+3.26%V型修复；但沃什鹰派压制金融属性，等美元见顶后逆向布局</div>
+        </div>
+        <div class="card-metrics">
+          <div class="metric"><div class="metric-label">周度涨跌</div><div class="metric-val val-green">+3.26%</div></div>
+          <div class="metric"><div class="metric-label">布局区间</div><div class="metric-val val-yellow">15900~16400</div></div>
+          <div class="metric"><div class="metric-label">光伏需求</div><div class="metric-val val-green">持续↑</div></div>
+        </div>
+        <div class="card-opinion op-neutral">
+          <strong>📊 操作建议：</strong>观望为主，等待美元见顶信号（沃什讲话软化/非农走弱）。布局区间15900~16400，止损15500以下。
+        </div>
+        <div class="card-risks">
+          <strong>⚠️ 风险：</strong>美联储持续鹰派；光伏装机不及预期；白银库存高企
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     板块二：黑色系
+═══════════════════════════════════════════ -->
+<div class="sector c-black" data-sector="black">
+  <div class="sector-header" onclick="toggleSector(this)">
+    <span class="sector-icon">🏗️</span>
+    <span class="sector-title">黑色系</span>
+    <span class="sector-count">3 个品种</span>
+  </div>
+  <div class="sector-body">
+
+    <!-- 螺纹钢 -->
+    <div class="card" data-tags="螺纹钢 rb 地产 基建 反套 政策预期">
+      <div class="card-head">
+        <span class="card-tag tag-bear">偏空</span>
+        <span class="card-name">螺纹钢</span>
+        <span class="card-code">SHFE:RB</span>
+      </div>
+      <div class="card-body">
+        <div class="card-section">
+          <div class="card-label">核心逻辑</div>
+          <div>地产新开工-15.4%、开发投资-16.2%，需求持续崩塌；5月数据继续回落；远端有"刺激政策"预期托底，适合反套（空近多远）</div>
+        </div>
+        <div class="card-metrics">
+          <div class="metric"><div class="metric-label">价格区间</div><div class="metric-val val-yellow">3000~3200</div></div>
+          <div class="metric"><div class="metric-label">地产开发投资</div><div class="metric-val val-red">-16.2%</div></div>
+          <div class="metric"><div class="metric-label">期限结构</div><div class="metric-val val-blue">Contango</div></div>
+        </div>
+        <div class="card-opinion op-bear">
+          <strong>📊 操作建议：</strong>中线偏空。可做反套：空RB2510（近月淡季+高库存）/ 多RB2605（远端政策预期）。核心风险是政策预期落空。
+        </div>
+        <div class="card-risks">
+          <strong>⚠️ 风险：</strong>7月重要会议刺激政策超预期；地产数据意外好转；环保限产
+        </div>
+        <div class="card-catalyst">
+          📅 <strong>近期催化剂：</strong>7月重要会议政策内容 · 每周地产数据 · 钢厂利润变化
+        </div>
+      </div>
+    </div>
+
+    <!-- 铁矿石 -->
+    <div class="card" data-tags="铁矿石 铁矿 i 黑色 钢材 澳巴供应">
+      <div class="card-head">
+        <span class="card-tag tag-bear">偏空</span>
+        <span class="card-name">铁矿石</span>
+        <span class="card-code">DCE:I</span>
+      </div>
+      <div class="card-body">
+        <div class="card-section">
+          <div class="card-label">核心逻辑</div>
+          <div>螺纹需求崩塌传导至铁矿；港口库存累积；澳巴新项目投产增加远端供给压力；本周夜盘-1.13%，偏弱运行</div>
+        </div>
+        <div class="card-metrics">
+          <div class="metric"><div class="metric-label">周度涨跌</div><div class="metric-val val-red">-1.13%</div></div>
+          <div class="metric"><div class="metric-label">港口库存</div><div class="metric-val val-red">累积中</div></div>
+          <div class="metric"><div class="metric-label">远端供给</div><div class="metric-val val-red">增量确定</div></div>
+        </div>
+        <div class="card-opinion op-bear">
+          <strong>📊 操作建议：</strong>偏空思路。但反套逻辑不如螺纹清晰（远端供给增量更确定，远月不应比近月强）。建议等反弹至阻力位后做空。
+        </div>
+        <div class="card-risks">
+          <strong>⚠️ 风险：</strong>国内刺激政策拉动钢材需求；澳巴供应受天气/罢工干扰
+        </div>
+      </div>
+    </div>
+
+    <!-- 焦煤 -->
+    <div class="card" data-tags="焦煤 jm 焦炭 煤炭 黑色 地产 淡季">
+      <div class="card-head">
+        <span class="card-tag tag-bear">看空</span>
+        <span class="card-name">焦煤</span>
+        <span class="card-code">DCE:JM</span>
+      </div>
+      <div class="card-body">
+        <div class="card-section">
+          <div class="card-label">核心逻辑</div>
+          <div>本周<strong>全市场最弱</strong>品种（-6%）；地产需求崩塌+淡季来临+煤矿复产；第六轮焦炭提涨是最后的成本支撑，一旦落地黑色系将失去所有借口</div>
+        </div>
+        <div class="card-metrics">
+          <div class="metric"><div class="metric-label">周度涨跌</div><div class="metric-val val-red">-6%</div></div>
+          <div class="metric"><div class="metric-label">确定性</div><div class="metric-val val-yellow">⭐⭐⭐⭐</div></div>
+          <div class="metric"><div class="metric-label">评级</div><div class="metric-val val-red">首选做空</div></div>
+        </div>
+        <div class="card-opinion op-bear">
+          <strong>📊 操作建议：</strong>中线做空。焦煤是黑色系中最弱的环节，地产-16.2%没有任何好转迹象。可配合螺纹空单组成黑色系空头组合。
+        </div>
+        <div class="card-risks">
+          <strong>⚠️ 风险：</strong>煤矿安全事故导致停产；刺激政策拉动钢材需求间接带动焦煤
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     板块三：能化
+═══════════════════════════════════════════ -->
+<div class="sector c-chem" data-sector="chem">
+  <div class="sector-header" onclick="toggleSector(this)">
+    <span class="sector-icon">🧪</span>
+    <span class="sector-title">能化</span>
+    <span class="sector-count">5 个品种</span>
+  </div>
+  <div class="sector-body">
+
+    <!-- PTA -->
+    <div class="card" data-tags="PTA 聚酯 检修 加工费 近强远弱 正套">
+      <div class="card-head">
+        <span class="card-tag tag-watch">短线多</span>
+        <span class="card-name">PTA</span>
+        <span class="card-code">DCE:TA</span>
+      </div>
+      <div class="card-body">
+        <div class="card-section">
+          <div class="card-label">核心逻辑</div>
+          <div>负荷降至<strong>56.95%</strong>（历史新低），连续6周去库，库存近5年最低；但加工费479元/吨暴利区间，高利润驱动装置重启，低负荷最多维持2-4周</div>
+        </div>
+        <div class="card-metrics">
+          <div class="metric"><div class="metric-label">负荷</div><div class="metric-val val-red">56.95%</div></div>
+          <div class="metric"><div class="metric-label">加工费</div><div class="metric-val val-yellow">479元/t</div></div>
+          <div class="metric"><div class="metric-label">窗口期</div><div class="metric-val val-red">2~4周</div></div>
+        </div>
+        <div class="card-opinion op-neutral">
+          <strong>📊 操作建议：</strong>短线（2-4周）多单，7100~7200区域布局，严格止损。或做正套（多近空远），但远月空单需设止损（中东局势可能轧空）。
+        </div>
+        <div class="card-risks">
+          <strong>⚠️ 风险：</strong>装置提负快于预期；聚酯终端需求持续偏弱（开工率56.5%）；原油价格大幅波动
+        </div>
+      </div>
+    </div>
+
+    <!-- 甲醇 -->
+    <div class="card" data-tags="甲醇 MA 港口库存 伊朗 进口 正套">
+      <div class="card-head">
+        <span class="card-tag tag-watch">正套</span>
+        <span class="card-name">甲醇</span>
+        <span class="card-code">DCE:MA</span>
+      </div>
+      <div class="card-body">
+        <div class="card-section">
+          <div class="card-label">核心逻辑</div>
+          <div>港口库存<strong>53万吨</strong>（历史低位），伊朗进口缺失；但美伊MOU签署后进口恢复预期压制远月，近强远弱结构清晰。MTO需求断崖是隐患</div>
+        </div>
+        <div class="card-metrics">
+          <div class="metric"><div class="metric-label">港口库存</div><div class="metric-val val-red">53万t</div></div>
+          <div class="metric"><div class="metric-label">伊朗装置</div><div class="metric-val val-yellow">396万t重启</div></div>
+          <div class="metric"><div class="metric-label">策略</div><div class="metric-val val-blue">正套</div></div>
+        </div>
+        <div class="card-opinion op-neutral">
+          <strong>📊 操作建议：</strong>正套（多MA2509/空MA2601）确定性最高。但需<strong>每周跟踪伊朗船货到港数据</strong>，一旦进口恢复速度快于预期，正套逻辑瓦解。
+        </div>
+        <div class="card-risks">
+          <strong>⚠️ 风险：</strong>伊朗船货提前到港；MTO全面停车（盛虹/富德已停）；近月MA2509流动性下降
+        </div>
+      </div>
+    </div>
+
+    <!-- 乙二醇 -->
+    <div class="card" data-tags="乙二醇 EG 库存 中东进口 正套">
+      <div class="card-head">
+        <span class="card-tag tag-watch">正套</span>
+        <span class="card-name">乙二醇</span>
+        <span class="card-code">DCE:EG</span>
+      </div>
+      <div class="card-body">
+        <div class="card-section">
+          <div class="card-label">核心逻辑</div>
+          <div>社会库存从3月高位降约50万吨至163万吨以下；4月进口环比降20万吨；中东进口占比超65%，进口恢复预期压制远月</div>
+        </div>
+        <div class="card-metrics">
+          <div class="metric"><div class="metric-label">社会库存</div><div class="metric-val val-red">163万t↓</div></div>
+          <div class="metric"><div class="metric-label">中东进口占比</div><div class="metric-val val-yellow">&gt;65%</div></div>
+          <div class="metric"><div class="metric-label">策略</div><div class="metric-val val-blue">正套</div></div>
+        </div>
+        <div class="card-opinion op-neutral">
+          <strong>📊 操作建议：</strong>正套（多EG2509/空EG2601）。与甲醇逻辑相似，但乙二醇的进口依赖度更高，中东局势变化对远月影响更大，需警惕远月轧空。
+        </div>
+        <div class="card-risks">
+          <strong>⚠️ 风险：</strong>中东局势再度升温→远月空单轧空；乙烯法装置重启快于预期
+        </div>
+      </div>
+    </div>
+
+    <!-- 聚丙烯 PP -->
+    <div class="card" data-tags="聚丙烯 PP 化工 C3 丙烷 近强远弱 新产能">
+      <div class="card-head">
+        <span class="card-tag tag-watch">正套</span>
+        <span class="card-name">聚丙烯（PP）</span>
+        <span class="card-code">DCE:PP</span>
+      </div>
+      <div class="card-body">
+        <div class="card-section">
+          <div class="card-label">核心逻辑</div>
+          <div>上游开工率仅<strong>64.71%</strong>（历史低位）；基差曾高达+961（10%）创近6年新高；但下半年新装置投产计划压制远月，近强远弱结构清晰</div>
+        </div>
+        <div class="card-metrics">
+          <div class="metric"><div class="metric-label">开工率</div><div class="metric-val val-red">64.71%</div></div>
+          <div class="metric"><div class="metric-label">基差极值</div><div class="metric-val val-yellow">+961</div></div>
+          <div class="metric"><div class="metric-label">2607vs2701价差</div><div class="metric-val val-green">~1250元</div></div>
+        </div>
+        <div class="card-opinion op-neutral">
+          <strong>📊 操作建议：</strong>正套（多PP2607/空PP2701）。C3路线（PDH）受中东丙烷供应影响，近月成本推升明显。但化工品远月弱是行业性规律（产能过剩），正套逻辑可持续2-4周。
+        </div>
+        <div class="card-risks">
+          <strong>⚠️ 风险：</strong>新装置投产快于预期；PDH装置重启；下游需求持续偏弱
+        </div>
+      </div>
+    </div>
+
+    <!-- 纯碱 -->
+    <div class="card" data-tags="纯碱 玻璃 地产 产能过剩 周度跌幅">
+      <div class="card-head">
+        <span class="card-tag tag-bear">偏空</span>
+        <span class="card-name">纯碱</span>
+        <span class="card-code">SA</span>
+      </div>
+      <div class="card-body">
+        <div class="card-section">
+          <div class="card-label">核心逻辑</div>
+          <div>地产需求崩塌传导；本周纯碱跌超3%；产能过剩格局未改变；玻璃同步偏弱。短期无反弹驱动</div>
+        </div>
+        <div class="card-metrics">
+          <div class="metric"><div class="metric-label">周度涨跌</div><div class="metric-val val-red">-3%+</div></div>
+          <div class="metric"><div class="metric-label">产能状态</div><div class="metric-val val-red">过剩</div></div>
+          <div class="metric"><div class="metric-label">需求来源</div><div class="metric-val val-yellow">地产玻璃</div></div>
+        </div>
+        <div class="card-opinion op-bear">
+          <strong>📊 操作建议：</strong>偏空思路。纯碱/玻璃是地产链条的末端，需求恢复最慢。可做空远月（产能释放预期），或等反弹后做空。
+        </div>
+        <div class="card-risks">
+          <strong>⚠️ 风险：</strong>光伏玻璃需求超预期；环保限产；碱厂联合限产
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     板块四：能源
+═══════════════════════════════════════════ -->
+<div class="sector c-energy" data-sector="energy">
+  <div class="sector-header" onclick="toggleSector(this)">
+    <span class="sector-icon">🛢️</span>
+    <span class="sector-title">能源</span>
+    <span class="sector-count">1 个品种</span>
+  </div>
+  <div class="sector-body">
+
+    <!-- 原油 -->
+    <div class="card" data-tags="原油 布伦特 WTI 美伊 补库 库存 7-9月">
+      <div class="card-head">
+        <span class="card-tag tag-watch">反弹窗口</span>
+        <span class="card-name">原油（布伦特/WTI）</span>
+        <span class="card-code">INE:SC</span>
+      </div>
+      <div class="card-body">
+        <div class="card-section">
+          <div class="card-label">核心逻辑</div>
+          <div>美伊停战后布伦特从107跌至78~80；全球库存逼近运营红线（OECD储备1990年来最低/库欣2100万桶）；补库需求真实紧迫，反弹窗口<strong>7-9月</strong></div>
+        </div>
+        <div class="card-metrics">
+          <div class="metric"><div class="metric-label">当前价格</div><div class="metric-val val-yellow">78~80 $/bbl</div></div>
+          <div class="metric"><div class="metric-label">反弹目标</div><div class="metric-val val-green">85~95 $/bbl</div></div>
+          <div class="metric"><div class="metric-label">2027年预期</div><div class="metric-val val-red">65~79 $/bbl</div></div>
+        </div>
+        <div class="card-opinion op-neutral">
+          <strong>📊 操作建议：</strong>7-9月做多原油及下游产品（燃料油/沥青）。但这是<strong>反弹非反转</strong>，三股力量压制上行（美联储鹰派/需求同比-110万桶/日/2027年过剩预期）。
+        </div>
+        <div class="card-risks">
+          <strong>⚠️ 风险：</strong>霍尔木兹恢复慢于预期→油价超预期上行（上行风险）；美联储持续鹰派+美元走强→反弹夭折
+        </div>
+        <div class="card-catalyst">
+          📅 <strong>近期催化剂：</strong>EIA周度库存数据 · 霍尔木兹通航恢复进度 · 美联储官员讲话 · OPEC+会议
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     板块五：农产品
+═══════════════════════════════════════════ -->
+<div class="sector c-agri" data-sector="agri">
+  <div class="sector-header" onclick="toggleSector(this)">
+    <span class="sector-icon">🌾</span>
+    <span class="sector-title">农产品</span>
+    <span class="sector-count">2 个品种</span>
+  </div>
+  <div class="sector-body">
+
+    <!-- 豆粕 -->
+    <div class="card" data-tags="豆粕 大豆 USDA 种植面积 天气 事件驱动 期权">
+      <div class="card-head">
+        <span class="card-tag tag-watch">事件驱动</span>
+        <span class="card-name">豆粕 / 美豆</span>
+        <span class="card-code">DCE:M</span>
+      </div>
+      <div class="card-body">
+        <div class="card-section">
+          <div class="card-label">核心逻辑</div>
+          <div><strong>6月30日USDA双报告</strong>（种植面积+季度库存）是最重要短期催化剂；面积共识8530万英亩，如果<8500万或库存<9.5亿蒲→多头踩踏；当前在2946附近震荡博弈</div>
+        </div>
+        <div class="card-metrics">
+          <div class="metric"><div class="metric-label">M2609价格</div><div class="metric-val val-yellow">~2946</div></div>
+          <div class="metric"><div class="metric-label">面积共识</div><div class="metric-val val-blue">8530万英亩</div></div>
+          <div class="metric"><div class="metric-label">事件日期</div><div class="metric-val val-red">6/30</div></div>
+        </div>
+        <div class="card-opinion op-neutral">
+          <strong>📊 操作建议：</strong>6/30前轻仓布局（仓位≤30%），等报告落地后加仓。方向取决于报告数据：偏多则突破颈线3204；偏空则测试支撑2850。
+        </div>
+        <div class="card-risks">
+          <strong>⚠️ 风险：</strong>报告符合预期→盘面震荡无方向；天气炒作提前启动→市场已定价；南美丰产预期压制远月
+        </div>
+        <div class="card-catalyst">
+          📅 <strong>关键日期：</strong>6/30 USDA双报告 · 7月开花期天气 · 每周作物生长报告（优良率）
+        </div>
+      </div>
+    </div>
+
+    <!-- 棕榈油/油脂（简要） -->
+    <div class="card" data-tags="棕榈油 油脂 印尼 马来 厄尔尼诺 生物柴油">
+      <div class="card-head">
+        <span class="card-tag tag-neutral">观望</span>
+        <span class="card-name">棕榈油 / 油脂板块</span>
+        <span class="card-code">DCE:P</span>
+      </div>
+      <div class="card-body">
+        <div class="card-section">
+          <div class="card-label">核心逻辑</div>
+          <div>印尼+马来供给主导全球；厄尔尼诺影响滞后6-12个月；生物柴油政策是需求端关键变量；当前缺乏明确方向性机会</div>
+        </div>
+        <div class="card-metrics">
+          <div class="metric"><div class="metric-label">主产国</div><div class="metric-val val-yellow">印尼/马来</div></div>
+          <div class="metric"><div class="metric-label">厄尔尼诺影响</div><div class="metric-val val-red">滞后6~12月</div></div>
+          <div class="metric"><div class="metric-label">策略</div><div class="metric-val val-blue">观望</div></div>
+        </div>
+        <div class="card-opinion op-neutral">
+          <strong>📊 操作建议：</strong>等待厄尔尼诺影响的实质性数据（马来MPOB产量数据）。当前缺乏趋势性机会，可关注印尼生物柴油政策变化带来的短期脉冲。
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     板块六：新能源金属
+═══════════════════════════════════════════ -->
+<div class="sector c-newenergy" data-sector="newenergy">
+  <div class="sector-header" onclick="toggleSector(this)">
+    <span class="sector-icon">🔋</span>
+    <span class="sector-title">新能源金属</span>
+    <span class="sector-count">2 个品种</span>
+  </div>
+  <div class="sector-body">
+
+    <!-- 碳酸锂 -->
+    <div class="card" data-tags="碳酸锂 锂 宁德时代 宜春 见底 过剩">
+      <div class="card-head">
+        <span class="card-tag tag-bear">观望见底</span>
+        <span class="card-name">碳酸锂</span>
+        <span class="card-code">GFEX:LC</span>
+      </div>
+      <div class="card-body">
+        <div class="card-section">
+          <div class="card-label">核心逻辑</div>
+          <div>本周<strong>全市场最弱</strong>（-6%+，跌破17万关口）；澳洲锂辉石+南美盐湖产能持续释放；宜春锂矿整改是边际扰动但不足以扭转过剩格局</div>
+        </div>
+        <div class="card-metrics">
+          <div class="metric"><div class="metric-label">当前价格</div><div class="metric-val val-red">&lt;17万/t</div></div>
+          <div class="metric"><div class="metric-label">澳洲现金成本</div><div class="metric-val val-yellow">8~10万/t</div></div>
+          <div class="metric"><div class="metric-label">见底信号</div><div class="metric-val val-red">未见</div></div>
+        </div>
+        <div class="card-opinion op-bear">
+          <strong>📊 操作建议：</strong>观望，等宜春政策落地后看短线反弹机会。<strong>真正的见底信号</strong>是澳洲高成本锂矿开始实质性减产（Cattlin/Pilbara等）。当前仍有利润，减产未见。
+        </div>
+        <div class="card-risks">
+          <strong>⚠️ 风险：</strong>误判见底抄底→趋势未改继续亏损；宜春政策严于预期→短线反弹但中线仍空
+        </div>
+        <div class="card-catalyst">
+          📅 <strong>近期催化剂：</strong>宜春锂矿整改政策落地 · 澳洲锂矿Q2产量报告 · 宁德时代产能利用率
+        </div>
+      </div>
+    </div>
+
+    <!-- 硬碳负极 -->
+    <div class="card" data-tags="硬碳负极 钠电池 元力股份 贝特瑞 降本 产业化">
+      <div class="card-head">
+        <span class="card-tag tag-watch">产业化早期</span>
+        <span class="card-name">硬碳负极材料（钠电供应链）</span>
+        <span class="card-code">产业链研究</span>
+      </div>
+      <div class="card-body">
+        <div class="card-section">
+          <div class="card-label">核心逻辑</div>
+          <div>钠电供应链最明显短板；价格从2024年6-7万/吨降至2026E 3.5-4万/吨；长期目标<2.5万/吨；产业化进度决定需求释放节奏</div>
+        </div>
+        <div class="card-metrics">
+          <div class="metric"><div class="metric-label">价格趋势</div><div class="metric-val val-red">持续↓</div></div>
+          <div class="metric"><div class="metric-label">龙头</div><div class="metric-val val-yellow">元力股份</div></div>
+          <div class="metric"><div class="metric-label">市场状态</div><div class="metric-val val-red">过剩</div></div>
+        </div>
+        <div class="card-opinion op-neutral">
+          <strong>📊 投资标的：</strong>元力股份（300174）是CATL主要供应商，市值仅52亿，被严重低估；贝特瑞（835185）40%市场份额但已是北交所龙头，估值充分。<strong>钠电产业化进度是最关键的宏观变量</strong>。
+        </div>
+        <div class="card-risks">
+          <strong>⚠️ 风险：</strong>钠电产业化慢于预期；硬碳成本下降不及预期；锂电成本同步下降削弱钠电优势
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     板块七：A股标的
+═══════════════════════════════════════════ -->
+<div class="sector c-stock" data-sector="stock">
+  <div class="sector-header" onclick="toggleSector(this)">
+    <span class="sector-icon">📈</span>
+    <span class="sector-title">A股深度研究标的</span>
+    <span class="sector-count">4 个标的</span>
+  </div>
+  <div class="sector-body">
+
+    <!-- 锡业股份 -->
+    <div class="card" data-tags="锡业股份 000960 锡 埃博拉 全球龙头 估值">
+      <div class="card-head">
+        <span class="card-tag tag-neutral">谨慎持有</span>
+        <span class="card-name">锡业股份</span>
+        <span class="card-code">000960.SZ</span>
+      </div>
+      <div class="card-body">
+        <div class="card-section">
+          <div class="card-label">核心逻辑</div>
+          <div>全球锡龙头（国内市占率47.98%）；2026Q1净利润8.2~9.2亿，同比+64~84%；埃博拉疫情增加Bisie矿供给中断期权；但<strong>股价已超出机构平均目标价</strong></div>
+        </div>
+        <div class="card-metrics">
+          <div class="metric"><div class="metric-label">股价(6/18)</div><div class="metric-val val-yellow">41.74元</div></div>
+          <div class="metric"><div class="metric-label">PE(2026E)</div><div class="metric-val val-red">20.9~24.7x</div></div>
+          <div class="metric"><div class="metric-label">机构目标</div><div class="metric-val val-red">33~41元</div></div>
+        </div>
+        <div class="card-opinion op-neutral">
+          <strong>📊 操作建议：</strong>已持仓→41.74附近分批减仓，留20~30%底仓；未持仓→不建议追高，等回调至35元以下再介入。埃博拉疫情是上行期权，但当前风险收益比不佳。
+        </div>
+        <div class="card-risks">
+          <strong>⚠️ 风险：</strong>有息负债率33.46%偏高；锡价从45万回落；机构目标已低于现价；埃博拉未实质冲击供给前只是期权
+        </div>
+      </div>
+    </div>
+
+    <!-- 柯力传感 -->
+    <div class="card" data-tags="柯力传感 603662 力传感器 特斯拉 人形机器人 10月关键">
+      <div class="card-head">
+        <span class="card-tag tag-bull">看多</span>
+        <span class="card-name">柯力传感</span>
+        <span class="card-code">603662.SH</span>
+      </div>
+      <div class="card-body">
+        <div class="card-section">
+          <div class="card-label">核心逻辑</div>
+          <div>国内唯一六维力传感器量产供应商；已向特斯拉送样；2025年H1已出货；<strong>2026年10月</strong>是Q3财报验证量产进度的关键窗口；人形机器人量产元年直接受益</div>
+        </div>
+        <div class="card-metrics">
+          <div class="metric"><div class="metric-label">PE</div><div class="metric-val val-yellow">~50x</div></div>
+          <div class="metric"><div class="metric-label">预期差</div><div class="metric-val val-red">已较大</div></div>
+          <div class="metric"><div class="metric-label">关键时点</div><div class="metric-val val-blue">2026年10月</div></div>
+        </div>
+        <div class="card-opinion op-bull">
+          <strong>📊 操作建议：</strong>中线持有，10月前是预期炒作期，10月后进入业绩验证期。目标空间取决于特斯拉Optimus Gen-3量产进度。RSI未超买，技术面健康。
+        </div>
+        <div class="card-risks">
+          <strong>⚠️ 风险：</strong>特斯拉量产进度不及预期；敏芯股份MEMS方案量产替代；市场预期过高导致10月财报"利好出尽"
+        </div>
+      </div>
+    </div>
+
+    <!-- 敏芯股份 -->
+    <div class="card" data-tags="敏芯股份 688286 MEMS 力传感器 柯力竞争 高估值">
+      <div class="card-head">
+        <span class="card-tag tag-neutral">高风险高赔率</span>
+        <span class="card-name">敏芯股份</span>
+        <span class="card-code">688286.SH</span>
+      </div>
+      <div class="card-body">
+        <div class="card-section">
+          <div class="card-label">核心逻辑</div>
+          <div>MEMS方案（Φ9.6mm/50N/目标降本95%）；但<strong>尚未量产</strong>，未向特斯拉送样；PS 7.60x比柯力PS 12.34x便宜；PE 198x极高；RSI 86/CCI 208严重超买</div>
+        </div>
+        <div class="card-metrics">
+          <div class="metric"><div class="metric-label">PE</div><div class="metric-val val-red">198x</div></div>
+          <div class="metric"><div class="metric-label">PS</div><div class="metric-val val-green">7.60x</div></div>
+          <div class="metric"><div class="metric-label">RSI</div><div class="metric-val val-red">86 超买</div></div>
+        </div>
+        <div class="card-opinion op-neutral">
+          <strong>📊 操作建议：</strong>短期超买严重，不建议追高。若MEMS方案量产验证（向特斯拉送样成功），有巨大预期差。适合风险偏好高的投资者小仓位博弈。
+        </div>
+        <div class="card-risks">
+          <strong>⚠️ 风险：</strong>RSI 86严重超买；MEMS量产进度不及预期；被柯力应变片方案挤压；科创板流动性风险
+        </div>
+      </div>
+    </div>
+
+    <!-- 江西铜业（VLP镀镍铜箔） -->
+    <div class="card" data-tags="江西铜业 VLP 镀镍铜箔 铜箔 垄断 估值">
+      <div class="card-head">
+        <span class="card-tag tag-bull">看多</span>
+        <span class="card-name">江西铜业（VLP镀镍铜箔）</span>
+        <span class="card-code">600362.SH / 00358.HK</span>
+      </div>
+      <div class="card-body">
+        <div class="card-section">
+          <div class="card-label">核心逻辑</div>
+          <div>国内独家VLP镀镍铜箔工艺；中性情景（5000t/年）：VLP收入12.5亿，净利润3.5亿，铜箔子公司估值162~290亿，70.19%权益对应114~204亿；垄断溢价+50~80%定价权</div>
+        </div>
+        <div class="card-metrics">
+          <div class="metric"><div class="metric-label">定价溢价</div><div class="metric-val val-green">+50~80%</div></div>
+          <div class="metric"><div class="metric-label">子公司估值</div><div class="metric-val val-blue">162~290亿</div></div>
+          <div class="metric"><div class="metric-label">的三类情景</div><div class="metric-val val-yellow">2000~10000t</div></div>
+        </div>
+        <div class="card-opinion op-bull">
+          <strong>📊 操作建议：</strong>VLP工艺是江西铜业铜箔板块的价值重估催化剂。当前铜价10.4万/吨支撑铜业公司整体估值。适合作为铜板块的核心持仓。
+        </div>
+        <div class="card-risks">
+          <strong>⚠️ 风险：</strong>VLP产能释放不及预期；下游AI服务器需求不及预期；铜价大幅回落
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     板块八：产业链全景
+═══════════════════════════════════════════ -->
+<div class="sector c-chain" data-sector="chain">
+  <div class="sector-header" onclick="toggleSector(this)">
+    <span class="sector-icon">🔗</span>
+    <span class="sector-title">产业链全景框架</span>
+    <span class="sector-count">2 个产业链</span>
+  </div>
+  <div class="sector-body">
+
+    <!-- 人形机器人产业链 -->
+    <div class="card" data-tags="人形机器人 产业链 关节 传感器 丝杠 电机 减速器">
+      <div class="card-head">
+        <span class="card-tag tag-bull">战略赛道</span>
+        <span class="card-name">人形机器人产业链全景</span>
+        <span class="card-code">34只核心标的</span>
+      </div>
+      <div class="card-body">
+        <div class="card-section">
+          <div class="card-label">产业链10层金字塔</div>
+          <div>
+            ①整机 → ②关节总成 → ③减速器 → ④丝杠 → ⑤电机 → ⑥传感器 → ⑦灵巧手 → ⑧控制器 → ⑨结构件 → ⑩电池<br>
+            <strong>核心增量</strong>：丝杠（0→1）、传感器（六维力/触觉）、灵巧手
+          </div>
+        </div>
+        <div class="card-metrics">
+          <div class="metric"><div class="metric-label">覆盖标的</div><div class="metric-val val-blue">34只</div></div>
+          <div class="metric"><div class="metric-label">估值规则</div><div class="metric-val val-yellow">全部含PE/PB/PS</div></div>
+          <div class="metric"><div class="metric-label">边际变化</div><div class="metric-val val-green">2025-2026量产</div></div>
+        </div>
+        <div class="card-opinion op-bull">
+          <strong>📊 投资框架：</strong>三层面分析 — ①技术层面（确定性）②供需层面（弹性）③时间层面（催化剂）。当前处于"预期炒作期"，10月特斯拉Q3财报是首个验证窗口。推荐关注：柯力传感（传感器）、贝斯特（丝杠）、鸣志电器（电机）。
+        </div>
+        <div class="card-catalyst">
+          📅 <strong>2026年事件日历：</strong>7月Optimus Gen-3量产 · 8月WRC北京 · 9-10月AI Day · 10月Q3财报（关键验证）
+        </div>
+        <div class="card-actions">
+          <a class="act-btn" style="background:#1a2540;color:#5b9cf5;text-decoration:none;display:block;" href="javascript:void(0)">📄 查看完整产业链手册</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 刚果（金）矿产供应全景 -->
+    <div class="card" data-tags="刚果金 埃博拉 矿产 钴 铜 锡 钽 供应风险">
+      <div class="card-head">
+        <span class="card-tag tag-watch">事件追踪</span>
+        <span class="card-name">刚果（金）矿产供应全景</span>
+        <span class="card-code">埃博拉疫情专题</span>
+      </div>
+      <div class="card-body">
+        <div class="card-section">
+          <div class="card-label">各矿产全球占比 & 疫区风险</div>
+          <div>
+            钴<strong>~70-74%</strong>（南部，低风险）· 铜<strong>~12-14%</strong>（南部，低风险）<br>
+            锡<strong>~6-8%</strong>（东部Bisie矿，高风险）· 钽<strong>~41%</strong>（东部Rubaya矿，高风险）<br>
+            金<strong>~3-4%</strong>（东部Kibali矿，中高风险）· 钨<strong>~5-10%</strong>（东部，高风险）
+          </div>
+        </div>
+        <div class="card-metrics">
+          <div class="metric"><div class="metric-label">埃博拉确诊</div><div class="metric-val val-red">900+例</div></div>
+          <div class="metric"><div class="metric-label">高危品种</div><div class="metric-val val-red">锡/钽/钨</div></div>
+          <div class="metric"><div class="metric-label">跟踪优先级</div><div class="metric-val val-yellow">Bisie矿</div></div>
+        </div>
+        <div class="card-opinion op-neutral">
+          <strong>📊 跟踪清单：</strong>①埃博拉确诊数是否突破1000；②Bisie矿是否宣布停产；③Barrick Kibali金矿运营状态；④LME锡库存变化；⑤刚果金政府矿业限制措施。锡业股份是直接受益A股标的。
+        </div>
+        <div class="card-catalyst">
+          📅 <strong>持续追踪：</strong>埃博拉疫情每周更新 · Bisie/Alphamin公告 · LME库存周度数据
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     策略总结面板
+═══════════════════════════════════════════ -->
+<div style="background:#0f1525;border:1px solid #1a3050;border-radius:12px;padding:24px;margin-bottom:32px;">
+  <div style="font-size:18px;font-weight:700;color:#5b9cf5;margin-bottom:16px;">📊 当前市场策略总结（2026-06-22更新）</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;">
+    <div style="background:#1a1020;border:1px solid #2a1a2a;border-radius:8px;padding:14px;">
+      <div style="color:#f07060;font-weight:700;margin-bottom:8px;">🔴 空头机会</div>
+      <div style="font-size:13px;color:#a0a0b0;line-height:1.8;">
+        • 焦煤：全市场最弱（-6%/周），地产崩溃<br>
+        • 螺纹钢：反套（空近多远），政策预期托底远月<br>
+        • 碳酸锂：等宜春政策后看反弹，未见底<br>
+        • 纯碱/玻璃：地产链条末端，产能过剩
+      </div>
+    </div>
+    <div style="background:#1a1a08;border:1px solid #2a2a18;border-radius:8px;padding:14px;">
+      <div style="color:#f0d050;font-weight:700;margin-bottom:8px;">🟡 观望/事件驱动</div>
+      <div style="font-size:13px;color:#a0a0b0;line-height:1.8;">
+        • 豆粕：6/30 USDA报告前轻仓布局<br>
+        • 沪银：等美元见顶，15900~16400建仓<br>
+        • 原油：7-9月补库反弹窗口，非反转<br>
+        • 锡业股份：等回调至35元以下再介入
+      </div>
+    </div>
+    <div style="background:#0a1a08;border:1px solid #1a2a18;border-radius:8px;padding:14px;">
+      <div style="color:#50d070;font-weight:700;margin-bottom:8px;">🟢 多头机会</div>
+      <div style="font-size:13px;color:#a0a0b0;line-height:1.8;">
+        • <strong>沪锌</strong>：TC负值，最硬供给约束<br>
+        • <strong>铜</strong>：TC深度负值+AI需求，中线持有<br>
+        • 柯力传感：人形机器人传感器龙头<br>
+        • 能化正套：甲醇/EG/PP（多近空远）
+      </div>
+    </div>
+    <div style="background:#080a18;border:1px solid #181a2a;border-radius:8px;padding:14px;">
+      <div style="color:#7090f0;font-weight:700;margin-bottom:8px;">🔵 跨期策略</div>
+      <div style="font-size:13px;color:#a0a0b0;line-height:1.8;">
+        • <strong>正套（多近空远）</strong>：甲醇/EG/PP/原油<br>
+        • <strong>反套（空近多远）</strong>：螺纹（等政策）<br>
+        • <strong>风险</strong>：流动性/远月轧空/滚仓成本<br>
+        • <strong>稳健组合</strong>：甲醇正套40%+EG正套30%+原油正套20%
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     免责声明
+═══════════════════════════════════════════ -->
+<div class="disclaimer">
+  <strong>⚠️ 免责声明</strong><br>
+  本文档所有内容仅供参考，不构成任何投资建议。大宗商品和股票市场存在重大风险，价格可能出现剧烈波动，导致本金亏损。
+  请在做出任何投资决策前，根据自身风险承受能力进行独立判断，或咨询专业投资顾问。
+  本文档中的估值数据、目标价、催化剂时间等均为研究预测，不代表实际结果。
+  <br><br>
+  <strong>数据来源：</strong>SMM · 生意社 · 中信建投期货 · 申万期货 · 21经济网 · 雪球 · 东方财富 · 高盛 · IEA · EIA · WoodMac<br>
+  <strong>最后更新：</strong>2026年6月22日<br>
+  <strong>制作：</strong>WorkBuddy 大宗商品研究助手
+</div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════
+     JavaScript：折叠 + 搜索 + 筛选
+═══════════════════════════════════════════ -->
+<script>
+/* ── 板块折叠 ── */
+function toggleSector(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('collapsed');
+  header.style.opacity = body.classList.contains('collapsed') ? '0.5' : '1';
+}
+
+/* ── 板块筛选 ── */
+function filterSector(sector) {
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  document.querySelectorAll('.sector').forEach(s => {
+    if (sector === 'all' || s.dataset.sector === sector) {
+      s.style.display = '';
+    } else {
+      s.style.display = 'none';
+    }
+  });
+}
+
+/* ── 搜索高亮 ── */
+function searchCards() {
+  const kw = document.getElementById('searchInput').value.trim().toLowerCase();
+  document.querySelectorAll('.highlight').forEach(el => {
+    el.outerHTML = el.textContent;
+  });
+  if (!kw) {
+    document.querySelectorAll('.card').forEach(c => c.style.display = '');
+    return;
+  }
+  document.querySelectorAll('.card').forEach(card => {
+    const tags = (card.dataset.tags || '').toLowerCase();
+    const name = card.textContent.toLowerCase();
+    const match = tags.includes(kw) || name.includes(kw);
+    card.style.display = match ? '' : 'none';
+    if (match && kw.length > 1) {
+      card.style.borderColor = '#3b6fd5';
+      card.style.boxShadow = '0 0 12px rgba(59,111,213,.4)';
+    } else {
+      card.style.borderColor = '';
+      card.style.boxShadow = '';
+    }
+  });
+}
+
+/* ── 启动时折叠所有板块（除了第一个） ── */
+// window.addEventListener('DOMContentLoaded', () => {
+//   document.querySelectorAll('.sector-body').forEach((body, i) => {
+//     if (i > 0) body.classList.add('collapsed');
+//   });
+// });
+</script>
+
+</body>
+</html>

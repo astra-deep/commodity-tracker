@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>豆粕深度分析报告 | 大豆产业链核心品种</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif;background:#0f172a;color:#e2e8f0;line-height:1.8;min-height:100vh}
+.container{max-width:960px;margin:0 auto;padding:20px 24px}
+.hero{background:linear-gradient(135deg,#1e3a5f,#0f172a);border:1px solid #334155;border-radius:16px;padding:36px 28px;margin-bottom:28px;text-align:center}
+.hero h1{font-size:32px;color:#f59e0b;margin-bottom:8px}
+.hero .sub{color:#94a3b8;font-size:15px}
+.hero .price-bar{display:flex;justify-content:center;gap:32px;margin-top:20px;flex-wrap:wrap}
+.price-item{text-align:center}
+.price-item .num{font-size:28px;font-weight:700;color:#f1f5f9}
+.price-item .label{font-size:12px;color:#64748b;margin-top:4px}
+.price-item .chg{font-size:13px;margin-top:2px}
+.up{color:#ef4444}
+.down{color:#34d399}
+
+.section{margin-bottom:32px}
+.section-title{font-size:21px;color:#f59e0b;border-left:4px solid #f59e0b;padding-left:14px;margin-bottom:16px}
+.section-sub{font-size:17px;color:#38bdf8;margin:20px 0 12px;padding-bottom:6px;border-bottom:1px solid #1e3a5f}
+
+p{margin-bottom:14px;color:#cbd5e1;font-size:15px}
+strong{color:#f1f5f9}
+
+.info-box{background:#1e293b;border:1px solid #334155;border-radius:12px;padding:20px 24px;margin-bottom:18px}
+.info-box h4{color:#f59e0b;font-size:16px;margin-bottom:10px}
+.info-box p{font-size:14px;margin-bottom:8px}
+
+.warn-box{background:#7c2d1220;border:1px solid #7c2d12;border-radius:12px;padding:18px 24px;margin-bottom:18px}
+.warn-box h4{color:#f87171;font-size:15px;margin-bottom:8px}
+.warn-box p{font-size:14px;color:#fca5a5}
+
+.green-box{background:#065f4620;border:1px solid #065f46;border-radius:12px;padding:18px 24px;margin-bottom:18px}
+.green-box h4{color:#34d399;font-size:15px;margin-bottom:8px}
+.green-box p{font-size:14px;color:#6ee7b7}
+
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:14px}
+th{background:#1e3a5f;color:#f59e0b;padding:10px 14px;text-align:left;font-weight:600;border:1px solid #334155}
+td{padding:10px 14px;border:1px solid #1e293b;color:#cbd5e1}
+tr:nth-child(even) td{background:#1e293b}
+tr:hover td{background:#1e3a5f}
+
+.highlight{color:#f59e0b;font-weight:600}
+.num-red{color:#ef4444;font-weight:700}
+.num-green{color:#34d399;font-weight:700}
+.num-blue{color:#60a5fa;font-weight:700}
+
+.divider{border:none;border-top:1px solid #334155;margin:28px 0}
+
+.footer{text-align:center;padding:30px;color:#475569;font-size:12px}
+
+.flow{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin:20px 0;font-size:14px}
+.flow-box{background:#1e3a5f;border:1px solid #334155;border-radius:8px;padding:10px 16px;color:#f1f5f9;font-weight:600}
+.flow-arrow{color:#f59e0b;font-size:20px}
+
+@media(max-width:600px){.hero h1{font-size:24px}.price-bar{gap:16px}}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="hero">
+<h1>🫘 豆粕深度分析报告</h1>
+<div class="sub">大豆产业链核心下游品种 · 压榨利润与养殖需求的终极博弈</div>
+<div class="sub" style="font-size:12px;margin-top:4px">2026年6月23日 · 基于最新市场数据与机构研判</div>
+<div class="price-bar">
+<div class="price-item"><div class="num">2,920</div><div class="label">M2609主力合约</div><div class="chg down">-0.41% 今日</div></div>
+<div class="price-item"><div class="num">2,868</div><div class="label">现货基准价(元/吨)</div><div class="chg down">-1.98% 月环比</div></div>
+<div class="price-item"><div class="num">-200</div><div class="label">基差(M2609-现货)</div><div class="chg" style="color:#94a3b8">深度贴水</div></div>
+<div class="price-item"><div class="num">203.7万</div><div class="label">持仓量(手)</div><div class="chg" style="color:#94a3b8">日增+5,349</div></div>
+</div>
+</div>
+
+<!-- ====== 第一部分：豆粕是什么 ====== -->
+<div class="section">
+<div class="section-title">一、豆粕是什么？——从大豆到豆粕的一堂课</div>
+
+<div class="info-box">
+<h4>🧬 豆粕 = 大豆榨油后的"渣"</h4>
+<p>大豆被压榨后产生两种产品：<strong>豆油(约18-20%)</strong> 和 <strong>豆粕(约78-80%)</strong>。豆粕是提取豆油后的副产品，但它不是"废料"——恰恰相反，<strong>豆粕是全球最重要的植物蛋白饲料原料</strong>，占全球蛋白粕贸易的70%以上。</p>
+</div>
+
+<p><strong>豆粕的核心价值 = 蛋白质含量43-48%</strong>。作为对比，玉米仅有8-10%。在现代化养殖中，豆粕几乎是无法被完全替代的蛋白来源。</p>
+
+<div class="flow">
+<div class="flow-box">🫘 大豆进口<br><small style="color:#94a3b8">10330万吨/年</small></div>
+<div class="flow-arrow">→</div>
+<div class="flow-box">⚙️ 油厂压榨<br><small style="color:#94a3b8">开机率65-70%</small></div>
+<div class="flow-arrow">→</div>
+<div class="flow-box">🛢️ 豆油 18-20%<br><small style="color:#94a3b8">食用+工业</small></div>
+<div class="flow-arrow">+</div>
+<div class="flow-box" style="border-color:#f59e0b;border-width:2px">🍖 豆粕 78-80%<br><small style="color:#94a3b8">核心饲料蛋白</small></div>
+</div>
+
+<div class="section-sub">DCE豆粕期货合约规格</div>
+<table>
+<tr><th>项目</th><th>规格</th></tr>
+<tr><td>交易代码</td><td>M</td></tr>
+<tr><td>交易单位</td><td>10吨/手</td></tr>
+<tr><td>最小变动价位</td><td>1元/吨</td></tr>
+<tr><td>合约月份</td><td>1、3、5、7、8、<span class="highlight">9</span>、11、12月</td></tr>
+<tr><td>涨跌停板</td><td>±6%（当前主力M2609 跌停价2,756）</td></tr>
+<tr><td>交割品级</td><td>大连商品交易所豆粕交割质量标准</td></tr>
+<tr><td>最后交易日</td><td>合约月份第10个交易日</td></tr>
+<tr><td>保证金比例</td><td>约8-10%（约2,300-2,900元/手）</td></tr>
+</table>
+
+<p><strong>为什么9月合约是主力？</strong> 因为9月对应美国大豆关键生长季+国内养殖旺季备货期，是全年豆粕供需博弈最激烈的窗口。</p>
+</div>
+
+<!-- ====== 第二部分：当前市场全景 ====== -->
+<div class="section">
+<div class="section-title">二、当前市场全景：供强需弱，价格承压</div>
+
+<div class="warn-box">
+<h4>⚠️ 核心判断：弱现实主导，强预期待验证</h4>
+<p>6月豆粕市场呈现典型"供过于求"格局：现货跌破2,800元/吨关口，基差深度走弱至<span class="num-green">M2609-200元/吨</span>，为近年来少有的深度贴水。上游胀库风险加大，下游采购极为谨慎。</p>
+</div>
+
+<div class="section-sub">价格走势回顾（2026年上半年）</div>
+<table>
+<tr><th>阶段</th><th>时间</th><th>核心驱动</th><th>价格区间</th></tr>
+<tr><td>Q1冲高</td><td>1-3月</td><td>巴西发货延迟+卸港时间延长+节后补库</td><td>2,900→3,200</td></tr>
+<tr><td>3月冲高回落</td><td>3月下旬</td><td>巴西物流恢复+市场预期转向</td><td>3,200→3,050</td></tr>
+<tr><td>Q2震荡下行</td><td>4-6月</td><td>巴西大豆集中到港+累库预期强化+养殖亏损</td><td>2,900-3,050→<span class="num-green">2,860-2,920</span></td></tr>
+<tr><td>当前</td><td>6月23日</td><td>6-8月月均千万吨到港+开机率65-70%+胀库压力</td><td><span class="num-green">2,920(期货)/2,868(现货)</span></td></tr>
+</table>
+
+<p>CBOT大豆同期走势：主力合约从1,300美分/蒲式耳区间持续回落至<span class="highlight">1,108.25美分/蒲式耳</span>（七连阴、四个月新低），成本端垮塌直接传导至国内粕类。</p>
+</div>
+
+<!-- ====== 第三部分：供给端六大变量 ====== -->
+<div class="section">
+<div class="section-title">三、供给端：六大变量全面拆解</div>
+
+<div class="section-sub">变量①：进口大豆到港——短期内最大压力源</div>
+<table>
+<tr><th>月份</th><th>预期到港量(万吨)</th><th>船数</th><th>同比变化</th></tr>
+<tr><td>2026年6月</td><td><span class="num-red">1,073.8</span></td><td>165.2船</td><td>大幅增加</td></tr>
+<tr><td>2026年7月</td><td><span class="num-red">1,100</span></td><td>~169船</td><td>历史高位</td></tr>
+<tr><td>2026年8月</td><td><span class="num-red">1,050</span></td><td>~162船</td><td>维持高位</td></tr>
+<tr><td>6-8月合计</td><td><span class="highlight">~3,220万吨</span></td><td>~496船</td><td>巴西创纪录丰产集中释放</td></tr>
+</table>
+
+<p><strong>关键点：</strong>巴西2025/26年度大豆产量创历史新高（约1.69亿吨），出口窗口全面打开。6-8月月均千万吨级别到港，是压制国内豆粕价格的<strong>最核心利空因素</strong>。</p>
+
+<div class="section-sub">变量②：油厂压榨与开机率</div>
+<div class="info-box">
+<table>
+<tr><th>指标</th><th>当前值</th><th>趋势</th></tr>
+<tr><td>油厂开机率</td><td>65-70%</td><td><span class="num-green">↑ 持续提升</span></td></tr>
+<tr><td>周度大豆压榨量</td><td>~250万吨</td><td><span class="num-green">↑ 高位运行</span></td></tr>
+<tr><td>6月预计压榨量</td><td>~1,000万吨</td><td><span class="num-green">↑ 月环比+</span></td></tr>
+</table>
+</div>
+
+<p>国家粮油信息中心数据显示，截至6月12日全国主要油厂6月大豆压榨量约410万吨（仅前12天），预计全月压榨量在<strong>1,000万吨左右</strong>，月环比显著增加。</p>
+
+<div class="section-sub">变量③：豆粕库存——胀库风险正在加速</div>
+<div class="warn-box">
+<h4>🚨 豆粕库存演变路径（极度危险曲线）</h4>
+<p>上周库存：约<span class="highlight">60万吨</span> → 本周预计：<span class="highlight">70万吨</span> → 7月中旬：可能突破<span class="num-red">100万吨</span></p>
+<p><strong>胀库风险含义：</strong>当油厂豆粕库存超过存储能力，会出现被迫停机、降价抛售、甚至"穿库"（以极低价格向饲料厂倾销）。历史上豆粕胀库期通常伴随期货价格暴跌5-10%。</p>
+</div>
+
+<div class="section-sub">变量④：CBOT美豆——成本锚定</div>
+<p>CBOT大豆7月合约跌至<strong>1,108.25美分/蒲式耳</strong>（约折合人民币2,950元/吨到港成本），创四个月新低。基金多头持续离场。</p>
+
+<p>美豆走弱的三层原因：</p>
+<ul style="color:#cbd5e1;margin-left:24px;font-size:14px">
+<li><strong>① 中西部天气理想：</strong>产区降雨和温度适宜，利于大豆生长，天气炒作乏力</li>
+<li><strong>② 巴西出口竞争：</strong>巴西大豆出口强劲，抢占全球市场份额</li>
+<li><strong>③ 中国需求放缓：</strong>2026/27年度进口预测从10,330万吨下调至9,550万吨</li>
+</ul>
+
+<div class="section-sub">变量⑤：北美天气——Q3最关键的"扰动项"</div>
+<p>市场核心驱动将从"南美供应"切换至"北美天气"。但当前中西部天气对大田作物生长<strong>极为有利</strong>，这也是CBOT大豆持续走弱的直接原因。</p>
+<p><strong>但是：</strong>7-8月是大豆关键结荚期，如果出现持续高温干旱（厄尔尼诺背景下概率不低），可能引发快速反弹。这是当前"弱现实"背后唯一的"强预期"锚点。</p>
+
+<div class="section-sub">变量⑥：政策变量——中美贸易与中国采购</div>
+<p>中国采购美国大豆的传闻在6月23日获部分证实，为美豆价格提供底部支撑。但<strong>采购步伐需要明显加快</strong>才能实现全年采购目标。此外，中国降低加拿大菜籽和菜粕关税，将增加替代蛋白供应，间接压制豆粕需求。</p>
+</div>
+
+<!-- ====== 第四部分：需求端三大引擎 ====== -->
+<div class="section">
+<div class="section-title">四、需求端：三大养殖引擎全面疲弱</div>
+
+<div class="section-sub">引擎①：生猪——最大需求项，但深度亏损中</div>
+<div class="info-box">
+<h4>🐷 生猪产业链对豆粕需求的传导</h4>
+<p><strong>能繁母猪存栏</strong>（决定10个月后生猪出栏量）→ <strong>生猪出栏量</strong> → <strong>饲料消耗量</strong> → <strong>豆粕需求</strong></p>
+<p>当前状态：能繁母猪从4,043万头降至<span class="highlight">3,904万头</span>（2026年5月），仔猪价格17个月来首次下降 → 终端补栏意愿不足 → 6月猪价<span class="num-green">9.54元/kg</span>（远低于牧原成本11.6元/kg）→ 养殖深度亏损 → 饲料采购极为谨慎</p>
+</div>
+
+<p>2026年豆粕需求 = 对应2025年4-12月能繁母猪存栏。4-9月存栏在4,000万头左右，10-12月小幅降至3,960万头。<strong>全年豆粕需求预计8,500-8,550万吨</strong>，同比增幅进一步放缓（2025年增幅约3%，2026年预计不足1%）。</p>
+
+<div class="section-sub">引擎②：家禽——产能高位但效益回落</div>
+<p>禽类养殖处于产能高位，但养殖效益明显回落。卓创资讯指出，饲料产量已进入"总量高饱和期"，家禽板块对豆粕的边际增量有限。</p>
+
+<div class="section-sub">引擎③：水产——季节性旺季，但体量有限</div>
+<p>二季度水产饲料进入消费旺季，对豆粕需求形成一定边际支撑。但水产饲料中豆粕添加比例（约20-25%）远低于生猪饲料（约20-30%）和禽料（约25-30%），且体量占比仅约10%，<strong>季节性利好不足以逆转整体需求疲弱</strong>。</p>
+
+<div class="section-sub">需求端总结</div>
+<table>
+<tr><th>养殖板块</th><th>豆粕消费占比</th><th>当前状态</th><th>边际趋势</th></tr>
+<tr><td>生猪</td><td>~52%</td><td>深度亏损、补栏意愿低</td><td><span class="num-green">↓ 收缩</span></td></tr>
+<tr><td>家禽</td><td>~30%</td><td>产能高位、效益回落</td><td>→ 平稳偏弱</td></tr>
+<tr><td>水产</td><td>~10%</td><td>季节性旺季</td><td><span class="num-red">↑ 边际改善</span></td></tr>
+<tr><td>反刍+其他</td><td>~8%</td><td>缓慢增长</td><td>→ 平稳</td></tr>
+</table>
+</div>
+
+<!-- ====== 第五部分：压榨利润 ====== -->
+<div class="section">
+<div class="section-title">五、压榨利润：豆粕-豆油跷跷板与油厂博弈</div>
+
+<div class="info-box">
+<h4>📐 压榨利润 = 豆粕收入 + 豆油收入 - 大豆成本 - 加工费</h4>
+<p>油厂买大豆、卖豆粕和豆油。压榨利润是驱动油厂开机率的核心变量。<strong>压榨利润好 → 开机率高 → 豆粕供应增加 → 豆粕价格承压。</strong></p>
+</div>
+
+<p><strong>当前压榨利润处于极度低迷状态。</strong>原因：</p>
+<ul style="color:#cbd5e1;margin-left:24px;font-size:14px">
+<li>大豆到港成本：巴西CNF升贴水+CBOT大豆=到港成本约2,950-3,050元/吨</li>
+<li>豆粕售价：2,868元/吨（现货）</li>
+<li>豆油售价：约7,500-7,700元/吨</li>
+<li>加工费：约150元/吨</li>
+<li><strong>综合测算：压榨利润约-50至+30元/吨，多数油厂处于盈亏平衡或小幅亏损</strong></li>
+</ul>
+
+<p><strong>压榨利润低迷的深层含义：</strong></p>
+<ul style="color:#cbd5e1;margin-left:24px;font-size:14px">
+<li>短期利多豆粕：油厂可能主动降低开机率，减少豆粕供应</li>
+<li>中期利空豆粕：油厂必须维持一定开机率来履行大豆采购合同，被迫产出豆粕</li>
+<li>核心矛盾：<strong>"被动压榨"vs"主动减产"的博弈</strong></li>
+</ul>
+
+<div class="warn-box">
+<h4>⚠️ 被迫压榨的逻辑</h4>
+<p>大型油厂（如中粮、九三、益海）已经锁定了6-8月的大豆进口合同，大豆到港后如果不压榨，仓储成本更高，且占用资金。因此<strong>即便压榨亏损，大厂仍会维持较高开机率</strong>。这是豆粕在供过于求阶段仍然持续增库的根本原因。</p>
+</div>
+</div>
+
+<!-- ====== 第六部分：豆粕-生猪联动 ====== -->
+<div class="section">
+<div class="section-title">六、豆粕与养猪股的联动：从牧原到豆粕的完整逻辑链</div>
+
+<div class="flow">
+<div class="flow-box">🌎 全球大豆<br><small style="color:#94a3b8">巴西+美国+阿根廷</small></div>
+<div class="flow-arrow">→</div>
+<div class="flow-box">🚢 进口大豆<br><small style="color:#94a3b8">月均千万吨到港</small></div>
+<div class="flow-arrow">→</div>
+<div class="flow-box">⚙️ 压榨<br><small style="color:#94a3b8">出粕率78-80%</small></div>
+<div class="flow-arrow">→</div>
+<div class="flow-box" style="border-color:#f59e0b;border-width:2px">🍖 豆粕<br><small style="color:#94a3b8">2,868元/吨</small></div>
+<div class="flow-arrow">→</div>
+<div class="flow-box">🐷 饲料<br><small style="color:#94a3b8">豆粕占比20-30%</small></div>
+<div class="flow-arrow">→</div>
+<div class="flow-box">🏭 养猪企业<br><small style="color:#94a3b8">牧原/温氏/新希望</small></div>
+</div>
+
+<table>
+<tr><th>变量</th><th>对豆粕的影响</th><th>对养猪股的影响</th></tr>
+<tr><td>豆粕价格上涨</td><td>—</td><td><span class="num-green">利空</span>（饲料成本上升）</td></tr>
+<tr><td>豆粕价格下跌</td><td>—</td><td><span class="num-red">利好</span>（饲料成本下降）</td></tr>
+<tr><td>生猪存栏增加</td><td><span class="num-red">利好</span>（饲料需求增）</td><td><span class="num-green">利空</span>（供给增加压低猪价）</td></tr>
+<tr><td>生猪存栏减少</td><td><span class="num-green">利空</span>（饲料需求降）</td><td><span class="num-red">利好</span>（供给减少抬高猪价）</td></tr>
+</table>
+
+<div class="info-box">
+<h4>🔗 2026年6月的特殊状况：豆粕和养猪"双杀"</h4>
+<p><strong>养猪端：</strong>猪价9.54元/kg < 成本11.6元/kg → 深度亏损 → 采购饲料极为克制 → 豆粕需求弱</p>
+<p><strong>豆粕端：</strong>大豆集中到港+胀库风险 → 供过于求 → 豆粕价格承压</p>
+<p><strong>负反馈循环：</strong>猪亏 → 减少补栏 → 豆粕需求更弱 → 豆粕价格更低 → 但油厂被迫压榨 → 库存继续升 → 价格继续跌</p>
+<p><strong>打破循环的关键：</strong>生猪产能真正去化到"缺猪" → 猪价反弹至成本线以上 → 养殖端恢复采购 → 豆粕需求回暖</p>
+</div>
+</div>
+
+<!-- ====== 第七部分：Q3展望 ====== -->
+<div class="section">
+<div class="section-title">七、Q3展望："弱现实"与"强预期"的激烈碰撞</div>
+
+<div class="section-sub">路径一：弱现实延续（基准情景，概率50%）</div>
+<p>6-8月大豆到港持续高位，胀库压力在7月达到顶峰（库存破100万吨），油厂被迫降价抛售，M2609可能下探<span class="num-green">2,750-2,800</span>区间。CBOT大豆天气炒作持续乏力（降水理想），美豆跌破1,050美分。需求端猪价继续低迷。</p>
+
+<div class="section-sub">路径二：强预期兑现（上行情景，概率30%）</div>
+<p>7月中旬后北美出现高温干旱天气（厄尔尼诺），CBOT大豆快速反弹至1,200+美分，带动国内豆粕反弹。叠加8月后养殖旺季备货启动，M2609回升至<span class="num-red">3,050-3,200</span>区间。中美贸易消息提供额外支撑。</p>
+
+<div class="section-sub">路径三：极端行情（概率20%）</div>
+<p>胀库引发连锁反应：油厂大面积停机 → 豆油供应紧张倒逼压榨 → 豆粕库存继续堆积 → 终端恐慌性观望 → M2609下探<span class="num-green">2,650-2,700</span>，或天气极端干旱导致CBOT飙升至1,300+美分，M2609冲击<span class="num-red">3,300+</span>。</p>
+
+<div class="section-sub">关键变量监测清单</div>
+<table>
+<tr><th>变量</th><th>利多豆粕信号</th><th>利空豆粕信号</th></tr>
+<tr><td>美国中西部天气</td><td>高温干旱持续</td><td>降雨理想、气温适宜</td></tr>
+<tr><td>豆粕周度库存</td><td>意外下降（去库）</td><td>持续累库→破100万吨</td></tr>
+<tr><td>油厂开机率</td><td>主动降至55%以下</td><td>维持65-70%</td></tr>
+<tr><td>生猪价格</td><td>反弹至12元/kg以上</td><td>继续低于10元/kg</td></tr>
+<tr><td>CBOT大豆</td><td>反弹至1,200+美分</td><td>跌破1,050美分</td></tr>
+<tr><td>中国大豆进口量</td><td>9月预报显著下降</td><td>持续月均千万吨</td></tr>
+</table>
+</div>
+
+<!-- ====== 第八部分：投资策略 ====== -->
+<div class="section">
+<div class="section-title">八、投资策略与风险提示</div>
+
+<div class="green-box">
+<h4>✅ 偏多策略（天气/减产逻辑）</h4>
+<p><strong>中信期货观点：</strong>豆粕在2,800-2,850区间布局多单，止损2,750，目标3,050-3,150</p>
+<p>核心逻辑：6-8月供过于求已被充分定价，9月后北美天气炒作+国内养殖旺季备货+进口预估下降（2026/27进口9,550万吨）三重利多可能共振。</p>
+<p>但需注意：当前天气理想、胀库压力仍在加大，<strong>左侧风险极大</strong>。</p>
+</div>
+
+<div class="warn-box">
+<h4>⚠️ 偏空策略（胀库/供需逻辑）</h4>
+<p>当前2,920附近做空，止损3,020，目标2,800-2,750</p>
+<p>核心逻辑：6-8月月均千万吨到港确定，胀库路径清晰（60万吨→70万吨→100万吨+），养殖需求全面疲弱，CBOT美豆七连阴未见止跌信号。</p>
+<p>风险：天气突变、中美采购消息、技术性反弹。</p>
+</div>
+
+<div class="info-box">
+<h4>📊 稳健策略：跨品种对冲</h4>
+<p><strong>多豆粕空豆油：</strong>如果天气炒作启动（利多粕、利空油），豆粕弹性大于豆油</p>
+<p><strong>多M2701空M2609：</strong>做多远月（北美天气+去产能后需求恢复）vs 近月（胀库压力），远月升水有望扩大</p>
+<p><strong>多菜粕空豆粕（注意风险）：</strong>中国降低加拿大菜籽关税，菜粕替代效应增强，但豆菜价差已收窄，空间有限</p>
+</div>
+
+<div class="warn-box">
+<h4>⚠️ 风险声明</h4>
+<p><strong>本报告仅供研究参考，不构成任何投资建议。</strong>期货交易具有高杠杆和高风险特性，可能导致超出初始保证金的亏损。所有策略均应在个人风险承受能力范围内审慎评估。数据来源包括生意社、东方财富、Mysteel、国家粮油信息中心、USDA、中信期货、卓创资讯等公开信息，可能存在滞后。</p>
+</div>
+</div>
+
+<!-- ====== 核心数据一览 ====== -->
+<div class="section">
+<div class="section-title">附录：核心数据速查表</div>
+<table>
+<tr><th>指标</th><th>数值</th><th>来源/日期</th></tr>
+<tr><td>M2609主力合约</td><td>2,920元/吨</td><td>东方财富 6/23</td></tr>
+<tr><td>豆粕现货基准价</td><td>2,868元/吨</td><td>生意社 6/23</td></tr>
+<tr><td>基差</td><td>M2609-200</td><td>市场综合 6/18</td></tr>
+<tr><td>沿海豆粕现货区间</td><td>2,750-2,860元/吨</td><td>饲料行业信息网 6/16</td></tr>
+<tr><td>CBOT大豆主力</td><td>1,108.25美分/蒲</td><td>CME 6/18</td></tr>
+<tr><td>6月大豆到港预估</td><td>1,073.8万吨</td><td>Mysteel 6月</td></tr>
+<tr><td>7月大豆到港预估</td><td>1,100万吨</td><td>Mysteel 6月</td></tr>
+<tr><td>油厂开机率</td><td>65-70%</td><td>行业综合 6月中</td></tr>
+<tr><td>周度压榨量</td><td>~250万吨</td><td>行业综合 6月中</td></tr>
+<tr><td>豆粕库存</td><td>~60万吨→预计7月中旬100万+</td><td>行业综合 6月中旬</td></tr>
+<tr><td>2026年豆粕需求预估</td><td>8,500-8,550万吨</td><td>卓创资讯/机构综合</td></tr>
+<tr><td>2025/26大豆进口</td><td>10,330万吨</td><td>USDA/中国农业部</td></tr>
+<tr><td>2026/27大豆进口预测</td><td>9,550万吨（↓7.5%）</td><td>中国农业部 6/2</td></tr>
+<tr><td>生猪价格</td><td>9.54元/kg</td><td>搜猪网 6月中旬</td></tr>
+<tr><td>能繁母猪存栏</td><td>3,904万头</td><td>农业农村部 5月</td></tr>
+<tr><td>中美采购传闻</td><td>部分证实</td><td>6/23</td></tr>
+</table>
+</div>
+
+<div class="footer">
+2026年6月23日 · 豆粕深度分析报告 · 数据来源：生意社、东方财富、Mysteel、国家粮油信息中心、USDA、中信期货、卓创资讯<br>
+⚠️ 本报告不构成投资建议 · 期货交易有风险 入市需谨慎
+</div>
+
+</div>
+</body>
+</html>

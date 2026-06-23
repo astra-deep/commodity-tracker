@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SC期限结构异象深度解构 — WTI/Brent贴水 vs SC升水的七层解释 + LU/FU/SC套利矩阵</title>
+<style>
+:root {
+  --bg: #0f1117;
+  --card: #1a1d28;
+  --card2: #212433;
+  --text: #e1e4ed;
+  --text2: #a0a6b8;
+  --red: #ef4444;
+  --green: #22c55e;
+  --gold: #f59e0b;
+  --blue: #3b82f6;
+  --purple: #8b5cf6;
+  --border: #2a2d3a;
+  --cyan: #06b6d4;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: var(--bg); color: var(--text); line-height:1.7;
+  padding: 24px; max-width: 1200px; margin:0 auto;
+}
+h1 { font-size:26px; text-align:center; margin:16px 0 8px; background:linear-gradient(135deg, var(--gold), var(--red), var(--purple)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.subtitle { text-align:center; color: var(--text2); font-size:14px; margin-bottom:32px; }
+h2 { font-size:20px; color:var(--gold); margin:32px 0 16px; padding-left:12px; border-left:3px solid var(--gold); }
+h3 { font-size:16px; color:var(--cyan); margin:20px 0 12px; }
+.card { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:24px; margin:16px 0; }
+.card2 { background:var(--card2); padding:20px; border-radius:8px; margin:12px 0; }
+.highlight { background:linear-gradient(90deg, rgba(245,158,11,0.15), transparent); padding:16px 20px; border-radius:8px; border-left:3px solid var(--gold); margin:16px 0; }
+.warning { background:linear-gradient(90deg, rgba(239,68,68,0.12), transparent); padding:16px 20px; border-radius:8px; border-left:3px solid var(--red); margin:16px 0; }
+table { width:100%; border-collapse:collapse; margin:12px 0; font-size:14px; }
+th { background:var(--card2); color:var(--gold); padding:10px 12px; text-align:left; border-bottom:2px solid var(--border); font-weight:600; }
+td { padding:8px 12px; border-bottom:1px solid var(--border); }
+tr:hover td { background:rgba(255,255,255,0.03); }
+.price-up { color:var(--red); }
+.price-down { color:var(--green); }
+.contango { color:var(--red); font-weight:600; }
+.backwardation { color:var(--green); font-weight:600; }
+.tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:11px; margin:2px; }
+.tag-green { background:rgba(34,197,94,0.15); color:var(--green); }
+.tag-red { background:rgba(239,68,68,0.15); color:var(--red); }
+.tag-gold { background:rgba(245,158,11,0.15); color:var(--gold); }
+.tag-blue { background:rgba(59,130,246,0.15); color:var(--blue); }
+.tag-purple { background:rgba(139,92,246,0.15); color:var(--purple); }
+.strategy-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(340px, 1fr)); gap:16px; margin:16px 0; }
+.strat-card { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:20px; }
+.strat-card.header { border-left:4px solid var(--gold); }
+.rank { font-size:24px; font-weight:700; }
+.rank-5 { color:var(--gold); }
+.rank-4 { color:var(--red); }
+.rank-3 { color:var(--blue); }
+.rank-2 { color:var(--purple); }
+.footnote { color:var(--text2); font-size:12px; margin-top:8px; border-top:1px solid var(--border); padding-top:8px; }
+.chart-bar { display:flex; align-items:center; gap:8px; margin:4px 0; }
+.chart-label { min-width:80px; text-align:right; font-size:13px; color:var(--text2); }
+.chart-bar-inner { height:22px; border-radius:4px; display:flex; align-items:center; padding:0 8px; font-size:12px; font-weight:600; }
+.chart-bar-red { background:linear-gradient(90deg, var(--red), #f87171); }
+.chart-bar-green { background:linear-gradient(90deg, var(--green), #4ade80); }
+.chart-bar-blue { background:linear-gradient(90deg, var(--blue), #60a5fa); }
+.chart-bar-purple { background:linear-gradient(90deg, var(--purple), #a78bfa); }
+.layer-num { display:inline-flex; align-items:center; justify-content:center; width:28px; height:28px; border-radius:50%; background:var(--gold); color:#000; font-weight:700; font-size:14px; margin-right:10px; flex-shrink:0; }
+</style>
+</head>
+<body>
+
+<h1>SC原油"独自Contango"之谜深度解构</h1>
+<div class="subtitle">
+核心命题：WTI/Brent远月贴水 vs SC远月升水 — 七层结构性原因 + LU/FU/SC固定比例套利框架<br>
+数据截止：2026年6月22日16:40 · 整合7份机构报告 · 数据来源：东方财富/CME/ICE/INE/国泰君安/华泰/中泰/申万宏源/长城证券
+</div>
+
+<!-- ====== 第一屏：数据概览 ====== -->
+<h2>一、期限结构全景对比：一目了然的异象</h2>
+
+<div class="card">
+<h3>SC原油（上海INE）期限结构</h3>
+<table>
+<tr><th>合约</th><th>最新价(元/桶)</th><th>涨跌幅</th><th>较近月差</th><th>结构</th></tr>
+<tr><td>SC2607（交割）</td><td>503.0</td><td class="price-down">-0.42%</td><td>基准</td><td>—</td></tr>
+<tr><td><strong>SC2608（主力）</strong></td><td><strong>507.2</strong></td><td class="price-down">-1.27%</td><td>+4.2</td><td class="contango">升水</td></tr>
+<tr><td>SC2609（次主力）</td><td>510.9</td><td class="price-down">-0.82%</td><td>+7.9</td><td class="contango">升水</td></tr>
+<tr><td>SC2610</td><td>511.5</td><td class="price-down">-0.85%</td><td>+8.5</td><td class="contango">升水</td></tr>
+<tr><td>SC2611</td><td>511.9</td><td class="price-down">-0.47%</td><td>+8.9</td><td class="contango">升水</td></tr>
+<tr><td><strong>SC2612（峰值）</strong></td><td><strong>512.0</strong></td><td class="price-down">-0.68%</td><td>+9.0</td><td class="contango">升水峰值</td></tr>
+<tr><td>SC2701</td><td>509.8</td><td class="price-down">-0.53%</td><td>+6.8</td><td class="backwardation">↘贴水</td></tr>
+<tr><td>SC2702</td><td>508.8</td><td class="price-down">-0.16%</td><td>+5.8</td><td class="backwardation">贴水</td></tr>
+<tr><td>SC2703</td><td>506.5</td><td class="price-down">-0.78%</td><td>+3.5</td><td class="backwardation">贴水</td></tr>
+<tr><td>SC2704</td><td>503.0</td><td class="price-down">-0.98%</td><td>0</td><td class="backwardation">贴水</td></tr>
+<tr><td>SC2906</td><td>493.0</td><td class="price-down">-1.00%</td><td>-10.0</td><td class="backwardation">深度贴水</td></tr>
+</table>
+<div class="highlight">
+<strong>SC期限结构形态：</strong>先升后降的"驼峰"——近月→远月（2607→2612）微幅+1.78%升水 → 2612之后转为贴水 → 2906深度贴水-2.0%。<br>
+<strong>关键发现：</strong>SC的"Contango"只存在于近端4个月（2607→2612），幅度仅<strong>9元/桶（1.78%）</strong>，属于"极浅升水"，并非深度Contango。
+</div>
+</div>
+
+<div class="card">
+<h3>WTI / Brent（CME/ICE）期限结构</h3>
+<table>
+<tr><th></th><th>WTI (NYMEX)</th><th>Brent (ICE)</th><th>价差</th></tr>
+<tr><td>近月合约</td><td><strong>$75.43</strong> (Jul 26)</td><td><strong>$79.9</strong> (Aug 26)</td><td>Brent升水$4.5</td></tr>
+<tr><td>1个月外</td><td>$73.52 (Aug 26)</td><td>$77.9 (Sep 26)</td><td>↓</td></tr>
+<tr><td>2个月外</td><td>$71.83 (Sep 26)</td><td>$75.9 (Oct 26)</td><td>↓</td></tr>
+<tr><td>6个月外</td><td>~$67 (Dec 26)</td><td>~$72 (Feb 27)</td><td>↓</td></tr>
+<tr><td>12个月外</td><td>~$62 (Jun 27)</td><td>~$67</td><td>↓</td></tr>
+<tr><td>长期远月(2035)</td><td>$52-55</td><td>mid-$60s</td><td>—</td></tr>
+</table>
+<div class="highlight">
+<strong>WTI/Brent结构：</strong>深度Backwardation——从近月到2035年降幅达<strong>$35-40/桶（47%）</strong>。<br>
+近1月远1月价差 WTI: -$1.91/bbl (-2.5%) | Brent: -$2.0/bbl (-2.5%)。典型的供应紧张+低库存市场特征。
+</div>
+</div>
+
+<div class="card">
+<h3>LU低硫燃油 & FU燃料油 期限结构</h3>
+<table>
+<tr><th>LU合约</th><th>价格(元/吨)</th><th>月差</th><th>FU合约</th><th>价格(元/吨)</th><th>月差</th></tr>
+<tr><td>LU2607（交割）</td><td class="price-down"><strong>4150</strong></td><td>基准</td><td>FU2609（主力）</td><td><strong>3101</strong></td><td>基准</td></tr>
+<tr><td>LU2608（主力）</td><td>3963</td><td class="backwardation">-187</td><td>FU2612</td><td>3035</td><td class="backwardation">-66</td></tr>
+<tr><td>LU2609（次）</td><td>3873</td><td class="backwardation">-90</td><td>FU2703</td><td>3009</td><td class="backwardation">-26</td></tr>
+<tr><td>LU2610</td><td>3796</td><td class="backwardation">-77</td><td>FU2704</td><td>3006</td><td class="backwardation">-3</td></tr>
+<tr><td>LU2611</td><td>3748</td><td class="backwardation">-48</td><td>FU2706</td><td>2996</td><td class="backwardation">-10</td></tr>
+<tr><td>LU2612</td><td>3718</td><td class="backwardation">-30</td><td>—</td><td>—</td><td>—</td></tr>
+<tr><td>LU2701</td><td>3690</td><td class="backwardation">-28</td><td>—</td><td>—</td><td>—</td></tr>
+</table>
+<div class="highlight">
+<strong>LU极端贴水：</strong>LU2607→LU2701跌幅<strong>-460元/吨（-11.1%）</strong>，仓单=0吨极紧。<br>
+<strong>FU温和贴水：</strong>FU2609→FU2706跌幅-105元/吨（-3.4%），较LU温和得多。<br>
+<strong>LU-FU价差：</strong>LU2609-FU2609 = 3873-3101 = <strong>772元/吨</strong>，处于历史高位区间。
+</div>
+</div>
+
+<!-- ====== 第二屏：深层原因 ====== -->
+<h2>二、SC为何"独自Contango"？—— 七层结构性解释</h2>
+
+<div class="highlight">
+<strong>核心矛盾重述：</strong>全球原油市场处于供应危机→WTI/Brent深度Backwardation（近高远低，$35-40价差）。但SC（中国原油期货）近月→远月反而呈微幅Contango（近低远高，+9元/1.78%）。这种方向性背离是罕见的。
+</div>
+
+<div class="card">
+<h3><span class="layer-num">1</span> 中国需求独立坍塌 —— 最根本原因</h3>
+<div class="card2">
+<table>
+<tr><th>指标</th><th>当前值</th><th>正常/峰值</th><th>偏离</th></tr>
+<tr><td>地炼开工率</td><td class="price-down"><strong>55-60%</strong></td><td>70-75%</td><td>5年最低</td></tr>
+<tr><td>炼油利润</td><td class="price-down"><strong>-600至-1300元/吨</strong></td><td>+200至+500</td><td>全线亏损</td></tr>
+<tr><td>原油进口（5月）</td><td class="price-down"><strong>645万桶/日</strong></td><td>~1100万桶/日</td><td>10年新低</td></tr>
+<tr><td>战略库存消耗</td><td class="price-down"><strong>~100万桶/日</strong></td><td>正常0</td><td>持续去库</td></tr>
+</table>
+<p style="margin-top:8px; color: var(--text2);">
+<strong>逻辑链：</strong>炼厂不赚钱 → 不开工 → 不买现货原油 → 近月需求极弱 → 近月价格承压 → 形成Contango。
+WTI/Brent定价的是"全球供应短缺"，SC定价的是"中国需求过剩库存"——两个市场讲的是完全不同的故事。
+</p>
+</div>
+</div>
+
+<div class="card">
+<h3><span class="layer-num">2</span> SC≠Brent：SC是中国局部市场，不是全球基准</h3>
+<div class="card2">
+<p>SC-Brent贴水 = <strong>-11.6%</strong>（SC 507.2元 ≈ $70.6/桶 vs Brent $79.9/桶）</p>
+<p style="color: var(--text2);">
+<strong>关键点：</strong>SC的定价权在中国境内市场。中国是全球最大原油进口国（日均~1100万桶），但SC只反映中国保税区供需，不反映全球。当中国需求疲弱时，SC比Brent更弱是合理的。如果SC也Backwardation，SC-Brent折扣会更大（可能到-15%~-20%），这反而不合理——因为仓储套利会限制折扣幅度。
+</p>
+<p style="color: var(--text2);">
+实际上，SC的Contango是一种<strong>"国内供需贴水 + 仓储成本"的综合体现</strong>。近月弱是因为国内没人要，远月略高是因为仓储有成本+未来需求预期恢复。
+</p>
+</div>
+</div>
+
+<div class="card">
+<h3><span class="layer-num">3</span> 进口配额+保税交割：物理套利被封堵</h3>
+<div class="card2">
+<p style="color: var(--text2);">
+如果SC=Brent自由套利成立，那么SC Contango会被大量买SC卖Brent的套利盘抹平。但现实中：
+</p>
+<ul style="color: var(--text2); margin-left:20px;">
+<li><strong>进口配额壁垒：</strong>中国原油进口实行配额制，地炼没有配额就买不了SC交割的实物原油，更不可能把SC低价油出口到国际市场</li>
+<li><strong>保税交割限制：</strong>SC交割在指定保税库，外资参与有限。交割品级、地点、时间的限制远多于Brent</li>
+<li><strong>仓储容量：</strong>SC保税库存高位，但新增仓单需要INE审批——供给不弹性</li>
+<li><strong>结论：</strong>SC和Brent之间的套利通道是<strong>半封闭</strong>的，SC的Contango可以被"困"在国内</li>
+</ul>
+</div>
+</div>
+
+<div class="card">
+<h3><span class="layer-num">4</span> 人民币汇率预期：隐性的"Contango放大器"</h3>
+<div class="card2">
+<p style="color: var(--text2);">
+SC以人民币计价。如果市场预期人民币贬值（当前离岸6.78，经济疲弱+降息预期），那么：
+</p>
+<ul style="color: var(--text2); margin-left:20px;">
+<li>远月SC需要更高的人民币价格才能维持同等的美元价值</li>
+<li>假设Brent远期$72/桶，预期CNY从6.78贬至7.0，则SC远月 = $72 × 7.0 = 504元 → 若汇率不变则只有$72 × 6.78 = 488元</li>
+<li><strong>汇率贬2.2%，SC远月自动"升水"16元/桶</strong></li>
+<li>这16元中约一半是"真实的"供需Contango，另一半是"货币性的"汇率预期</li>
+</ul>
+</div>
+</div>
+
+<div class="card">
+<h3><span class="layer-num">5</span> 供给恢复的"时间不对称"</h3>
+<div class="card2">
+<p style="color: var(--text2);">
+全球原油供应的恢复是<strong>渐进式的</strong>，不同产油国恢复速度差异巨大：
+</p>
+<table>
+<tr><th>产油国</th><th>恢复时间</th><th>增量</th><th>对SC影响</th></tr>
+<tr><td>沙特/阿联酋</td><td class="tag-green">1-2周</td><td>~200万桶/日</td><td>近月供给改善→压近月</td></tr>
+<tr><td>科威特</td><td class="tag-blue">1-1.5月</td><td>~50万</td><td>2-3月后供给改善</td></tr>
+<tr><td>伊拉克</td><td class="tag-gold">3-6月</td><td>~100万</td><td>中远月供给恢复</td></tr>
+<tr><td>伊朗</td><td class="tag-red">3-6月+不确定性</td><td>~150万</td><td>远月最大变量</td></tr>
+</table>
+<p style="margin-top:8px; color: var(--text2);">
+<strong>逻辑：</strong>近月面临沙特快速增产压力（压近月），但远月定价的是"全部恢复后"的正常市场（支撑远月）。
+WTI/Brent的Backwardation之所以成立，是因为全球库存太低+即期需求强，即使供给恢复也需要<strong>6-12个月才能补库</strong>。
+SC的Contango之所以成立，是因为中国库存仍高+即期需求弱，供给恢复反而意味着"未来更便宜"（因为进口更通畅）。
+</p>
+</div>
+</div>
+
+<div class="card">
+<h3><span class="layer-num">6</span> 中国"去库周期"与全球"补库周期"的背离</h3>
+<div class="card2">
+<table>
+<tr><th></th><th>全球（WTI/Brent定价）</th><th>中国（SC定价）</th></tr>
+<tr><td>库存状态</td><td class="price-up">极低（OECD 4-6周缓冲）</td><td class="price-down">高位（港口+保税区）</td></tr>
+<tr><td>库存方向</td><td class="price-up">补库→买近月→近月涨</td><td class="price-down">去库→卖近月→近月跌</td></tr>
+<tr><td>期限结构</td><td class="price-up">Backwardation（合理）</td><td class="price-down">Contango（合理）</td></tr>
+<tr><td>便利收益</td><td class="price-up">正（现货溢价→持有库存赚钱）</td><td class="price-down">负（现货折价→持有库存亏钱）</td></tr>
+</table>
+<p style="margin-top:8px; color: var(--text2);">
+<strong>核心洞察：</strong>SC的Contango不是"错误定价"，而是中国本地供需的真实反映。便利收益理论告诉我们：当市场持有现货比持有期货更有价值时→Backwardation；当持有现货是负累时→Contango。中国炼厂目前<strong>不想持有现货原油</strong>（因为加工就亏钱），所以SC近月折价、远月相对稳定。
+</p>
+</div>
+</div>
+
+<div class="card">
+<h3><span class="layer-num">7</span> 伊朗6.20重新封锁霍尔木兹 → 全球Backwardation加深，SC不受影响</h3>
+<div class="card2">
+<p style="color: var(--text2);">
+6月16日美伊签署停战备忘录 → 市场预期海峡开放 → Brent一度从$93跌至$79。但<strong>6月20日伊朗重新封锁海峡</strong> → WTI/Brent快速反弹至$75/$80。每一次地缘冲击都强化了WTI/Brent的Backwardation（近月受冲击更大，涨得更快），但SC因为：
+</p>
+<ol style="color: var(--text2); margin-left:20px;">
+<li>中国通过俄罗斯/中亚管道+海运多渠道进口，对霍尔木兹依赖度低于日韩欧</li>
+<li>中国炼厂已经低开工，原油需求本身就弱，运输中断影响被稀释</li>
+<li>SC参与者以国内投机+套保为主，对中东地缘敏感度低于CME/ICE</li>
+</ol>
+<p style="margin-top:8px; color: var(--text2);">
+结果就是：每一次海峡危机 → WTI/Brent近月跳涨 → Backwardation加深。SC近月受冲击小 → Contango形态不变甚至加深（因为远月反而因全球紧张而走强）。
+</p>
+</div>
+</div>
+
+<div class="card">
+<h3>七层原因总结：一张图说清</h3>
+<div style="overflow-x:auto;">
+<table>
+<tr><th>#</th><th>原因</th><th>对SC Contango的贡献</th><th>权重</th></tr>
+<tr><td>1</td><td>中国需求独立坍塌（炼厂亏损+低开工）</td><td class="price-down">压近月，核心驱动力</td><td>⭐⭐⭐⭐⭐ 40%</td></tr>
+<tr><td>2</td><td>SC是中国局部市场≠全球基准</td><td class="price-down">SC独立于Brent定价</td><td>⭐⭐⭐⭐ 20%</td></tr>
+<tr><td>3</td><td>进口配额+保税交割封堵套利</td><td>阻止跨市场价差收敛</td><td>⭐⭐⭐ 12%</td></tr>
+<tr><td>4</td><td>人民币贬值预期</td><td class="price-up">抬远月（汇率效应）</td><td>⭐⭐⭐ 10%</td></tr>
+<tr><td>5</td><td>供给恢复渐进式（时间不对称）</td><td class="price-down">压近月</td><td>⭐⭐⭐ 8%</td></tr>
+<tr><td>6</td><td>中国去库 vs 全球补库 周期背离</td><td class="price-down">压近月</td><td>⭐⭐⭐ 6%</td></tr>
+<tr><td>7</td><td>伊朗危机对SC传导弱于WTI/Brent</td><td class="price-down">近月不跟涨</td><td>⭐⭐ 4%</td></tr>
+</table>
+</div>
+</div>
+
+<!-- ====== 第二点五屏：机构报告最新共识 ====== -->
+<h2>二点五、机构报告最新共识（2026.06.20-22 · 7份报告）</h2>
+<div class="highlight">
+<strong>数据驱动更新：</strong>6月20-22日桌面"国内报告"文件夹新增7份燃料油/原油/化工相关机构报告，逐一提取整合。
+<span style="display:block; margin-top:8px; font-size:13px; color: var(--text2);">
+数据来源：国泰君安期货 ×3 · 华泰期货 · 中泰期货 · 申万宏源证券 · 长城证券
+</span>
+</div>
+
+<div class="card">
+<h3>申万宏源 6/21 — 🌟核心信号：原油期限价差已回到3月初水平</h3>
+<div class="card2">
+<p style="color: var(--text2);">
+<strong>关键发现：</strong>"美伊冲突缓解，原油期限价差已回到3月初水平"→ WTI/Brent的Backwardation在<strong>快速收敛</strong>。周跌7.97%，短期供应紧张情绪已显著缓和。
+</p>
+<p style="margin-top:6px; color: var(--text2);">
+<strong>对SC的启示：</strong>如果全球Backwardation在收窄，而SC的Contango也极浅（+9元/1.78%），<strong>两个曲线可能正在"对向靠拢"</strong>——SC从微Contango走向平水甚至Backwardation的概率在增大。
+</p>
+</div>
+</div>
+
+<div class="card">
+<h3>燃料油三份机构报告共识矩阵</h3>
+<table>
+<tr><th>机构/日期</th><th>FU（高硫）观点</th><th>LU（低硫）观点</th><th>关键数据</th></tr>
+<tr>
+<td><strong>国泰君安 6/22 日报</strong></td>
+<td class="price-down">盘面弱势仍在，波动逐步缩小</td>
+<td class="price-up">跌势小幅减缓</td>
+<td class="price-up">🌟亚太高低硫现货价差来到年内高位</td>
+</tr>
+<tr>
+<td><strong>国泰君安 6/21 周报</strong></td>
+<td class="price-down">海峡解封已基本计价；供给过剩</td>
+<td class="price-up">低位震荡区间</td>
+<td>FU2609: 3000~3350 / LU2608: 3800~4000<br>俄罗斯炼厂6月检修结束→增量高硫利空</td>
+</tr>
+<tr>
+<td><strong>华泰期货 6/21 周报</strong></td>
+<td class="price-down">FU周跌14.44%，高硫中性</td>
+<td class="price-up">LU周跌10.04%（比FU抗跌！）</td>
+<td>科威特LSFO发货仍为<strong>0万吨</strong>（持续断供）<br>新加坡5月船燃454.8万吨 环比+4.5%<br>中东6月HSFO -312万吨 YoY</td>
+</tr>
+<tr>
+<td><strong>中泰期货 6/20 周度</strong></td>
+<td class="price-down">FU连续3080（周跌-19.3%）</td>
+<td class="price-up">LU连续4260（周跌-10.0%）</td>
+<td>🌟新加坡现货高低硫价差 <strong>~$107/吨</strong><br>FU现货基差3088（基差率44.55%）→现货严重虚高</td>
+</tr>
+</table>
+<div class="highlight" style="margin-top:12px;">
+<strong>四家机构共识：</strong>FU（高硫）→看空/走弱；LU（低硫）→相对抗跌/价差走扩；高低硫价差做阔是确定性最高的方向。<br>
+<strong>分歧点：</strong>国泰君安认为"海峡解封已计价完毕"，但6/20伊朗重新封锁→短期FU供给还有一轮脉冲式扰动。
+</div>
+</div>
+
+<div class="card">
+<h3>化工板块交叉关联 — 长城证券 6/22 + 国泰君安 6/22</h3>
+<div class="card2">
+<table>
+<tr><th>报告</th><th>核心观点</th><th>对原油/燃料油的交叉影响</th></tr>
+<tr>
+<td><strong>长城证券 6/22 PTA周报</strong></td>
+<td>PTA大规模检修计划再度来袭→去库幅度大</td>
+<td>PTA原料=PX→PX来自石脑油→炼厂加工需求骤降<br>→原油近月需求进一步被压制→SC Contango延续</td>
+</tr>
+<tr>
+<td><strong>国泰君安 6/22 PX/PTA/MEG</strong></td>
+<td>三品种"短期不追空"</td>
+<td>地炼开工未来四周继续降至<strong>37%</strong>→原油进口需求崩塌<br>→SC近月压力巨大→Contango有韧性</td>
+</tr>
+</table>
+</div>
+</div>
+
+<!-- ====== 第三屏：LU/FU/SC套利 ====== -->
+<h2>三、LU（低硫）& FU（高硫）期限结构深度分析</h2>
+
+<div class="warning" style="margin-bottom:20px;">
+<strong>🔍 品种定义澄清：</strong>LU = 低硫燃料油（IMO 2020合规，硫含量≤0.5%） · FU = 高硫燃料油（硫含量3.5%，非脱硫塔船不能使用）<br>
+LU偏紧逻辑：航运+IMO合规+柴油挤占调和原料→供给持续偏紧 → <span class="price-up">近月升水严重（Backwardation）</span><br>
+FU偏弱逻辑：Jafurah气田替代+供应恢复+IMO限制 → 需求结构性下降 → <span class="price-down">近月相对乏力（温和Backwardation）</span>
+</div>
+
+<div class="card">
+<h3>LU（低硫燃油）：极端Backwardation（仓单=0 + 多维度供给收缩）</h3>
+<div class="card2">
+<p><strong>LU2608: 3963 → LU2701: 3690，跌幅-273元/吨（-6.9%）</strong></p>
+<p style="color: var(--text2);">六大驱动（新增科威特断供+LNG分流）：</p>
+<ol style="color: var(--text2); margin-left:20px;">
+<li><span class="tag tag-red">核心驱动力</span> <strong>仓单=0吨（极紧！）：</strong>INE仓库零仓单，空头无法交割→近月逼仓风险极高。LU2607即将交割，仓单为0意味着所有空头必须平仓→近月价格有硬支撑。</li>
+<li><span class="tag tag-red">新增</span> <strong>科威特LSFO发货持续为0万吨（华泰期货6/21）：</strong>科威特Al-Zour炼厂（全球最大LSFO出口来源，正常月出口50-80万吨）已连续数月对亚太零发货→LSFO供给出现<strong>区域性断供</strong>。</li>
+<li><strong>航运旺季（6-8月）：</strong>集装箱/散货旺季，新加坡5月船燃454.8万吨环比+4.5%，低硫需求脉冲式增长。</li>
+<li><strong>IMO 2020合规：</strong>全球船用燃料硫含量<0.5%，低硫燃油的强制需求是结构性底线。</li>
+<li><strong>柴油高价挤占调和原料：</strong>ICE柴油>1000美元/吨→VGO/柴油组分流入柴油池而非LSFO调合→间接压缩LSFO供给。</li>
+<li><strong>中东LNG发电替代→燃料油出口减少：</strong>沙特Jafurah气田自用→高硫发电替代是利空，但中东LNG更多地用于发电→燃料油出口被"挤占"→对亚太LSFO供给间接偏紧。</li>
+</ol>
+</div>
+</div>
+
+<div class="card">
+<h3>FU（高硫燃油）：温和Backwardation + 结构性利空叠加</h3>
+<div class="card2">
+<p><strong>FU2609: 3101 → FU2706: 2996，跌幅-105元/吨（-3.4%）</strong></p>
+<p style="color: var(--text2);">四大结构性利空（权重排序）：</p>
+<ol style="color: var(--text2); margin-left:20px;">
+<li><span class="tag tag-red">最重要</span> <strong>沙特Jafurah气田投产→替代高硫发电：</strong>Jafurah是沙特最大非伴生气田（储量200万亿立方英尺），2026年H1正式投产→沙特发电用燃料油被天然气替代→减少高硫进口需求约<strong>20万吨/月</strong>（≈全球HSFO贸易量2-3%）。这是<strong>结构性永久性</strong>的需求下降，不是周期性的。</li>
+<li><strong>俄罗斯+中东供应恢复：</strong>俄罗斯6月发货183万吨（下旬还有上修空间）；伊拉克/沙特已找到重新组织高硫出口的路径→海峡解封后供给缺口缩小。国泰君安："海峡解封已基本计价完毕"。</li>
+<li><strong>IMO合规限制：</strong>无脱硫塔船舶只能用LSFO，脱硫塔安装率仅~17%，HSFO需求天花板明确。</li>
+<li><strong>炼厂高开工：</strong>全球炼厂为捕捉柴油利润保持高开工→高硫燃料油作为副产品供应增加。</li>
+</ol>
+</div>
+
+<div class="warning" style="margin-top:16px;">
+<strong>⚠️ FU现货基差严重高估（最关键的风险信号）：</strong><br>
+FU连续价格3080元/吨 vs FU2609期货3101元/吨，现货基差3088（基差率<strong>44.55-50.01%</strong>）！<br>
+这意味着现货市场报价<strong>严重虚高</strong>（可能是锁价/远期合同/品质溢价），期货补涨概率极低。<br>
+<span style="color: var(--text2);">正常情况下燃料油基差应在±5%范围内，当前50%的基差率远超合理边界。<br>一旦现货回归正常→FU现货价格将大幅下行→期货即便不跟跌也会形成"现货向下回归"的巨大压力。</span>
+</div>
+</div>
+
+<!-- ====== 第四屏：套利矩阵 ====== -->
+<h2>四、LU/FU/SC 固定比例套利框架</h2>
+
+<div class="highlight">
+<strong>核心问题：</strong>SC呈Contango（近低远高），LU/FU呈Backwardation（近高远低），三者期限结构方向相反。是否存在"机械性"的固定比例套利空间？
+</div>
+
+<div class="card">
+<h3>裂解价差（Crack Spread）— 最经典的"固定关系"</h3>
+<div class="card2">
+<p style="color: var(--text2);">
+裂解价差 = 成品油价格 - 原油成本。对于SC→LU/FU：
+</p>
+<table>
+<tr><th>组合</th><th>计算公式</th><th>当前值</th><th>历史均值</th><th>偏离</th></tr>
+<tr><td><strong>LU-SC裂解（近月）</strong></td><td>LU2608÷6.35 - SC2608</td><td>624 - 507 = <strong>+117元/桶</strong></td><td>+80-100</td><td class="price-up">偏高</td></tr>
+<tr><td><strong>LU-SC裂解（远月）</strong></td><td>LU2612÷6.35 - SC2612</td><td>585 - 512 = <strong>+73元/桶</strong></td><td>+70-90</td><td>正常</td></tr>
+<tr><td><strong>FU-SC裂解（近月）</strong></td><td>FU2609÷6.35 - SC2608</td><td>488 - 507 = <strong class="price-down">-19元/桶</strong></td><td>+10-30</td><td class="price-down">极低</td></tr>
+</table>
+<blockquote style="border-left:3px solid var(--purple); padding-left:12px; margin:8px 0; color: var(--text2);">
+注：燃料油吨→桶换算系数 6.35桶/吨（燃料油密度约0.98）
+</blockquote>
+</div>
+</div>
+
+<div class="card">
+<h3>LU-FU价差（Hi-5 Spread）— IMO套利锚 + 最新机构数据</h3>
+<div class="card2">
+<p style="color: var(--text2);">
+LU-FU = 低硫溢价，反映船东为IMO合规支付的"脱硫成本"。
+</p>
+<table>
+<tr><th>合约</th><th>LU价格</th><th>FU价格</th><th>价差</th><th>方向</th></tr>
+<tr><td>2609（主对主）</td><td>3873</td><td>3101</td><td><strong>772元/吨</strong></td><td class="price-up">偏高</td></tr>
+<tr><td>2612</td><td>3718</td><td>3035</td><td><strong>683元/吨</strong></td><td>中等</td></tr>
+<tr><td>2701/2703</td><td>3690</td><td>3009</td><td><strong>681元/吨</strong></td><td>中等</td></tr>
+<tr style="background:rgba(245,158,11,0.08);">
+<td colspan="5"><strong>🌟 现货基准（机构数据）：</strong></td>
+</tr>
+<tr>
+<td><strong>新加坡现货</strong></td><td colspan="2">LSFO-HSFO ≈ <strong>$107/吨</strong>（≈764元/吨）</td><td>—</td><td class="price-up">年内高位</td>
+</tr>
+<tr>
+<td><strong>亚太现货</strong></td><td colspan="2">高低硫价差 ≈ <strong>年内高位</strong>（国泰君安6/22）</td><td>—</td><td class="price-up">结构性走扩</td>
+</tr>
+</table>
+<p style="margin-top:8px; color: var(--text2);">
+<strong>固定关系逻辑更新：</strong>LU-FU价差的"地板"是脱硫塔安装成本摊销（约$8-12/桶≈350-530元/吨），"天花板"是新加坡LSFO-HSFO价差（当前$107/吨≈764元/吨，处于年内高位）。
+期货LU-FU 09=772元/吨已经略高于新加坡现货$107/吨（≈764元），期货<strong>已超前定价了一部分季节性溢价</strong>。<br>
+<strong>最新驱动：</strong>科威特LSFO持续零发货 → LSFO供给缺口正在从"区域性"蔓延到"全球性"。如果科威特Q3继续零发货，LU-FU价差有望突破900甚至1000元/吨。
+</p>
+</div>
+</div>
+
+<div class="card">
+<h3>SC跨期套利 — Contango有多"确定"？</h3>
+<div class="card2">
+<table>
+<tr><th>价差组合</th><th>当前值</th><th>方向</th><th>年化收益</th><th>可行性</th></tr>
+<tr><td>SC2608-2609</td><td>-3.7元</td><td class="contango">Contango</td><td>-8.7%</td><td class="price-down">❌ 不可行（资金成本~6-8%）</td></tr>
+<tr><td>SC2608-2612</td><td>-4.8元</td><td class="contango">Contango</td><td>-2.9%</td><td class="price-down">❌ 不可行</td></tr>
+<tr><td>SC2608-2610</td><td>-4.3元</td><td class="contango">Contango</td><td>-5.1%</td><td class="price-down">❌ 不可行</td></tr>
+<tr><td>SC2612-2704</td><td>+9.0元</td><td class="backwardation">Backwardation</td><td>+2.3%</td><td>⚠️ 微利</td></tr>
+</table>
+<p style="margin-top:8px; color: var(--text2);">
+<strong>结论：</strong>SC的Contango太浅（年化2.9-8.7%），扣除资金成本+仓储费后，买近抛远跨期套利<strong>不成立</strong>。但SC2612→SC2704的Backwardation段（买远抛近）有微弱正Carry。
+</p>
+</div>
+</div>
+
+<!-- ====== 策略矩阵 ====== -->
+<h2>五、跨品种套利策略矩阵</h2>
+
+<div class="strategy-grid">
+
+<div class="strat-card" style="border-top:4px solid var(--gold);">
+<div class="rank rank-5">⭐⭐⭐⭐⭐</div>
+<h3>策略1：多LU + 空SC — 裂解价差做阔</h3>
+<p style="color: var(--text2); font-size:14px;">
+<strong>逻辑：</strong>LU Backwardation（近高远低，持有LU多头有利）+ SC Contango（近低远高，持有SC空头有利）→ 期限结构完美共振！
+</p>
+<table style="font-size:12px; margin:8px 0;">
+<tr><td>合约</td><td>多LU2608 + 空SC2608</td></tr>
+<tr><td>比例</td><td><strong>SC:LU ≈ 6.35:1</strong>（桶吨换算）</td></tr>
+<tr><td>入场</td><td>裂解价差&lt;100元/桶</td></tr>
+<tr><td>目标</td><td>130-150元/桶</td></tr>
+<tr><td>预期收益</td><td>30-50元/桶</td></tr>
+</table>
+<span class="tag tag-gold">高确定性</span>
+<span class="tag tag-red">期限结构共振</span>
+</div>
+
+<div class="strat-card" style="border-top:4px solid var(--red);">
+<div class="rank rank-4">⭐⭐⭐⭐</div>
+<h3>策略2：多LU + 空FU — 高低硫价差做阔（机构共识方向）</h3>
+<p style="color: var(--text2); font-size:14px;">
+<strong>逻辑：</strong>四家机构一致看扩高低硫价差。LU：仓单=0+科威特断供+航运旺季 → 近月极紧。FU：Jafurah替代(20万吨/月)+俄罗斯恢复+现货基差虚高(44%)+IMO限制 → 结构性利空叠加。
+</p>
+<table style="font-size:12px; margin:8px 0;">
+<tr><td>合约</td><td>多LU2609 + 空FU2609</td></tr>
+<tr><td>比例</td><td>1:1（吨:吨）</td></tr>
+<tr><td>入场</td><td>LU-FU&lt;700元/吨或新加坡现货突破$100</td></tr>
+<tr><td>目标</td><td>900-1000元/吨（科威特持续断供则更高）</td></tr>
+<tr><td>预期收益</td><td>~200-250元/吨</td></tr>
+<tr><td style="color: var(--text2);">数据支撑</td><td style="color: var(--text2);">新加坡现货$107/吨(中泰)·亚太年内高位(国泰君安)·科威特=0(华泰)</td></tr>
+</table>
+<span class="tag tag-red">旺季驱动</span>
+<span class="tag tag-green">IEA/IMO</span>
+<span class="tag tag-gold">机构共识</span>
+</div>
+
+<div class="strat-card" style="border-top:4px solid var(--blue);">
+<div class="rank rank-4">⭐⭐⭐⭐</div>
+<h3>策略3：多LU近月 + 空LU远月 — LU跨期正套（逼仓逻辑强化）</h3>
+<p style="color: var(--text2); font-size:14px;">
+<strong>逻辑：</strong>LU极端Backwardation + 仓单=0 + 科威特零发货(华泰) → 近月逼仓概率持续升高。
+</p>
+<table style="font-size:12px; margin:8px 0;">
+<tr><td>合约</td><td>多LU2608 + 空LU2612</td></tr>
+<tr><td>价差</td><td>3963-3718 = 245</td></tr>
+<tr><td>目标</td><td>Backwardation扩大至350+</td></tr>
+<tr><td>预期收益</td><td>+100元/吨</td></tr>
+</table>
+<span class="tag tag-red">逼仓逻辑</span>
+<span class="tag tag-gold">科威特断供</span>
+</div>
+
+<div class="strat-card" style="border-top:4px solid var(--purple);">
+<div class="rank rank-3">⭐⭐⭐</div>
+<h3>策略4：多SC远月 + 空SC近月 — 等Contango转Back</h3>
+<p style="color: var(--text2); font-size:14px;">
+<strong>逻辑：</strong>当前SC极浅Contango不可持续。一旦中国需求恢复（地炼开工回升）→ SC立即转Backwardation → 近月涨幅>远月 → 正套（买近抛远）赚钱。
+</p>
+<table style="font-size:12px; margin:8px 0;">
+<tr><td>触发条件</td><td>地炼开工率回升至65%+</td></tr>
+<tr><td>合约</td><td>多SC2608 + 空SC2612</td></tr>
+<tr><td>入场</td><td>价差转正（SC近月>远月）</td></tr>
+<tr><td>目标</td><td>价差+10至+20元</td></tr>
+</table>
+<span class="tag tag-purple">等触发</span>
+<span class="tag tag-blue">事件驱动</span>
+</div>
+
+<div class="strat-card" style="border-top:4px solid var(--blue);">
+<div class="rank rank-3">⭐⭐⭐</div>
+<h3>策略5：多FU + 空SC — 高硫裂解均值回归（⚠️FU现货虚高降低确定性）</h3>
+<p style="color: var(--text2); font-size:14px;">
+<strong>逻辑：</strong>FU-SC裂解当前-19元/桶（历史最低区域），极值回归。但FU现货基差44%（严重虚高）降低了回归确定性。
+</p>
+<table style="font-size:12px; margin:8px 0;">
+<tr><td>合约</td><td>多FU2609 + 空SC2609</td></tr>
+<tr><td>比例</td><td>SC:FU ≈ 6.35:1</td></tr>
+<tr><td>入场</td><td>裂解价差&lt;-15元/桶</td></tr>
+<tr><td>目标</td><td>+10至+20元/桶</td></tr>
+<tr><td style="color: var(--red); font-size:12px;">⚠️风险</td><td style="color: var(--red); font-size:12px;">FU现货基差44%→现货回落会拖累期货</td></tr>
+</table>
+<span class="tag tag-blue">均值回归</span>
+<span class="tag tag-red">现货虚高警告</span>
+</div>
+
+<div class="strat-card" style="border-top:4px solid var(--purple);">
+<div class="rank rank-2">⭐⭐</div>
+<h3>策略6：SC-Brent跨市场套利 — 等通道打开</h3>
+<p style="color: var(--text2); font-size:14px;">
+<strong>逻辑：</strong>SC-Brent贴水-11.6%（$9.3/桶），历史上贴水区间-2%到-15%。当前接近极端，均值回归空间存在。但需要：
+</p>
+<ul style="font-size:12px; color:var(--text2); margin-left:16px;">
+<li>有原油进口配额</li>
+<li>能同时交易SC(INE)和Brent(ICE)</li>
+<li>承受跨境汇率风险</li>
+</ul>
+<span class="tag tag-purple">机构专属</span>
+<span class="tag tag-blue">汇率风险</span>
+</div>
+
+</div>
+
+<!-- ====== 第五屏：风险 ====== -->
+<h2>六、风险矩阵</h2>
+
+<div class="card">
+<table>
+<tr><th>风险因素</th><th>影响策略</th><th>概率</th><th>影响</th></tr>
+<tr>
+<td>美伊海峡突然开放</td>
+<td>策略1(LU-SC裂解收窄)、策略2(高低硫收窄)</td>
+<td class="price-up">中</td>
+<td class="price-down">高</td>
+</tr>
+<tr>
+<td>中国地炼开工率突然回升至70%+</td>
+<td>策略4触发、策略1/5受影响</td>
+<td class="price-down">低</td>
+<td class="price-up">高</td>
+</tr>
+<tr>
+<td>OPEC+大规模增产</td>
+<td>所有原油相关策略</td>
+<td class="price-down">低-中</td>
+<td class="price-up">高</td>
+</tr>
+<tr>
+<td>人民币大幅升值（CNY→6.3）</td>
+<td>SC相对走强→Contango压缩</td>
+<td class="price-down">低</td>
+<td class="price-down">中</td>
+</tr>
+<tr>
+<td>LU仓单突然注册（打破0仓单）</td>
+<td>策略1(LU多头)、策略3(LU正套)</td>
+<td class="price-down">低</td>
+<td class="price-up">极高</td>
+</tr>
+<tr>
+<td>IMO合规推迟或豁免</td>
+<td>策略2(高低硫价差)</td>
+<td class="price-down">极低</td>
+<td class="price-up">高</td>
+</tr>
+</table>
+</div>
+
+<!-- ====== 结论 ====== -->
+<h2>七、核心结论</h2>
+
+<div class="card">
+<ol style="font-size:15px; line-height:2.2;">
+<li><strong>SC的"Contango"是真实的但不是深度的：</strong>近远月只差9元/桶（1.78%），属于极浅升水，不具备跨期套利条件。七层原因中，<strong>中国需求独立坍塌（权重40%）</strong>是最根本的驱动力。国泰君安最新数据：地炼开工未来四周继续降至<strong>37%</strong>→SC Contango有韧性。</li>
+
+<li><strong>申万宏源关键信号：</strong>WTI/Brent期限价差已回到3月初水平→全球Backwardation大幅收窄。SC的极浅Contango和WTI/Brent收敛中的Backwardation正在"对向靠拢"，SC转Backwardation的概率在增大。</li>
+
+<li><strong>FU（高硫燃油）方向确认——结构性看空：</strong>
+  <ul style="margin-left:20px;">
+  <li>沙特Jafurah气田投产→替代高硫发电 <strong>20万吨/月</strong>（全球HSFO贸易量2-3%）=结构性永久需求下降</li>
+  <li>俄罗斯6月发货183万吨+下旬上修→供给压力</li>
+  <li>FU现货基差<strong>44-50%严重虚高</strong>→期货补涨概率极低，现货向下回归风险大</li>
+  <li>华泰期货：FU周跌14.44%，走势远弱于LU（-10.04%）</li>
+  </ul>
+</li>
+
+<li><strong>LU（低硫燃油）方向确认——结构性看多：</strong>
+  <ul style="margin-left:20px;">
+  <li>仓单=0吨（INE仓库零库存）→空头无法交割→近月逼仓风险持续</li>
+  <li>科威特Al-Zour炼厂LSFO发货持续为<strong>0万吨</strong>（华泰6/21）→区域性断供</li>
+  <li>新加坡5月船燃454.8万吨环比<strong>+4.5%</strong>→需求强劲</li>
+  <li>柴油高价挤占调和原料→供给间接收缩</li>
+  </ul>
+</li>
+
+<li><strong>最优策略排序（机构报告印证）：</strong>
+  <ol style="margin-left:20px;">
+  <li>多LU+空SC裂解做阔（期限结构双重共振，确定性最高）⭐⭐⭐⭐⭐</li>
+  <li>多LU+空FU高低硫做阔（四家机构一致看扩，科威特断供是催化剂）⭐⭐⭐⭐</li>
+  <li>LU跨期正套（仓单=0+科威特断供逼仓逻辑强化）⭐⭐⭐⭐</li>
+  <li>等SC Contango转Backwardation后做正套（申万宏源信号：全球Backwardation在收窄）⭐⭐⭐</li>
+  <li>FU-SC裂解均值回归（但FU现货虚高44%降低确定性）⭐⭐⭐</li>
+  </ol>
+</li>
+
+<li><strong>最重要的观察窗口：</strong>
+  <ul style="margin-left:20px;">
+  <li>中国地炼开工率是SC转折的"先行指标"（当前55-60%→目标65%+）</li>
+  <li>科威特Al-Zour发货恢复是LU走势的"关键转折"（当前0→恢复日期未知）</li>
+  <li>FU现货基差回归是空FU策略的"利润释放信号"（当前44%→正常5%）</li>
+  </ul>
+</li>
+</ol>
+</div>
+
+<div class="warning">
+<strong>⚠️ 风险提示：</strong>本报告所有数据来源于公开市场行情（东方财富/CME/ICE/INE），分析框架基于基本面逻辑推演。期货及衍生品交易存在重大亏损风险，本报告不构成任何投资建议。所有仓位、比例、目标价仅为分析框架展示，实际操作需根据个人风险承受能力、保证金要求及市场实时变化独立决策。
+</div>
+
+<div class="footnote">
+<strong>数据来源：</strong><br>
+· 东方财富期货（SC/LU/FU实时行情 2026-06-22 15:30）· CME WTI · ICE Brent · commodity-board.com (2026.06.08) · 上期能源公告<br>
+· <strong>国泰君安期货</strong> 燃料油日报 (2026.06.22) · 燃料油周报 (2026.06.21) · PX/PTA/MEG日报 (2026.06.22)<br>
+· <strong>华泰期货</strong> 燃料油周报：炼厂端需求维持弱势 (2026.06.21)<br>
+· <strong>中泰期货</strong> 燃料油周度思考 (2026.06.20)<br>
+· <strong>申万宏源证券</strong> 全球资产配置每周聚焦：美伊冲突缓解，原油期限价差已回到3月初水平 (2026.06.21)<br>
+· <strong>长城证券</strong> 大宗商品能源化工周报：PTA大规模检修计划再度来袭 (2026.06.22)<br>
+报告更新：2026年6月22日 16:40（整合7份机构报告）· 仅供研究参考，不构成投资建议
+</div>
+
+</body>
+</html>

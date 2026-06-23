@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>牧原股份(002714)深度分析：猪周期底部博弈</title>
+<style>
+  * { margin:0; padding:0; box-sizing: border-box; }
+  body { font-family: 'PingFang SC','Microsoft YaHei',sans-serif; background: #f5f5f5; color: #222; line-height: 1.8; }
+  .container { max-width: 1100px; margin: 0 auto; background: #fff; min-height: 100vh; }
+  .header { background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 50%, #388e3c 100%); color: #fff; padding: 40px 48px 32px; }
+  .header h1 { font-size: 26px; font-weight: 700; margin-bottom: 8px; }
+  .header .subtitle { font-size: 14px; opacity: 0.85; margin-bottom: 16px; }
+  .header .meta { display: flex; gap: 24px; font-size: 13px; opacity: 0.75; flex-wrap: wrap; }
+  .tag { display: inline-block; background: rgba(255,255,255,0.18); border-radius: 4px; padding: 2px 10px; font-size: 12px; margin-right: 8px; }
+  .content { padding: 36px 48px 48px; }
+  .section { margin-bottom: 36px; }
+  .section-title { font-size: 18px; font-weight: 700; color: #2e7d32; border-left: 4px solid #2e7d32; padding-left: 12px; margin-bottom: 16px; }
+  .subsection { font-size: 15px; font-weight: 600; color: #333; margin: 20px 0 10px; }
+  p { margin-bottom: 12px; font-size: 14px; color: #333; text-align: justify; }
+  ul { margin: 0 0 12px 20px; }
+  li { font-size: 14px; color: #333; margin-bottom: 6px; }
+  table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 13px; }
+  th { background: #2e7d32; color: #fff; padding: 8px 12px; text-align: left; font-weight: 600; }
+  td { padding: 8px 12px; border-bottom: 1px solid #e0e0e0; }
+  tr:nth-child(even) td { background: #f1f8e9; }
+  .highlight-box { background: #e8f5e9; border-left: 4px solid #2e7d32; padding: 14px 18px; margin: 14px 0; border-radius: 0 6px 6px 0; }
+  .risk-box { background: #fff3e0; border-left: 4px solid #e65100; padding: 14px 18px; margin: 14px 0; border-radius: 0 6px 6px 0; }
+  .neg-box { background: #fce4ec; border-left: 4px solid #c62828; padding: 14px 18px; margin: 14px 0; border-radius: 0 6px 6px 0; }
+  .warn-box { background: #fff8e1; border-left: 4px solid #f57f17; padding: 14px 18px; margin: 14px 0; border-radius: 0 6px 6px 0; }
+  .up { color: #d32f2f; font-weight: 600; }
+  .down { color: #2e7d32; font-weight: 600; }
+  .neutral { color: #f57c00; font-weight: 600; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 14px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin: 14px 0; }
+  .card { background: #f1f8e9; border-radius: 8px; padding: 16px; border: 1px solid #c8e6c9; }
+  .card h4 { font-size: 14px; color: #2e7d32; margin-bottom: 8px; }
+  .card p { font-size: 13px; margin-bottom: 4px; }
+  .card .num { font-size: 22px; font-weight: 700; color: #1b5e20; }
+  .card .red-num { font-size: 22px; font-weight: 700; color: #d32f2f; }
+  .big-num { font-size: 28px; font-weight: 700; }
+  .price-box { background: #1b5e20; color: #fff; border-radius: 12px; padding: 20px 24px; margin: 16px 0; display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; }
+  .price-item { text-align: center; }
+  .price-item .label { font-size: 12px; opacity: 0.75; }
+  .price-item .val { font-size: 24px; font-weight: 700; }
+  .price-item .change { font-size: 13px; margin-top: 2px; }
+  .timeline { position: relative; padding-left: 28px; margin: 14px 0; }
+  .timeline-item { position: relative; padding: 8px 0 16px 0; border-left: 2px solid #c8e6c9; padding-left: 20px; }
+  .timeline-item::before { content: ''; position: absolute; left: -6px; top: 12px; width: 10px; height: 10px; border-radius: 50%; background: #2e7d32; }
+  .timeline-item .date { font-size: 12px; color: #999; }
+  .timeline-item .text { font-size: 14px; }
+  .signal-row { display: flex; align-items: center; gap: 12px; margin: 6px 0; padding: 8px 12px; border-radius: 6px; background: #fafafa; }
+  .signal-row .emoji { font-size: 18px; }
+  .signal-row.p { border-left: 3px solid #2e7d32; }
+  .signal-row.n { border-left: 3px solid #c62828; }
+  .footnote { font-size: 12px; color: #999; margin-top: 32px; padding-top: 16px; border-top: 1px solid #e0e0e0; }
+  @media print { .header { background: #1b5e20 !important; -webkit-print-color-adjust: exact; } th { background: #2e7d32 !important; -webkit-print-color-adjust: exact; } }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div class="subtitle"><span class="tag">002714</span><span class="tag">深圳主板</span><span class="tag">农林牧渔-生猪养殖</span><span class="tag">沪深300成份</span></div>
+    <h1>牧原股份(002714)深度分析：猪周期底部博弈——黎明前的至暗时刻？</h1>
+    <div class="meta">
+      <span>报告日期：2026年6月23日 09:31</span>
+      <span>最新价：34.50 (+1.62%)</span>
+      <span>市值：1,989亿</span>
+      <span>PE(TTM)：20.33x</span>
+    </div>
+  </div>
+
+  <div class="content">
+
+<!-- ===== 一、行情快照 ===== -->
+<div class="section">
+  <div class="section-title">一、实时行情快照（2026-06-23 09:31）</div>
+  <div class="price-box">
+    <div class="price-item">
+      <div class="label">最新价</div>
+      <div class="val" style="color:#ffcdd2;">34.50</div>
+      <div class="change" style="color:#ffcdd2;">+1.62%</div>
+    </div>
+    <div class="price-item">
+      <div class="label">今开 / 昨收</div>
+      <div class="val" style="font-size:18px;">34.18 / 33.95</div>
+      <div class="change">最高 34.60 | 最低 34.04</div>
+    </div>
+    <div class="price-item">
+      <div class="label">成交额</div>
+      <div class="val" style="font-size:18px;">8,384万</div>
+      <div class="change">换手率 0.06%</div>
+    </div>
+    <div class="price-item">
+      <div class="label">总市值</div>
+      <div class="val" style="font-size:18px;">1,989亿</div>
+      <div class="change">流通市值 1,309亿</div>
+    </div>
+  </div>
+
+  <div class="warn-box">
+    <p><strong>技术面速览：</strong>60日K线区间 32.99 ~ 46.67，当前位于区间下沿。4月中旬触及高点46.67后持续阴跌2个月，跌幅-26.1%。6月18日盘中触及32.99（60日新低），近三日小幅反弹至34.50。均线空头排列，暂未企稳。</p>
+  </div>
+</div>
+
+<!-- ===== 二、公司基本面 ===== -->
+<div class="section">
+  <div class="section-title">二、公司基本面：中国养猪第一股</div>
+
+  <div class="subsection">2.1 商业模式</div>
+  <div class="grid2">
+    <div class="card">
+      <h4>养猪业务（绝对主力）</h4>
+      <p>2025年出栏商品猪 <span class="big-num">7,798万头</span></p>
+      <p>中国第一、全球前列的生猪养殖规模</p>
+      <p>完全成本：11.6元/kg（Q1 2026）</p>
+      <p>2026年目标：11.5元/kg以下</p>
+    </div>
+    <div class="card">
+      <h4>屠宰业务（新增长极）</h4>
+      <p>Q1 2026屠宰 <span class="big-num">827.9万头</span>（+55.6%）</p>
+      <p>首次年度盈利（2025年：2,866万头）</p>
+      <p>头均盈利接近20元</p>
+      <p>产能利用率超100%</p>
+    </div>
+  </div>
+
+  <div class="subsection">2.2 财务数据一览</div>
+  <table>
+    <tr><th>指标</th><th>2025年</th><th>2026年Q1</th><th>说明</th></tr>
+    <tr><td>营业收入</td><td>约1,390亿</td><td>298.94亿</td><td class="neutral">Q1同比基本持平</td></tr>
+    <tr><td>净利润</td><td>约40-50亿</td><td class="down">-12.15亿</td><td class="down">2025年为首次年度盈利</td></tr>
+    <tr><td>完全成本</td><td>~12.0元/kg</td><td>11.6元/kg</td><td class="up">成本持续下降</td></tr>
+    <tr><td>销售均价</td><td>~13-14元/kg</td><td>~10元/kg</td><td class="down">Q1猪价暴跌至成本线以下</td></tr>
+    <tr><td>资产负债率</td><td>54.15%</td><td>50.73%</td><td class="up">-3.42pct，持续改善</td></tr>
+    <tr><td>总资产</td><td>~1,803亿</td><td>1,772亿</td><td>资产规模稳步增长</td></tr>
+    <tr><td>净资产</td><td>~884亿</td><td>873亿</td><td>BVPS: 14.94元</td></tr>
+  </table>
+
+  <div class="subsection">2.3 2026上半年预亏全景</div>
+  <div class="neg-box">
+    <p><strong>H1预亏合计约60亿元：</strong></p>
+    <ul>
+      <li><strong>Q1实亏：12.15亿</strong> — 猪价从年初断崖下跌，均价约10元/kg，低于11.6元/kg成本</li>
+      <li><strong>Q2预亏：45-50亿</strong> — 6月猪价跌至9.54元/kg（跌破10元关口持续2个月+），每头亏200+元</li>
+      <li><strong>核心原因：</strong>"出栏量越大，亏损总额越高" — 牧原Q1出栏量维持高位（约1,700万头），规模优势变成了亏损放大器</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===== 三、猪周期定位 ===== -->
+<div class="section">
+  <div class="section-title">三、猪周期定位：底部到了吗？</div>
+
+  <div class="subsection">3.1 先行指标：能繁母猪存栏（最关键！）</div>
+  <div class="highlight-box">
+    <p><strong>"生猪产能看母猪，母猪存栏是猪价的6-10个月先行指标。"</strong></p>
+  </div>
+  <table>
+    <tr><th>时间节点</th><th>能繁母猪存栏</th><th>变化方向</th><th>对应出栏预测</th></tr>
+    <tr><td>2025年6月</td><td class="down">4,043万头</td><td>高位（超正常保有量3900万头 3.7%）</td><td>→ 2026年H1出栏高峰（已兑现暴跌）</td></tr>
+    <tr><td>2026年Q1</td><td>Q1去化10.3万头</td><td class="neutral">开始去化</td><td>→ 2026年Q3-Q4出栏量增幅放缓</td></tr>
+    <tr><td>2026年3月</td><td class="up">3,904万头</td><td>逼近正常保有量</td><td>→ 预计2026年8月起出栏量下降</td></tr>
+    <tr><td>— 仔猪存栏 —</td></tr>
+    <tr><td>2026年3月</td><td class="up">仔猪存栏首次下降（17个月来首次！）</td><td>关键转折信号</td><td>→ 2026年8-9月起生猪供应实质性减少</td></tr>
+    <tr><td>2026年5月</td><td class="up">母猪+生猪+出栏 三项同步回落</td><td>去化加速确认</td><td>→ 2026年Q4猪价有望企稳反弹</td></tr>
+  </table>
+
+  <div class="subsection">3.2 猪周期时间线：现在处于什么阶段？</div>
+  <div class="timeline">
+    <div class="timeline-item"><div class="date">2024年</div><div class="text">猪价反弹+牧原扭亏为盈（首次年度盈利），行业补栏情绪高涨</div></div>
+    <div class="timeline-item"><div class="date">2025年H1</div><div class="text">猪价高位震荡，能繁母猪存栏升至4043万头新高 → 产能过剩种子埋下</div></div>
+    <div class="timeline-item"><div class="date">2025年H2 - 2026年初</div><div class="text">猪价开始下跌，Q1牧原均价降至10元/kg，Q1亏损12亿</div></div>
+    <div class="timeline-item"><div class="date">2026年4-6月</div><div class="text" style="color:#c62828;font-weight:600;">← 我们在这里！猪价跌破10元/kg持续2个月+，Q2预亏45-50亿，产能加速去化，仔猪存栏首降。这是至暗时刻，但也是去化最快的阶段。</div></div>
+    <div class="timeline-item"><div class="date">2026年8-9月（预期）</div><div class="text">生猪出栏量开始下降 → 猪价有望企稳。关键：能否反弹至牧原成本线（11.6元/kg）以上？</div></div>
+    <div class="timeline-item"><div class="date">2026年Q4（预期）</div><div class="text">若去化持续，Q4旺季猪价可能回升至12-13元/kg → 牧原单季扭亏</div></div>
+  </div>
+
+  <div class="subsection">3.3 本轮周期与过往的不同点</div>
+  <div class="risk-box">
+    <p><strong>这一轮猪周期不一样！</strong></p>
+    <ul>
+      <li><strong>规模化率突破70%后，旧周期逻辑失效：</strong>过去散户快速去产能 → 价格快速见底。现在头部企业"被动保份额"→ 量稳价崩，亏损时间和幅度都被拉长！</li>
+      <li><strong>牧原叫停124个在建猪场 →</strong> 去产能信号明确，但动作比散户慢得多</li>
+      <li><strong>温氏Q1主动控量（出栏环比下降）→</strong> 行业老二已率先收缩，牧原仍在"逆势放量保份额"</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===== 四、估值分析 ===== -->
+<div class="section">
+  <div class="section-title">四、估值分析：不便宜，但也不贵</div>
+
+  <div class="grid3">
+    <div class="card">
+      <h4>PE(TTM)</h4>
+      <div class="num">20.33x</div>
+      <p>滚动市盈率。考虑到H1亏60亿，全年大概率亏损，当前PE虚高，实际为负</p>
+    </div>
+    <div class="card">
+      <h4>PB</h4>
+      <div class="num">2.31x</div>
+      <p>BVPS=14.94元。牧原PB历史低位约1.5-1.8x（2018年猪周期底部），当前2.31x不算便宜</p>
+    </div>
+    <div class="card">
+      <h4>静态PE</h4>
+      <div class="num">12.84x</div>
+      <p>基于2025年盈利（约40-50亿），但2026年基本面已大幅恶化，参考意义有限</p>
+    </div>
+  </div>
+
+  <div class="subsection">4.1 极端情景测距</div>
+  <table>
+    <tr><th>情景</th><th>PB估值</th><th>对应股价</th><th>概率</th></tr>
+    <tr><td>乐观：Q3猪价回升至12元/kg+，Q4旺季13元+</td><td>2.5-3.0x</td><td class="up">37-45元</td><td>30%</td></tr>
+    <tr><td>中性：Q3猪价11-12元/kg震荡，全年微亏</td><td>2.0-2.5x</td><td class="neutral">30-37元</td><td>40%</td></tr>
+    <tr><td>悲观：猪价持续低于10元/kg至Q4，全年巨亏100亿+</td><td>1.5-2.0x</td><td class="down">22-30元</td><td>30%</td></tr>
+  </table>
+
+  <div class="warn-box">
+    <p><strong>底线思维：</strong>牧原历史最低PB约1.5x（2018年猪瘟前），对应股价约 <span class="down">22元</span>。如果本轮周期跌幅和时长超过2018年，理论上存在跌破30元至22-25元的尾部风险。但考虑到资产负债表已改善（负债率50.73% vs 2018年70%+），底部应该高于历史极值。</p>
+  </div>
+</div>
+
+<!-- ===== 五、多空信号清单 ===== -->
+<div class="section">
+  <div class="section-title">五、多空信号清单：正面 vs 负面</div>
+
+  <div class="subsection">正面信号（支撑买入）</div>
+  <div class="signal-row p"><div class="emoji">1</div><div><strong>产能加速去化：</strong>能繁母猪从4043万降至3904万（-3.4%），仔猪17个月来首次下降，三项存栏同步回落。产能去化是猪价反转的唯一路径，现在这条路正在加速。</div></div>
+  <div class="signal-row p"><div class="emoji">2</div><div><strong>饲料降价利好：</strong>2026年6月饲料原料（玉米/豆粕）价格下行，养殖成本有望进一步下降至11.5元/kg以下。</div></div>
+  <div class="signal-row p"><div class="emoji">3</div><div><strong>屠宰业务盈利：</strong>屠宰板块已成第二增长极（Q1头均盈利20元，全年屠宰量有望突破3,500万头），平滑了养殖业务的周期波动。</div></div>
+  <div class="signal-row p"><div class="emoji">4</div><div><strong>资产负债表改善：</strong>负债率从54.15%降至50.73%，货币资金充足，已过资本开支高峰期，爆雷风险极低。</div></div>
+  <div class="signal-row p"><div class="emoji">5</div><div><strong>机构持仓：</strong>沪深300成份股，融资融券标的，深股通标的，机构持仓成本高于当前价，存在补仓需求。</div></div>
+
+  <div class="subsection">负面信号（压制卖出）</div>
+  <div class="signal-row n"><div class="emoji">1</div><div><strong>H1巨亏60亿：</strong>Q2单季预亏45-50亿，创历史最差季度。如果猪价不反弹，全年亏损可能超过100亿。</div></div>
+  <div class="signal-row n"><div class="emoji">2</div><div><strong>逆势放量策略：</strong>牧原在猪价低迷时仍在放量（Q1同比基本持平出栏），规模优势变成了亏损放大器。温氏已经在主动控量，牧原的"保份额"策略是否理性？</div></div>
+  <div class="signal-row n"><div class="emoji">3</div><div><strong>规模化改变周期长度：</strong>头部企业不主动大幅减产 → 产能去化速度慢于历史 → 底部被拉长。旧周期的"跌得猛→反弹快"逻辑可能失效。</div></div>
+  <div class="signal-row n"><div class="emoji">4</div><div><strong>PB不便宜：</strong>2.31x PB距离历史底部1.5x还有35%下行空间。如果周期底部持续到2027年，PB进一步压缩的可能性不低。</div></div>
+  <div class="signal-row n"><div class="emoji">5</div><div><strong>需求端疲软：</strong>端午节备货对猪价几乎无提振，冻品库容上升，需求端才是真正的"黑洞"——即使供给下降，低需求也可能压制猪价反弹高度。</div></div>
+</div>
+
+<!-- ===== 六、操作建议 ===== -->
+<div class="section">
+  <div class="section-title">六、综合研判与操作建议</div>
+
+  <div class="subsection">6.1 核心矛盾</div>
+  <div class="highlight-box">
+    <p><strong>当下买牧原的逻辑只有一个：赌猪周期反转。</strong>所有的基本面（亏损扩大、猪价低迷、逆势放量）都是负面的。唯一的正面叙事是：能繁母猪在去化 → 出栏量将在8-9月下降 → 猪价将反弹 → 牧原将扭亏。</p>
+    <p><strong>但这个逻辑链条的每一个环节都有风险：</strong>去化速度可能低于预期（头部企业不主动减产）、需求复苏可能不及预期（消费疲软）、猪价反弹可能不达成本线（11.6元/kg以下反弹不足以让牧原盈利）。</p>
+  </div>
+
+  <div class="subsection">6.2 策略建议</div>
+  <table>
+    <tr><th>投资者类型</th><th>建议</th><th>逻辑</th></tr>
+    <tr><td><strong>左侧布局型</strong>（可承受20%+回撤，持有6-12个月）</td><td><span class="neutral">分批建仓（30-34元区间）</span></td><td>当前猪价已在最底部区域，能繁去化在加速，8-9月可能迎来供需拐点。分批买入，总仓位控制。</td></tr>
+    <tr><td><strong>趋势交易型</strong>（追求确定性，等右侧信号）</td><td><span class="neutral">观望，等两个信号：①猪价回到11.6元（牧原成本线）以上 ②月K线收阳突破10日均线</span></td><td>当前仍在下降通道中，均线空头排列。不急抄底，等趋势确认后介入。</td></tr>
+    <tr><td><strong>保守型</strong></td><td><span class="down">回避</span></td><td>猪周期底部不确定性太高，H1亏损60亿，Q2是历史最差季度。等确定性反转信号出现后再考虑。</td></tr>
+  </table>
+
+  <div class="subsection">6.3 关键跟踪指标（每周检查）</div>
+  <div class="grid2">
+    <div class="card">
+      <h4>① 生猪价格（外三元）</h4>
+      <p>当前：9.54元/kg</p>
+      <p class="up">目标：回到11.6元/kg以上（牧原成本线）</p>
+      <p>来源：好多数据/卓创资讯</p>
+    </div>
+    <div class="card">
+      <h4>② 能繁母猪存栏</h4>
+      <p>当前：3,904万头（3月）</p>
+      <p class="up">目标：降至3,800万头以下</p>
+      <p>来源：农业农村部月度发布</p>
+    </div>
+    <div class="card">
+      <h4>③ 牧原月度出栏数据</h4>
+      <p>关注：出栏量是否出现环比下降？</p>
+      <p class="up">若由放量转缩量 → 去化确认信号</p>
+    </div>
+    <div class="card">
+      <h4>④ 冻品库容率</h4>
+      <p>当前：持续上升（被动入库）</p>
+      <p class="up">目标：库容率下降（需求改善信号）</p>
+      <p>来源：涌益咨询</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 七、风险提示 ===== -->
+<div class="section">
+  <div class="section-title">七、风险提示</div>
+  <div class="neg-box">
+    <ul>
+      <li><strong>猪价持续低于成本线：</strong>若猪价在2026年全年维持在10元/kg以下，牧原全年亏损可能超过150亿，PB可能跌至1.5x（对应22元）</li>
+      <li><strong>资产负债表恶化：</strong>连续巨亏可能推高负债率至60%以上，融资成本上升形成恶性循环</li>
+      <li><strong>规模化改变周期规律：</strong>头部企业不主动减产可能导致底部时间远超历史周期，最悲观情景下底部延续至2027年</li>
+      <li><strong>疫病风险：</strong>非洲猪瘟等疫病对大型养殖场的冲击远大于散户</li>
+      <li><strong>政策风险：</strong>进口猪肉政策变化、环保政策收紧等</li>
+    </ul>
+  </div>
+</div>
+
+<div class="footnote">
+  <p><strong>数据来源：</strong>TDX实时行情（2026-06-23 09:31）、东方财富、雪球、卓创资讯、农业农村部、牧原股份2025年报及2026年一季报、券商研报</p>
+  <p><strong>免责声明：</strong>本报告仅供研究参考，不构成任何投资建议。猪周期投资风险极高，历史规律可能因行业结构变化而失效。投资有风险，入市需谨慎。</p>
+  <p>报告生成时间：2026年6月23日 | 小智 WorkBuddy AI</p>
+</div>
+
+</div></div></body></html>

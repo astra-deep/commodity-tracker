@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>印度糖出口停滞三年 · 全球vs中国供求格局深度解析 · 2026.06.22</title>
+<style>
+:root {
+  --bg: #0a0e14;
+  --bg2: #12161e;
+  --bg3: #1a1f2b;
+  --text: #e0e0e0;
+  --text2: #8b95a5;
+  --red: #e74c3c;
+  --green: #27ae60;
+  --orange: #f39c12;
+  --blue: #3498db;
+  --gold: #d4a574;
+  --accent: #c9a96e;
+  --border: #2a3040;
+  --purple: #9b59b6;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:-apple-system,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif; line-height:1.7; }
+.container { max-width:1000px; margin:0 auto; padding:24px 20px 60px; }
+
+/* Header */
+.hero { text-align:center; padding:40px 0 30px; border-bottom:2px solid var(--accent); margin-bottom:30px; }
+.hero h1 { font-size:28px; font-weight:800; color:#fff; margin-bottom:10px; }
+.hero .subtitle { font-size:15px; color:var(--accent); }
+.hero .date { font-size:12px; color:var(--text2); margin-top:8px; }
+.hero .source { font-size:12px; color:var(--text2); margin-top:4px; }
+.hero .version-tag { display:inline-block; margin-top:8px; padding:2px 10px; background:rgba(155,89,182,0.15); color:var(--purple); border-radius:3px; font-size:11px; }
+
+/* Key metrics row */
+.metrics-row { display:flex; gap:12px; margin-bottom:30px; flex-wrap:wrap; }
+.metric-card { flex:1; min-width:140px; background:var(--bg3); border:1px solid var(--border); border-radius:8px; padding:16px; text-align:center; }
+.metric-card .label { font-size:11px; color:var(--text2); text-transform:uppercase; margin-bottom:4px; }
+.metric-card .value { font-size:22px; font-weight:700; }
+.metric-card .detail { font-size:11px; color:var(--text2); margin-top:2px; }
+.up { color:var(--red); }
+.down { color:var(--green); }
+.neutral { color:var(--orange); }
+.conflict { color:var(--purple); }
+
+/* Sections */
+h2 { font-size:20px; color:#fff; margin:36px 0 16px; padding-bottom:8px; border-bottom:1px solid var(--border); }
+h3 { font-size:16px; color:var(--accent); margin:20px 0 10px; }
+h4 { font-size:14px; color:#ccc; margin:16px 0 8px; }
+
+/* Cards */
+.card { background:var(--bg2); border:1px solid var(--border); border-radius:10px; padding:20px; margin:16px 0; }
+.card2 { background:var(--bg3); border-radius:8px; padding:16px; margin:12px 0; }
+.highlight { background:rgba(212,167,116,0.08); border-left:3px solid var(--accent); padding:14px 18px; border-radius:4px; margin:16px 0; }
+.warning { background:rgba(231,76,60,0.08); border-left:3px solid var(--red); padding:14px 18px; border-radius:4px; margin:16px 0; }
+.insight { background:rgba(39,174,96,0.08); border-left:3px solid var(--green); padding:14px 18px; border-radius:4px; margin:16px 0; }
+.conflict-card { background:rgba(155,89,182,0.06); border:1px solid rgba(155,89,182,0.2); border-radius:10px; padding:20px; margin:16px 0; }
+
+/* Tables */
+table { width:100%; border-collapse:collapse; font-size:13px; margin:12px 0; }
+th { background:var(--bg3); color:var(--accent); padding:10px 12px; text-align:left; font-weight:600; border-bottom:2px solid var(--border); }
+td { padding:9px 12px; border-bottom:1px solid var(--border); }
+tr:hover { background:rgba(212,167,116,0.04); }
+.price-up { color:var(--red); font-weight:600; }
+.price-down { color:var(--green); font-weight:600; }
+
+/* Tags */
+.tag { display:inline-block; font-size:11px; padding:2px 8px; border-radius:3px; margin:2px; }
+.tag-red { background:rgba(231,76,60,0.15); color:var(--red); }
+.tag-green { background:rgba(39,174,96,0.15); color:var(--green); }
+.tag-blue { background:rgba(52,152,219,0.15); color:var(--blue); }
+.tag-gold { background:rgba(212,167,116,0.15); color:var(--accent); }
+.tag-orange { background:rgba(243,156,18,0.15); color:var(--orange); }
+.tag-purple { background:rgba(155,89,182,0.15); color:var(--purple); }
+
+/* Timeline */
+.timeline { display:flex; gap:0; margin:20px 0; overflow-x:auto; }
+.tl-item { flex:1; min-width:120px; text-align:center; padding:16px 10px; border-top:4px solid var(--border); position:relative; }
+.tl-item.done { border-top-color:var(--green); }
+.tl-item.active { border-top-color:var(--orange); }
+.tl-item.future { border-top-color:var(--red); }
+.tl-item .tl-year { font-size:12px; color:var(--text2); }
+.tl-item .tl-event { font-size:13px; font-weight:600; margin:4px 0; }
+.tl-item .tl-detail { font-size:11px; color:var(--text2); }
+
+/* Strategy */
+.strat-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:16px 0; }
+.strat-card { background:var(--bg3); border-radius:10px; padding:18px; position:relative; }
+.strat-card .rank { font-size:20px; margin-bottom:6px; }
+.strat-card h4 { margin:0 0 8px; color:#fff; }
+.strat-card p { font-size:13px; color:var(--text2); line-height:1.6; }
+@media(max-width:640px){ .strat-grid{grid-template-columns:1fr;} }
+
+/* Tension visual */
+.tension-container { display:flex; gap:16px; margin:16px 0; }
+.tension-side { flex:1; border-radius:10px; padding:18px; }
+.tension-side.bear { background:rgba(39,174,96,0.06); border:1px solid rgba(39,174,96,0.2); }
+.tension-side.bull { background:rgba(231,76,60,0.06); border:1px solid rgba(231,76,60,0.2); }
+.tension-side h4 { color:#fff; margin-bottom:8px; }
+.tension-side ul { font-size:13px; color:var(--text2); padding-left:18px; line-height:1.8; }
+@media(max-width:640px){ .tension-container{flex-direction:column;} }
+
+/* Price ceiling visual */
+.ceiling-bar { margin:16px 0; position:relative; padding:20px 0; }
+.ceiling-row { display:flex; align-items:center; margin:6px 0; font-size:13px; }
+.ceiling-row .level-name { width:120px; color:var(--text2); }
+.ceiling-row .level-bar { flex:1; height:28px; border-radius:4px; display:flex; align-items:center; padding:0 10px; color:#fff; font-weight:600; font-size:12px; }
+.ceiling-row .level-price { width:100px; text-align:right; font-weight:700; }
+
+/* Footer */
+.footnote { margin-top:40px; padding:16px; background:var(--bg3); border-radius:8px; font-size:11px; color:var(--text2); line-height:1.8; }
+.footnote strong { color:var(--accent); }
+
+/* Scorecard */
+.score-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.score-item { background:var(--bg3); border-radius:8px; padding:12px; }
+.score-item .score-label { font-size:11px; color:var(--text2); margin-bottom:4px; }
+.score-item .score-value { font-size:24px; font-weight:800; }
+@media(max-width:640px){ .score-grid{grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- Hero -->
+<div class="hero">
+<h1>印度糖出口停滞三年 · 全球vs中国供求格局深度解析</h1>
+<div class="subtitle">v2.0 新增中国国内供求 — 破解"全球紧+国内松"内外矛盾</div>
+<div class="date">数据截止：2026年6月22日 22:30</div>
+<div class="source">文章来源：华尔街见闻 / 路透社 · USDA/ISO/StoneX/Green Pool/UNICA · CASDE(农业农村部)</div>
+<div class="version-tag">🔄 v2.0 · 重大更新：新增中国国内平衡表 + 策略修正</div>
+</div>
+
+<!-- Key Metrics -->
+<h2 style="margin-top:0;">核心数据速览</h2>
+<div class="metrics-row">
+<div class="metric-card" style="border-top:2px solid var(--red);">
+<div class="label">全球可贸易糖缺口</div>
+<div class="value up">680万吨/年</div>
+<div class="detail">印度年均出口量消失</div>
+</div>
+<div class="metric-card" style="border-top:2px solid var(--green);">
+<div class="label">中国25/26产量</div>
+<div class="value down">1280万吨</div>
+<div class="detail">创纪录 · 同比+14.7%</div>
+</div>
+<div class="metric-card" style="border-top:2px solid var(--purple);">
+<div class="label">中国25/26结余</div>
+<div class="value conflict">+192万吨</div>
+<div class="detail">阶段性过剩</div>
+</div>
+<div class="metric-card" style="border-top:2px solid var(--blue);">
+<div class="label">配额外进口成本</div>
+<div class="value">~4900元/吨</div>
+<div class="detail">ICE 14.29¢ · 汇率 6.76</div>
+</div>
+<div class="metric-card" style="border-top:2px solid var(--orange);">
+<div class="label">广西现货</div>
+<div class="value">5280-5340</div>
+<div class="detail">vs SR2701 ~5446</div>
+</div>
+<div class="metric-card" style="border-top:2px solid var(--red);">
+<div class="label">ICE 11号原糖</div>
+<div class="value up">14.29￠/lb</div>
+<div class="detail">配额外利润+599元/吨</div>
+</div>
+</div>
+
+<!-- ====== Part 1: India ====== -->
+<h2>一、印度：双压夹击的供给侧断裂</h2>
+
+<div class="highlight">
+<strong>核心命题：</strong>全球第二大食糖出口国（占全球贸易量10%）将在至少三个榨季内"几近无糖可出口"——甚至可能首次重启进口（2016-17以来首次）。这不是周期性减产，而是<strong>结构性供需断裂</strong>。
+</div>
+
+<div class="card">
+<h3>压力一：厄尔尼诺 — 季风降雨11年最低</h3>
+<div class="card2">
+<table>
+<tr><th style="width:35%">指标</th><th>数据</th><th>评级</th></tr>
+<tr><td>季风降雨</td><td><span class="price-down">11年来最低水平</span></td><td>🔴 极负面</td></tr>
+<tr><td>6月降水量</td><td><span class="price-down">较均值偏低逾40%</span></td><td>🔴 极负面</td></tr>
+<tr><td>本榨季产量预期</td><td>预测3095万 → <strong>下调至2790万吨</strong>（-9.9%）</td><td>🔴 大幅下调</td></tr>
+<tr><td>产量 vs 消费</td><td>2790万 vs 2850万 → <strong>缺口-60万吨</strong></td><td>🔴 产不足需</td></tr>
+<tr><td>农民行为</td><td>大规模转种大豆/木豆等低耗水作物</td><td>🔴 种植面积不可逆减少</td></tr>
+<tr><td>主要影响区域</td><td>马哈拉施特拉邦（最大产糖邦）</td><td>🔴 核心区冲击</td></tr>
+</table>
+</div>
+
+<div class="warning" style="margin-top:12px;">
+<strong>⚠️ 关键机制 — 农民改种是不可逆的：</strong>甘蔗是多年生作物（种植一次收获3-4年），一旦农民翻掉宿根蔗改种大豆，<strong>要恢复到原有甘蔗种植面积至少需要2-3年</strong>。这意味着即使2027年季风回归正常，2027-28和2028-29榨季的甘蔗供应仍然受限。
+</div>
+</div>
+
+<div class="card">
+<h3>压力二：乙醇政策 — 史上最强甘蔗争夺者</h3>
+<div class="card2">
+<table>
+<tr><th style="width:35%">政策/措施</th><th>具体内容</th><th>对糖的冲击</th></tr>
+<tr><td>税收激励</td><td>取消高比例乙醇混合汽油的生产税</td><td>乙醇比糖更有利可图</td></tr>
+<tr><td>混合比例突破</td><td>推出E85（含乙醇85%）燃料</td><td>🔴 甘蔗分流大幅增加</td></tr>
+<tr><td>灵活燃料汽车(FFV)</td><td>马鲁蒂铃木首款FFV乘用车 + 英雄摩托FFV</td><td>🔴 需求端革命性扩容</td></tr>
+<tr><td>当前乙醇需求</td><td>120-130亿升/年</td><td>基准线</td></tr>
+<tr><td>远期需求预测</td><td>到2039-40年增至 300亿升（+130%）</td><td>🔴 甘蔗需求指数级增长</td></tr>
+</table>
+</div>
+
+<div class="highlight">
+<strong>乙醇对印度糖市的颠覆性：</strong>印度乙醇需求从120亿升→300亿升的增长轨迹≈需要额外分走<strong>2000-3000万吨甘蔗</strong>——足以抹消印度所有出口潜能。且FFV推广意味着乙醇需求不受油价波动影响。
+</div>
+</div>
+
+<div class="card">
+<h3>双压夹击的结果：三重断裂</h3>
+<table>
+<tr><th>断裂层面</th><th>2022-23前（出口时代）</th><th>2025-26当前（断裂时代）</th><th>2026-29（冻结时代）</th></tr>
+<tr><td><strong>甘蔗供应</strong></td><td>丰收，间歇性过剩</td><td>2790万吨（↓9.9%）</td><td>改种效应+干旱滞后 → 更低</td></tr>
+<tr><td><strong>糖vs乙醇分流</strong></td><td>乙醇占比~15%</td><td>乙醇加速抢占（FFV启动）</td><td>乙醇占比推向30-40%</td></tr>
+<tr><td><strong>出口</strong></td><td>年均680万吨（10%全球贸易）</td><td>仅出口80万吨后全面禁止</td><td>至少三年 ≈ 0</td></tr>
+<tr style="background:rgba(231,76,60,0.06);"><td><strong>库存</strong></td><td>800-1000万吨正常</td><td>降至~350万吨（30年低）</td><td>或跌破300万吨→被迫进口</td></tr>
+</table>
+
+<div class="warning" style="margin-top:8px;">
+<strong>⚠️ 极端情景 — 印度重启进口：</strong>路透社和MEIR Commodities指出，印度可能被迫重启食糖进口——将是2016-17以来首次。2009/2010年印度大规模进口曾推动全球糖价飙升至此前水平近三倍。
+</div>
+</div>
+
+<!-- ====== Part 2: Global Supply ====== -->
+<h2>二、全球供给面：印度缺席后的"三缺一"牌局</h2>
+
+<div class="card">
+<h3>巴西：史上最矛盾的生产季 — 压榨创纪录，制糖比却创新低</h3>
+<table>
+<tr><th>指标</th><th>2026/27（截至5月1日）</th><th>同比变化</th></tr>
+<tr><td>累计压榨甘蔗</td><td>6045.8万吨</td><td class="price-up">+74.58% 🔥 创纪录</td></tr>
+<tr><td>累计产糖</td><td>247.5万吨</td><td class="price-up">+55.24%</td></tr>
+<tr><td>累计乙醇产量</td><td>32.88亿升</td><td class="price-up">+71.84% 🚀</td></tr>
+<tr style="background:rgba(212,167,116,0.08);"><td><strong>制糖比例</strong></td><td><strong>38.16%</strong></td><td class="price-down">-7.07pp（从45.23%降至38.16%）</td></tr>
+</table>
+<p style="margin-top:10px; font-size:13px; color:var(--text2);">核心悖论：甘蔗压榨+74.58%，但糖产量仅+55%，乙醇产量+72%。制糖比从45.23%暴跌至38.16%——近三分之二甘蔗流向乙醇。原因：原油高企→乙醇溢价+巴西E85政策。9-10月厄尔尼诺降雨可能进一步干扰采收。</p>
+</div>
+
+<div class="card">
+<h3>泰国 + 欧盟：同步减产的"第三第四大产区"</h3>
+<table>
+<tr><th>产区</th><th>2026/27产量预测</th><th>同比变化</th><th>减产原因</th></tr>
+<tr><td><strong>泰国</strong></td><td>1020万吨</td><td class="price-down">-15%</td><td>糖价低迷→农民改种木薯；厄尔尼诺威胁</td></tr>
+<tr><td><strong>欧盟+英国</strong></td><td>1530万吨</td><td class="price-down">-12.5%</td><td>种植面积缩减+单产下降</td></tr>
+<tr style="background:rgba(231,76,60,0.06);"><td><strong>合计减产量</strong></td><td colspan="2">约 405万吨（泰国-180万+欧盟-225万）</td><td>—</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h3>全球四机构供需预测：惊人的910万吨分歧</h3>
+<table>
+<tr><th>机构</th><th>2026/27预测</th><th>缺口/盈余</th><th>关键假设</th></tr>
+<tr><td><strong>USDA</strong></td><td>产量1.849亿 · 消费1.800亿</td><td class="price-up">盈余480万吨</td><td>可能仍假设印度部分出口</td></tr>
+<tr><td><strong>ISO</strong></td><td>产量1.80亿吨（-1.15%）</td><td class="price-down">缺口26.2万吨</td><td>厄尔尼诺影响印度/泰国</td></tr>
+<tr><td><strong>StoneX</strong></td><td>产量1.937亿吨（-1%）</td><td class="price-down">缺口55万吨</td><td>印度/泰国/欧盟减产</td></tr>
+<tr style="background:rgba(231,76,60,0.06);"><td><strong>Green Pool</strong></td><td>缺口扩大</td><td class="price-down"><strong>缺口430万吨</strong></td><td>乙醇制糖比大幅下调</td></tr>
+</table>
+<div class="warning"><strong>⚠️ USDA(盈余480万) vs Green Pool(缺口430万) = 差距910万吨 —— 近十年最大机构分歧。</strong>市场当前定价的可能是USDA场景，但实际在走向Green Pool场景。这个预期差的修正=ICE糖价潜在上行动力。</div>
+</div>
+
+<!-- ====== Part 3: CHINA - NEW ====== -->
+<h2 style="color:var(--purple); border-bottom:2px solid var(--purple);">三、中国国内：被忽视的丰产现实 🔑 v2.0新增</h2>
+
+<div class="highlight" style="border-left-color:var(--purple); background:rgba(155,89,182,0.06);">
+<strong>核心发现：</strong>在全球糖市走向赤字的同时，中国国内正经历2000年以来最显著的一次扩产周期。2025/26榨季产量1280万吨（同比+14.7%），自给率突破80%，结余+192万吨——<strong>"阶段性过剩"已是行业共识</strong>。这与全球紧平衡形成罕见的内外矛盾格局。
+</div>
+
+<div class="card">
+<h3>CASDE中国食糖供需平衡表（2026年5月官方数据）</h3>
+<div class="card2" style="overflow-x:auto;">
+<table>
+<tr><th>指标</th><th>2024/25年度</th><th>2025/26年度（5月估计）</th><th>2026/27年度（5月预测）</th><th>同比变化</th></tr>
+<tr><td>糖料播种面积（千公顷）</td><td>1,406</td><td>1,439</td><td><strong>1,461</strong></td><td class="price-up">+1.5%</td></tr>
+<tr><td>——甘蔗面积</td><td>1,189</td><td>1,205</td><td><strong>1,248</strong></td><td class="price-up">+3.6%</td></tr>
+<tr><td>——甜菜面积</td><td>217</td><td>234</td><td>213</td><td>-9.0%</td></tr>
+<tr><td>糖料单产（吨/公顷）</td><td>61.80</td><td>60.55</td><td>60.92</td><td>+0.61%</td></tr>
+<tr style="background:rgba(39,174,96,0.06);"><td><strong>食糖产量（万吨）</strong></td><td>1,116</td><td><strong>1,280</strong></td><td><strong>1,293</strong></td><td class="price-down">+1.0%</td></tr>
+<tr><td>——甘蔗糖</td><td>960</td><td>1,123</td><td>1,143</td><td>+1.8%</td></tr>
+<tr><td>——甜菜糖</td><td>156</td><td>157</td><td>150</td><td>-4.5%</td></tr>
+<tr><td>食糖进口量（万吨）</td><td>462</td><td>500</td><td>480</td><td>-4.0%</td></tr>
+<tr><td>食糖消费量（万吨）</td><td>1,567</td><td>1,570</td><td>1,573</td><td>持平略增</td></tr>
+<tr><td>出口量（万吨）</td><td>16</td><td>18</td><td>18</td><td>—</td></tr>
+<tr style="background:rgba(155,89,182,0.06);"><td><strong>结余变化（万吨）</strong></td><td>-5</td><td><strong style="color:var(--purple);">+192</strong></td><td><strong style="color:var(--purple);">+182</strong></td><td class="price-up">从缺口→大幅过剩</td></tr>
+<tr><td>国内糖价预测（元/吨）</td><td>5,993</td><td>5,500-6,000</td><td>5,500-6,000</td><td>—</td></tr>
+<tr><td>国际糖价预测（美分/磅）</td><td>18.58</td><td>14.0-18.5</td><td>14.0-18.5</td><td>—</td></tr>
+</table>
+</div>
+<p style="font-size:12px; color:var(--text2); margin-top:4px;">数据来源：农业农村部市场预警专家委员会 CASDE-No.119（2026年5月12日发布）。食糖市场年度为当年10月至下年9月。</p>
+</div>
+
+<div class="card">
+<h3>产量创新高的"三引擎"</h3>
+<div class="card2">
+<ol style="font-size:13px; line-height:2; padding-left:20px;">
+<li><strong>面积扩张：</strong>糖料面积从1406→1439→1461千公顷持续扩种，甘蔗种植比较效益好（vs木薯/玉米），广西"双高"基地建设推动规模化种植。</li>
+<li><strong>单产提升：</strong>广西2025/26累计入榨甘蔗6092.82万吨，产糖率处于历史较好水平。蔗尾留种+高产糖料蔗品种推广+水肥一体化。</li>
+<li><strong>天气配合：</strong>2025年甘蔗生长期广西降雨充沛，气温适宜，无台风灾害——这是最关键的"天时"。但2026/27的天气风险尚未定价。</li>
+</ol>
+</div>
+</div>
+
+<div class="card">
+<h3>国内现货与进口成本（最新：2026年6月16-17日）</h3>
+<table>
+<tr><th>指标</th><th>数据</th><th>说明</th></tr>
+<tr><td><strong>广西产区现货</strong></td><td>5280-5340 元/吨</td><td>崇左/南宁/来宾/柳州糖厂车板价</td></tr>
+<tr><td><strong>云南昆明现货</strong></td><td>5110-5150 元/吨</td><td>昆明仓库价，走货快、出现排队</td></tr>
+<tr><td><strong>SR2701期货</strong></td><td>~5446 元/吨</td><td>郑商所 · 升水现货~150元</td></tr>
+<tr><td><strong>ICE原糖主力</strong></td><td>14.29 美分/磅</td><td>6月16日收盘</td></tr>
+<tr><td><strong>配额内进口成本</strong></td><td>~3863 元/吨</td><td>巴西糖 · 15%关税 · 加工费300元</td></tr>
+<tr style="background:rgba(155,89,182,0.06);"><td><strong>配额外进口成本</strong></td><td><strong>~4901 元/吨</strong></td><td>巴西糖 · 50%关税 · 加工费300元</td></tr>
+<tr style="background:rgba(39,174,96,0.06);"><td><strong>配额外进口利润</strong></td><td><strong>+599 元/吨</strong></td><td>日照现货5500 - 配额外成本4901</td></tr>
+<tr><td><strong>云南工业库存</strong></td><td>130.44万吨（5月末）</td><td>5月单月销糖31.12万吨</td></tr>
+</table>
+<p style="font-size:12px; color:var(--text2); margin-top:4px;">数据来源：泛糖科技/生意社/100PPI · 6月16-17日报价</p>
+
+<div class="warning" style="margin-top:12px;">
+<strong>⚠️ 配额外进口窗口已经打开：</strong>当前配额外进口成本4901元/吨，广西现货5280-5340 → 进口商每吨净赚380-440元。这意味着<strong>如果没有进口配额限制，国内糖价将被源源不断的廉价进口糖压制</strong>。但中国实行进口配额管理（194.5万吨配额内），配额外进口受许可证限制，因此SR不会直接跌至4900——但上行空间也受此压制。
+</div>
+</div>
+
+<div class="card">
+<h3>云南省：国内产量增长的最大边际贡献者</h3>
+<table>
+<tr><th>指标</th><th>数据</th></tr>
+<tr><td>截至3月底累计产糖</td><td>213.4万吨</td></tr>
+<tr><td>5月单月销糖</td><td>31.12万吨</td></tr>
+<tr><td>5月末工业库存</td><td>130.44万吨</td></tr>
+<tr><td>产量同比变化</td><td class="price-down">大幅增产（面积+单产双增）</td></tr>
+<tr><td>当前现货价格</td><td>5110-5150（昆明仓库价）— 价格优势明显，"出现排队出库"</td></tr>
+</table>
+<p style="font-size:12px; color:var(--accent); margin-top:8px;">云南糖因价格较广西低~200元/吨，走货速度快，说明下游对价格敏感且当前供应充裕。</p>
+</div>
+
+<!-- ====== Part 4: Tension Analysis ====== -->
+<h2 style="color:var(--purple);">四、内外矛盾的定价逻辑 🔑 核心章节</h2>
+
+<div class="conflict-card">
+<h3 style="color:var(--purple);">全球 vs 中国：白糖定价的两股相反力量</h3>
+
+<div class="tension-container">
+<div class="tension-side bull">
+<h4>🔴 全球多头驱动力</h4>
+<ul>
+<li>印度680万吨出口消失 → 全球可贸易糖收紧</li>
+<li>巴西制糖比38.16% → 增产不增糖</li>
+<li>泰国/欧盟同步减产405万吨</li>
+<li>厄尔尼诺持续 → 远期供给风险溢价</li>
+<li>→ <strong>ICE原糖上行通道：14¢→18-20¢</strong></li>
+</ul>
+</div>
+<div class="tension-side bear">
+<h4>🟢 国内空头压制力</h4>
+<ul>
+<li>产量1280万吨创纪录 → 自给率突破80%</li>
+<li>面积扩至1461千公顷 → 2026/27再增产</li>
+<li>结余+192万吨 → 阶段性过剩</li>
+<li>配额外进口利润+599元 → 进口压制</li>
+<li>→ <strong>SR上行空间有限：上限5500-6000</strong></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div class="card">
+<h3>SR价格的三层天花板与地板</h3>
+<div class="ceiling-bar">
+<div class="ceiling-row">
+<span class="level-name">历史前高</span>
+<div class="level-bar" style="width:100%; background:rgba(231,76,60,0.2); color:var(--red);">6000-6200</div>
+<span class="level-price" style="color:var(--red);">前高阻力</span>
+</div>
+<div class="ceiling-row">
+<span class="level-name">CASDE预测上沿</span>
+<div class="level-bar" style="width:90%; background:var(--purple);">~6000</div>
+<span class="level-price" style="color:var(--purple);">政策调控区</span>
+</div>
+<div class="ceiling-row">
+<span class="level-name">进口成本天花板</span>
+<div class="level-bar" style="width:65%; background:var(--orange);">ICE 18¢→6100</div>
+<span class="level-price" style="color:var(--orange);">如果ICE涨到18¢</span>
+</div>
+<div class="ceiling-row">
+<span class="level-name">→ 当前SR2701</span>
+<div class="level-bar" style="width:45%; background:var(--blue);">5446</div>
+<span class="level-price" style="color:var(--blue);">6月22日</span>
+</div>
+<div class="ceiling-row">
+<span class="level-name">→ 广西现货</span>
+<div class="level-bar" style="width:40%; background:var(--green);">5280-5340</div>
+<span class="level-price" style="color:var(--green);">现货基准</span>
+</div>
+<div class="ceiling-row">
+<span class="level-name">→ 配额外进口成本</span>
+<div class="level-bar" style="width:30%; background:rgba(39,174,96,0.4);">~4900</div>
+<span class="level-price" style="color:var(--green);">进口地板</span>
+</div>
+<div class="ceiling-row">
+<span class="level-name">→ 配额内进口成本</span>
+<div class="level-bar" style="width:20%; background:rgba(39,174,96,0.3);">~3860</div>
+<span class="level-price" style="color:var(--green);">理论底部</span>
+</div>
+</div>
+<p style="font-size:12px; color:var(--text2);"><strong>解读：</strong>在"国内过剩+进口窗口打开"的格局下，SR价格被锁在【4900（配额外进口成本）←→ 6000（CASDE预测上限）】的区间内。ICE如果从14¢涨到18¢，配额外成本从4900升到~6100，SR才会被拉向6000。但在国内过剩背景下，SR不会独立于ICE大幅上行。</p>
+</div>
+
+<div class="highlight" style="border-left-color:var(--purple); background:rgba(155,89,182,0.06);">
+<strong>核心论断：</strong>全球糖市"紧"的逻辑由ICE原糖表达更纯粹；国内"松"的逻辑压制SR上行弹性。因此——<br>
+<strong>多ICE原糖的确定性 > 多SR的确定性。</strong>如果非要参与SR，应等待两个条件之一：(A) ICE率先上涨→拉高进口成本→为SR提供上行动力；(B) SR跌至配额外成本附近(~4900-5000)→安全边际更大。
+</div>
+
+<!-- ====== Part 5: Timeline ====== -->
+<h2>五、时间轴：缺口释放的三个阶段</h2>
+
+<div class="card">
+<div class="timeline">
+<div class="tl-item done">
+<div class="tl-year">2026年Q2</div>
+<div class="tl-event">矛盾孕育期</div>
+<div class="tl-detail">· 印度禁令延续至9/30<br>· 巴西压榨加快但制糖比低<br>· 国内丰产1280万吨落地<br>· SR 5300-5500 横盘<br>· ICE 14-15¢</div>
+</div>
+<div class="tl-item active">
+<div class="tl-year">2026年Q3</div>
+<div class="tl-event">供给缺口验证期</div>
+<div class="tl-detail">· 印度库存降至350万吨<br>· 8-9月巴西降雨干扰<br>· 国内现货去库存加速<br>· 机构集中下调ICE预测<br>· ICE可能率先启动</div>
+</div>
+<div class="tl-item future">
+<div class="tl-year">2026年Q4–2027Q1</div>
+<div class="tl-event">缺口加速爆发期</div>
+<div class="tl-detail">· 印度库存跌破300万→进口讨论<br>· 北半球压榨季·泰国EU减产兑现<br>· 国内新榨季→面积数据确认<br>· ICE可能突破18¢<br>· SR被动跟随上行</div>
+</div>
+<div class="tl-item future">
+<div class="tl-year">2027年Q2–2028</div>
+<div class="tl-event">结构性短缺高潮</div>
+<div class="tl-detail">· 印度三年零出口确认<br>· 农民改种效应体现<br>· 缺口扩大至300-500万吨<br>· 国内可能迎来进口补库需求<br>· ICE与SR联动上涨</div>
+</div>
+</div>
+</div>
+
+<!-- ====== Part 6: Cross-validation with El Niño ====== -->
+<h2>六、与厄尔尼诺框架的交叉验证</h2>
+
+<div class="card">
+<table>
+<tr><th>维度</th><th>6/22上午（厄尔尼诺框架）</th><th>6/22v1（印度出口停滞）</th><th>6/22v2（+国内丰产修正）</th></tr>
+<tr><td><strong>白糖确定性</strong></td><td>⭐⭐⭐⭐</td><td>⭐⭐⭐⭐⭐</td><td>⭐⭐⭐⭐<span style="color:var(--purple); font-size:11px;">（下调，因国内过剩限制上行弹性）</span></td></tr>
+<tr><td><strong>全球多头强度</strong></td><td>印度减产</td><td>印度消失+乙醇+改种</td><td><strong>不变（全球紧格局确认）</strong></td></tr>
+<tr><td><strong>国内空头强度</strong></td><td>未分析</td><td>未分析</td><td><strong>产量1280万+结余192万→阶段性过剩</strong></td></tr>
+<tr><td><strong>最佳表达工具</strong></td><td>多SR</td><td>多SR + 多ICE</td><td><strong>多ICE > 多SR > 内外反套</strong></td></tr>
+<tr><td><strong>SR上行空间</strong></td><td>未量化</td><td>5300→6200-6500</td><td><strong>5300→5700-6000（下调）</strong></td></tr>
+<tr><td><strong>ICE上行空间</strong></td><td>未量化</td><td>14¢→18-20¢</td><td><strong>14¢→18-20¢（维持）</strong></td></tr>
+</table>
+
+<div class="highlight"><strong>排序修正：</strong>白糖确定性从⭐⭐⭐⭐⭐下调至⭐⭐⭐⭐——全球紧的逻辑不变，但国内过剩意味着SR上行弹性不如ICE。在厄尔尼诺框架品种排序中：棕榈油（⭐⭐⭐⭐⭐）暂时回到第一，白糖与它并列但上行空间打折。</div>
+</div>
+
+<!-- ====== Part 7: Strategy ====== -->
+<h2 style="color:var(--red);">七、修正后的投资策略矩阵 🔄 v2.0更新</h2>
+
+<div class="strat-grid">
+<div class="strat-card" style="border-top:4px solid var(--red);">
+<div class="rank">⭐⭐⭐⭐⭐</div>
+<h4>策略1【推荐】：多ICE原糖</h4>
+<p><strong>核心逻辑：</strong>ICE原糖是全球可贸易糖供给的直接定价工具。印度680万吨消失+巴西制糖比低位+泰欧减产→ICE从14¢向18-20¢的上行驱动力最纯粹。不受中国国内过剩影响。</p>
+<div class="card2" style="margin:10px 0; padding:10px;">
+<strong>入场：</strong>ICE 14-15¢ · <strong>目标：</strong>18-20¢ (+28-43%)<br>
+<strong>止损：</strong>13¢以下 · <strong>时间窗口：</strong>6-12个月<br>
+<strong>催化剂：</strong>Q3印度库存告急 / USDA下调盈余预测 / 巴西降雨干扰<br>
+<span style="color:var(--text2); font-size:11px;">⚠️ 通过跨境收益互换或外盘期货账户操作</span>
+</div>
+</div>
+
+<div class="strat-card" style="border-top:4px solid var(--orange);">
+<div class="rank">⭐⭐⭐⭐</div>
+<h4>策略2【次选】：多SR — 但降低预期</h4>
+<p><strong>核心逻辑修正：</strong>国内丰产1280万吨+结余+192万吨 → SR独立上行动力不足。但ICE若涨至18¢，配额外进口成本将升至~6100元/吨，SR会被动跟随至5700-6000区间。<strong>SR的上涨依赖ICE率先启动。</strong></p>
+<div class="card2" style="margin:10px 0; padding:10px;">
+<strong>建仓区间：</strong>5200-5350（比v1下调）<br>
+<strong>第一目标：</strong>5700-5800（<span style="color:var(--red);">vs v1的6200-6500大幅下调</span>）<br>
+<strong>乐观目标：</strong>6000（ICE涨至18¢+国内情绪共振）<br>
+<strong>止损：</strong>5050（季风转强+巴西制糖比回升）<br>
+<span style="color:var(--text2); font-size:11px;">⚠️ 国内过剩使SR弹性打折，不建议重仓</span>
+</div>
+</div>
+
+<div class="strat-card" style="border-top:4px solid var(--purple);">
+<div class="rank">⭐⭐⭐⭐</div>
+<h4>策略3【新增】：多ICE + 空SR 内外反套</h4>
+<p><strong>核心逻辑：</strong>全球紧（利多ICE）+ 国内松（利空SR）→ ICE涨速 > SR涨速 → 内外价差收窄。这是CASDE官方预测的方向（"国内外价差有望收窄"）。用多ICE原糖对冲SR多头、或直接做内外反套。</p>
+<div class="card2" style="margin:10px 0; padding:10px;">
+<strong>方向：</strong>多ICE原糖 + 空SR<br>
+<strong>逻辑：</strong>ICE从14¢→18¢（+29%），SR从5300→5700（+7.5%）<br>
+<strong>风险：</strong>国内突然放开进口→SR更弱（反而有利反套）<br>
+<strong>风险：</strong>ICE不涨（全球需求崩塌）→反套失效<br>
+<span style="color:var(--text2); font-size:11px;">⚠️ 需要两个市场同时操作，执行难度高</span>
+</div>
+</div>
+
+<div class="strat-card" style="border-top:4px solid var(--blue);">
+<div class="rank">⭐⭐⭐</div>
+<h4>策略4：白糖期权 — 买虚值看涨</h4>
+<p><strong>核心逻辑修正：</strong>买SR2701-C-5800或C-6000虚值看涨，用极低成本押注"ICE飙升+国内情绪共振→SR突破6000"的尾部风险。国内过剩使这种情景概率降低（vs v1），但因为成本极低，风险收益比仍可接受。</p>
+<div class="card2" style="margin:10px 0; padding:10px;">
+<strong>合约：</strong>SR2701-C-5800 / SR2705-C-6000<br>
+<strong>最大损失：</strong>权利金（有限）<br>
+<strong>触发条件：</strong>ICE突破18¢ + 印度进口讨论出现<br>
+<span style="color:var(--text2); font-size:11px;">⚠️ 国内过剩使虚值期权兑现概率降低</span>
+</div>
+</div>
+</div>
+
+<div style="clear:both;"></div>
+
+<!-- ====== Part 8: Risks ====== -->
+<h2>八、风险矩阵（v2.0更新）</h2>
+
+<div class="card">
+<table>
+<tr><th>风险因素</th><th>概率</th><th>影响</th><th>触发条件</th></tr>
+<tr>
+<td><strong>国内丰产超预期 → SR独立下行</strong></td>
+<td style="color:var(--green);">中高 35%</td>
+<td class="price-down">SR跌破5200</td>
+<td>2026/27面积数据超1461千公顷+天气持续配合→产量冲击1350万吨。这是v1未考虑的全新风险</td>
+</tr>
+<tr>
+<td><strong>巴西制糖比突然回升</strong></td>
+<td>中 25%</td>
+<td class="price-down">糖价回落5-8%</td>
+<td>原油暴跌→乙醇经济性消失→糖厂切换回制糖。当前原油$70+暂不支持</td>
+</tr>
+<tr>
+<td><strong>印度季风意外转强</strong></td>
+<td>低 15%</td>
+<td class="price-down">部分修复供给预期</td>
+<td>7-8月季风超预期恢复。但农民已改种大豆→种植面积不可逆减少</td>
+</tr>
+<tr>
+<td><strong>中国超预期释放进口配额</strong></td>
+<td style="color:var(--red);">中 30%</td>
+<td class="price-up">利多ICE · 利空SR</td>
+<td>政府为平抑国内糖价释放额外配额→ICE涨、SR受抑。内外反套受益于这种情景</td>
+</tr>
+<tr>
+<td><strong>全球经济衰退 → 需求崩塌</strong></td>
+<td>中低 20%</td>
+<td class="price-down">ICE和SR同步下跌</td>
+<td>糖需求弹性低（食品刚需），但乙醇需求可能受原油拖累→巴西制糖比回升</td>
+</tr>
+<tr style="background:rgba(231,76,60,0.06);">
+<td><strong>印度被迫重启进口</strong></td>
+<td>中 25%</td>
+<td class="price-up"><strong>极端利多（历史涨3倍）</strong></td>
+<td>库存跌破250-300万吨→政府被迫开放进口。2009/2010先例：糖价涨3倍</td>
+</tr>
+<tr style="background:rgba(155,89,182,0.06);">
+<td><strong>国内丰产叠加ICE不涨 → SR阴跌</strong></td>
+<td style="color:var(--green);">中 25%</td>
+<td class="price-down">SR 5300→4900-5000</td>
+<td>国内库存持续消化缓慢+ICE横盘14-15¢ → 配额外进口利润无法传导至国内。这是多SR的最大风险</td>
+</tr>
+</table>
+</div>
+
+<!-- ====== Part 9: Conclusion ====== -->
+<h2>九、核心结论（v2.0）</h2>
+
+<div class="card">
+<ol style="font-size:14px; line-height:2.2; padding-left:20px;">
+<li><strong>全球紧 vs 中国松 = 白糖市场的核心矛盾：</strong>印度消失680万吨/年 → ICE原糖上行驱动力强。但中国产量1280万吨创纪录+结余+192万吨 → SR上行弹性被国内过剩压制。这是当前白糖研究中<strong>最容易被忽视的结构性矛盾</strong>。</li>
+
+<li><strong>多ICE > 多SR：</strong>全球紧格局由ICE表达更纯粹。SR的上涨不是独立的——它依赖ICE先涨、拉高进口成本后被动跟随。如果ICE从14¢→18¢（+29%），配额外成本从4900→6100，SR可能从5300→5700-6000（+7.5-13%）。弹性打折。</li>
+
+<li><strong>SR目标价下调：</strong>6200-6500（v1）→ 5700-6000（v2）。原因：(A) 国内结余192万吨将持续压制现货；(B) 配额外进口窗口已打开，进口利润+599元/吨形成天花板；(C) 2026/27面积继续扩至1461千公顷，产量预测1293万吨。</li>
+
+<li><strong>白糖确定性从⭐⭐⭐⭐⭐下调至⭐⭐⭐⭐：</strong>全球紧逻辑不变，但国内因素压缩了上行空间和确定性。在厄尔尼诺框架品种排序中，棕榈油（无国内产量对冲）的纯度更高。</li>
+
+<li><strong>内外反套（多ICE+空SR）的逻辑支撑最强：</strong>CASDE官方预测"国内外价差有望收窄"——即ICE涨幅 > SR涨幅。如果ICE涨到18¢+国内过剩压制SR在5700-5800，内外价差将从当前~900元收窄至~300元。这是CASDE、基本面、策略三者的逻辑交汇点。</li>
+
+<li><strong>最重要的观察节点：</strong>
+  <ul style="margin-left:20px; margin-top:6px;">
+  <li><strong>2026年6月底</strong> — CASDE 6月平衡表：25/26最终产量定产数据</li>
+  <li><strong>2026年7-8月</strong> — 印度季风实际降雨 vs 预测 + 国内销糖进度</li>
+  <li><strong>2026年9月</strong> — 印度出口禁令到期是否延续 + 巴西降雨干扰</li>
+  <li><strong>2026年10月</strong> — 印度期初库存实际数据 + 国内26/27新榨季启动</li>
+  <li><strong>2027年Q1</strong> — 印度库存是否跌破300万 → 进口讨论是否出现</li>
+  </ul>
+</li>
+</ol>
+</div>
+
+<div class="highlight" style="border-left-color:var(--purple); background:rgba(155,89,182,0.06); margin-top:16px;">
+<strong>一句话总结（v2.0）：</strong>全球糖市从"过剩"向"赤字"的结构性切换方向不变，但<strong>中国国内正经历2000年以来最显著的扩产周期</strong>，产量1280万吨+结余192万吨的"阶段性过剩"意味着：<strong>多ICE是更纯粹的多头工具，多SR需降低预期并等待更好入场点。</strong>内外矛盾的定价权争夺，将是未来6-12个月白糖投资的核心命题。
+</div>
+
+<div class="warning" style="margin-top:16px;">
+<strong>v2.0更新说明（vs v1.0）：</strong><br>
+· <span style="color:var(--purple);">新增：</span>第三章"中国国内供求分析"（CASDE平衡表+现货/进口成本数据）<br>
+· <span style="color:var(--purple);">新增：</span>第四章"内外矛盾的定价逻辑"（三层天花板+地板分析框架）<br>
+· <span style="color:var(--red);">修正：</span>白糖确定性⭐⭐⭐⭐⭐→⭐⭐⭐⭐<br>
+· <span style="color:var(--red);">修正：</span>SR目标价6200-6500→5700-6000<br>
+· <span style="color:var(--red);">修正：</span>首选策略从"多SR"改为"多ICE > 多SR"<br>
+· <span style="color:var(--purple);">新增：</span>策略3"多ICE + 空SR内外反套"<br>
+· <span style="color:var(--purple);">新增：</span>风险"国内丰产叠加ICE不涨→SR阴跌"
+</div>
+
+<!-- Footnote -->
+<div class="footnote">
+<strong>数据来源：</strong><br>
+· 华尔街见闻 (2026.06.22) — 路透社独家报道 / 印度食品部 / MEIR Commodities<br>
+· USDA WASDE 2026/27 全球糖供需预测 (2026.06.06)<br>
+· 国际糖业组织 (ISO) — 2026/27 全球糖供需预测 (2026.05)<br>
+· StoneX / Green Pool Commodity Specialists — 2026/27 预测<br>
+· 农业农村部 CASDE-No.119 — 中国食糖供需平衡表 (2026.05.12)<br>
+· 2026全国食糖市场形势分析会 (2026.04.28 广州)<br>
+· 泛糖科技 — 进口成本及利润估算 (2026.06.16-17)<br>
+· 生意社/100PPI — 国内现货价格 (2026.06.17)<br>
+· UNICA / Conab / S&P Global Energy — 巴西生产数据<br>
+报告生成时间：2026年6月22日 · v2.0 · 仅供研究参考，不构成投资建议
+</div>
+
+</div>
+</body>
+</html>

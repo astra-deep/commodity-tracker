@@ -1,0 +1,14 @@
+# 不在版本库中保存的源文件
+*.pdf
+*.docx
+*.pptx
+*.xlsx
+
+# 临时文件
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db
+
+# Git 自身
+.git/

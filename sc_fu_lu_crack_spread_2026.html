@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>上海原油&燃料油：裂解价差背离与地缘博弈深度分析</title>
+<style>
+:root {
+  --bg: #0a0e14;
+  --card: #131820;
+  --border: #1e2a3a;
+  --text: #c8d6e5;
+  --text2: #8395a7;
+  --accent: #f39c12;
+  --red: #e74c3c;
+  --green: #27ae60;
+  --blue: #3498db;
+  --purple: #9b59b6;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:'Segoe UI',system-ui,sans-serif; line-height:1.65; }
+.container { max-width:1200px; margin:0 auto; padding:20px; }
+
+header {
+  text-align:center; padding:60px 20px 40px;
+  background:linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  border-bottom:3px solid var(--accent);
+  margin-bottom:30px;
+}
+header h1 { font-size:2.2em; color:#fff; margin-bottom:10px; }
+header .subtitle { color:var(--accent); font-size:1.1em; margin-bottom:5px; }
+header .date { color:var(--text2); font-size:0.9em; }
+
+.timeline { margin:30px 0; position:relative; }
+.timeline::before {
+  content:''; position:absolute; left:30px; top:0; bottom:0;
+  width:3px; background:linear-gradient(to bottom, var(--red), var(--accent), var(--green));
+}
+.tl-item { position:relative; padding:15px 0 15px 70px; }
+.tl-dot {
+  position:absolute; left:24px; top:22px;
+  width:14px; height:14px; border-radius:50%;
+  background:var(--accent); border:3px solid var(--bg);
+}
+.tl-date { color:var(--accent); font-size:0.85em; font-weight:bold; }
+.tl-content { background:var(--card); padding:15px 20px; border-radius:8px; border:1px solid var(--border); }
+.tl-content h3 { color:#fff; margin-bottom:5px; font-size:1.05em; }
+.tl-content p { color:var(--text2); font-size:0.92em; }
+
+.section { margin:40px 0; }
+.section h2 {
+  font-size:1.6em; color:#fff; margin-bottom:20px;
+  padding-bottom:10px; border-bottom:2px solid var(--border);
+  display:flex; align-items:center; gap:10px;
+}
+.section h2 .emoji { font-size:1.3em; }
+
+.data-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:16px; margin:20px 0; }
+.data-card {
+  background:var(--card); border:1px solid var(--border);
+  border-radius:10px; padding:22px; transition:all 0.3s;
+}
+.data-card:hover { border-color:var(--accent); transform:translateY(-2px); }
+.data-card h3 { color:var(--accent); font-size:1em; margin-bottom:12px; }
+.data-card .price { font-size:2em; font-weight:bold; color:#fff; }
+.data-card .change { font-size:0.9em; margin-top:5px; }
+.data-card .change.red { color:var(--red); }
+.data-card .change.green { color:var(--green); }
+.data-card .info { color:var(--text2); font-size:0.85em; margin-top:10px; line-height:1.6; }
+
+.table-wrap { overflow-x:auto; margin:20px 0; }
+table { width:100%; border-collapse:collapse; background:var(--card); border-radius:8px; overflow:hidden; }
+th { background:#1a2740; color:var(--accent); padding:12px 16px; text-align:left; font-size:0.9em; }
+td { padding:10px 16px; border-bottom:1px solid var(--border); font-size:0.9em; }
+tr:last-child td { border-bottom:none; }
+tr:hover td { background:rgba(243,156,18,0.05); }
+.highlight { color:var(--accent); font-weight:bold; }
+.red-text { color:var(--red); }
+.green-text { color:var(--green); }
+
+.insight-box {
+  background:linear-gradient(135deg, #1a1a2e, #16213e);
+  border:1px solid var(--accent); border-radius:10px;
+  padding:25px; margin:25px 0;
+}
+.insight-box h3 { color:var(--accent); margin-bottom:12px; font-size:1.15em; }
+.insight-box p { color:var(--text); line-height:1.8; }
+
+.warn-box {
+  background:linear-gradient(135deg, #2d1a1a, #3d2020);
+  border:1px solid var(--red); border-radius:10px;
+  padding:25px; margin:25px 0;
+}
+.warn-box h3 { color:var(--red); margin-bottom:12px; }
+.warn-box p { color:var(--text); }
+
+.scenario-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:16px; margin:20px 0; }
+.scenario-card {
+  padding:20px; border-radius:10px; border:2px solid;
+}
+.scenario-card.bullish { background:#1a2d1a; border-color:var(--green); }
+.scenario-card.base { background:#1a1a2d; border-color:var(--blue); }
+.scenario-card.bearish { background:#2d1a1a; border-color:var(--red); }
+.scenario-card h4 { margin-bottom:10px; font-size:1.05em; }
+.scenario-card.bullish h4 { color:var(--green); }
+.scenario-card.base h4 { color:var(--blue); }
+.scenario-card.bearish h4 { color:var(--red); }
+.scenario-card p { font-size:0.9em; color:var(--text2); line-height:1.7; }
+.scenario-card .prob { font-size:0.8em; margin-top:8px; opacity:0.7; }
+
+.conclusion {
+  background:linear-gradient(135deg, #1a1a2e, #0f3460);
+  border:2px solid var(--accent); border-radius:12px;
+  padding:30px; margin:30px 0;
+}
+.conclusion h2 { color:var(--accent); border-bottom:none; margin-bottom:15px; }
+.conclusion ul { list-style:none; padding:0; }
+.conclusion li {
+  padding:8px 0; color:var(--text);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+}
+.conclusion li:last-child { border-bottom:none; }
+.conclusion li::before { content:'▸ '; color:var(--accent); }
+
+footer { text-align:center; padding:30px; color:var(--text2); font-size:0.85em; border-top:1px solid var(--border); margin-top:40px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>🛢️ 上海原油 & 燃料油深度分析</h1>
+  <div class="subtitle">裂解价差背离、地缘博弈与实物-金融的终极对决</div>
+  <div class="date">2026年6月23日 | 数据截至6月22日收盘 & 23日夜盘</div>
+</header>
+
+<!-- ==================== 一、战争时间线 ==================== -->
+<div class="section">
+  <h2><span class="emoji">📅</span> 一、美伊战争全时间线：从封锁到松绑</h2>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot" style="background:var(--red)"></div>
+      <div class="tl-date">2026.02.28</div>
+      <div class="tl-content">
+        <h3>🔴 2·28 事件 — 美伊战争爆发</h3>
+        <p>美伊谈判破裂引发战略级对峙，伊朗以主权名义关闭霍尔木兹海峡——近40年首次。全球约20%石油供应通道被掐断。</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot" style="background:var(--red)"></div>
+      <div class="tl-date">2026.03.04 ~ 03.12</div>
+      <div class="tl-content">
+        <h3>🔴 油价暴力拉升</h3>
+        <p>布伦特原油在五周内从 $70 → $111/桶（+58%）；WTI暴涨9.72%至$95.73；3月12日布伦特突破$100关口。</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-date">2026.03.20 前后</div>
+      <div class="tl-content">
+        <h3>🟠 裂解价差创历史极值</h3>
+        <p>美国3-2-1裂解价差飙至 <span class="highlight">$55.78/桶</span>（正常区间$10-20，近3倍）；柴油裂解$87.02/桶；新加坡综合炼油利润升至近$30/桶（近四年高点）。亚洲成品油涨幅达原油涨幅的1.5-3倍，航空燃油裂解价差飙至$80-100/桶。</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-date">2026.05.13</div>
+      <div class="tl-content">
+        <h3>🟡 IEA预计供应缺口</h3>
+        <p>IEA月报：假设霍尔木兹海峡从6月逐步恢复，2026年全球石油供应平均下降 <span class="highlight">390万桶/日</span>。5月OPEC产量仅1,883万桶/日（5年同期低位）。</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot" style="background:var(--green)"></div>
+      <div class="tl-date">2026.05.20</div>
+      <div class="tl-content">
+        <h3>🟢 美伊签署谅解备忘录</h3>
+        <p>启动最终协议谈判，核心要点：确保海峡开放、允许伊朗石油销售、解冻伊朗资产。</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot" style="background:var(--green)"></div>
+      <div class="tl-date">2026.06.16 ~ 06.22</div>
+      <div class="tl-content">
+        <h3>🟢 地缘缓和油价暴跌</h3>
+        <p>WTI 6月16日单日暴跌5.8%至$76.05/桶，刷新3月初以来新低。美国发布60天伊朗石油制裁豁免，3艘超级油轮（600万桶）穿越海峡驶向新加坡——自2月28日以来最大规模。布伦特跌至$77.90（已回到战前水平）。</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot" style="background:var(--blue)"></div>
+      <div class="tl-date">2026.06.23</div>
+      <div class="tl-content">
+        <h3>🔵 当前状态</h3>
+        <p>谈判仍在推进，力争60天内达成最终协议。但核心议题（核、浓缩铀处置）尚未触及。协调中心与冲突降级小组已设立。市场从极端恐惧切换为极端乐观，<span class="highlight">油价已回到战前，但成品油裂解价差与实物供应紧张仍未消散</span>。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 二、裂解价差背离 ==================== -->
+<div class="section">
+  <h2><span class="emoji">⚡</span> 二、裂解价差之谜：实物恶化 vs 金融空头压制</h2>
+
+  <div class="insight-box">
+    <h3>📊 核心矛盾：原油价格回不去了，但成品油还回不去</h3>
+    <p>布伦特已从$111跌回$78（完全回到战前），但精炼产品市场远未恢复正常。<br><br>
+    <strong>实物端真实紧张：</strong>低硫燃料油调和组分持续短缺、海外汽柴油结构性矛盾未解、亚洲高硫油供应紧+夏季发电需求。新加坡综合炼油利润仍高于正常水平。<br><br>
+    <strong>金融端过度定价和平：</strong>市场赌注60天制裁豁免 → 伊朗全面回归 → 供应过剩。但IEA预测全年供应仍降390万桶/日，伊朗最多恢复150-200万桶/日，缺口仍在。<br><br>
+    <strong>这就是裂解价差背离的根源：</strong>原油价格被金融空头压着走，但实物产品市场在用真金白银投票——价格就是不跟原油跌。</p>
+  </div>
+
+  <div class="data-grid">
+    <div class="data-card">
+      <h3>🇺🇸 美国 3-2-1 裂解价差</h3>
+      <div class="price">~$25-30</div>
+      <div class="change green">从$55.78高位回落</div>
+      <div class="info">正常区间$10-20/桶<br>3月极端值$55.78<br>当前仍高于正常水平<br>柴油裂解已从$87降至~$35</div>
+    </div>
+    <div class="data-card">
+      <h3>🇸🇬 新加坡综合炼油利润</h3>
+      <div class="price">~$10-15</div>
+      <div class="change green">从$30高位回落</div>
+      <div class="info">3月初近$30/桶（四年高）<br>当前回落但仍在正区间<br>汽油裂解维持正值<br>柴油裂解回落更快</div>
+    </div>
+    <div class="data-card">
+      <h3>🇨🇳 国内 LU-FU 价差</h3>
+      <div class="price">862 元/吨</div>
+      <div class="change red">处于历史高位</div>
+      <div class="info">LU2608: 3,963元/吨<br>FU2609: 3,101元/吨<br>矛盾：LU供应更紧<br>调和组分缺乏是关键</div>
+    </div>
+  </div>
+
+  <div class="warn-box">
+    <h3>⚠️ 背离的核心警示</h3>
+    <p>裂解价差从极端值回落是正常的（海峡重开预期），但回落速度与原油下跌速度<strong>不对称</strong>。<br><br>
+    原油从高点跌了30%（$111→$78），但成品油裂解价差仅从$55→$25（跌了55%），绝对值仍高于$10-20的正常区间。<br><br>
+    <strong>这意味着：如果伊朗供应回归不如预期顺利，或者实物成品油紧张持续，裂解价差随时可能再次扩大——而做空原油的金融头寸将面临双重夹击。</strong></p>
+  </div>
+</div>
+
+<!-- ==================== 三、SC/FU/LU 三品种行情 ==================== -->
+<div class="section">
+  <h2><span class="emoji">📈</span> 三、SC/FU/LU 三品种当前行情全景</h2>
+
+  <div class="data-grid">
+    <div class="data-card" style="border-left:4px solid var(--blue)">
+      <h3>🛢️ SC2608 上海原油（主力）</h3>
+      <div class="price">501.7 <span style="font-size:0.5em">元/桶</span></div>
+      <div class="change red">-8.8元 (-1.72%)</div>
+      <div class="info">
+        昨结算: 510.5 元/桶<br>
+        夜盘: ~502 元/桶<br>
+        关键支撑: <span class="red-text">500 元/桶</span><br>
+        持仓: 50,319手
+      </div>
+    </div>
+    <div class="data-card" style="border-left:4px solid var(--accent)">
+      <h3>🔥 FU2609 高硫燃料油（主力）</h3>
+      <div class="price">3,101 <span style="font-size:0.5em">元/吨</span></div>
+      <div class="change red">-19元 (-0.61%)</div>
+      <div class="info">
+        夜盘: 3,072 元/吨<br>
+        关键支撑: <span class="red-text">3,000 元/吨</span><br>
+        供应: 持续紧张<br>
+        需求: 中东夏季发电+船燃
+      </div>
+    </div>
+    <div class="data-card" style="border-left:4px solid var(--green)">
+      <h3>💚 LU2608 低硫燃料油（主力）</h3>
+      <div class="price">3,963 <span style="font-size:0.5em">元/吨</span></div>
+      <div class="change red">-27元 (-0.68%)</div>
+      <div class="info">
+        LU2609: 昨收3,873<br>
+        关键支撑: <span class="red-text">3,900 元/吨</span><br>
+        供应: 调和组分短缺加剧<br>
+        海外汽柴油矛盾未解
+      </div>
+    </div>
+    <div class="data-card" style="border-left:4px solid var(--purple)">
+      <h3>📐 SC-FU-LU 价差关系</h3>
+      <div class="price" style="font-size:1.3em">SC→FU: -566 元/吨</div>
+      <div class="change red">SC→LU: +206 元/吨</div>
+      <div class="info">
+        原油成本(元/吨): 501.7×7.31=3,667<br>
+        FU对原油折价: <span class="red-text">-566</span>（残渣折价）<br>
+        LU对原油溢价: <span class="green-text">+206</span>（低硫溢价）<br>
+        LU-FU价差: <span class="highlight">862</span>（历史高位）
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 四、裂解价差深度拆解 ==================== -->
+<div class="section">
+  <h2><span class="emoji">🔬</span> 四、裂解价差深度拆解：从原油到燃料油的完整传导链</h2>
+
+  <div class="table-wrap">
+    <table>
+      <tr>
+        <th>价差类型</th>
+        <th>含义</th>
+        <th>当前水平</th>
+        <th>历史正常区间</th>
+        <th>状态</th>
+        <th>驱动因素</th>
+      </tr>
+      <tr>
+        <td><strong>3-2-1裂解价差</strong></td>
+        <td>3桶原油→2桶汽油+1桶柴油</td>
+        <td class="highlight">~$25-30/桶</td>
+        <td>$10-20/桶</td>
+        <td class="green-text">偏高但回落</td>
+        <td>从$55极端值回落，仍高于正常</td>
+      </tr>
+      <tr>
+        <td><strong>柴油裂解</strong></td>
+        <td>柴油-原油价差</td>
+        <td class="highlight">~$35/桶</td>
+        <td>$15-25/桶</td>
+        <td class="green-text">偏高</td>
+        <td>馏分油全球结构性短缺</td>
+      </tr>
+      <tr>
+        <td><strong>汽油裂解</strong></td>
+        <td>汽油-原油价差</td>
+        <td class="highlight">~$20/桶</td>
+        <td>$10-18/桶</td>
+        <td class="green-text">偏高</td>
+        <td>夏季驾驶旺季支撑</td>
+      </tr>
+      <tr>
+        <td><strong>LU-SC价差</strong></td>
+        <td>国内低硫燃油-上海原油</td>
+        <td class="highlight">+206元/吨</td>
+        <td>+50~150</td>
+        <td class="green-text">偏高</td>
+        <td>调和组分短缺+船燃升级需求</td>
+      </tr>
+      <tr>
+        <td><strong>LU-FU价差</strong></td>
+        <td>低硫-高硫燃料油</td>
+        <td class="highlight">862元/吨</td>
+        <td>400-700</td>
+        <td class="green-text">高位</td>
+        <td>LU供应更紧，FU有伊朗增量预期</td>
+      </tr>
+      <tr>
+        <td><strong>新加坡综合利润</strong></td>
+        <td>亚洲炼厂综合裂解利润</td>
+        <td class="highlight">~$10-15/桶</td>
+        <td>$5-10/桶</td>
+        <td class="green-text">偏高</td>
+        <td>从$30极端值回落</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="insight-box">
+    <h3>💡 关键发现：LU-FU价差862元/吨是天量信号</h3>
+    <p>LU-FU正常区间在400-700元/吨，当前862元已突破正常上限。<br><br>
+    <strong>为什么这么高？</strong><br>
+    1. LU端：低硫调和组分（VLSFO调油料）全球短缺。战争期间全球炼厂最大化汽油/柴油产出，低硫调油料被挤占 → 供应持续收紧<br>
+    2. FU端：伊朗是中东高硫燃料油的重要出口国。60天豁免 → 伊朗高硫油出海预期 → FU相对承压<br>
+    3. <strong>结构矛盾：</strong>即使海峡重开，炼厂产品结构调整需要时间（3-6个月），LU供应短缺可能持续到Q4<br><br>
+    <strong>光大期货核心观点：</strong>"海外汽柴油结构性矛盾尚未缓解，低硫供应端的支撑更为明显，LU-FU价差有望维持高位"</p>
+
+    <div style="margin-top:16px; padding:12px; background:#1a2332; border-radius:8px; border:1px solid #2a3548;">
+      <img src="images/lu_fu_spread_chart_20260623.png" alt="LU-FU价差走势图(2020-2026)" style="width:100%; max-width:800px; display:block; margin:0 auto;">
+      <p style="margin-top:8px; color:#94a3b8; font-size:0.8em; text-align:center;">📈 LU-FU日收盘价差走势图（2020-2026）与LU/FU收盘价走势对比</p>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 五、供需基本面 ==================== -->
+<div class="section">
+  <h2><span class="emoji">📦</span> 五、供需基本面：三个维度的数据交叉验证</h2>
+
+  <div class="table-wrap">
+    <table>
+      <tr><th>维度</th><th>指标</th><th>最新数据</th><th>变化方向</th></tr>
+      <tr><td rowspan="3"><strong>原油供应</strong></td><td>5月OPEC产量</td><td>1,882.9万桶/日</td><td class="red-text">5年同期低位</td></tr>
+      <tr><td>美国原油产量</td><td>1,380.6万桶/日</td><td class="green-text">环比+0.1%</td></tr>
+      <tr><td>美国钻井数</td><td>433台</td><td class="green-text">环比+2台</td></tr>
+      <tr><td rowspan="3"><strong>原油库存</strong></td><td>EIA商业原油</td><td>4.182亿桶</td><td class="red-text">↓826万桶（去库）</td></tr>
+      <tr><td>库欣库存</td><td>2,003.4万桶</td><td class="red-text">↓160.6万桶</td></tr>
+      <tr><td>中国港口库容率</td><td>53.02%</td><td class="red-text">周↓2.06个百分点</td></tr>
+      <tr><td rowspan="3"><strong>炼厂开工</strong></td><td>主营炼厂常减压</td><td>67.23%</td><td class="red-text">同比-12.6%</td></tr>
+      <tr><td>独立炼厂常减压</td><td>43.47%</td><td class="red-text">环比-2个百分点</td></tr>
+      <tr><td>美国炼厂利用率</td><td>92-95%</td><td class="green-text">接近上限</td></tr>
+      <tr><td rowspan="3"><strong>燃料油库存</strong></td><td>山东油浆库存率</td><td>15.3%</td><td class="red-text">↑0.3%</td></tr>
+      <tr><td>山东渣油库存率</td><td>2.8%</td><td class="green-text">↓3.6%（极低）</td></tr>
+      <tr><td>山东蜡油库存率</td><td>0.7%</td><td class="green-text">↑0.1%（极低）</td></tr>
+    </table>
+  </div>
+
+  <div class="insight-box">
+    <h3>📊 供需核心结论</h3>
+    <p>1. <strong>全球原油库存仍在快速去化：</strong>EIA商业库存周降826万桶，中国港口库容率降至53%，说明实物供应并未过剩<br>
+    2. <strong>中国炼厂开工极低：</strong>主营67%、独立43%——历史低位，这不是利润驱动的结果，而是原料可得性问题（进口原油到港受战争+制裁扰动）<br>
+    3. <strong>燃料油库存极低：</strong>山东渣油库存仅2.8%，蜡油0.7%——实物端极度紧张<br>
+    4. <strong>去库存 + 低开工 ≠ 供应过剩：</strong>期货价格在交易"未来伊朗供应回归"，但现货市场在反映"现在货不够"</p>
+  </div>
+</div>
+
+<!-- ==================== 六、情景推演 ==================== -->
+<div class="section">
+  <h2><span class="emoji">🎯</span> 六、未来三情景推演</h2>
+
+  <div class="scenario-grid">
+    <div class="scenario-card bullish">
+      <h4>🟢 情景一：伊朗协议破裂 / 裂解价差重扩</h4>
+      <p>
+        <strong>触发条件：</strong>60天谈判触及核议题时破裂，海峡再次封锁<br>
+        <strong>SC2608目标：</strong>600-650 元/桶<br>
+        <strong>FU2609目标：</strong>3,500-3,800 元/吨<br>
+        <strong>LU2608目标：</strong>4,500-5,000 元/吨<br>
+        <strong>LU-FU价差：</strong>900-1,200 元/吨<br>
+        <strong>核心逻辑：</strong>实物裂解价差急速扩大+原油空头恐慌回补
+      </p>
+      <div class="prob">概率：20-25%</div>
+    </div>
+
+    <div class="scenario-card base">
+      <h4>🔵 情景二：协议推进但供应恢复缓慢（基准）</h4>
+      <p>
+        <strong>触发条件：</strong>60天框架协议达成但执行需3-6个月，伊朗产量渐进回归<br>
+        <strong>SC2608目标：</strong>480-520 元/桶（宽幅震荡）<br>
+        <strong>FU2609目标：</strong>2,900-3,200 元/吨<br>
+        <strong>LU2608目标：</strong>3,800-4,100 元/吨<br>
+        <strong>LU-FU价差：</strong>700-900 元/吨（维持高位）<br>
+        <strong>核心逻辑：</strong>原油承压但下方有去库支撑；LU供应短缺需要时间缓解
+      </p>
+      <div class="prob">概率：50-55%</div>
+    </div>
+
+    <div class="scenario-card bearish">
+      <h4>🔴 情景三：快速全面协议 / 伊朗全面回归</h4>
+      <p>
+        <strong>触发条件：</strong>60天达成全面协议，伊朗1,500-2,000万桶浮仓集中释放<br>
+        <strong>SC2608目标：</strong>430-460 元/桶<br>
+        <strong>FU2609目标：</strong>2,600-2,800 元/吨<br>
+        <strong>LU2608目标：</strong>3,500-3,700 元/吨<br>
+        <strong>LU-FU价差：</strong>500-700 元/吨（收窄）<br>
+        <strong>核心逻辑：</strong>全线崩溃，但LU-FU价差即使收窄也难跌破500
+      </p>
+      <div class="prob">概率：20-25%</div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 七、策略建议 ==================== -->
+<div class="section">
+  <h2><span class="emoji">🎯</span> 七、投资策略建议</h2>
+
+  <div class="table-wrap">
+    <table>
+      <tr><th style="width:18%">策略</th><th style="width:40%">逻辑</th><th style="width:42%">具体操作</th></tr>
+      <tr>
+        <td><strong>多LU空FU</strong><br><span class="green-text">（核心推荐）</span></td>
+        <td>LU供应短缺（调和组分缺乏）具有持续性（3-6个月），伊朗高硫油回归利空FU。裂解价差背离的核心受益品种。</td>
+        <td>多LU2608 / 空FU2609<br>入场LU-FU价差800-850<br>目标1,000+<br>止损750</td>
+      </tr>
+      <tr>
+        <td><strong>多LU空SC</strong></td>
+        <td>成品油实物紧张 vs 原油金融空头压制。如果海峡问题反复，LU上行弹性远大于SC。</td>
+        <td>做多LU-SC裂解价差<br>当前+206元/吨<br>目标+350-500<br>止损+120</td>
+      </tr>
+      <tr>
+        <td><strong>SC区间操作</strong></td>
+        <td>500附近是强支撑（去库+低开工），但上方受伊朗协议压制。宽幅震荡格局。</td>
+        <td>480-500区间轻仓试多<br>止损470<br>目标530-550</td>
+      </tr>
+      <tr>
+        <td><strong>等待右侧做多LU</strong></td>
+        <td>如果伊朗协议推进顺利但LU供应矛盾持续，LU相对SC将表现出超强韧性。等原油企稳后做多LU。</td>
+        <td>观察SC是否在480-500企稳<br>企稳后做多LU2608/LU2609<br>止损3,700<br>目标4,300-4,500</td>
+      </tr>
+      <tr>
+        <td><strong>风险对冲：多SC空FU</strong></td>
+        <td>极端情况下如果伊朗供应大量涌入，高硫燃料油首当其冲（伊朗是高硫主要出口国）</td>
+        <td>作为LU-FU多头的对冲<br>SC-FU价差当前-566<br>目标-300~-200</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<!-- ==================== 八、结论 ==================== -->
+<div class="section">
+  <div class="conclusion">
+    <h2>🏁 核心结论</h2>
+    <ul>
+      <li><strong>1. 原油回到战前 ≠ 一切恢复常态。</strong>布伦特$78已完全回吐战争涨幅，但全球去库存（EIA周降826万桶）、炼厂低开工（中国主营67%）、燃料油极低库存（渣油2.8%）说明实物端仍处于"战争后遗症"中。</li>
+      <li><strong>2. 裂解价差背离是2026年最核心的结构性矛盾。</strong>原油跌了30%，但成品油裂解价差仍高于正常区间。这不是技术性偏差，而是实物供应恶化和金融预期乐观之间的真实裂痕。</li>
+      <li><strong>3. LU-FU价差862元/吨是天量信号。</strong>LU调和组分短缺具有持续性（炼厂调整产品结构需3-6个月），FU受伊朗高硫油回归预期压制。这个价差在基准情景下有望维持高位甚至继续扩大。</li>
+      <li><strong>4. 最大的风险不是伊朗协议本身，而是协议执行速度和实物恢复速度的不匹配。</strong>如果60天框架协议达成但伊朗产量回归需要6个月，期间裂解价差会先扩大再收缩——先多LU空FU，再等待做空价差。</li>
+      <li><strong>5. 当前最优策略：多LU空FU（核心仓位）+ SC区间低吸（辅助仓位）。</strong>不要追空原油（去库+地缘仍有反复风险），不要在低价差做空LU-FU。</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ==================== 数据来源 ==================== -->
+<div class="section">
+  <h2><span class="emoji">📚</span> 数据来源</h2>
+  <div style="color:var(--text2); font-size:0.9em; line-height:2;">
+    · 光大期货 6月23日能源化工日报（钟美燕/杜冰沁）<br>
+    · 瑞达期货研究院 6月23日晨会纪要<br>
+    · Gas Price Check — The 2026 Refining Margin Squeeze（2026.05.20）<br>
+    · OilEyes — Crack Spread Forensics 2026（2026.06.21）<br>
+    · IEA Oil Market Report May 2026<br>
+    · EIA Short-Term Energy Outlook June 2026<br>
+    · 百度百科 — 2·28伊朗关闭霍尔木兹海峡事件<br>
+    · 虎嗅 — 上锁的霍尔木兹：美伊战争中的石油困局<br>
+    · 雪球 — 美伊冲突升级！霍尔木兹海峡封控<br>
+    · 东方财富/新浪财经/金投网 — 期货实时行情<br>
+    · 瑞达期货 — 主营炼厂/独立炼厂开工率、燃料油库存数据
+  </div>
+</div>
+
+<footer>
+  本报告仅供研究参考，不构成投资建议。期货交易风险巨大，请谨慎决策。<br>
+  生成时间：2026年6月23日 12:06 CST
+</footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>厄尔尼诺2026投资映射框架 — 棕榈油·天然橡胶·白糖·铜</title>
+<style>
+:root {
+  --bg: #0d1117; --bg2: #161b22; --bg3: #21262d;
+  --text: #e6edf3; --text2: #8b949e; --accent: #58a6ff;
+  --red: #f85149; --green: #3fb950; --yellow: #d29922; --blue: #58a6ff;
+  --purple: #bc8cff; --cyan: #39d2c0; --orange: #f0883e;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg); color: var(--text); font-family: -apple-system, 'Segoe UI', 'Noto Sans SC', sans-serif; line-height: 1.7; padding: 20px; max-width: 1100px; margin: 0 auto; }
+h1 { font-size: 28px; color: var(--accent); border-bottom: 2px solid var(--accent); padding-bottom: 12px; margin: 30px 0 20px; }
+h2 { font-size: 22px; color: var(--cyan); margin: 28px 0 14px; border-left: 4px solid var(--cyan); padding-left: 12px; }
+h3 { font-size: 17px; color: var(--yellow); margin: 20px 0 10px; }
+a { color: var(--accent); text-decoration: none; }
+.card { background: var(--bg2); border: 1px solid var(--bg3); border-radius: 8px; padding: 20px; margin: 16px 0; }
+.card2 { background: var(--bg3); border-radius: 6px; padding: 14px; margin: 10px 0; }
+table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 13px; }
+th { background: var(--bg3); color: var(--accent); padding: 8px 10px; text-align: left; border: 1px solid #30363d; }
+td { padding: 7px 10px; border: 1px solid #30363d; vertical-align: top; }
+tr:nth-child(even) { background: rgba(255,255,255,0.02); }
+.tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; margin: 2px 3px 2px 0; }
+.tag-red { background: rgba(248,81,73,0.15); color: var(--red); border: 1px solid rgba(248,81,73,0.3); }
+.tag-green { background: rgba(63,185,80,0.15); color: var(--green); border: 1px solid rgba(63,185,80,0.3); }
+.tag-blue { background: rgba(88,166,255,0.15); color: var(--accent); border: 1px solid rgba(88,166,255,0.3); }
+.tag-yellow { background: rgba(210,153,34,0.15); color: var(--yellow); border: 1px solid rgba(210,153,34,0.3); }
+.tag-purple { background: rgba(188,140,255,0.15); color: var(--purple); border: 1px solid rgba(188,140,255,0.3); }
+.price-up { color: var(--red); font-weight: 600; }
+.price-down { color: var(--green); font-weight: 600; }
+.highlight { background: linear-gradient(135deg, rgba(88,166,255,0.08), rgba(57,210,192,0.08)); border: 1px solid rgba(88,166,255,0.2); border-radius: 8px; padding: 16px; margin: 16px 0; }
+.warning { background: rgba(210,153,34,0.08); border: 1px solid rgba(210,153,34,0.3); border-radius: 8px; padding: 14px; margin: 14px 0; }
+.strat-card { background: var(--bg2); border: 1px solid var(--bg3); border-radius: 8px; padding: 18px; margin: 14px 0; }
+.rank { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 700; margin-bottom: 8px; }
+.rank-5 { background: rgba(248,81,73,0.2); color: var(--red); }
+.rank-4 { background: rgba(210,153,34,0.2); color: var(--yellow); }
+.rank-3 { background: rgba(57,210,192,0.2); color: var(--cyan); }
+.footnote { background: var(--bg3); border-radius: 6px; padding: 12px; margin: 30px 0 20px; font-size: 12px; color: var(--text2); line-height: 1.8; }
+.meta { color: var(--text2); font-size: 13px; margin: 6px 0 20px; }
+/* Timeline CSS */
+.timeline { position: relative; padding: 20px 0; margin: 20px 0; }
+.timeline::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 3px; background: linear-gradient(to bottom, var(--green), var(--yellow), var(--red)); border-radius: 2px; }
+.tl-item { position: relative; width: 45%; margin: 16px 0; padding: 14px 18px; background: var(--bg3); border-radius: 8px; border: 1px solid #30363d; }
+.tl-item.left { margin-right: auto; }
+.tl-item.right { margin-left: auto; }
+.tl-item::before { content: ''; position: absolute; top: 18px; width: 14px; height: 14px; border-radius: 50%; background: var(--accent); border: 2px solid var(--bg); }
+.tl-item.left::before { right: -28px; }
+.tl-item.right::before { left: -28px; }
+.tl-date { font-size: 12px; color: var(--accent); font-weight: 600; margin-bottom: 6px; }
+.tl-title { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+.tl-desc { font-size: 12px; color: var(--text2); line-height: 1.6; }
+/* Commodity grid */
+.comm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 16px 0; }
+@media (max-width: 700px) { .comm-grid { grid-template-columns: 1fr; } .timeline::before { left: 20px; } .tl-item { width: calc(100% - 50px); margin-left: 50px !important; } .tl-item::before { left: -28px !important; } }
+</style>
+</head>
+<body>
+
+<h1>🌡️ 厄尔尼诺2026投资映射框架</h1>
+<p class="meta">棕榈油 · 天然橡胶 · 白糖 · 铜 — 气候异常的商品映射全景<br>数据截止：2026年6月22日 · 国家气候中心 + WMO + 格隆宏观</p>
+
+<div class="highlight">
+<strong>核心命题：</strong>2026年超级厄尔尼诺正在形成（Nino3.4海温距平1.51℃，中等及以上强度概率>80%），将从农业→电力→工业→宏观通胀形成系统性冲击链。本文量化四个受影响最大的商品品种的投资时间窗口和具体操作建议。
+</div>
+
+<!-- ====== 第一屏：厄尔尼诺最新监测 ====== -->
+<h2>一、厄尔尼诺最新监测（2026年6月22日）</h2>
+
+<div class="card">
+<h3>📊 Nino3.4指数实时追踪</h3>
+<table>
+<tr><th>时间</th><th>Nino3.4海温距平</th><th>状态</th><th>关键事件</th></tr>
+<tr>
+<td>2026年1-3月</td><td>-0.1 ~ +0.2℃</td><td>中性</td><td>拉尼娜衰退期</td>
+</tr>
+<tr>
+<td>2026年4月</td><td><strong>+0.45℃</strong></td><td>临界</td><td>开始向厄尔尼诺过渡</td>
+</tr>
+<tr>
+<td>2026年5月</td><td><strong>+0.96℃</strong></td><td>接近阈值</td><td>WMO发布预警</td>
+</tr>
+<tr style="background: rgba(248,81,73,0.08);">
+<td><strong>2026年6月（1-2候）</strong></td><td><strong class="price-up">+1.31℃ / +1.51℃</strong></td><td class="price-up"><strong>进入厄尔尼诺</strong></td><td>国家气候中心正式确认</td>
+</tr>
+<tr>
+<td>2026年7-8月（预测）</td><td><strong>+1.5 ~ +2.0℃</strong></td><td>中等→强</td><td>WMO：夏秋季达峰</td>
+</tr>
+<tr>
+<td>2026年12月-2027年2月</td><td>峰值后衰减</td><td>衰减期</td><td>滞后效应开始体现</td>
+</tr>
+</table>
+<div class="card2" style="margin-top:12px;">
+<strong>官方确认：</strong>
+<ul style="color: var(--text2); margin-left: 20px; margin-top: 6px;">
+<li><strong>国家气候中心（6月12日）</strong>：Nino3.4指数6月1-2候达+1.31℃/+1.51℃，正式进入厄尔尼诺状态</li>
+<li><strong>WMO世界气象组织（6月）</strong>：6-8月形成概率80%，夏秋季将发展成为<strong>中等及以上强度</strong></li>
+<li><strong>强度预判</strong>：当前1.51℃已超过"弱厄尔尼诺"阈值（0.5℃），正向"中等"（1.5℃）甚至"强"（2.0℃）演进</li>
+</ul>
+</div>
+</div>
+
+<div class="card">
+<h3>🌍 全球气候异常现状</h3>
+<div class="comm-grid">
+<div class="card2">
+<strong style="color: var(--red);">东南亚（棕榈油/橡胶产区）</strong><br>
+<span style="color: var(--text2); font-size: 13px;">
+· 印尼降雨量<strong>创7年新低</strong>（最核心信号）<br>
+· 马来西亚/印尼未来两周降水趋于稳定<br>
+· 7-8月干旱强度上行，厄尔尼诺正式发力<br>
+· 泰国南部近期降雨增多（短期割胶干扰）
+</span>
+</div>
+<div class="card2">
+<strong style="color: var(--orange);">印度（白糖产区）</strong><br>
+<span style="color: var(--text2); font-size: 13px;">
+· 西南季风<strong>迟到3天</strong>（6月4日 vs 常年平均6月1日）<br>
+· 气象部门：2026年季风将减弱，带来<strong>11年来最低降雨量</strong><br>
+· 整个雨季降水不足概率高达<strong>60%</strong><br>
+· 马邦/北方邦（最大产区）受影响最严重
+</span>
+</div>
+<div class="card2">
+<strong style="color: var(--blue);">南美（铜矿产区）</strong><br>
+<span style="color: var(--text2); font-size: 13px;">
+· 2026年6月智利/秘鲁<strong>无异常降雨干扰</strong><br>
+· 当前供给问题：产能/罢工/品位下降<br>
+· 需观察时间窗口：<strong>2026年Q4-2027年Q1</strong>（智利雨季）<br>
+· 若厄尔尼诺带来异常降雨→影响露天矿开采
+</span>
+</div>
+<div class="card2">
+<strong style="color: var(--purple);">中国（宏观影响）</strong><br>
+<span style="color: var(--text2); font-size: 13px;">
+· 入汛降水<strong>+12.2%</strong>（近10年第二多）<br>
+· 夏秋季强厄尔尼诺概率>90%<br>
+· 最高用电负荷<strong>16亿千瓦</strong>（同比+9000万千瓦）<br>
+· 极端高温每持续1周→煤价<strong>+5%</strong>
+</span>
+</div>
+</div>
+</div>
+
+<!-- ====== 第二屏：四个品种深度分析 ====== -->
+<h2>二、四品种深度分析 + 最新行情</h2>
+
+<!-- 棕榈油 -->
+<div class="card">
+<h3>🟡 棕榈油（P2701 / P2705）— 影响最大，确定性最高 ⭐⭐⭐⭐⭐</h3>
+<div class="card2">
+<table>
+<tr><th>维度</th><th>最新数据（2026年6月）</th><th>含义</th></tr>
+<tr>
+<td><strong>大连盘面</strong></td><td>P2701: <strong>9680元/吨</strong>（高位震荡）</td><td>市场已部分定价印尼干旱预期</td>
+</tr>
+<tr>
+<td><strong>BMD CP0</strong></td><td>高位震荡，亚洲现货33度精炼棕榈油 <strong>1140-1152美元/吨</strong></td><td>持续走强</td>
+</tr>
+<tr>
+<td><strong>印尼降雨</strong></td><td><strong>创7年新低</strong></td><td class="price-up">最核心供应收缩信号</td>
+</tr>
+<tr>
+<td><strong>印尼政策</strong></td><td>B50生物柴油计划 → 国内消费增加，出口减少</td><td class="price-up">供给进一步收紧</td>
+</tr>
+</table>
+</div>
+
+<div class="card2" style="margin-top: 12px;">
+<strong>📈 历史规律（来自格隆报告 + 历史回测）：</strong>
+<ol style="color: var(--text2); margin-left: 20px; margin-top: 8px; line-height: 2;">
+<li><strong>价格高点滞后厄尔尼诺峰值 4个季度</strong>（这是量化规律，基于过去4次强厄尔尼诺统计）</li>
+<li>强厄尔尼诺情景下全球棕榈油产量或下滑 <strong>7.8%</strong>，马来单产或下降近 <strong>20%</strong></li>
+<li>1997-98年超强厄尔尼诺期间，棕榈油价格上涨 <strong>130%</strong></li>
+<li>厄尔尼诺影响棕榈油的机制：<strong>干旱→油棕树水分胁迫→雌花比例下降→6-9个月后果实产量锐减</strong></li>
+</ol>
+</div>
+
+<div class="warning" style="margin-top: 14px;">
+<strong>⏰ 投资时间轴（棕榈油）：</strong>
+<div class="timeline" style="margin-top: 16px;">
+<div class="tl-item left">
+<div class="tl-date">2026年6-8月</div>
+<div class="tl-title">印尼干旱加剧 → 油棕树应激（Tree Stress）</div>
+<div class="tl-desc">价格反应：震荡偏强，P2701在9500-9800区间。操作：逢低布局远月。</div>
+</div>
+<div class="tl-item right">
+<div class="tl-date">2026年9-12月</div>
+<div class="tl-title">产量数据开始体现减产（滞后6-9个月）</div>
+<div class="tl-desc">MPOB/MG0产量数据同比下降。价格开始加速。P2701目标10500-11000。</div>
+</div>
+<div class="tl-item left">
+<div class="tl-date"><strong>2027年Q1-Q2</strong></div>
+<div class="tl-title" style="color: var(--red);">🌟 价格高点集中兑现（滞后4个季度）</div>
+<div class="tl-desc">历史规律终点。P2705目标12000-13000（基准情景）至15000+（强厄尔尼诺情景）。</div>
+</div>
+</div>
+</div>
+
+<div class="highlight" style="margin-top: 14px;">
+<strong>🎯 具体操作建议（棕榈油）：</strong>
+<table style="margin-top: 8px;">
+<tr><th>操作</th><th>合约</th><th>目标区间</th><th>止损</th><th>确定性</th></tr>
+<tr>
+<td><strong>多头建仓</strong></td><td>P2705</td><td>9000-9300（当前9680，等回调）</td><td>8600</td><td class="price-up">⭐⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td><strong>目标位</strong></td><td>P2705</td><td>12000-13000（基准）/ 15000+（强厄尔尼诺）</td><td>—</td><td>—</td>
+</tr>
+<tr>
+<td><strong>加仓信号</strong></td><td>—</td><td>印尼降雨数据持续低位 + MPOB产量同比转负</td><td>—</td><td>—</td>
+</tr>
+</table>
+<span style="display: block; margin-top: 8px; color: var(--text2); font-size: 13px;">⚠️ 最大挑战：需要在当前价位<strong>忍耐6-9个月的震荡</strong>。这是所有厄尔尼诺交易的最大心理门槛。</span>
+</div>
+</div>
+
+<!-- 天然橡胶 -->
+<div class="card">
+<h3>🟤 天然橡胶（RU2703 / RU2705）— 滞后规律清晰，供给弹性较大 ⭐⭐⭐⭐</h3>
+<div class="card2">
+<table>
+<tr><th>维度</th><th>最新数据（2026年6月）</th><th>含义</th></tr>
+<tr>
+<td><strong>SHFE主力</strong></td><td>RU主力: <strong>17470-17500元/吨</strong>（+0.95%）</td><td>相对平稳，全球橡胶价格全线走强</td>
+</tr>
+<tr>
+<td><strong>海南现货</strong></td><td>浓缩乳胶: <strong>12000元/吨</strong>（周跌-2.91%）</td><td>近期降雨增多，割胶短期受干扰</td>
+</tr>
+<tr>
+<td><strong>青岛全乳胶</strong></td><td><strong>17300元/吨</strong>（周跌-3.24%）</td><td>有所回调，可关注建仓机会</td>
+</tr>
+<tr>
+<td><strong>东南亚天气</strong></td><td>泰国南部/缅甸南部近期<strong>降雨增多</strong></td><td class="price-down">短期利空割胶（增加降雨干扰日）</td>
+</tr>
+</table>
+</div>
+
+<div class="card2" style="margin-top: 12px;">
+<strong>📈 历史规律：</strong>
+<ol style="color: var(--text2); margin-left: 20px; margin-top: 8px; line-height: 2;">
+<li><strong>价格高点滞后气候指标峰值 4-5个季度</strong>（比棕榈油长1个季度，因橡胶树恢复期更长）</li>
+<li>厄尔尼诺2026年夏秋达峰 → RU高点出现在 <strong>2027年Q1-Q2</strong></li>
+<li>当前降雨增多是<strong>短期利空</strong>，7-8月干旱才是主逻辑</li>
+<li>橡胶的供给弹性比棕榈油大（停割后可重启割胶）→ 涨幅可能<棕榈油</li>
+</ol>
+</div>
+
+<div class="warning" style="margin-top: 14px;">
+<strong>⏰ 投资时间轴（天然橡胶）：</strong>
+<div class="timeline" style="margin-top: 16px;">
+<div class="tl-item left">
+<div class="tl-date">2026年6-8月</div>
+<div class="tl-title">东南亚降雨增多（短期震荡）</div>
+<div class="tl-desc">RU在17000-18000区间震荡。可逐步建仓RU2703，不必追高。</div>
+</div>
+<div class="tl-item right">
+<div class="tl-date">2026年9-11月</div>
+<div class="tl-title">降雨减少 + 干旱发力 → 割胶天数减少</div>
+<div class="tl-desc">泰国/印尼单月产量同比下滑。RU2703目标19000-20000。</div>
+</div>
+<div class="tl-item left">
+<div class="tl-date"><strong>2027年Q1-Q2</strong></div>
+<div class="tl-title" style="color: var(--red);">🌟 价格高点（滞后4-5个季度）</div>
+<div class="tl-desc">RU2705目标21000-23000。但需警惕：如果价格过高→刺激重启割胶→供给弹性限制涨幅。</div>
+</div>
+</div>
+</div>
+
+<div class="highlight" style="margin-top: 14px;">
+<strong>🎯 具体操作建议（天然橡胶）：</strong>
+<table style="margin-top: 8px;">
+<tr><th>操作</th><th>合约</th><th>目标区间</th><th>止损</th><th>确定性</th></tr>
+<tr>
+<td><strong>多头建仓</strong></td><td>RU2703 / RU2705</td><td>17000-17800（当前17500，等回调至区间下限）</td><td>16500</td><td class="price-up">⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td><strong>目标位</strong></td><td>RU2705</td><td>21000-23000</td><td>—</td><td>—</td>
+</tr>
+<tr>
+<td><span style="color: var(--text2);">风险提示</span></td><td colspan="4" style="color: var(--text2);">供给弹性 > 棕榈油，如果价格过高会刺激重启割胶，限制涨幅</td>
+</tr>
+</table>
+</div>
+</div>
+
+<!-- 白糖 -->
+<div class="card">
+<h3>⚪ 白糖（SR2701 / SR2705）— 印度季风偏弱确认，逻辑最直接 ⭐⭐⭐⭐</h3>
+<div class="card2">
+<table>
+<tr><th>维度</th><th>最新数据（2026年6月）</th><th>含义</th></tr>
+<tr>
+<td><strong>印度季风</strong></td><td><strong>迟到3天 + 整个雨季降水不足概率60%</strong></td><td class="price-up">最直接的利多信号</td>
+</tr>
+<tr>
+<td><strong>印度产区</strong></td><td>马邦（Maharashtra）+ 北方邦（Uttar Pradesh）受影响最严重</td><td class="price-up">印度是全球第二大产糖国</td>
+</tr>
+<tr>
+<td><strong>历史规律</strong></td><td>遵循<strong>6年周期</strong>：2015-16超强厄尔尼诺 → 郑糖涨超60%</td><td>2026年恰是下一个6年窗口</td>
+</tr>
+<tr>
+<td><strong>逻辑特点</strong></td><td>甘蔗是<strong>一年生作物</strong>，当年种当年收</td><td class="price-up">没有9-12个月滞后！</td>
+</tr>
+</table>
+</div>
+
+<div class="card2" style="margin-top: 12px;">
+<strong>📈 为什么白糖的逻辑最清晰：</strong>
+<ul style="color: var(--text2); margin-left: 20px; margin-top: 8px; line-height: 2;">
+<li><strong>没有长滞后</strong>：棕榈油/橡胶的减产要滞后6-9个月才体现，白糖的印度季风数据2026年6月确认偏弱→2026/27榨季（10月-次年9月）的产量直接受影响→<strong>2026年Q4就能看到数据</strong></li>
+<li><strong>印度是关键变量</strong>：印度不仅是全球第二大产糖国，还是最大的消费国。印度减产→全球供给缺口→国际糖价上涨→郑糖跟涨</li>
+<li><strong>6年周期吻合</strong>：2015-16年超强厄尔尼诺→郑糖涨超60%；2026年恰是下一个6年窗口</li>
+</ul>
+</div>
+
+<div class="warning" style="margin-top: 14px;">
+<strong>⏰ 投资时间轴（白糖）：</strong>
+<div class="timeline" style="margin-top: 16px;">
+<div class="tl-item left">
+<div class="tl-date"><strong>2026年6-9月（现在！）</strong></div>
+<div class="tl-title" style="color: var(--green);">印度季风偏弱确认 → 立即布局郑糖多头</div>
+<div class="tl-desc">这是四个品种里<strong>最早可以行动的</strong>。SR2701在5800-6200区间是合理建仓价。</div>
+</div>
+<div class="tl-item right">
+<div class="tl-date">2026年10月-12月</div>
+<div class="tl-title">2026/27榨季开始，印度产量数据初现</div>
+<div class="tl-desc">如果印度产量同比下滑5%+ → 郑糖加速上行。SR2701目标6500-7000。</div>
+</div>
+<div class="tl-item left">
+<div class="tl-date"><strong>2027年Q1-Q2</strong></div>
+<div class="tl-title" style="color: var(--red);">印度减产全面兑现 + 全球供给缺口确认</div>
+<div class="tl-desc">SR2705目标7000-7500（基准）→ 8000+（强厄尔尼诺+印度严重减产极端情景）。</div>
+</div>
+</div>
+</div>
+
+<div class="highlight" style="margin-top: 14px;">
+<strong>🎯 具体操作建议（白糖）：</strong>
+<table style="margin-top: 8px;">
+<tr><th>操作</th><th>合约</th><th>目标区间</th><th>止损</th><th>确定性</th></tr>
+<tr>
+<td><strong>多头建仓</strong></td><td>SR2701 / SR2705</td><td>5800-6200（如需建仓，当前合理区间）</td><td>5600</td><td class="price-up">⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td><strong>目标位</strong></td><td>SR2705</td><td>7000-7500（基准）/ 8000+（极端情景）</td><td>—</td><td>—</td>
+</tr>
+<tr>
+<td><strong>加速信号</strong></td><td>—</td><td>印度2026/27榨季产量预估同比下滑5%+</td><td>—</td><td>—</td>
+</tr>
+</table>
+<span style="display: block; margin-top: 8px; color: var(--green); font-size: 13px;">✅ 白糖是四个品种里<strong>逻辑最直接、滞后最短、最早可以行动</strong>的。印度季风数据已确认偏弱，不需要等。</span>
+</div>
+</div>
+
+<!-- 铜 -->
+<div class="card">
+<h3>🟠 铜（CU2608 / CU2610）— 天气逻辑目前是"伪命题"，观望为主 ⭐⭐⭐</h3>
+<div class="card2">
+<table>
+<tr><th>维度</th><th>最新数据（2026年6月）</th><th>含义</th></tr>
+<tr>
+<td><strong>智利供给</strong></td><td>2026年6月<strong>无异常降雨干扰</strong>铜矿生产</td><td class="price-down">天气逻辑未兑现</td>
+</tr>
+<tr>
+<td><strong>干扰来源</strong></td><td>埃尔滕连特Q1产能暴跌20%（罢工/品位/权利金）</td><td>结构性问题，非天气</td>
+</tr>
+<tr>
+<td><strong>需观察窗口</strong></td><td><strong>2026年Q4-2027年Q1</strong>（智利雨季）</td><td>如果厄尔尼诺带来异常降雨才有影响</td>
+</tr>
+<tr>
+<td><strong>核心逻辑</strong></td><td>能源转型需求 + 供给刚性（品位下降）</td><td>与天气无关的结构性多头</td>
+</tr>
+</table>
+</div>
+
+<div class="warning" style="margin-top: 14px;">
+<strong>⚠️ 为什么铜的天气逻辑是"伪命题"：</strong>
+<ul style="color: var(--text2); margin-left: 20px; margin-top: 8px; line-height: 2;">
+<li><strong>文章逻辑复盘</strong>："厄尔尼诺→南美降雨→智利/秘鲁铜矿干扰"→但<strong>2026年6月智利无异常降雨</strong>，逻辑未兑现</li>
+<li><strong>真正的风险窗口是Q4</strong>：智利雨季（12月-次年3月）如果厄尔尼诺带来异常降雨→才可能影响露天矿开采/道路运输</li>
+<li><strong>铜的核心逻辑是结构性的</strong>：能源转型（电动车/光伏/风电用铜量暴增）+ 供给刚性（老矿品位下降）→ 这才是多头的核心驱动，不是天气</li>
+<li><strong>结论</strong>：不要因为这篇文章就做多铜等"天气冲击"。如果想配置铜，理由是能源转型，不是厄尔尼诺</li>
+</ul>
+</div>
+
+<div class="highlight" style="margin-top: 14px;">
+<strong>🎯 操作建议（铜）：</strong>
+<table style="margin-top: 8px;">
+<tr><th>操作</th><th>合约</th><th>说明</th><th>确定性</th></tr>
+<tr>
+<td><strong>观望为主</strong></td><td>—</td><td>天气逻辑未兑现，等2026年Q4智利雨季预报</td><td>—</td>
+</tr>
+<tr>
+<td><span style="color: var(--text2);">结构性配置</span></td><td>CU2610多头</td><td>如果要做多铜，理由是能源转型，不是天气。止损设在前低</td><td>⭐⭐⭐</td>
+</tr>
+<tr>
+<td><span style="color: var(--text2);">风险信号</span></td><td>—</td><td>2026年12月-2027年2月智利/秘鲁异常降雨预报→才考虑天气扰动做多</td><td>⭐⭐</td>
+</tr>
+</table>
+</div>
+</div>
+
+<!-- ====== 第三屏：投资矩阵 + 操作建议 ====== -->
+<h2>三、投资矩阵 — 四品种确定性排序 + 具体操作</h2>
+
+<div class="card">
+<h3>🌟 确定性排序（综合评分）</h3>
+<table>
+<tr><th>排序</th><th>品种</th><th>确定性</th><th>核心理由</th><th>最佳建仓时间</th><th>目标合约</th></tr>
+<tr style="background: rgba(248,81,73,0.06);">
+<td><strong>1</strong></td>
+<td><strong>白糖 SR</strong></td>
+<td class="price-up"><strong>⭐⭐⭐⭐</strong></td>
+<td>印度季风偏弱已确认，无长滞后，6年周期吻合</td>
+<td><strong>现在（2026年6月）</strong></td>
+<td>SR2701 / SR2705</td>
+</tr>
+<tr style="background: rgba(210,153,34,0.06);">
+<td><strong>2</strong></td>
+<td><strong>棕榈油 P</strong></td>
+<td class="price-up"><strong>⭐⭐⭐⭐⭐</strong></td>
+<td>印尼降雨7年新低，历史规律最清晰，滞后4季度量化</td>
+<td>等回调至9000-9300（P2705）</td>
+<td>P2705 / P2709</td>
+</tr>
+<tr>
+<td><strong>3</strong></td>
+<td><strong>天然橡胶 RU</strong></td>
+<td>⭐⭐⭐⭐</td>
+<td>同上，但供给弹性更大，涨幅或受限</td>
+<td>17000-17800（RU2703/2705）</td>
+<td>RU2705</td>
+</tr>
+<tr>
+<td><strong>4</strong></td>
+<td>铜 CU</td>
+<td>⭐⭐⭐</td>
+<td>天气逻辑未兑现，观望。结构性多头理由是非天气的</td>
+<td>等Q4智利雨季预报</td>
+<td>CU2610（结构性配置）</td>
+</tr>
+</table>
+</div>
+
+<div class="card">
+<h3>📋 具体操作计划（建议仓位分配）</h3>
+<div class="card2">
+<p style="color: var(--text2); margin-bottom: 10px;">假设总仓位100%，建议分配如下（仅供参考，需根据个人风险偏好调整）：</p>
+<table>
+<tr><th>品种</th><th>建议仓位</th><th>建仓区间</th><th>目标位</th><th>止损位</th><th>最大忍耐期</th></tr>
+<tr>
+<td><strong>白糖 SR2705</strong></td>
+<td><span class="tag tag-red">30%</span></td>
+<td>5800-6200</td>
+<td>7000-7500</td>
+<td>5600</td>
+<td>3-6个月（最短）</td>
+</tr>
+<tr>
+<td><strong>棕榈油 P2705</strong></td>
+<td><span class="tag tag-yellow">35%</span></td>
+<td>9000-9300（等回调）</td>
+<td>12000-15000</td>
+<td>8600</td>
+<td>6-9个月</td>
+</tr>
+<tr>
+<td><strong>天然橡胶 RU2705</strong></td>
+<td><span class="tag tag-blue">20%</span></td>
+<td>17000-17800</td>
+<td>21000-23000</td>
+<td>16500</td>
+<td>6-9个月</td>
+</tr>
+<tr>
+<td><strong>铜 CU（观望）</strong></td>
+<td><span class="tag tag-green">0-15%</span></td>
+<td>等Q4信号</td>
+<td>—</td>
+<td>—</td>
+<td>不确定</td>
+</tr>
+</table>
+</div>
+<div class="warning" style="margin-top: 12px;">
+<strong>⚠️ 最重要的心理准备：</strong>棕榈油和橡胶的多头需要<strong>忍耐6-9个月的震荡期</strong>。这在所有厄尔尼诺交易中是最大的挑战——你必须在没有价格反馈的情况下持有仓位，直到滞后效应体现。如果不能承受这种心理压力，<strong>白糖是更好的起点</strong>（滞后短，反馈快）。
+</div>
+</div>
+
+<!-- ====== 第四屏：风险提示 ====== -->
+<h2>四、风险提示 — 厄尔尼诺交易的四重不确定性</h2>
+
+<div class="card">
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+<div class="card2">
+<strong style="color: var(--yellow);">1. 厄尔尼诺强度预测仍有不确定性</strong>
+<p style="color: var(--text2); font-size: 13px; margin-top: 6px;">WMO预测80%概率，但"超级厄尔尼诺"需要海温距平≥2.0℃持续3个月以上。如果峰值只有+1.5℃（中等强度），棕榈油/橡胶的涨幅会明显低于历史强厄尔尼诺情景。</p>
+</div>
+<div class="card2">
+<strong style="color: var(--yellow);">2. 滞后规律是历史统计，非因果</strong>
+<p style="color: var(--text2); font-size: 13px; margin-top: 6px;">棕榈油/橡胶的4-5季度滞后是基于过去4次强厄尔尼诺的统计规律。本轮如果叠加其他变量（如印尼B50政策变化、泰国扩大种植面积），历史可能不会简单重复。</p>
+</div>
+<div class="card2">
+<strong style="color: var(--yellow);">3. 电力保供能力被文章低估</strong>
+<p style="color: var(--text2); font-size: 13px; margin-top: 6px;">文章说"电力保供相当困难"，但中国跨区互济+顶峰机组已大幅改善。2023-25年实际未出现大规模限电。如果电力供给充足→动力煤/电力链的逻辑需要打折。</p>
+</div>
+<div class="card2">
+<strong style="color: var(--yellow);">4. 反厄尔尼诺（La Niña）切换风险</strong>
+<p style="color: var(--text2); font-size: 13px; margin-top: 6px;">厄尔尼诺结束后往往切换为拉尼娜→又是一轮相反的气候冲击（拉尼娜带来东南亚洪水→棕榈油/橡胶增产→价格下跌）。需要持续监测Nino3.4指数，在2027年中警惕切换信号。</p>
+</div>
+</div>
+</div>
+
+<!-- ====== 第五屏：核心结论 ====== -->
+<h2>五、核心结论 — 三句话总结</h2>
+
+<div class="card" style="border-left: 4px solid var(--red);">
+<ol style="font-size: 16px; line-height: 2.4; padding-left: 20px;">
+<li>
+<strong>白糖是最确定的起点</strong>：印度季风偏弱已确认，没有长滞后，现在就可以行动。SR2701/2705在5800-6200建仓，目标7000-7500。
+</li>
+<li>
+<strong>棕榈油是最极端的终点</strong>：印尼降雨7年新低 + 历史规律4季度滞后 + 1997年强厄尔尼诺130%涨幅参照 = P2705目标12000-15000。但需要忍耐6-9个月震荡。
+</li>
+<li>
+<strong>铜的天气逻辑不要轻信</strong>：2026年6月智利无异常降雨，天气逻辑未兑现。铜的多头理由应该是能源转型（结构性），不是厄尔尼诺。等Q4智利雨季预报再评估。
+</li>
+</ol>
+</div>
+
+<div class="highlight" style="margin-top: 20px;">
+<strong>📌 持续监测清单（建议每周检查）：</strong>
+<ul style="color: var(--text2); margin-left: 20px; margin-top: 8px; line-height: 2;">
+<li><strong>Nino3.4海温指数</strong>：是否持续走强至+2.0℃（强厄尔尼诺阈值）</li>
+<li><strong>印尼降雨量</strong>：BMKG（印尼气象局）月度降雨数据是否持续低位</li>
+<li><strong>印度季风进度</strong>：IMD（印度气象局）每周季风推进报告</li>
+<li><strong>MPOB马来西亚棕榈油产量</strong>：每月10日左右发布，关注同比是否转负</li>
+<li><strong>泰国/印尼橡胶产量</strong>：ANRPC月度报告</li>
+<li><strong>青岛保税区橡胶库存</strong>：去库速度是否加快</li>
+</ul>
+</div>
+
+<div class="footnote">
+<strong>数据来源：</strong><br>
+· 国家气候中心（Nino3.4海温指数 2026.06.12）· WMO世界气象组织（2026年6月厄尔尼诺展望）<br>
+· 格隆《全球极端气候—2026年超级厄尔尼诺正在形成》（2026.06.21）· 国家天然橡胶产业技术体系（2026年第23期周报）<br>
+· 东方财富期货（RU/SR/P盘面行情 2026.06.22）· MPOB/BMD（棕榈油产量/价格）· IMD（印度季风监测）<br>
+报告生成时间：2026年6月22日 20:50 · 整合微信文章 + 机构数据 + 实时行情 · 仅供研究参考，不构成投资建议
+</div>
+
+</body>
+</html>

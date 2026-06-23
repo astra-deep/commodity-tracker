@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>化工四品种深度基本面框架：PTA · 甲醇 · 乙二醇 · 聚丙烯 | 2026年6月</title>
+<style>
+:root {
+  --bg: #0f172a; --card: #1e293b; --border: #334155; --text: #e2e8f0; --text2: #94a3b8;
+  --red: #ef4444; --green: #22c55e; --orange: #f59e0b; --blue: #3b82f6; --purple: #8b5cf6;
+  --cyan: #06b6d4; --pink: #ec4899; --accent: #f97316;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.7; }
+.container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+h1 { font-size: 2.2em; text-align: center; margin-bottom: 8px; background: linear-gradient(135deg, #f97316, #ef4444, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.subtitle { text-align: center; color: var(--text2); margin-bottom: 32px; font-size: 1.1em; }
+.section { margin: 40px 0; }
+.section-title { font-size: 1.6em; border-left: 4px solid var(--accent); padding-left: 16px; margin-bottom: 24px; color: #fff; }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 28px; margin-bottom: 24px; }
+.card h3 { font-size: 1.3em; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(500px, 1fr)); gap: 24px; }
+.grid4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+.price-box { background: var(--card); border-radius: 12px; padding: 20px; text-align: center; border: 1px solid var(--border); }
+.price-box .label { color: var(--text2); font-size: 0.85em; margin-bottom: 6px; }
+.price-box .value { font-size: 2em; font-weight: bold; }
+.price-box .change { font-size: 0.95em; margin-top: 4px; }
+table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.92em; }
+th { background: var(--bg); color: var(--accent); padding: 12px; text-align: left; border-bottom: 2px solid var(--border); }
+td { padding: 10px 12px; border-bottom: 1px solid var(--border); }
+.tag { display: inline-block; padding: 3px 10px; border-radius: 4px; font-size: 0.8em; font-weight: 600; margin: 2px; }
+.tag-up { background: rgba(239,68,68,0.15); color: var(--red); }
+.tag-down { background: rgba(34,197,94,0.15); color: var(--green); }
+.tag-warn { background: rgba(245,158,11,0.15); color: var(--orange); }
+.tag-info { background: rgba(59,130,246,0.15); color: var(--blue); }
+.tag-purple { background: rgba(139,92,246,0.15); color: var(--purple); }
+.highlight-box { background: rgba(249,115,22,0.08); border: 1px solid rgba(249,115,22,0.3); border-radius: 10px; padding: 20px; margin: 20px 0; }
+.highlight-box.red { border-color: rgba(239,68,68,0.3); background: rgba(239,68,68,0.06); }
+.highlight-box.green { border-color: rgba(34,197,94,0.3); background: rgba(34,197,94,0.06); }
+.highlight-box h4 { color: var(--accent); margin-bottom: 10px; }
+.chain { font-family: monospace; background: rgba(255,255,255,0.05); padding: 12px 18px; border-radius: 8px; margin: 12px 0; text-align: center; font-size: 0.95em; }
+.bar { height: 8px; border-radius: 4px; margin: 8px 0; }
+.bar-fill { height: 100%; border-radius: 4px; }
+.flex-between { display: flex; justify-content: space-between; align-items: center; }
+.flex-between span:first-child { color: var(--text2); }
+.note { font-size: 0.85em; color: var(--text2); margin-top: 6px; }
+.strategy-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 16px; }
+.strategy-card { background: rgba(139,92,246,0.08); border: 1px solid rgba(139,92,246,0.2); border-radius: 10px; padding: 20px; }
+.strategy-card h4 { color: var(--purple); margin-bottom: 10px; }
+.footer { text-align: center; color: var(--text2); font-size: 0.85em; margin-top: 60px; padding: 30px 0; border-top: 1px solid var(--border); }
+@media (max-width: 768px) { .grid2, .grid4 { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>化工四品种深度基本面框架</h1>
+<div class="subtitle">PTA · 甲醇 · 乙二醇 · 聚丙烯 | 2026年6月22日 | <strong>数据来源：中信期货/宝城期货/东方证券/天风证券 + 隆众资讯/卓创/同花顺</strong></div>
+
+<!-- 价格仪表盘 -->
+<div class="section">
+<div class="section-title">一、实时价格仪表盘（6月18-22日）</div>
+<div class="grid4">
+
+<div class="price-box">
+<div class="label">PTA TA2609 · 郑商所</div>
+<div class="value">5,868</div>
+<div class="change"><span class="tag tag-up">+88 (+1.52%)</span></div>
+<div class="note">6月18日收盘 · 现货6045 · 基差+198</div>
+</div>
+
+<div class="price-box">
+<div class="label">甲醇 MA2609 · 郑商所</div>
+<div class="value">2,684</div>
+<div class="change"><span class="tag tag-down">-163 (-5.73%)</span></div>
+<div class="note">6月16日收盘 · 持仓76.1万手 · 成交136万手</div>
+</div>
+
+<div class="price-box">
+<div class="label">乙二醇 EG2609 · 大商所</div>
+<div class="value">4,427</div>
+<div class="change"><span class="tag tag-down">-219 (-4.71%)</span></div>
+<div class="note">6月20日收盘 · 持仓30.7万手 · 成交73.4万手</div>
+</div>
+
+<div class="price-box">
+<div class="label">聚丙烯 PP2609 · 大商所</div>
+<div class="value">7,647</div>
+<div class="change"><span class="tag tag-down">-255 (-3.23%)</span></div>
+<div class="note">6月22日盘中 · 持仓52.5万手 · 结算7902</div>
+</div>
+
+</div>
+
+<div class="highlight-box">
+<h4>🔴 关键背景：6月15日美伊停战备忘录 · 化工品全线崩塌</h4>
+<p>6月15日美伊签署停战谅解备忘录，霍尔木兹海峡通行预期改善，触发化工板块系统性回调。<strong>PTA（-5%）、甲醇（-6%）、乙二醇（-4%+）、PP（-4%+）全线暴跌。</strong>从高峰到谷底：PTA从6800→5780（-15%），甲醇从3061→2650（-13.4%），乙二醇从5400→4228（-21.7%），PP从8290→7647（-7.8%）。以下为地缘冲突高位（6月初）至缓和后（6月中下旬）的完整传导分析。</p>
+</div>
+</div>
+
+<!-- 成本定价链 -->
+<div class="section">
+<div class="section-title">二、化工四品种成本-定价链全景</div>
+
+<div class="card">
+<h3>🔗 产业链传导逻辑</h3>
+<div class="chain">原油 → 石脑油(755$/t) → PX(8352$/t折合) → PTA(5868) → 聚酯 → 涤纶长丝/短纤/瓶片</div>
+<div class="chain">原油 → 石脑油 → 乙烯 → 乙二醇(4427) ─────────────────────────┘</div>
+<div class="chain">煤炭(700-850) / 天然气 → 甲醇(2684) → MTO → 乙烯/丙烯 → PE/PP</div>
+<div class="chain">原油 → 石脑油/丙烷(PDH成本10625) → 丙烯 → 聚丙烯(7647) ─────────┘</div>
+<p style="color:var(--text2); margin-top:12px; font-size:0.9em;">核心逻辑：原油是化工品之母，中东地缘通过<strong>量（进口中断）+价（原油成本）</strong>双渠道传导。6月15日停战后第一条逻辑链断裂。</p>
+</div>
+
+<div class="grid2">
+<div class="card">
+<h3>📊 关键价差/利润速览</h3>
+<table>
+<tr><td>PXN（PX-石脑油价差）</td><td style="color:var(--accent)">258.87 $/t</td><td><span class="tag tag-info">历史高位收窄</span></td></tr>
+<tr><td>PTA加工费</td><td style="color:var(--green)">479.07 ¥/t</td><td><span class="tag tag-info">扩张中</span></td></tr>
+<tr><td>煤制甲醇利润</td><td style="color:var(--green)">500-700 ¥/t</td><td><span class="tag tag-info">高位</span></td></tr>
+<tr><td>PDH制PP利润</td><td style="color:var(--red)">-2223.74 ¥/t</td><td><span class="tag tag-down">深度亏损</span></td></tr>
+<tr><td>油制PP利润</td><td style="color:var(--red)">-855~-1791 ¥/t</td><td><span class="tag tag-down">亏损</span></td></tr>
+<tr><td>煤制PP利润</td><td style="color:var(--green)">+174~+1890 ¥/t</td><td><span class="tag tag-up">暴利</span></td></tr>
+<tr><td>MTO利润（PP-3MA）</td><td style="color:var(--red)">深度亏损</td><td><span class="tag tag-down">多套停车</span></td></tr>
+<tr><td>石脑油裂解价差</td><td style="color:var(--accent)">350-400 $/t</td><td></td></tr>
+</table>
+</div>
+<div class="card">
+<h3>📐 期限结构（近远月价差）</h3>
+<table>
+<tr><td>PTA 现货vs2609基差</td><td style="color:var(--orange)">+198</td><td><span class="tag tag-up">现货升水</span></td></tr>
+<tr><td>甲醇 MA2609-2701价差</td><td>-</td><td><span class="tag tag-warn">远月贴水</span></td></tr>
+<tr><td>乙二醇 EG现货基差</td><td style="color:var(--orange)">+122~+150</td><td><span class="tag tag-up">Backwardation</span></td></tr>
+<tr><td>PP PP2609-2701价差</td><td>333-570</td><td><span class="tag tag-up">Backwardation</span></td></tr>
+</table>
+<p class="note">四品种均呈现近强远弱（Backwardation）结构——近端受低库存/进口中断支撑，远月定价产能过剩/地缘缓和。</p>
+</div>
+</div>
+</div>
+
+<!-- 分品种深度分析 -->
+<div class="section">
+<div class="section-title">三、分品种深度基本面</div>
+
+<!-- PTA -->
+<div class="card">
+<h3>① PTA（对苯二甲酸）<span class="tag tag-up">核心看多品种</span></h3>
+<div class="grid2">
+<div>
+<h4 style="color:var(--accent)">供给端</h4>
+<table>
+<tr><td>PTA开工率</td><td style="color:var(--red)">56.95%</td><td>近5年新低</td></tr>
+<tr><td>二季度PTA产量</td><td style="color:var(--red)">同比-5~-8%</td><td>大幅减产</td></tr>
+<tr><td>社会库存</td><td style="color:var(--red)">426.3万吨</td><td>环比-28万吨</td></tr>
+<tr><td>去库状态</td><td style="color:var(--red)">连续6周去库</td><td>5年同期最低</td></tr>
+<tr><td>PX开工率</td><td>79.3%</td><td>结束11周去库转累</td></tr>
+<tr><td>检修产能</td><td>千万吨级别</td><td>二季度集中检修</td></tr>
+</table>
+</div>
+<div>
+<h4 style="color:var(--accent)">需求端 & 策略</h4>
+<table>
+<tr><td>聚酯开工率</td><td>80.95%</td><td>刚需为主</td></tr>
+<tr><td>织造开工率</td><td style="color:var(--red)">57%（同比-21%）</td><td>近5年同期次低</td></tr>
+<tr><td>现货均价</td><td>6,045 ¥/t</td><td>6月18日</td></tr>
+<tr><td>加工费</td><td style="color:var(--green)">479 ¥/t</td><td>修复中</td></tr>
+<tr><td>基差</td><td style="color:var(--orange)">+198</td><td>现货强</td></tr>
+<tr><td>进出口</td><td>4月进口仅0.08万吨</td><td>几乎归零</td></tr>
+</table>
+</div>
+</div>
+<div class="highlight-box green">
+<h4>📈 PTA核心逻辑：检修驱动去库 + 低开工支撑加工费</h4>
+<p>PTA是整个化工链中供应端最紧的品种——<strong>开工率56.95%创近5年新低，库存连续6周去化至近5年同期最低。</strong>尽管织造终端需求疲弱（开工同比-21%），但PTA自身减产力度更大（二季度产量同比-5~-8%），供不应求驱动去库。PX端结束11周去库转为累库，PXN价差从320-350美元高位开始收窄，PTA加工费被动修复至479元/吨。</p>
+<p><strong>中期风险</strong>：高加工费将刺激检修装置提前重启（当前低负荷难以维持），一旦PTA开工回升叠加聚酯淡季，去库趋势可能逆转。</p>
+</div>
+</div>
+
+<!-- 甲醇 -->
+<div class="card">
+<h3>② 甲醇（MA）<span class="tag tag-warn">多空激烈博弈</span></h3>
+<div class="grid2">
+<div>
+<h4 style="color:var(--blue)">供给端 · 进口是最薄弱环节</h4>
+<div class="card-info" style="margin-bottom:12px;padding:14px 18px">
+<h4 style="color:#58a6ff;margin-top:0;font-size:0.95em">📊 宝城期货权威数据（2026.06.18日报）</h4>
+<p style="font-size:0.9em">6月18日MA2609收盘<strong>2566元/吨</strong>（-2.88%），9-1月差+90。国内开工率<strong>87.16%</strong>，周产量<strong>206.22万吨</strong>。港口库存<strong>40.15万吨</strong>（周环比-2.03万，月环比-18.87万）。MTO开工<strong>75.44%</strong>（周环比-0.77pp）。MTO盘面利润<strong>-423元/吨</strong>（周环比-419）。现货<strong>3047元/吨</strong>，基差<strong>+481</strong>（高升水）。甲醛31.22%/醋酸74.59%/MTBE 49.33%。</p>
+<p style="font-size:0.8em;color:var(--text2);margin-top:4px">来源：宝城期货金融研究所 陈栋(F0251793/Z0001617) · 证监许可【2011】1778号</p>
+</div>
+<table>
+<tr><td>国内开工率</td><td>78.58%</td><td>环比小幅提升</td></tr>
+<tr><td>5月产量</td><td>~777万吨</td><td>环比-9万吨</td></tr>
+<tr><td>5月进口量</td><td style="color:var(--red)">~31-32万吨</td><td>环比-25万吨，历史低位</td></tr>
+<tr><td>6月进口预估</td><td>45-55万吨</td><td>恢复缓慢</td></tr>
+<tr><td>港口库存</td><td style="color:var(--red)">63-66万吨</td><td>5年同期低位</td></tr>
+<tr><td>流通货源</td><td style="color:var(--red)">17.9万吨</td><td>可流通极少</td></tr>
+<tr><td>西北工厂库存</td><td style="color:var(--red)">持续去化</td><td>偏低水平</td></tr>
+<tr><td>伊朗装置</td><td class="tag tag-warn">6套已重启但无装船</td><td>仅Kimiya+Dana停车</td></tr>
+</table>
+</div>
+<div>
+<h4 style="color:var(--blue)">需求端 · MTO是最大拖累</h4>
+<table>
+<tr><td>MTO加权开工率</td><td style="color:var(--green)">78.49%（回落中）</td><td>盛虹已停车</td></tr>
+<tr><td>外采MTO开工</td><td style="color:var(--green)">77.4%</td><td>经济性差</td></tr>
+<tr><td>盛虹MTO</td><td style="color:var(--red)">停车中</td><td>无明确重启计划</td></tr>
+<tr><td>宁波富德</td><td style="color:var(--orange)">传闻近期重启</td><td>短停后</td></tr>
+<tr><td>诚志一期</td><td style="color:var(--green)">6.8停车10天</td><td>计划内检修</td></tr>
+<tr><td>青海盐湖</td><td style="color:var(--green)">5.26停车1个月</td><td>计划检修</td></tr>
+<tr><td>宁夏宝丰</td><td style="color:var(--red)">取消外采甲醇</td><td>下游产品价格弱</td></tr>
+<tr><td>传统下游</td><td style="color:var(--green)">进入淡季降负</td><td>MTBE -4.93%, 醋酸 -3.41%</td></tr>
+</table>
+</div>
+</div>
+<div class="highlight-box">
+<h4>⚖️ 甲醇核心矛盾：极端低库存 vs MTO需求坍塌</h4>
+<p>甲醇是化工板块最典型的"冰火两重天"品种：<strong>港口库存（63万吨）处于5年最低位，流通货源仅17.9万吨；但MTO装置因深度亏损大面积停车</strong>——盛虹停车、诚志短期检修、宁夏宝丰取消外采，MTO加权开工从高位回落。这是典型的<strong>供给驱动上涨遭遇需求负反馈</strong>的博弈格局。</p>
+<p><strong>最大变量——伊朗</strong>：伊朗6套装置已重启但<strong>尚无装船消息</strong>（中东海运仍存障碍），一旦霍尔木兹海峡开放+伊朗装船恢复，进口量可能从45万吨跃升至80+万吨，甲醇将由多转空。煤制甲醇利润高达500-700元/吨，高利润刺激国内开工维持高位。</p>
+<p><strong>价格锚点</strong>：3100元以上MTO负反馈加剧，2650元以下煤化工成本支撑介入。6月16日甲醇已跌至2684（日内低点2650），接近下边界。</p>
+</div>
+</div>
+
+<!-- 乙二醇 -->
+<div class="card">
+<h3>③ 乙二醇（MEG）<span class="tag tag-warn">低库存支撑 vs 成本下移</span></h3>
+<div class="grid2">
+<div>
+<h4 style="color:var(--purple)">供给端 · 中东进口骤降</h4>
+<table>
+<tr><td>乙烯法开工率</td><td style="color:var(--green)">下降</td><td>季节性检修</td></tr>
+<tr><td>合成气法（煤制）</td><td>维持高负荷</td><td>利润较好</td></tr>
+<tr><td>总开工率预估</td><td>65-70%</td><td>稳中有降</td></tr>
+<tr><td>社会库存</td><td style="color:var(--red)">~163万吨</td><td>从高位降50万吨</td></tr>
+<tr><td>港口库存</td><td style="color:var(--red)">60万吨</td><td>持续去化</td></tr>
+<tr><td>4月进口量</td><td style="color:var(--red)">环比-20万吨</td><td>同比-30+万吨</td></tr>
+<tr><td>中东进口占比</td><td style="color:var(--red)">&gt;65%</td><td>几乎中断</td></tr>
+</table>
+</div>
+<div>
+<h4 style="color:var(--purple)">需求端 & 价差</h4>
+<table>
+<tr><td>聚酯开工率</td><td>82%</td><td>低于往年</td></tr>
+<tr><td>现货均价</td><td>4,325 ¥/t</td><td>6月18日</td></tr>
+<tr><td>基差（本周）</td><td style="color:var(--orange)">+122~+125</td><td>正向市场</td></tr>
+<tr><td>基差（6月下）</td><td style="color:var(--orange)">+138~+145</td><td></td></tr>
+<tr><td>基差（7月下）</td><td style="color:var(--orange)">+145~+150</td><td></td></tr>
+<tr><td>基差（8月下）</td><td style="color:var(--green)">+110~+120</td><td>远月转弱</td></tr>
+<tr><td>进口到港预估</td><td>6月环比+5%</td><td>基数仍低</td></tr>
+</table>
+</div>
+</div>
+<div class="highlight-box green">
+<h4>📊 乙二醇核心逻辑：进口中断成就最强去库</h4>
+<p>乙二醇是四个品种中<strong>进口依存度最高</strong>的品种，中东（沙特/科威特/伊朗）占进口量超过65%。霍尔木兹海峡封锁直接导致中东乙二醇货源几乎中断，4月进口量环比骤降20万吨。国内煤制EG维持高负荷也无法弥补缺口。社会库存从3月高位下降约50万吨至163万吨，港口库存降至60万吨，<strong>预计去库趋势可持续到8月</strong>。</p>
+<p><strong>但隐忧在于成本端</strong>：石脑油价格大跌（755美元/吨）拖累乙烯法EG成本下移，煤制EG利润持续回落。期限结构上，8月下基差（+110~+120）显著弱于7月下（+145~+150），反映市场已在定价进口恢复预期。正套（买近抛远）是基本面驱动的自然策略。</p>
+<p><strong>中期风险</strong>：若霍尔木兹海峡解封，中东EG集中到港可能引发去库逆转，远月合约将率先崩塌。</p>
+<hr style="border-color:var(--border); margin: 16px 0;">
+<p style="font-size:0.9em;"><strong>关键数据来源</strong>：6月11日生意社港口基差报价（本周/下周/6月下/7月下/8月下）显示正向市场结构，但远月基差收窄反映远期供应恢复预期。【来源：生意社 2026.06.11】</p>
+</div>
+</div>
+
+<!-- PP -->
+<div class="card">
+<h3>④ 聚丙烯（PP）<span class="tag tag-down">产能过剩压制 · 结构性分化</span></h3>
+<div class="grid2">
+<div>
+<h4 style="color:var(--pink)">供给端 · 天量产能压力</h4>
+<table>
+<tr><td>2026年总产能</td><td style="color:var(--red)">5459.5万吨</td><td>全球最大</td></tr>
+<tr><td>2026年新增产能</td><td style="color:var(--red)">570万吨</td><td>镇海50+华锦100+古雷95</td></tr>
+<tr><td>2026年产量预计</td><td>+191万吨（+4.8%）</td><td></td></tr>
+<tr><td>消费增速</td><td style="color:var(--green)">仅2.9%</td><td>远低于产能增速</td></tr>
+<tr><td>产需缺口</td><td style="color:var(--red)">扩大至45.26万吨</td><td>过剩加剧</td></tr>
+<tr><td>5月检修产能</td><td style="color:var(--red)">317万吨</td><td>PDH集中降负</td></tr>
+<tr><td>PDH开工率</td><td style="color:var(--red)">大幅下滑</td><td>深度亏损</td></tr>
+</table>
+</div>
+<div>
+<h4 style="color:var(--pink)">成本分化 · 冰火两重天</h4>
+<table>
+<tr><td>PDH制PP成本</td><td style="color:var(--red)">10,625 ¥/t</td><td>丙烷高企</td></tr>
+<tr><td>PDH制PP亏损</td><td style="color:var(--red)">-2,224 ¥/t</td><td>产业链最惨</td></tr>
+<tr><td>油制PP亏损</td><td style="color:var(--red)">-855~-1,791 ¥/t</td><td></td></tr>
+<tr><td>煤制PP利润</td><td style="color:var(--green)">+174~+1,890 ¥/t</td><td>暴利</td></tr>
+<tr><td>华东现货（拉丝）</td><td>9,450-9,550 ¥/t</td><td></td></tr>
+<tr><td>基差范围</td><td>-213~+437</td><td>剧烈波动</td></tr>
+<tr><td>BOPP开工率</td><td style="color:var(--green)">59.64%</td><td>加工费历史低位</td></tr>
+<tr><td>塑编开工率</td><td style="color:var(--red)">37.66%</td><td>低迷</td></tr>
+</table>
+</div>
+</div>
+
+<div class="highlight-box">
+<h4>🔀 PP核心矛盾：短期检修支撑 vs 中长期产能海啸</h4>
+<p>PP是四个品种中<strong>中长期预期最悲观</strong>的品种。2026年新增570万吨产能（镇海炼化50+华锦阿美100+福建古雷95等），而消费增速仅2.9%，产需缺口扩大至45万吨。5月虽然检修317万吨阶段性支撑价格，但PDH深度亏损（-2224元/吨）导致的减停是<strong>被迫的不可持续的</strong>——一旦丙烷跌价或PP反弹，PDH装置将立刻重启释放供给。</p>
+<p><strong>结构分化极端</strong>：煤制PP暴利（+1890元/吨）vs PDH巨亏（-2224元/吨），通用料严重过剩 vs 高端料（茂金属/光伏级/锂电隔膜专用）仍依赖进口。期限结构上，PP05-09价差高达333-570元/吨（Backwardation），反映近端检修+远端产能过剩。</p>
+<p><strong>出口故事</strong>：4月中国PP出口至印尼10.28万吨（环比+218%），但印尼6月2日反倾销终裁（浙江石化5.52%、其他中国企业18.01%关税）将显著压制出口空间。6个月免税窗口期后，出口竞争力回归成本基本面。</p>
+</div>
+
+<div class="card">
+<h4 style="color:var(--accent)">📰 印尼PP反倾销终裁 · 2026年6月2日</h4>
+<p>印尼反倾销委员会（KADI）对原产于沙特/菲律宾/韩国/马来西亚/<strong>中国</strong>/新加坡/泰国/越南的PP均聚物作出肯定性终裁，建议征收<strong>5年反倾销税</strong>。</p>
+<table>
+<tr><th>征税对象</th><th>从价税</th><th>从量税</th></tr>
+<tr><td>浙江石油化工</td><td style="color:var(--green)">5.52%</td><td>0.055$/kg</td></tr>
+<tr><td>中国其他生产商</td><td style="color:var(--red)">18.01%</td><td>0.179$/kg</td></tr>
+</table>
+<p class="note">来源：印尼反倾销委员会(KADI)公告 2026.06.02 · 同花顺期货通 2026.06.10</p>
+</div>
+</div>
+</div>
+
+<!-- 专项分析：MTO负反馈 -->
+<div class="section">
+<div class="section-title">四、专项分析：化工四品种的相互联动与套利逻辑</div>
+
+<div class="card">
+<h3>📐 MTO负反馈链条 · 甲醇与PP的"跷跷板"</h3>
+<div class="chain">甲醇价格上涨 → MTO装置亏损加剧 → 盛虹/诚志停车 → 甲醇需求下降 → 甲醇价格承压</div>
+<div class="chain">MTO停车 → 丙烯/乙烯供给减少 → PP/PE产量下降 → PP价格受到支撑 ─────┘</div>
+<p style="margin-top:16px;">当前MTO综合利润深度亏损，盛虹+诚志+青海盐湖同时停车，宁夏宝丰取消外采甲醇，MTO外采甲醇需求已减少约<strong>20-25万吨/月</strong>。这形成了甲醇的"天花板效应"——甲醇价格越高，MTO停车越多，甲醇需求越差。</p>
+
+<div class="highlight-box">
+<h4>💡 跨品种套利机会：多PP空甲醇（做多MTO利润）</h4>
+<p>逻辑：(1) MTO利润已至历史极端低位，均值回归概率大；(2) 甲醇边际需求（MTO）在大幅收缩，而PP边际供给（MTO停车减少丙烯）在收缩——甲醇基本面边际转弱、PP边际转强；(3) 待MTO利润修复至盈亏平衡附近平仓。当前PP-3MA价差处于历史低位，具有安全边际。</p>
+
+<div style="margin:16px 0; padding:12px; background:#1a2332; border-radius:8px; border:1px solid #2a3548;">
+  <img src="images/pp_3ma_spread_chart_20260623.png" alt="PP-3MA价差走势图(2022-2026)" style="width:100%; max-width:800px; display:block; margin:0 auto;">
+  <p style="margin-top:8px; color:#94a3b8; font-size:0.8em; text-align:center;">📈 PP-3×甲醇日价差走势图（2022-2026）与PP/3×甲醇价格走势对比</p>
+</div>
+
+<p class="note">风险：若伊朗甲醇突然大量到港，甲醇暴跌将推动MTO利润暴利修复，此时策略获利最大。</p>
+</div>
+</div>
+
+<div class="card">
+<h3>📐 PTA-乙二醇：聚酯原料的双生花</h3>
+<div class="chain">PTA + 乙二醇 → 聚酯熔体（成本6617元/吨）→ 涤纶长丝POY（8300元/吨）</div>
+<p style="margin-top:16px;">PTA和乙二醇共享下游——聚酯。当前PTA处于主动减产去库（强现实），乙二醇处于被动进口中断去库（事件驱动），两者短期均有支撑。但核心差异在于：</p>
+<table>
+<tr><th>维度</th><th>PTA</th><th>乙二醇</th></tr>
+<tr><td>供给收缩性质</td><td style="color:var(--orange)">主动减产（利润驱动）</td><td>被动中断（地缘驱动）</td></tr>
+<tr><td>可逆性</td><td>高利润→快速重启</td><td>依赖中东局势</td></tr>
+<tr><td>库存绝对水平</td><td>426万吨（5年最低）</td><td>163万吨（去化中）</td></tr>
+<tr><td>下游需求</td><td colspan="2">共享聚酯（80-82%开工，旺季未至）</td></tr>
+<tr><td>利润状态</td><td>加工费479（修复中）</td><td>一体化利润被动修复</td></tr>
+</table>
+<p class="note">数据来源：隆众资讯/华安期货 2026.06.01-18 · 我的钢铁网 2026.06.18</p>
+</div>
+</div>
+
+<!-- 多品种对比矩阵 -->
+<div class="section">
+<div class="section-title">五、四品种核心指标对比矩阵</div>
+
+<div class="card">
+<table>
+<tr><th>指标</th><th>PTA</th><th>甲醇</th><th>乙二醇</th><th>聚丙烯</th></tr>
+<tr>
+<td><strong>交易所</strong></td><td>郑商所</td><td>郑商所</td><td>大商所</td><td>大商所</td>
+</tr>
+<tr>
+<td><strong>主力合约</strong></td><td>TA2609</td><td>MA2609</td><td>EG2609</td><td>PP2609</td>
+</tr>
+<tr>
+<td><strong>交易单位</strong></td><td>5吨/手</td><td>10吨/手</td><td>10吨/手</td><td>5吨/手</td>
+</tr>
+<tr>
+<td><strong>最新价</strong></td><td style="color:var(--orange)">5,868</td><td style="color:var(--red)">2,684</td><td style="color:var(--red)">4,427</td><td style="color:var(--red)">7,647</td>
+</tr>
+<tr>
+<td><strong>6月15日以来跌幅</strong></td><td style="color:var(--green)">-9.5%</td><td style="color:var(--green)">-12.3%</td><td style="color:var(--green)">-17.2%</td><td style="color:var(--green)">-7.8%</td>
+</tr>
+<tr>
+<td><strong>开工率</strong></td><td style="color:var(--red)">56.95%↓</td><td>78.58%↑</td><td>65-70%↓</td><td style="color:var(--red)">检修中↓</td>
+</tr>
+<tr>
+<td><strong>库存趋势</strong></td><td style="color:var(--red)">6周去库→5年最低</td><td style="color:var(--red)">6周去库→5年最低</td><td style="color:var(--red)">持续去库→8月</td><td style="color:var(--green)">预计6月累库</td>
+</tr>
+<tr>
+<td><strong>成本利润</strong></td><td style="color:var(--green)">加工费479（修复）</td><td style="color:var(--green)">煤制利润500-700</td><td>一体化被动修复</td><td style="color:var(--red)">PDH亏损-2224</td>
+</tr>
+<tr>
+<td><strong>进口依赖度</strong></td><td>几乎自给</td><td style="color:var(--orange)">~15%（伊朗关键）</td><td style="color:var(--orange)">~40%（中东65%）</td><td>出口导向</td>
+</tr>
+<tr>
+<td><strong>地缘敏感度</strong></td><td>中（经原油/PX）</td><td style="color:var(--red)">极高（伊朗直供）</td><td style="color:var(--red)">极高（中东占比65%）</td><td>中低（丙烷间接）</td>
+</tr>
+<tr>
+<td><strong>需求驱动</strong></td><td>聚酯（纺织）</td><td>MTO+传统下游</td><td>聚酯（纺织）</td><td>包装/汽车/基建</td>
+</tr>
+<tr>
+<td><strong>中长期方向</strong></td><td style="color:var(--orange)">待检修结束转弱</td><td style="color:var(--green)">进口恢复后转空</td><td style="color:var(--green)">去库结束转弱</td><td style="color:var(--red)">产能过剩压制</td>
+</tr>
+<tr>
+<td><strong>战略评级</strong></td><td style="color:var(--orange)">★★★★ 近强远弱</td><td style="color:var(--orange)">★★★ 高波动博弈</td><td style="color:var(--orange)">★★★★ 去库最强</td><td style="color:var(--green)">★★ 中长期偏空</td>
+</tr>
+</table>
+</div>
+</div>
+
+<!-- 策略建议 -->
+<div class="section">
+<div class="section-title">六、多品种对冲与单边策略矩阵</div>
+
+<div class="strategy-grid">
+<div class="strategy-card">
+<h4>🥇 正套策略：乙二醇买近抛远</h4>
+<p><strong>核心逻辑</strong>：EG去库确定性强（可持续至8月），近月基差+145~+150，远月8月基差收窄至+110~+120，反映进口恢复预期。无论地缘如何演变，近强远弱格局短期不会改变。</p>
+<p><strong>风险</strong>：中东局势突然解封→进口暴增→近月也崩</p>
+</div>
+<div class="strategy-card">
+<h4>🥈 价差策略：多PP空甲醇（多MTO利润）</h4>
+<p><strong>核心逻辑</strong>：MTO利润历史极端低位，盛虹/诚志停车的供给效应向内烯烃传导，甲醇边际需求走弱+PP边际供给减少。PP-3MA价差处于极端低位。</p>
+<p><strong>风险</strong>：伊朗甲醇突然大量到港→甲醇暴跌→PP跟着跌</p>
+</div>
+<div class="strategy-card">
+<h4>🥉 跨品种：多PTA空乙二醇</h4>
+<p><strong>核心逻辑</strong>：PTA主动减产（可持续但高利润下易逆转），乙二醇被动收缩（地缘驱动不可预测）。选择更可控的基本面驱动品种做多，地缘驱动品种做空。</p>
+<p><strong>时间窗口</strong>：PTA检修结束前（1-2个月），乙二醇进口实质性恢复前</p>
+</div>
+<div class="strategy-card">
+<h4>🏅 单边：甲醇逢高做空（3100+）</h4>
+<p><strong>核心逻辑</strong>：3100元以上MTO负反馈加速，多套装置停车会自我修正价格。伊朗装置已全部重启只待装船，一旦海运恢复进口量将暴增。煤制甲醇高利润刺激国内供给。</p>
+<p><strong>入场区间</strong>：3000-3100元做空，止损3200，目标2600-2700</p>
+</div>
+<div class="strategy-card">
+<h4>🎖️ 单边：PP中长线做空（产能过剩）</h4>
+<p><strong>核心逻辑</strong>：2026年新增570万吨产能是史上最大投产潮，消费增速仅2.9%。PDH当前深度亏损下的减停不可持续，一旦丙烷回落或PP反弹，供给洪水将迅速释放。</p>
+<p><strong>入场区间</strong>：反弹至8000-8200做空，目标7000-7200</p>
+</div>
+<div class="strategy-card">
+<h4>⚠️ 风险对冲：做多波动率</h4>
+<p><strong>核心逻辑</strong>：四个品种的核心变量（中东地缘）极度不可预测——美伊从"签约"到"撕约"仅用5天（6.15签→6.20伊朗重新封锁霍尔木兹）。化工品波动率已升至历史高位，买入跨式期权或宽跨式可双向获利。</p>
+<p><strong>特别适合</strong>：甲醇（对伊朗最敏感）、乙二醇（对中东封锁最敏感）</p>
+</div>
+</div>
+</div>
+
+<!-- 关键事件附表 -->
+<div class="section">
+<div class="section-title">七、关键事件时间线</div>
+
+<div class="card">
+<table>
+<tr><th style="width:120px">日期</th><th>事件</th><th>影响品种</th><th>方向</th></tr>
+<tr><td>2026.06.02</td><td>印尼KADI对PP均聚物反倾销肯定性终裁（浙江石化5.52%，其他中国18.01%）</td><td><span class="tag tag-down">PP</span></td><td>偏空</td></tr>
+<tr><td>2026.06.08</td><td>诚志一期MTO装置停车10天</td><td><span class="tag tag-down">甲醇</span></td><td>偏空</td></tr>
+<tr><td>2026.06.10</td><td>印尼PP/PE进口关税从5-15%统一下调至0%（6个月免税窗口）</td><td><span class="tag tag-up">PP</span></td><td>偏多</td></tr>
+<tr><td>2026.06.15</td><td>美伊签署停战谅解备忘录 → 化工板块全线暴跌（PTA -5%, MA -6%, EG -4%, PP -4%）</td><td><span class="tag tag-down">全部</span></td><td>崩盘</td></tr>
+<tr><td>2026.06.16</td><td>甲醇2609跌至2650低点（日内跌5.73%）</td><td><span class="tag tag-down">甲醇</span></td><td>暴跌</td></tr>
+<tr><td>2026.06.18</td><td>PTA现货均价6045，基差+198；PTA开工率56.95%创5年新低</td><td><span class="tag tag-up">PTA</span></td><td>偏多</td></tr>
+<tr><td>2026.06.18</td><td>乙二醇6月17日收盘4228，现货4325；港口库存60万吨</td><td><span class="tag tag-warn">乙二醇</span></td><td>震荡</td></tr>
+<tr><td>2026.06.20</td><td>伊朗重新关闭霍尔木兹海峡（美伊签约仅5天即反复）</td><td><span class="tag tag-up">甲醇/EG</span></td><td>利多</td></tr>
+<tr><td>2026.06.22</td><td>卡塔尔联合声明当日油价偏弱震荡，化工板块继续寻底</td><td><span class="tag tag-down">全部</span></td><td>偏空</td></tr>
+</table>
+<p class="note">数据来源：同花顺期货通、隆众资讯、生意社、金投网、华安期货、大地期货、光大证券 · 2026年6月</p>
+</div>
+</div>
+
+<!-- 数据来源 -->
+<div class="section">
+<div class="card">
+<h3>📚 数据来源汇总</h3>
+<table>
+<tr><th>数据类别</th><th>来源</th><th>日期</th></tr>
+<tr><td><strong>🏦 甲醇权威数据</strong></td><td><strong>宝城期货 橡胶甲醇原油日报</strong></td><td>2026.06.18</td></tr>
+<tr><td><strong>🏦 硫磺/基础化工权威</strong></td><td><strong>东方证券 中东变局对化工之四深度报告 · 天风证券 基础化工周报</strong></td><td>2026.06.02-08</td></tr>
+<tr><td><strong>🏦 跨境套利策略</strong></td><td><strong>中信期货 中国商品期货跨境套利周报</strong></td><td>2026.06.17</td></tr>
+<tr><td>PTA供需/库存/开工率</td><td>隆众资讯 · 我的钢铁网 · 雪球(中期研究院月报)</td><td>2026.06.01-18</td></tr>
+<tr><td>PTA成本/加工费/价格</td><td>华安期货投研 · 生意社</td><td>2026.06.07-18</td></tr>
+<tr><td>甲醇供需/进口/库存</td><td>隆众资讯 · 卓创资讯 · 新浪财经观点汇总</td><td>2026.06.01-18</td></tr>
+<tr><td>甲醇MTO装置动态</td><td>大地期货研究院 · 东方财富</td><td>2026.06.11</td></tr>
+<tr><td>甲醇行情价格</td><td>生意社 · 同花顺期货通</td><td>2026.06.15-16</td></tr>
+<tr><td>乙二醇供需/库存/开工</td><td>百家号AI报告 · 新浪财经观点汇总</td><td>2026.06.07-18</td></tr>
+<tr><td>乙二醇基差报价</td><td>生意社 · 同花顺</td><td>2026.06.11-17</td></tr>
+<tr><td>PP供需/产能/PDH利润</td><td>百家号(冰火两重天) · 同花顺 · 新浪财经</td><td>2026.05.07-06.10</td></tr>
+<tr><td>PP印尼反倾销</td><td>印尼反倾销委员会(KADI) · 同花顺期货通</td><td>2026.06.02-10</td></tr>
+<tr><td>PP行情价格</td><td>金投网 · 东方财富</td><td>2026.06.22</td></tr>
+<tr><td>地缘事件时间线</td><td>综合各来源交叉验证</td><td>2026.06.08-22</td></tr>
+<tr><td>美伊停战6.15暴跌</td><td>百家号(美伊风云突变) · 同花顺快讯</td><td>2026.06.15-22</td></tr>
+</table>
+</div>
+</div>
+
+<div class="footer">
+<p>化工四品种基本面深度框架 · PTA / 甲醇 / 乙二醇 / 聚丙烯</p>
+<p>生成日期：2026年6月22日 | 数据截止：2026年6月22日</p>
+<p style="margin-top: 12px; color: var(--accent); font-weight: bold;">⚠️ 免责声明：本报告仅供研究参考，不构成投资建议。期货交易风险巨大，请独立决策。</p>
+</div>
+
+</div>
+</body>
+</html>

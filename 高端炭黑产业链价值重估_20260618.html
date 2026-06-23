@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>高端炭黑产业链价值重估 — 硅碳负极×超级电容需求爆发</title>
+<style>
+:root {
+  --bg: #0f1117;
+  --card: #1a1d28;
+  --card2: #212433;
+  --text: #e1e4ed;
+  --text2: #a0a6b8;
+  --red: #ef4444;
+  --green: #22c55e;
+  --gold: #f59e0b;
+  --blue: #3b82f6;
+  --purple: #8b5cf6;
+  --border: #2a2d3a;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: var(--bg); color: var(--text); line-height:1.7;
+  padding: 24px; max-width: 1200px; margin:0 auto;
+}
+h1 { font-size:28px; text-align:center; margin:16px 0 8px; background:linear-gradient(135deg, var(--gold), var(--red)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.subtitle { text-align:center; color: var(--text2); font-size:14px; margin-bottom:32px; }
+h2 { font-size:20px; color:var(--gold); margin:32px 0 16px; padding-left:12px; border-left:3px solid var(--gold); }
+h3 { font-size:16px; color:var(--text); margin:20px 0 12px; }
+
+/* Hero Section */
+.hero-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:24px; }
+.hero-card { background:var(--card); border-radius:12px; padding:20px; border:1px solid var(--border); }
+.hero-card .label { font-size:12px; color:var(--text2); margin-bottom:4px; }
+.hero-card .value { font-size:24px; font-weight:700; }
+.hero-card .sub { font-size:12px; color:var(--text2); margin-top:4px; }
+
+/* Price ladder */
+.price-ladder { display:flex; flex-direction:column; gap:12px; margin:20px 0; }
+.ladder-row { display:grid; grid-template-columns:140px 1fr 120px 80px; align-items:center; gap:12px; padding:12px 16px; background:var(--card2); border-radius:8px; border-left:4px solid var(--border); }
+.ladder-row .name { font-weight:600; font-size:14px; }
+.ladder-row .bar-wrap { height:24px; background:var(--card); border-radius:4px; overflow:hidden; position:relative; }
+.ladder-row .bar { height:100%; border-radius:4px; transition:width 1s; }
+.ladder-row .price { text-align:right; font-weight:700; font-size:15px; }
+.ladder-row .mul { text-align:center; font-size:12px; padding:2px 8px; border-radius:4px; font-weight:600; }
+
+/* Company cards */
+.company-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(360px, 1fr)); gap:16px; margin:20px 0; }
+.co-card { background:var(--card); border-radius:12px; padding:20px; border:1px solid var(--border); position:relative; }
+.co-card .rank { position:absolute; top:12px; right:16px; font-size:28px; font-weight:800; color:var(--border); }
+.co-card .co-name { font-size:18px; font-weight:700; margin-bottom:4px; }
+.co-card .co-code { font-size:13px; color:var(--text2); margin-bottom:12px; }
+.co-card .tag-row { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:12px; }
+.co-card .tag { font-size:11px; padding:2px 8px; border-radius:4px; font-weight:500; }
+.tag-upgrade { background:rgba(139,92,246,0.15); color:var(--purple); }
+.tag-prod { background:rgba(59,130,246,0.15); color:var(--blue); }
+.tag-profit { background:rgba(34,197,94,0.15); color:var(--green); }
+.tag-loss { background:rgba(239,68,68,0.15); color:var(--red); }
+.tag-concept { background:rgba(245,158,11,0.15); color:var(--gold); }
+
+.metric-row { display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid rgba(255,255,255,0.04); font-size:13px; }
+.metric-row .ml { color:var(--text2); }
+.metric-row .mr { font-weight:600; }
+.metric-row .mr.red { color:var(--red); }
+.metric-row .mr.green { color:var(--green); }
+.metric-row .mr.gold { color:var(--gold); }
+
+/* Score card */
+.score-bar { height:6px; background:var(--card); border-radius:3px; margin:8px 0; overflow:hidden; }
+.score-fill { height:100%; border-radius:3px; transition:width 1.2s; }
+
+/* Key insight box */
+.insight-box { background:linear-gradient(135deg, rgba(245,158,11,0.08), rgba(239,68,68,0.08)); border:1px solid rgba(245,158,11,0.25); border-radius:12px; padding:20px; margin:20px 0; }
+.insight-box h3 { color:var(--gold); margin-top:0; }
+
+/* Table */
+.data-table { width:100%; border-collapse:collapse; margin:16px 0; font-size:13px; }
+.data-table th { text-align:left; padding:10px 12px; color:var(--text2); font-weight:500; border-bottom:2px solid var(--border); font-size:12px; }
+.data-table td { padding:10px 12px; border-bottom:1px solid rgba(255,255,255,0.04); }
+.data-table tr:hover td { background:rgba(255,255,255,0.02); }
+
+/* Math card */
+.math-card { background:var(--card2); border-radius:10px; padding:16px; margin:16px 0; text-align:center; }
+.math-card .big-num { font-size:36px; font-weight:800; background:linear-gradient(135deg, var(--gold), var(--red)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.math-card .desc { color:var(--text2); font-size:13px; margin-top:4px; }
+
+/* Chart section */
+.chart-section { margin:24px 0; }
+.bar-chart { display:flex; flex-direction:column; gap:8px; }
+.bar-item { display:flex; align-items:center; gap:12px; }
+.bar-label { width:110px; font-size:13px; text-align:right; }
+.bar-track { flex:1; height:28px; background:var(--card); border-radius:4px; overflow:hidden; position:relative; }
+.bar-fill { height:100%; border-radius:4px; display:flex; align-items:center; padding-left:10px; font-size:12px; font-weight:600; }
+.bar-value { width:80px; font-size:13px; font-weight:600; text-align:right; }
+
+/* Conclusion */
+.conclusion { background:var(--card); border-radius:12px; padding:24px; margin:24px 0; border:1px solid rgba(245,158,11,0.3); }
+.conclusion h3 { color:var(--gold); margin-top:0; }
+.conclusion ol { padding-left:20px; color:var(--text2); }
+.conclusion ol li { margin:8px 0; color:var(--text); }
+
+.footer { text-align:center; color:var(--text2); font-size:12px; padding:32px 0 16px; }
+</style>
+</head>
+<body>
+
+<h1>高端炭黑产业链价值重估</h1>
+<div class="subtitle">核心命题：硅碳负极 × 超级电容器双爆发 → 高级炭黑需求几何级增长 → 炭黑企业价值重估</div>
+
+<!-- ====== SECTION 1: THE CORE THESIS ====== -->
+<h2>一、核心逻辑：从"论吨卖"到"论克卖"</h2>
+
+<div class="hero-grid">
+  <div class="hero-card">
+    <div class="label">普通橡胶炭黑 N330</div>
+    <div class="value" style="color:var(--text2);">¥7,000/吨</div>
+    <div class="sub">毛利率 5-10% · 全行业产能过剩 · 轮胎厂压价</div>
+  </div>
+  <div class="hero-card" style="border-color:rgba(34,197,94,0.4);">
+    <div class="label">超级电容活性炭（元力股份）</div>
+    <div class="value" style="color:var(--green);">¥500,000/吨</div>
+    <div class="sub">毛利率 >50% · 打破日本可乐丽垄断 · GB300标配驱动</div>
+  </div>
+</div>
+
+<div class="math-card">
+  <div class="desc">同是"炭黑"，价差</div>
+  <div class="big-num">71 倍</div>
+  <div class="desc">1吨超级电容炭 = 71吨普通炭黑的收入</div>
+</div>
+
+<div class="price-ladder">
+  <div class="ladder-row" style="border-left-color:#4a5568;">
+    <div class="name">橡胶炭黑 N330</div>
+    <div class="bar-wrap"><div class="bar" style="width:2%;background:#4a5568;"></div></div>
+    <div class="price">~7,000</div>
+    <div class="mul" style="background:rgba(74,85,104,0.3);">1×</div>
+  </div>
+  <div class="ladder-row" style="border-left-color:#6366f1;">
+    <div class="name">中端导电炭黑 4010</div>
+    <div class="bar-wrap"><div class="bar" style="width:22%;background:#6366f1;"></div></div>
+    <div class="price">~80,000</div>
+    <div class="mul" style="background:rgba(99,102,241,0.3);">11×</div>
+  </div>
+  <div class="ladder-row" style="border-left-color:#8b5cf6;">
+    <div class="name">超导电炭黑 6010</div>
+    <div class="bar-wrap"><div class="bar" style="width:71%;background:#8b5cf6;"></div></div>
+    <div class="price">~250,000</div>
+    <div class="mul" style="background:rgba(139,92,246,0.3);">35×</div>
+  </div>
+  <div class="ladder-row" style="border-left-color:#22c55e;">
+    <div class="name">超级电容活性炭</div>
+    <div class="bar-wrap"><div class="bar" style="width:100%;background:#22c55e;"></div></div>
+    <div class="price">500,000</div>
+    <div class="mul" style="background:rgba(34,197,94,0.3);">71×</div>
+  </div>
+  <div class="ladder-row" style="border-left-color:#f59e0b;">
+    <div class="name">日本可乐丽电容炭</div>
+    <div class="bar-wrap"><div class="bar" style="width:100%;background:#f59e0b;opacity:0.6;"></div></div>
+    <div class="price">1,000,000</div>
+    <div class="mul" style="background:rgba(245,158,11,0.3);">143×</div>
+  </div>
+</div>
+
+<div class="insight-box">
+  <h3>🔥 关键算式：产能升级的价值</h3>
+  <table class="data-table" style="margin:12px 0;">
+    <tr><th>升级路径</th><th>每万吨增量收入</th><th>每万吨增量毛利</th><th>相当于普通炭黑</th></tr>
+    <tr><td>普通 → 导电炭黑 4010</td><td style="color:var(--blue);font-weight:700;">+7.3亿</td><td style="color:var(--green);">+4亿</td><td>10万吨</td></tr>
+    <tr><td>普通 → 超导电 6010</td><td style="color:var(--purple);font-weight:700;">+24.3亿</td><td style="color:var(--green);">+15亿</td><td>35万吨</td></tr>
+    <tr><td>普通 → 超级电容炭</td><td style="color:var(--green);font-weight:700;">+49.3亿</td><td style="color:var(--green);">+25亿</td><td>70万吨</td></tr>
+  </table>
+  <p style="color:var(--text2);font-size:13px;">※ 黑猫股份2025全年营收才86.85亿。只需<strong style="color:var(--gold);">2万吨</strong>导电炭黑产能就能再造半个黑猫。</p>
+</div>
+
+<!-- ====== SECTION 2: DEMAND CATALYSTS ====== -->
+<h2>二、两大需求催化剂：同时爆发</h2>
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:20px 0;">
+  <div style="background:var(--card);border-radius:12px;padding:20px;border:1px solid var(--border);">
+    <h3 style="color:var(--blue);margin-top:0;">🔋 硅碳负极</h3>
+    <div class="metric-row"><span class="ml">2026中国市场规模</span><span class="mr gold">26亿元（+63%）</span></div>
+    <div class="metric-row"><span class="ml">所需碳材料</span><span class="mr">介孔碳/高比表炭黑</span></div>
+    <div class="metric-row"><span class="ml">每GWh用量</span><span class="mr">~300吨多孔碳</span></div>
+    <div class="metric-row"><span class="ml">2028E全球需求</span><span class="mr gold">3-5万吨多孔碳</span></div>
+    <div class="metric-row"><span class="ml">技术路线</span><span class="mr">CVD气相沉积（主流）</span></div>
+    <div class="metric-row"><span class="ml">碳材料角色</span><span class="mr">承载纳米硅的"骨架"</span></div>
+  </div>
+  <div style="background:var(--card);border-radius:12px;padding:20px;border:1px solid var(--border);">
+    <h3 style="color:var(--green);margin-top:0;">⚡ 超级电容器</h3>
+    <div class="metric-row"><span class="ml">2026年状态</span><span class="mr gold">爆发元年（GB300标配）</span></div>
+    <div class="metric-row"><span class="ml">所需碳材料</span><span class="mr">超级电容活性炭</span></div>
+    <div class="metric-row"><span class="ml">供需缺口</span><span class="mr red">全球缺口近2/3</span></div>
+    <div class="metric-row"><span class="ml">每台GB300用量</span><span class="mr">~1.5kg电容炭</span></div>
+    <div class="metric-row"><span class="ml">壁垒</span><span class="mr">碱活化工艺·客户认证2年+</span></div>
+    <div class="metric-row"><span class="ml">碳材料角色</span><span class="mr">储存电荷的"电极活性材料"</span></div>
+  </div>
+</div>
+
+<!-- ====== SECTION 3: COMPANY COMPARISON ====== -->
+<h2>三、A股高端炭黑"五虎将"全面对比</h2>
+
+<div class="company-grid">
+  <!-- 元力股份 -->
+  <div class="co-card" style="border-color:rgba(34,197,94,0.4);">
+    <div class="rank" style="color:rgba(34,197,94,0.15);">🥇</div>
+    <div class="co-name" style="color:var(--green);">元力股份</div>
+    <div class="co-code">300174 · 深主板 · 市值107亿</div>
+    <div class="tag-row">
+      <span class="tag tag-upgrade">产品升级最深</span>
+      <span class="tag tag-profit">持续盈利</span>
+    </div>
+    <div class="metric-row"><span class="ml">今日</span><span class="mr green">+5.43% ￥29.49</span></div>
+    <div class="metric-row"><span class="ml">核心产品</span><span class="mr">超级电容活性炭 400吨/年</span></div>
+    <div class="metric-row"><span class="ml">售价</span><span class="mr gold">50-60万/吨 (日本可乐丽100万)</span></div>
+    <div class="metric-row"><span class="ml">电容炭毛利率</span><span class="mr green">>50%</span></div>
+    <div class="metric-row"><span class="ml">2025全年营收</span><span class="mr">19.04亿</span></div>
+    <div class="metric-row"><span class="ml">2025全年净利</span><span class="mr green">2.28亿</span></div>
+    <div class="metric-row"><span class="ml">PE(TTM)</span><span class="mr">48.16</span></div>
+    <div class="metric-row"><span class="ml">PB</span><span class="mr">3.08</span></div>
+    <div class="metric-row"><span class="ml">近20日涨幅</span><span class="mr green">+54.4%</span></div>
+    <div class="metric-row"><span class="ml">YTD涨幅</span><span class="mr green">+91.48%</span></div>
+    <div class="metric-row"><span class="ml">今日主力净流入</span><span class="mr green">+1,823万</span></div>
+    <div class="metric-row"><span class="ml">升级高度</span><span class="mr gold">71×（电容炭/普通炭黑价差）</span></div>
+    <div class="score-bar"><div class="score-fill" style="width:87%;background:linear-gradient(90deg,var(--green),var(--gold));"></div></div>
+    <div style="text-align:right;font-size:12px;color:var(--gold);">综合评分 87/100</div>
+  </div>
+
+  <!-- 黑猫股份 -->
+  <div class="co-card" style="border-color:rgba(239,68,68,0.3);">
+    <div class="rank" style="color:rgba(239,68,68,0.12);">🥈</div>
+    <div class="co-name" style="color:var(--red);">黑猫股份</div>
+    <div class="co-code">002068 · 深主板 · 市值77亿</div>
+    <div class="tag-row">
+      <span class="tag tag-concept">概念最热</span>
+      <span class="tag tag-loss">主业亏损</span>
+      <span class="tag tag-upgrade">样品阶段</span>
+    </div>
+    <div class="metric-row"><span class="ml">今日</span><span class="mr red">涨停+10.00% ￥10.45</span></div>
+    <div class="metric-row"><span class="ml">核心产品</span><span class="mr">介孔碳/高比表炭黑（送样中）</span></div>
+    <div class="metric-row"><span class="ml">传统产能</span><span class="mr">~110万吨/年（国内最大）</span></div>
+    <div class="metric-row"><span class="ml">2025全年营收</span><span class="mr">86.85亿</span></div>
+    <div class="metric-row"><span class="ml">2025全年净利</span><span class="mr red">-4.63亿</span></div>
+    <div class="metric-row"><span class="ml">PE(TTM)</span><span class="mr red">亏损</span></div>
+    <div class="metric-row"><span class="ml">PB</span><span class="mr">3.30</span></div>
+    <div class="metric-row"><span class="ml">近20日涨幅</span><span class="mr green">+4.19%</span></div>
+    <div class="metric-row"><span class="ml">YTD涨幅</span><span class="mr green">+18.48%</span></div>
+    <div class="metric-row"><span class="ml">今日主力净流入</span><span class="mr green">+6,998万</span></div>
+    <div class="metric-row"><span class="ml">升级高度</span><span class="mr">送样→量产距离未知</span></div>
+    <div class="score-bar"><div class="score-fill" style="width:65%;background:linear-gradient(90deg,var(--red),var(--gold));"></div></div>
+    <div style="text-align:right;font-size:12px;color:var(--gold);">综合评分 65/100</div>
+  </div>
+
+  <!-- 圣泉集团 -->
+  <div class="co-card">
+    <div class="rank" style="color:rgba(139,92,246,0.12);">🥉</div>
+    <div class="co-name" style="color:var(--purple);">圣泉集团</div>
+    <div class="co-code">605589 · 沪主板 · 市值598亿</div>
+    <div class="tag-row">
+      <span class="tag tag-upgrade">树脂基高端碳</span>
+      <span class="tag tag-profit">盈利稳定</span>
+    </div>
+    <div class="metric-row"><span class="ml">今日</span><span class="mr green">+6.49% ￥70.71</span></div>
+    <div class="metric-row"><span class="ml">核心产品</span><span class="mr">酚醛基多孔碳（硅碳负极）</span></div>
+    <div class="metric-row"><span class="ml">电容炭状态</span><span class="mr">小批量供货</span></div>
+    <div class="metric-row"><span class="ml">2025净利</span><span class="mr green">~9.8亿（估算）</span></div>
+    <div class="metric-row"><span class="ml">PE(TTM)</span><span class="mr">61.25</span></div>
+    <div class="metric-row"><span class="ml">PB</span><span class="mr">5.78</span></div>
+    <div class="metric-row"><span class="ml">近20日涨幅</span><span class="mr green">+63.26%</span></div>
+    <div class="metric-row"><span class="ml">YTD涨幅</span><span class="mr green">+155.73%</span></div>
+    <div class="metric-row"><span class="ml">升级高度</span><span class="mr gold">树脂基→高端碳，路线独特</span></div>
+    <div class="score-bar"><div class="score-fill" style="width:78%;background:linear-gradient(90deg,var(--purple),var(--blue));"></div></div>
+    <div style="text-align:right;font-size:12px;color:var(--gold);">综合评分 78/100</div>
+  </div>
+
+  <!-- 联科科技 -->
+  <div class="co-card">
+    <div class="rank">4</div>
+    <div class="co-name">联科科技</div>
+    <div class="co-code">001207 · 深主板 · 市值52亿</div>
+    <div class="tag-row">
+      <span class="tag tag-upgrade">电缆屏蔽料突破</span>
+      <span class="tag tag-profit">最赚钱传统炭黑</span>
+    </div>
+    <div class="metric-row"><span class="ml">今日</span><span class="mr red">-1.27% ￥17.13</span></div>
+    <div class="metric-row"><span class="ml">核心产品</span><span class="mr">110kV/220kV电缆屏蔽导电炭黑</span></div>
+    <div class="metric-row"><span class="ml">技术壁垒</span><span class="mr gold">打破国外垄断·国际先进水平</span></div>
+    <div class="metric-row"><span class="ml">2025全年营收</span><span class="mr">23.57亿</span></div>
+    <div class="metric-row"><span class="ml">2025全年净利</span><span class="mr green">2.93亿</span></div>
+    <div class="metric-row"><span class="ml">PE(TTM)</span><span class="mr">18.89</span></div>
+    <div class="metric-row"><span class="ml">PB</span><span class="mr">2.25</span></div>
+    <div class="metric-row"><span class="ml">近20日涨幅</span><span class="mr red">-11.11%</span></div>
+    <div class="metric-row"><span class="ml">YTD涨幅</span><span class="mr red">-3.57%</span></div>
+    <div class="metric-row"><span class="ml">升级高度</span><span class="mr">导电炭黑（11×），非超电容级</span></div>
+    <div class="score-bar"><div class="score-fill" style="width:70%;background:linear-gradient(90deg,var(--blue),var(--green));"></div></div>
+    <div style="text-align:right;font-size:12px;color:var(--gold);">综合评分 70/100</div>
+  </div>
+
+  <!-- 永东股份 -->
+  <div class="co-card">
+    <div class="rank">5</div>
+    <div class="co-name">永东股份</div>
+    <div class="co-code">002753 · 深主板 · 市值27亿</div>
+    <div class="tag-row">
+      <span class="tag tag-prod">高性能导电炭黑</span>
+      <span class="tag tag-loss">利润微薄</span>
+    </div>
+    <div class="metric-row"><span class="ml">今日</span><span class="mr green">+2.42% ￥6.35</span></div>
+    <div class="metric-row"><span class="ml">核心产品</span><span class="mr">高性能导电炭黑（中端4010级）</span></div>
+    <div class="metric-row"><span class="ml">产能利用率</span><span class="mr gold">103.81%（行业最高）</span></div>
+    <div class="metric-row"><span class="ml">2025全年营收</span><span class="mr">38.52亿</span></div>
+    <div class="metric-row"><span class="ml">2025全年净利</span><span class="mr red">3,894万（-65%）</span></div>
+    <div class="metric-row"><span class="ml">PE(TTM)</span><span class="mr red">256.6</span></div>
+    <div class="metric-row"><span class="ml">PB</span><span class="mr">1.03（近破净）</span></div>
+    <div class="metric-row"><span class="ml">近20日涨幅</span><span class="mr red">-6.96%</span></div>
+    <div class="metric-row"><span class="ml">YTD涨幅</span><span class="mr red">-10.37%</span></div>
+    <div class="metric-row"><span class="ml">升级高度</span><span class="mr gold">中端导电炭黑（11×）</span></div>
+    <div class="score-bar"><div class="score-fill" style="width:55%;background:linear-gradient(90deg,var(--text2),var(--blue));"></div></div>
+    <div style="text-align:right;font-size:12px;color:var(--text2);">综合评分 55/100</div>
+  </div>
+
+  <!-- 龙星科技 -->
+  <div class="co-card">
+    <div class="rank">6</div>
+    <div class="co-name">龙星科技</div>
+    <div class="co-code">002442 · 深主板 · 市值27亿</div>
+    <div class="tag-row">
+      <span class="tag tag-loss">传统炭黑为主</span>
+      <span class="tag tag-concept">跟涨</span>
+    </div>
+    <div class="metric-row"><span class="ml">今日</span><span class="mr green">+8.03% ￥5.38</span></div>
+    <div class="metric-row"><span class="ml">核心产品</span><span class="mr">传统橡胶炭黑（N220/N330）</span></div>
+    <div class="metric-row"><span class="ml">2025全年营收</span><span class="mr">42.96亿</span></div>
+    <div class="metric-row"><span class="ml">2025全年净利</span><span class="mr red">3,957万（-65%）</span></div>
+    <div class="metric-row"><span class="ml">PE(TTM)</span><span class="mr red">136.6</span></div>
+    <div class="metric-row"><span class="ml">PB</span><span class="mr">1.47</span></div>
+    <div class="metric-row"><span class="ml">近20日涨幅</span><span class="mr red">-27.0%</span></div>
+    <div class="metric-row"><span class="ml">YTD涨幅</span><span class="mr red">-13.37%</span></div>
+    <div class="metric-row"><span class="ml">升级高度</span><span class="mr red">几乎为零</span></div>
+    <div class="score-bar"><div class="score-fill" style="width:35%;background:var(--text2);"></div></div>
+    <div style="text-align:right;font-size:12px;color:var(--text2);">综合评分 35/100</div>
+  </div>
+</div>
+
+<!-- ====== SECTION 4: FINANCIAL COMPARISON ====== -->
+<h2>四、财务全景对比</h2>
+
+<table class="data-table">
+  <tr>
+    <th>指标</th>
+    <th>元力股份</th>
+    <th>圣泉集团</th>
+    <th>联科科技</th>
+    <th>黑猫股份</th>
+    <th>永东股份</th>
+    <th>龙星科技</th>
+  </tr>
+  <tr>
+    <td>2025营收（亿）</td>
+    <td>19.04</td>
+    <td style="color:var(--text2);">~100+</td>
+    <td>23.57</td>
+    <td style="font-weight:700;">86.85</td>
+    <td>38.52</td>
+    <td>42.96</td>
+  </tr>
+  <tr>
+    <td>2025净利（亿）</td>
+    <td style="color:var(--green);font-weight:700;">2.28</td>
+    <td style="color:var(--green);">~9.8</td>
+    <td style="color:var(--green);font-weight:700;">2.93</td>
+    <td style="color:var(--red);font-weight:700;">-4.63</td>
+    <td style="color:var(--red);">0.39</td>
+    <td style="color:var(--red);">0.40</td>
+  </tr>
+  <tr>
+    <td>净利率</td>
+    <td style="color:var(--green);">12.0%</td>
+    <td style="color:var(--green);">~10%</td>
+    <td style="color:var(--green);font-weight:700;">12.4%</td>
+    <td style="color:var(--red);">-5.3%</td>
+    <td style="color:var(--red);">1.0%</td>
+    <td style="color:var(--red);">0.9%</td>
+  </tr>
+  <tr>
+    <td>PE(TTM)</td>
+    <td>48.2</td>
+    <td>61.3</td>
+    <td style="color:var(--green);font-weight:700;">18.9</td>
+    <td style="color:var(--red);">亏损</td>
+    <td style="color:var(--red);">256.6</td>
+    <td style="color:var(--red);">136.6</td>
+  </tr>
+  <tr>
+    <td>PB</td>
+    <td>3.08</td>
+    <td>5.78</td>
+    <td style="color:var(--green);">2.25</td>
+    <td>3.30</td>
+    <td style="color:var(--green);">1.03</td>
+    <td>1.47</td>
+  </tr>
+  <tr>
+    <td>今日涨跌</td>
+    <td style="color:var(--green);">+5.43%</td>
+    <td style="color:var(--green);">+6.49%</td>
+    <td style="color:var(--red);">-1.27%</td>
+    <td style="color:var(--red);font-weight:700;">涨停+10%</td>
+    <td style="color:var(--green);">+2.42%</td>
+    <td style="color:var(--green);">+8.03%</td>
+  </tr>
+  <tr>
+    <td>今日主力净流入(万)</td>
+    <td style="color:var(--green);">+1,823</td>
+    <td style="color:var(--text2);">—</td>
+    <td style="color:var(--text2);">—</td>
+    <td style="color:var(--green);font-weight:700;">+6,998</td>
+    <td style="color:var(--green);">+185</td>
+    <td style="color:var(--green);">+2,567</td>
+  </tr>
+  <tr>
+    <td>近5日主力(万)</td>
+    <td style="color:var(--red);">-17,507</td>
+    <td style="color:var(--text2);">—</td>
+    <td style="color:var(--text2);">—</td>
+    <td style="color:var(--red);">-6,777</td>
+    <td style="color:var(--green);">+192</td>
+    <td style="color:var(--red);">-1,246</td>
+  </tr>
+  <tr>
+    <td>YTD涨幅</td>
+    <td style="color:var(--green);font-weight:700;">+91.5%</td>
+    <td style="color:var(--green);font-weight:700;">+155.7%</td>
+    <td style="color:var(--red);">-3.6%</td>
+    <td style="color:var(--green);">+18.5%</td>
+    <td style="color:var(--red);">-10.4%</td>
+    <td style="color:var(--red);">-13.4%</td>
+  </tr>
+  <tr>
+    <td>总市值（亿）</td>
+    <td>107</td>
+    <td>598</td>
+    <td>52</td>
+    <td>77</td>
+    <td>27</td>
+    <td>27</td>
+  </tr>
+</table>
+
+<!-- ====== SECTION 5: UPGRADE PATHWAY ====== -->
+<h2>五、核心发现：产品升级的"梯子"已经搭好</h2>
+
+<p style="color:var(--text2);margin-bottom:16px;">六家公司处于产品升级的不同台阶上。升级高度 = 你能卖多贵 ÷ 你现在的均价。</p>
+
+<div class="bar-chart">
+  <div class="bar-item">
+    <div class="bar-label" style="color:var(--green);">元力股份</div>
+    <div class="bar-track">
+      <div class="bar-fill" style="width:87%;background:linear-gradient(90deg,#22c55e,#16a34a);">
+        <span>电容炭 50万/吨 | 71×溢价 | 400吨量产</span>
+      </div>
+    </div>
+    <div class="bar-value" style="color:var(--green);">87分</div>
+  </div>
+  <div class="bar-item">
+    <div class="bar-label" style="color:var(--purple);">圣泉集团</div>
+    <div class="bar-track">
+      <div class="bar-fill" style="width:78%;background:linear-gradient(90deg,#8b5cf6,#7c3aed);">
+        <span>树脂基多孔碳·小批量 | 硅碳负极骨架</span>
+      </div>
+    </div>
+    <div class="bar-value" style="color:var(--purple);">78分</div>
+  </div>
+  <div class="bar-item">
+    <div class="bar-label" style="color:var(--blue);">联科科技</div>
+    <div class="bar-track">
+      <div class="bar-fill" style="width:70%;background:linear-gradient(90deg,#3b82f6,#2563eb);">
+        <span>电缆屏蔽导电炭黑 | 11×溢价 | 盈利最好</span>
+      </div>
+    </div>
+    <div class="bar-value" style="color:var(--blue);">70分</div>
+  </div>
+  <div class="bar-item">
+    <div class="bar-label" style="color:var(--red);">黑猫股份</div>
+    <div class="bar-track">
+      <div class="bar-fill" style="width:65%;background:linear-gradient(90deg,#ef4444,#dc2626);">
+        <span>介孔碳送样 | 概念最热 | 量产距离最远</span>
+      </div>
+    </div>
+    <div class="bar-value" style="color:var(--red);">65分</div>
+  </div>
+  <div class="bar-item">
+    <div class="bar-label">永东股份</div>
+    <div class="bar-track">
+      <div class="bar-fill" style="width:55%;background:linear-gradient(90deg,#6366f1,#4f46e5);">
+        <span>导电炭黑中端 | 11×溢价 | PE 256偏贵</span>
+      </div>
+    </div>
+    <div class="bar-value">55分</div>
+  </div>
+  <div class="bar-item">
+    <div class="bar-label" style="color:var(--text2);">龙星科技</div>
+    <div class="bar-track">
+      <div class="bar-fill" style="width:35%;background:linear-gradient(90deg,#6b7280,#4b5563);">
+        <span>传统炭黑 | 0溢价 | 跟涨标的</span>
+      </div>
+    </div>
+    <div class="bar-value" style="color:var(--text2);">35分</div>
+  </div>
+</div>
+
+<!-- ====== SECTION 6: VALUATION ANOMALY ====== -->
+<h2>六、估值异象：市场在"讲概念"还是"看业绩"？</h2>
+
+<div class="insight-box">
+  <h3>📊 最反直觉的发现</h3>
+  <p style="margin-bottom:12px;">按盈利质量排：<strong style="color:var(--green);">联科科技（PE 18.9，净利2.93亿）> 元力股份（PE 48，净利2.28亿）> 圣泉集团（PE 61）</strong></p>
+  <p style="margin-bottom:12px;">按今天涨幅排：<strong style="color:var(--red);">黑猫涨停 > 龙星+8% > 圣泉+6.5% > 元力+5.4% > 永东+2.4% > 联科-1.3%</strong></p>
+  <p>按概念纯度排 vs 按业绩排，<strong style="color:var(--gold);">完全倒挂</strong>。真正赚钱的联科科技反而在跌，亏最多的黑猫涨停。</p>
+  <p style="color:var(--text2);font-size:13px;margin-top:12px;">这说明市场当前在交易"硅碳负极预期"，而不是"导电炭黑业绩"。但从产业逻辑看，硅碳负极和超电容爆发必然拉动高端炭黑需求，最终会反映到业绩上。</p>
+</div>
+
+<!-- ====== SECTION 7: INVESTMENT LOGIC ====== -->
+<h2>七、投资逻辑分层</h2>
+
+<div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:12px; margin:20px 0;">
+  <div style="background:var(--card);border-radius:10px;padding:16px;border:1px solid rgba(34,197,94,0.3);">
+    <h3 style="color:var(--green);font-size:15px;margin-top:0;">第一层：已量产高端</h3>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:8px;">产品已卖到50万/吨，产能爬坡中</p>
+    <p style="font-size:14px;font-weight:700;">元力股份 > 联科科技</p>
+    <p style="font-size:12px;color:var(--text2);">确定性最高，估值相对合理</p>
+  </div>
+  <div style="background:var(--card);border-radius:10px;padding:16px;border:1px solid rgba(139,92,246,0.3);">
+    <h3 style="color:var(--purple);font-size:15px;margin-top:0;">第二层：即将量产</h3>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:8px;">产品已验证，产能建设中</p>
+    <p style="font-size:14px;font-weight:700;">圣泉集团</p>
+    <p style="font-size:12px;color:var(--text2);">硅碳负极多孔碳路线独特</p>
+  </div>
+  <div style="background:var(--card);border-radius:10px;padding:16px;border:1px solid rgba(239,68,68,0.3);">
+    <h3 style="color:var(--red);font-size:15px;margin-top:0;">第三层：概念先行</h3>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:8px;">送样/中试阶段，量产时间未知</p>
+    <p style="font-size:14px;font-weight:700;">黑猫股份 > 永东股份 > 龙星科技</p>
+    <p style="font-size:12px;color:var(--text2);">弹性最大但确定性最低</p>
+  </div>
+</div>
+
+<!-- ====== SECTION 8: CONCLUSION ====== -->
+<div class="conclusion">
+  <h3>🎯 核心结论</h3>
+  <ol>
+    <li><strong style="color:var(--gold);">"买高级炭黑"逻辑完全成立</strong>——普通炭黑7千/吨 vs 超导电炭黑25万/吨 vs 电容炭50万/吨，产品每升一级，附加值翻10-70倍。硅碳负极和超级电容器同时爆发，是这场升级的最大催化剂。</li>
+    <li><strong style="color:var(--green);">元力股份是当下确定性最高的"卖铲人"</strong>——A股唯一量产的超级电容活性炭供应商，400吨产能对应2亿+收入，毛利率>50%。日本可乐丽卖100万/吨，元力只卖50-60万，进口替代空间明确。但YTD已涨91%，估值不便宜。</li>
+    <li><strong style="color:var(--blue);">联科科技是被低估的"隐形冠军"</strong>——PE仅18.9，却是炭黑行业最赚钱的公司（净利2.93亿/净利率12.4%），导电炭黑已打破国外垄断。市场因为"电缆"故事不够性感而忽视它，但高压海缆屏蔽料是电网投资的硬需求。</li>
+    <li><strong style="color:var(--red);">黑猫股份是弹性最大的"期权"</strong>——110万吨产能底子 + 介孔碳送样，一旦量产验证通过，估值逻辑从"亏损炭黑厂"切换到"硅碳负极核心材料商"。但当前仍是纯概念，PE亏损，追涨停风险极大。</li>
+    <li><strong style="color:var(--gold);">关键验证节点</strong>：黑猫介孔碳何时通过客户验证 → 元力电容炭产能何时扩到千吨级 → 圣泉多孔碳何时量产 → GB300超容订单何时大规模释放。任何一条验证都会催化整个板块。</li>
+  </ol>
+</div>
+
+<div class="footer">
+  数据来源：通达信 · 东方财富 · 卓创资讯 · 雪球 · 各公司财报<br>
+  分析日期：2026年6月18日 · 盘中数据截至 10:30
+</div>
+
+</body>
+</html>
