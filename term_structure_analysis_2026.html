@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>豆类期货期限结构之谜：为什么远期升水而玉米贴水？</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif;background:#0f172a;color:#e2e8f0;line-height:1.8;min-height:100vh}
+.container{max-width:960px;margin:0 auto;padding:20px 24px}
+.hero{background:linear-gradient(135deg,#1e3a5f,#0f172a);border:1px solid #334155;border-radius:16px;padding:36px 28px;margin-bottom:28px;text-align:center}
+.hero h1{font-size:28px;color:#f59e0b;margin-bottom:8px}
+.hero .sub{color:#94a3b8;font-size:15px}
+.section{margin-bottom:32px}
+.section-title{font-size:21px;color:#f59e0b;border-left:4px solid #f59e0b;padding-left:14px;margin-bottom:16px}
+.section-sub{font-size:17px;color:#38bdf8;margin:20px 0 12px;padding-bottom:6px;border-bottom:1px solid #1e3a5f}
+p{margin-bottom:14px;color:#cbd5e1;font-size:15px}
+strong{color:#f1f5f9}
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:14px}
+th{background:#1e3a5f;color:#f59e0b;padding:10px 14px;text-align:center;font-weight:600;border:1px solid #334155}
+td{padding:10px 14px;border:1px solid #1e293b;color:#cbd5e1;text-align:center}
+tr:nth-child(even) td{background:#1e293b}
+tr:hover td{background:#1e3a5f}
+.info-box{background:#1e293b;border:1px solid #334155;border-radius:12px;padding:20px 24px;margin-bottom:18px}
+.info-box h4{color:#f59e0b;font-size:16px;margin-bottom:10px}
+.info-box p{font-size:14px;margin-bottom:8px}
+.warn-box{background:#7c2d1220;border:1px solid #7c2d12;border-radius:12px;padding:18px 24px;margin-bottom:18px}
+.warn-box h4{color:#f87171;font-size:15px;margin-bottom:8px}
+.green-box{background:#065f4620;border:1px solid #065f46;border-radius:12px;padding:18px 24px;margin-bottom:18px}
+.green-box h4{color:#34d399;font-size:15px;margin-bottom:8px}
+.highlight{color:#f59e0b;font-weight:600}
+.num-red{color:#ef4444;font-weight:700}
+.num-green{color:#34d399;font-weight:700}
+.num-blue{color:#60a5fa;font-weight:700}
+.big-num{font-size:24px;font-weight:700}
+.footer{text-align:center;padding:30px;color:#475569;font-size:12px}
+.term-bar{display:flex;align-items:flex-end;gap:8px;height:200px;margin:20px 0;padding:0 20px}
+.term-col{flex:1;text-align:center;display:flex;flex-direction:column;align-items:center}
+.term-col .bar{width:100%;border-radius:8px 8px 0 0;min-height:20px;transition:opacity .3s}
+.term-col .price{font-size:13px;font-weight:700;margin-top:6px;color:#f1f5f9}
+.term-col .month{font-size:11px;color:#64748b;margin-top:2px}
+.contango-bg{background:linear-gradient(180deg,#ef4444,#7c2d12)}
+.backward-bg{background:linear-gradient(180deg,#34d399,#065f46)}
+.arrow-row{display:flex;align-items:center;gap:12px;margin:16px 0;font-size:20px;justify-content:center}
+@media(max-width:600px){.hero h1{font-size:22px}.term-bar{padding:0}}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="hero">
+<h1>📐 豆类期货期限结构之谜</h1>
+<div class="sub">为什么豆一/豆二/豆粕全部远期升水，而玉米是远期贴水？</div>
+<div class="sub" style="font-size:12px;margin-top:4px">2026年6月23日 · 基于DCE实时行情数据，11:03截取</div>
+</div>
+
+<!-- ====== 一、数据：四种商品的期限结构 ====== -->
+<div class="section">
+<div class="section-title">一、实证数据：四种商品的期限结构对比</div>
+
+<div class="info-box">
+<h4>📊 数据来源：DCE实时行情（2026-06-23 11:03截取）</h4>
+<table>
+<tr><th>商品</th><th>近月(7月)</th><th>主力(9月)</th><th>远月(1月)</th><th>7月→9月价差</th><th>9月→1月价差</th><th>结构</th></tr>
+<tr>
+  <td><strong>豆粕 M</strong></td>
+  <td><span class="num-green">2,756</span></td>
+  <td><span class="highlight">2,935</span></td>
+  <td><span class="num-red">2,996</span></td>
+  <td><span class="num-red">+179</span></td>
+  <td><span class="num-red">+61</span></td>
+  <td><span class="num-red big-num">升水 ▲</span></td>
+</tr>
+<tr>
+  <td><strong>豆二 B</strong></td>
+  <td><span class="num-green">3,513</span></td>
+  <td><span class="highlight">3,663</span></td>
+  <td><span class="num-red">3,721</span></td>
+  <td><span class="num-red">+150</span></td>
+  <td><span class="num-red">+58</span></td>
+  <td><span class="num-red big-num">升水 ▲</span></td>
+</tr>
+<tr>
+  <td><strong>豆一 A</strong></td>
+  <td style="color:#64748b">—</td>
+  <td><span class="highlight">4,752</span></td>
+  <td><span class="num-red">4,812</span></td>
+  <td>—</td>
+  <td><span class="num-red">+60</span></td>
+  <td><span class="num-red big-num">升水 ▲</span></td>
+</tr>
+<tr style="border:2px solid #34d399">
+  <td><strong>玉米 C</strong></td>
+  <td><span class="num-red">2,337</span></td>
+  <td><span class="highlight">2,320</span></td>
+  <td><span class="num-green">2,279</span></td>
+  <td><span class="num-green">-17</span></td>
+  <td><span class="num-green">-41</span></td>
+  <td><span class="num-green big-num">贴水 ▼</span></td>
+</tr>
+</table>
+</div>
+
+<style>
+.vis-wrap{display:flex;gap:20px;margin:24px 0;flex-wrap:wrap}
+.vis-card{flex:1;min-width:200px;background:#1e293b;border:1px solid #334155;border-radius:12px;padding:16px}
+.vis-card h5{color:#94a3b8;font-size:14px;margin-bottom:12px;text-align:center}
+.vis-bars{display:flex;align-items:flex-end;gap:6px;height:140px;justify-content:center}
+.vis-bar{width:48px;border-radius:6px 6px 0 0;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:4px;position:relative}
+.vis-bar .vprice{font-size:10px;font-weight:700;color:#f1f5f9}
+.vis-bar .vmonth{font-size:9px;color:#94a3b8}
+.vis-labels{display:flex;justify-content:center;gap:6px;margin-top:4px}
+.vis-labels span{width:48px;text-align:center;font-size:10px;color:#64748b}
+.red-bar{background:linear-gradient(180deg,#ef4444,#991b1b)}
+.green-bar{background:linear-gradient(180deg,#34d399,#065f46)}
+.struct-tag{text-align:center;margin-top:8px;font-size:13px;font-weight:700}
+</style>
+
+<div class="vis-wrap">
+<div class="vis-card">
+  <h5>🫘 豆粕 (Contango 升水)</h5>
+  <div class="vis-bars">
+    <div class="vis-bar red-bar" style="height:40%"><span class="vprice">2756</span></div>
+    <div class="vis-bar red-bar" style="height:70%"><span class="vprice">2935</span></div>
+    <div class="vis-bar red-bar" style="height:85%"><span class="vprice">2996</span></div>
+  </div>
+  <div class="vis-labels"><span>M2607</span><span>M2609</span><span>M2701</span></div>
+  <div class="struct-tag" style="color:#ef4444">远期升水 ▲ +240(5个月)</div>
+</div>
+<div class="vis-card">
+  <h5>🫘 豆二 (Contango 升水)</h5>
+  <div class="vis-bars">
+    <div class="vis-bar red-bar" style="height:38%"><span class="vprice">3513</span></div>
+    <div class="vis-bar red-bar" style="height:72%"><span class="vprice">3663</span></div>
+    <div class="vis-bar red-bar" style="height:88%"><span class="vprice">3721</span></div>
+  </div>
+  <div class="vis-labels"><span>B2607</span><span>B2609</span><span>B2701</span></div>
+  <div class="struct-tag" style="color:#ef4444">远期升水 ▲ +208(5个月)</div>
+</div>
+<div class="vis-card" style="border:2px solid #34d399">
+  <h5>🌽 玉米 (Backwardation 贴水)</h5>
+  <div class="vis-bars">
+    <div class="vis-bar green-bar" style="height:88%"><span class="vprice">2337</span></div>
+    <div class="vis-bar green-bar" style="height:75%"><span class="vprice">2320</span></div>
+    <div class="vis-bar green-bar" style="height:45%"><span class="vprice">2279</span></div>
+  </div>
+  <div class="vis-labels"><span>C2607</span><span>C2609</span><span>C2701</span></div>
+  <div class="struct-tag" style="color:#34d399">远期贴水 ▼ -58(5个月)</div>
+</div>
+</div>
+</div>
+
+<!-- ====== 二、用户的核心疑惑 ====== -->
+<div class="section">
+<div class="section-title">二、你困惑的点——逻辑上的"矛盾"</div>
+
+<div class="warn-box">
+<h4>🤔 直觉推理 vs 市场现实</h4>
+<p><strong>你的推理：</strong>我们之前的分析说，大豆/豆粕供应非常充足（巴西丰产+6-8月月均千万吨到港+胀库风险），且需求疲弱。既然供应这么充足、预期还会继续增加，那么<strong>远期价格应该更低（贴水），而不是更高（升水）</strong>。</p>
+<p><strong>市场现实：</strong>豆一/豆二/豆粕全部远期升水，只有玉米是远期贴水。</p>
+<p>这个矛盾恰恰是整个问题的核心——<strong>你的逻辑链中漏掉了最关键的一环：供应增加的"时间分布"。</strong></p>
+</div>
+</div>
+
+<!-- ====== 三、核心解释：季节性供应洪峰 ====== -->
+<div class="section">
+<div class="section-title">三、核心解释：供应增加不在远期，<strong>就在当下</strong></div>
+
+<div class="info-box">
+<h4>🔑 关键误区澄清</h4>
+<p><strong>你以为的：</strong>"供应增加是未来的事 → 远期应该贴水"</p>
+<p><strong>实际的：</strong>"供应洪峰<strong>现在正在进行</strong>（6-8月月均千万吨到港），而远期（11月以后）巴西大豆出口窗口关闭，供应反而<strong>更紧张</strong> → 远期必须升水"</p>
+</div>
+
+<div class="section-sub">巴西大豆出口的季节性节奏</div>
+<table>
+<tr><th>月份</th><th>巴西大豆出口状态</th><th>对应期货合约</th><th>供应压力</th></tr>
+<tr><td>2-3月</td><td>巴西开始收割，出口逐步启动</td><td>M2605</td><td>开始增加</td></tr>
+<tr style="background:#7c2d1230"><td><strong>4-8月</strong></td><td><strong>巴西出口高峰！月均1,000-1,400万吨</strong></td><td><strong>M2607, M2609</strong></td><td><span class="num-green">🔴 洪峰期</span></td></tr>
+<tr><td>9-11月</td><td>巴西出口窗口关闭，美国大豆接力</td><td>M2611</td><td><span class="highlight">🟡 过渡期</span></td></tr>
+<tr style="background:#065f4630"><td><strong>12-1月</strong></td><td><strong>南北美交接空窗，全球供应最紧张</strong></td><td><strong>M2701</strong></td><td><span class="num-red">🟢 空窗期</span></td></tr>
+</table>
+
+<div class="info-box">
+<h4>📐 豆粕期限结构的直观理解</h4>
+<p><strong>M2607 = 2,756元：</strong>7月合约，即将交割，正在经历巴西大豆到港洪峰的最猛烈阶段（7月1,100万吨），油厂满负荷压榨，豆粕胀库风险最高 → <strong>被供应洪峰砸到最低</strong></p>
+<p><strong>M2609 = 2,935元（+179）：</strong>9月合约，巴西出口已近尾声（8月降到1,050万吨，9月更低），美国大豆尚未大量上市，供应边际收紧。同时9月是养殖旺季备货起点 → <strong>供需格局改善</strong></p>
+<p><strong>M2701 = 2,996元（+61 vs 2609）：</strong>1月合约，美国大豆收获完成但出口节奏可控，中国进入冬季备货，养殖企业在春节前集中采购 → <strong>供需最平衡的时段 + 持有成本</strong></p>
+</div>
+
+<div class="green-box">
+<h4>✅ 结论：contango不是"预期供给增加"，而是"供给洪峰已经发生、即将过去"</h4>
+<p>期货价格的<strong>近月被当前洪峰压到最低</strong>，远月反映的是洪峰过后的正常供需水平。正因为你知道供应"增加"了，而且这个增加正发生在当下、压在你的脸上，所以近月价格才这么低，远月才能更高。</p>
+</div>
+</div>
+
+<!-- ====== 四、持有成本 ====== -->
+<div class="section">
+<div class="section-title">四、第二层：持有成本——商品期货的底层规律</div>
+
+<div class="info-box">
+<h4>📦 可储存商品期货的公允价值公式</h4>
+<p style="font-size:18px;text-align:center;color:#f59e0b;margin:16px 0"><strong>远期价格 = 现货价格 + 仓储费 + 资金利息 + 保险费</strong></p>
+<p>这就是为什么可储存的大宗商品<strong>天然就应该是contango（远期升水）</strong>——你持有一吨大豆到未来，需要花钱存、花利息、买保险。这些成本必须反映在远期价格里。</p>
+</div>
+
+<table>
+<tr><th>品种</th><th>月持有成本(估)</th><th>5个月持有成本</th><th>实际5个月价差</th><th>持有成本外超额</th></tr>
+<tr><td>豆粕 M (2607→2701)</td><td>~25元/吨</td><td>~125</td><td><span class="num-red">+240</span></td><td><span class="num-red">+115（季节性）</span></td></tr>
+<tr><td>豆二 B (2607→2701)</td><td>~28元/吨</td><td>~140</td><td><span class="num-red">+208</span></td><td><span class="num-red">+68（季节性）</span></td></tr>
+<tr><td>豆一 A (2609→2701)</td><td>~30元/吨</td><td>~120</td><td><span class="num-red">+60</span></td><td><span class="num-green">-60（远月被低估？）</span></td></tr>
+<tr style="border:2px solid #34d399"><td>玉米 C (2607→2701)</td><td>~20元/吨</td><td>~100</td><td><span class="num-green">-58</span></td><td><span class="num-green">-158（紧缺溢价反向吞噬）</span></td></tr>
+</table>
+
+<div class="info-box">
+<h4>🔍 从"持有成本外超额"看本质</h4>
+<p><strong>豆粕 +115：</strong>季节性供应收紧的溢价，远超持有成本 → <strong>市场在为"洪峰过后的供应紧张"定价</strong></p>
+<p><strong>玉米 -158：</strong>近月紧缺溢价完全吞噬了持有成本 → <strong>市场在喊"我现在就缺粮！"</strong></p>
+<p><strong>豆一 -60：</strong>国产非转大豆几乎无季节性进口冲击，持有成本外的负值说明远月需求预期并不强</p>
+</div>
+</div>
+
+<!-- ====== 五、玉米为什么反着来 ====== -->
+<div class="section">
+<div class="section-title">五、镜像对照：为什么玉米是唯一的贴水？</div>
+
+<div class="section-sub">① 进口依赖度天差地别</div>
+<table>
+<tr><th>指标</th><th>大豆</th><th>玉米</th></tr>
+<tr><td>进口依赖度</td><td><span class="num-red">~85%</span></td><td><span class="highlight">~5%</span></td></tr>
+<tr><td>年进口量</td><td>~10,330万吨</td><td>~1,800万吨（配额管控）</td></tr>
+<tr><td>国内产量</td><td>~2,091万吨</td><td>~30,100万吨</td></tr>
+<tr><td>供给节奏</td><td>受巴西/美国出口窗口驱动</td><td>受中国10-11月秋收驱动</td></tr>
+<tr><td>期限结构逻辑</td><td>进口洪峰压近月 → 升水</td><td>国内紧缺拉近月 → 贴水</td></tr>
+</table>
+
+<div class="section-sub">② 供需平衡状态相反</div>
+<div class="vis-wrap">
+<div class="vis-card" style="border:2px solid #34d399">
+  <h5>🌽 玉米：产不足需</h5>
+  <p style="font-size:14px;color:#cbd5e1;text-align:center">产量 3.01亿吨<br>消费 3.06亿吨<br><span style="color:#34d399;font-weight:700">缺口 569万吨</span></p>
+  <p style="font-size:13px;color:#94a3b8;text-align:center;margin-top:8px">当前库存紧张 → 近月被逼高<br>10月秋收后缓解 → 远月预期回落<br><span style="color:#34d399">= 远期贴水</span></p>
+</div>
+<div class="vis-card" style="border:2px solid #ef4444">
+  <h5>🫘 大豆/豆粕：供过于求</h5>
+  <p style="font-size:14px;color:#cbd5e1;text-align:center">进口 10,330万吨<br>需求 8,500-8,550万吨<br><span style="color:#ef4444;font-weight:700">过剩（胀库）</span></p>
+  <p style="font-size:13px;color:#94a3b8;text-align:center;margin-top:8px">6-8月洪峰压近月 → 近月最低<br>9月后供应收紧 → 远月回升<br><span style="color:#ef4444">= 远期升水</span></p>
+</div>
+</div>
+
+<div class="section-sub">③ 收获季节完全不同</div>
+<table>
+<tr><th>品种</th><th>主要供应来源</th><th>供应洪峰月份</th><th>洪峰对应的期货合约</th><th>洪峰后的合约</th></tr>
+<tr><td>豆粕/豆二</td><td>巴西大豆进口</td><td><span class="num-green">6-8月</span></td><td>M2607, M2609（被压）</td><td>M2611→M2701（回升）</td></tr>
+<tr><td>玉米</td><td>中国国内秋收</td><td><span class="num-red">10-11月</span></td><td>C2611→C2701（预期回落）</td><td>C2703→C2705（低位）</td></tr>
+</table>
+
+<div class="info-box">
+<h4>🎯 关键差异</h4>
+<p><strong>大豆/豆粕：</strong>供应洪峰在<strong>近月合约</strong>上 → 近月被压到最低 → 远月自然更高 → 升水</p>
+<p><strong>玉米：</strong>供应洪峰在<strong>远月合约</strong>上（10月秋收后）→ 远月预期更低 → 贴水</p>
+<p><strong>取决于：供应洪峰落在曲线上的哪个位置。</strong></p>
+</div>
+</div>
+
+<!-- ====== 六、更深的洞察 ====== -->
+<div class="section">
+<div class="section-title">六、更深的洞察：期限结构里的隐含信息</div>
+
+<div class="section-sub">豆粕M2607-M2609的179元升水在说什么？</div>
+<div class="info-box">
+<p>M2607（7月到期）与M2609（9月到期）只有2个月差距，却差了<strong>179元/吨（6.5%）</strong>。这远超2个月的持有成本（约50元）。</p>
+<p><strong>这179元在说三件事：</strong></p>
+<p>① <strong>80元 = 正态持有成本</strong>（仓储+利息+保险，2个月）</p>
+<p>② <strong>60元 = M2607交割品是当前过剩的现货</strong>（被迫接货的折扣），7月胀库最严重，买方极度不愿意接货 → 近月被额外压低</p>
+<p>③ <strong>39元 = 9月养殖备货启动的预期溢价</strong></p>
+</div>
+
+<div class="section-sub">玉米C2607-C2701的-58元贴水在说什么？</div>
+<div class="warn-box">
+<p>C2607（7月到期）比C2701（1月到期）贵58元。考虑到5个月的持有成本约100元，<strong>这意味着近月实际上比远月贵了约158元</strong>。</p>
+<p><strong>这-58元在说：</strong></p>
+<p>① <strong>-100元 = 被吞噬的持有成本</strong> —— 如果你现在买入现货玉米存到明年1月，你会亏损100元</p>
+<p>② <strong>-58元 = 当前的"便利收益"</strong>（convenience yield）—— 持有现货玉米本身就是有价值的，因为现在缺货，拥有现货意味着你不会断粮</p>
+<p>③ <strong>隐含信息：</strong>中国玉米市场正处于去库存末期，社会库存极低，终端愿意为"现在就拿到玉米"支付溢价。而10月秋收后新粮上市将大幅缓解紧张。</p>
+</div>
+
+<div class="section-sub">期限结构里的交易机会</div>
+<table>
+<tr><th>策略</th><th>逻辑</th><th>风险</th></tr>
+<tr><td><strong>多M2609空M2607</strong></td><td>近月胀库压力最大，远月供应收紧，升水大概率维持甚至扩大</td><td>需注意M2607临近交割的流动性风险</td></tr>
+<tr><td><strong>多C2607空C2701</strong></td><td>近月紧缺、远月秋收缓解，贴水可能在秋收前进一步加深</td><td>天气突变可能改变秋收预期</td></tr>
+<tr><td><strong>多豆粕空玉米</strong></td><td>豆粕升水（预期改善）+ 玉米贴水（预期恶化），两个方向都有利</td><td>两个品种的驱动因素完全不同，相关性低</td></tr>
+</table>
+</div>
+
+<!-- ====== 七、总结 ====== -->
+<div class="section">
+<div class="section-title">七、总结：一张图看透</div>
+
+<div class="info-box">
+<table>
+<tr><th>维度</th><th>豆粕/豆二/豆一（升水）</th><th>玉米（贴水）</th></tr>
+<tr><td><strong>进口依赖度</strong></td><td>85%进口（受巴西出口窗口驱动）</td><td>5%进口（受国内秋收驱动）</td></tr>
+<tr><td><strong>供应洪峰时刻</strong></td><td><span class="num-green">当下（6-8月）</span> → 近月最弱</td><td><span class="num-green">未来（10-11月）</span> → 远月最弱</td></tr>
+<tr><td><strong>洪峰后供应</strong></td><td>收紧（巴西窗口关闭） → 远月回升</td><td>宽松（新粮上市） → 远月回落</td></tr>
+<tr><td><strong>当前供需</strong></td><td>供过于求（胀库）</td><td>产不足需（去库末期）</td></tr>
+<tr><td><strong>期限结构</strong></td><td><span class="num-red">Contango（升水）</span></td><td><span class="num-green">Backwardation（贴水）</span></td></tr>
+<tr><td><strong>一句话解释</strong></td><td>洪水在眼前，未来会退潮</td><td>干旱在眼前，未来会下雨</td></tr>
+</table>
+</div>
+
+<div class="green-box">
+<h4>🎯 最终答案</h4>
+<p><strong>豆类远期升水不是因为"预期未来供应增加"，而是因为：</strong></p>
+<p>1. <strong>供应洪峰就在当下</strong>（6-8月巴西大豆到港），把近月合约压到了最低点</p>
+<p>2. <strong>洪峰过后供应会收紧</strong>（9月后巴西出口窗口关闭），远月反映的是正常供需水平</p>
+<p>3. <strong>持有成本是天然的升水力</strong>（仓储+利息+保险），可储存商品的"默认状态"就是contango</p>
+<p>4. <strong>玉米刚好相反</strong>——现在是青黄不接的紧缺期（去库末期），10月秋收后新粮上市才会缓解。供应洪峰在远月，所以远月便宜。</p>
+<p><strong>一句话：期限结构的方向取决于"供应洪峰落在今天还是明天"。</strong></p>
+</div>
+</div>
+
+<div class="footer">
+2026年6月23日 · 豆类期货期限结构深度分析 · 数据来源：DCE实时行情（9qihuo.com截取）<br>
+⚠️ 本报告不构成投资建议 · 期货交易有风险 入市需谨慎
+</div>
+
+</div>
+</body>
+</html>

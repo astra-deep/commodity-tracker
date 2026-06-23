@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>氟化工与化肥产业链 × 大宗商品映射全景</title>
+<style>
+:root {
+  --bg: #0a0e14;
+  --card: #131820;
+  --border: #1e2736;
+  --text: #bfc9d9;
+  --text2: #7a8b9e;
+  --accent: #f29650;
+  --red: #e04040;
+  --green: #40b868;
+  --blue: #50a0f2;
+  --purple: #a070e0;
+  --gold: #f0c040;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:'Segoe UI','Microsoft YaHei',sans-serif; line-height:1.65; }
+header {
+  background:linear-gradient(135deg, #0d1b2a 0%, #1a1030 50%, #0d1b2a 100%);
+  padding:40px 20px; text-align:center; border-bottom:1px solid var(--border);
+}
+header h1 { font-size:1.8em; background:linear-gradient(90deg, var(--accent), var(--purple), var(--blue)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+header p { color:var(--text2); margin-top:8px; font-size:0.9em; }
+nav {
+  display:flex; flex-wrap:wrap; gap:8px; padding:16px 20px; justify-content:center;
+  background:var(--card); border-bottom:1px solid var(--border); position:sticky; top:0; z-index:10;
+}
+nav button {
+  background:var(--border); color:var(--text); border:none; padding:8px 16px; border-radius:6px;
+  font-size:0.85em; cursor:pointer; transition:0.2s;
+}
+nav button:hover, nav button.active { background:var(--accent); color:#000; font-weight:600; }
+.container { max-width:1200px; margin:0 auto; padding:20px; }
+.section { margin-bottom:40px; }
+.section-title {
+  font-size:1.3em; font-weight:700; margin-bottom:16px; padding-bottom:8px;
+  border-bottom:2px solid var(--accent); display:flex; align-items:center; gap:10px;
+}
+.chain-box { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:24px; margin-bottom:20px; }
+.chain-flow {
+  display:flex; align-items:center; gap:12px; flex-wrap:wrap; padding:16px 0;
+  margin-bottom:16px; justify-content:center;
+}
+.chain-node {
+  background:var(--border); padding:10px 16px; border-radius:8px;
+  font-weight:600; font-size:0.85em; text-align:center; min-width:80px;
+}
+.chain-node.up { border-left:3px solid var(--gold); }
+.chain-node.mid { border-left:3px solid var(--accent); }
+.chain-node.down { border-left:3px solid var(--blue); }
+.chain-arrow { color:var(--text2); font-size:1.2em; }
+.price-tag {
+  font-size:0.75em; display:block; margin-top:4px; font-weight:400;
+}
+.price-tag.up { color:var(--red); }
+.price-tag.down { color:var(--green); }
+table { width:100%; border-collapse:collapse; margin:12px 0; font-size:0.88em; }
+th { background:var(--border); color:var(--accent); padding:10px 12px; text-align:left; font-weight:600; }
+td { padding:10px 12px; border-bottom:1px solid var(--border); }
+tr:hover td { background:rgba(242,150,80,0.04); }
+.tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.75em; font-weight:600; }
+.tag-bull { background:rgba(224,64,64,0.15); color:var(--red); }
+.tag-bear { background:rgba(64,184,104,0.15); color:var(--green); }
+.tag-neut { background:rgba(122,139,158,0.15); color:var(--text2); }
+.tag-res { background:rgba(240,192,64,0.15); color:var(--gold); }
+.highlight { background:rgba(242,150,80,0.1); border-left:3px solid var(--accent); padding:12px 16px; border-radius:4px; margin:12px 0; }
+.highlight p { margin:4px 0; }
+.bignum { font-size:1.4em; font-weight:700; color:var(--accent); }
+.red { color:var(--red); }
+.green { color:var(--green); }
+.blue { color:var(--blue); }
+.grid2 { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+.grid3 { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+@media (max-width:800px) { .grid2, .grid3 { grid-template-columns:1fr; } }
+.toc { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:24px; }
+.toc a { color:var(--blue); text-decoration:none; font-size:0.88em; padding:4px 10px; border-radius:4px; background:var(--card); border:1px solid var(--border); transition:0.2s; }
+.toc a:hover { border-color:var(--accent); color:var(--accent); }
+.footnote { font-size:0.78em; color:var(--text2); margin-top:24px; padding:16px; border-top:1px solid var(--border); }
+</style>
+</head>
+<body>
+
+<header>
+<h1>氟化工 + 化肥产业链 × 大宗商品映射全景</h1>
+<p>上游萤石→中游氢氟酸/制冷剂→下游锂电/半导体 | 硫磺→硫酸→磷肥/氮肥/钾肥 | 中东局势传导 | 2026年6月22日</p>
+</header>
+
+<nav>
+<button class="active" onclick="scrollToSection('fluorine-chain')">氟化工全链</button>
+<button onclick="scrollToSection('fluorine-stocks')">氟化工A股</button>
+<button onclick="scrollToSection('sulfur-chain')">硫磺→化肥链</button>
+<button onclick="scrollToSection('fertilizer-stocks')">化肥A股</button>
+<button onclick="scrollToSection('middle-east')">中东局势矩阵</button>
+<button onclick="scrollToSection('cross')">交叉品种</button>
+<button onclick="scrollToSection('summary')">策略汇总</button>
+</nav>
+
+<div class="container">
+
+<!-- TOC -->
+<div class="toc">
+<a href="#fluorine-chain">氟化工商品链</a>
+<a href="#fluorine-stocks">氟化工A股15家</a>
+<a href="#sulfur-chain">硫磺→化肥链</a>
+<a href="#fertilizer-stocks">化肥A股全梳理</a>
+<a href="#middle-east">中东局势传导矩阵</a>
+<a href="#cross">氟化工×化肥交叉品种</a>
+<a href="#summary">综合策略</a>
+</div>
+
+<!-- ============ PART 1: 氟化工全产业链 ============ -->
+<div id="fluorine-chain" class="section">
+<div class="section-title">⚡ 一、氟化工产业链 → 大宗商品映射</div>
+
+<div class="chain-box">
+<h3 style="color:var(--accent); margin-bottom:8px;">全产业链商品流</h3>
+<div class="chain-flow">
+<div class="chain-node up">萤石<span class="price-tag up">3500元/吨 ↑15%</span></div>
+<div class="chain-arrow">→</div>
+<div class="chain-node mid">无水氢氟酸AHF<span class="price-tag up">15000元/吨 ↑25%</span></div>
+<div class="chain-arrow">↘</div>
+<div class="chain-node down">制冷剂 R32/R134a<span class="price-tag up">配额锁量</span></div>
+<div class="chain-arrow">↘</div>
+<div class="chain-node down">六氟磷酸锂<span class="price-tag up">17.65万/吨 ↑276%</span></div>
+</div>
+<div style="display:flex; gap:12px; flex-wrap:wrap; justify-content:center;">
+<div class="chain-node down">PVDF粘结剂<span class="price-tag">锂电刚需</span></div>
+<div class="chain-node down">电子级氢氟酸<span class="price-tag up">G5级 ↑40%</span></div>
+<div class="chain-node down">电子氟化液<span class="price-tag up">AI液冷翻倍</span></div>
+<div class="chain-node down">PTFE/氟橡胶<span class="price-tag">新能源汽车</span></div>
+</div>
+</div>
+
+<div class="highlight">
+<p><strong>核心驱动逻辑（四重共振）</strong></p>
+<p>① <b>上游萤石</b>：国家战略矿产，开采配额收紧，进口依存度升至35%+，价格坚挺</p>
+<p>② <b>中游制冷剂</b>：三代HFCs配额冻结，CR6控制85%+配额，供给刚性强于需求</p>
+<p>③ <b>锂电材料</b>：储能出货+75%→六氟磷酸锂需求暴增，价格从4.7万→17.65万（+276%）</p>
+<p>④ <b>半导体/AI</b>：电子级氢氟酸国产替代+电子氟化液AI液冷需求翻倍</p>
+</div>
+
+<table>
+<tr><th>商品节点</th><th>当前价格</th><th>年初至今</th><th>供给约束</th><th>需求驱动</th></tr>
+<tr>
+<td>萤石（酸级精粉）</td><td><span class="red">3500元/吨</span></td><td><span class="red">+15%</span></td><td>开采配额收紧，不可再生</td><td>氢氟酸+制冷剂扩产</td>
+</tr>
+<tr>
+<td>无水氢氟酸（AHF）</td><td><span class="red">15000元/吨</span></td><td><span class="red">+25%</span></td><td>萤石成本+硫酸成本双重推升</td><td>制冷剂+六氟磷酸锂</td>
+</tr>
+<tr>
+<td>R32制冷剂</td><td><span class="red">配额锁定</span></td><td><span class="red">高位</span></td><td>HFCs配额冻结，无新增</td><td>空调/汽车空调刚需</td>
+</tr>
+<tr>
+<td>六氟磷酸锂</td><td><span class="red">17.65万/吨</span></td><td><span class="red">+276%</span></td><td>2026年几乎无新增有效产能</td><td>储能+75%/动力电池</td>
+</tr>
+<tr>
+<td>电子级氢氟酸（G5）</td><td><span class="red">涨价+40%</span></td><td><span class="red">+40%</span></td><td>技术壁垒极高，仅少数企业量产</td><td>半导体国产替代+韩国断供</td>
+</tr>
+<tr>
+<td>电子氟化液</td><td><span class="red">需求翻倍</span></td><td>—</td><td>中巨芯独家供应格局</td><td>AI浸没式液冷爆发</td>
+</tr>
+</table>
+</div>
+
+<!-- ============ 氟化工A股全梳理 ============ -->
+<div id="fluorine-stocks" class="section">
+<div class="section-title">📈 二、氟化工A股上市公司全梳理（15家）</div>
+
+<h4 style="color:var(--gold); margin:12px 0;">▎上游：萤石资源</h4>
+<table>
+<tr><th>公司</th><th>代码</th><th>核心资源</th><th>市占/产能</th><th>弹性</th></tr>
+<tr><td>金石资源</td><td>603505</td><td>酸级萤石精粉绝对龙头</td><td>国内市占>40%</td><td><span class="tag tag-bull">高</span></td></tr>
+<tr><td>中金岭南</td><td>000060</td><td>万侯矿萤石中型规模+硫磺3.4万吨+硫酸212万吨</td><td>萤石新晋+硫磺受益</td><td><span class="tag tag-bull">高</span></td></tr>
+</table>
+
+<h4 style="color:var(--accent); margin:12px 0;">▎中游：氢氟酸 + 制冷剂</h4>
+<table>
+<tr><th>公司</th><th>代码</th><th>核心业务</th><th>关键数据</th><th>弹性</th></tr>
+<tr><td>巨化股份</td><td>600160</td><td>氟化工全产业链航母</td><td>三代制冷剂配额~30%全国第一</td><td><span class="tag tag-bull">高</span></td></tr>
+<tr><td>三美股份</td><td>603379</td><td>制冷剂龙头</td><td>HFCs配额~15%，氢氟酸自给足</td><td><span class="tag tag-bull">高</span></td></tr>
+<tr><td>永和股份</td><td>605020</td><td>萤石→含氟高分子一体化</td><td>氟化工营收占比97.4%</td><td><span class="tag tag-bull">高</span></td></tr>
+<tr><td>昊华科技</td><td>600378</td><td>电子特气+氟橡胶</td><td>10+国家级科研院所背景</td><td><span class="tag tag-bull">中高</span></td></tr>
+<tr><td>滨化股份</td><td>601678</td><td>电子级氢氟酸</td><td>G5级6000吨/年，涨价+40%</td><td><span class="tag tag-bull">中高</span></td></tr>
+<tr><td>中欣氟材</td><td>002915</td><td>含氟精细化工→延伸氢氟酸</td><td>基础氟化工营收35.7%</td><td><span class="tag tag-neut">中</span></td></tr>
+</table>
+
+<h4 style="color:var(--blue); margin:12px 0;">▎下游：锂电材料 + 半导体 + 高端材料</h4>
+<table>
+<tr><th>公司</th><th>代码</th><th>核心业务</th><th>关键数据</th><th>弹性</th></tr>
+<tr><td>多氟多</td><td>002407</td><td>六氟磷酸锂全球龙头</td><td>全球市占25-30%，电子级硅烷9千吨/年</td><td><span class="tag tag-bull">极高</span></td></tr>
+<tr><td>天赐材料</td><td>002709</td><td>电解液全球龙头</td><td>全球市占30-35%，PE仅17.7x</td><td><span class="tag tag-bull">极高</span></td></tr>
+<tr><td>新宙邦</td><td>300037</td><td>电解液+含氟精细品</td><td>客户结构优质</td><td><span class="tag tag-bull">高</span></td></tr>
+<tr><td>东岳硅材</td><td>300821</td><td>PTFE+氟橡胶+新型冷媒</td><td>氯碱离子膜国际领先</td><td><span class="tag tag-bull">高</span></td></tr>
+<tr><td>中巨芯</td><td>688549</td><td>电子氟化液（AI液冷）</td><td>2026需求翻倍，独家格局</td><td><span class="tag tag-bull">极高</span></td></tr>
+<tr><td>ST联创</td><td>300343</td><td>PVDF（锂电粘结剂）</td><td>新能源需求拉动</td><td><span class="tag tag-bull">中高</span></td></tr>
+<tr><td>深圳新星</td><td>603978</td><td>氟化铝+六氟磷酸锂</td><td>六氟产能逐步释放</td><td><span class="tag tag-neut">中</span></td></tr>
+</table>
+
+<div class="highlight">
+<p><strong>投资主线排序（按确定性从高到低）</strong></p>
+<p>① <b>制冷剂配额景气</b>：巨化>三美>永和 → 配额锁量，供给无弹性，最确定的"供给端故事"</p>
+<p>② <b>六氟磷酸锂/电解液</b>：多氟多>天赐>新宙邦 → 储能+75%拉动，价格暴力反弹，但需注意高位回调风险</p>
+<p>③ <b>上游萤石</b>：金石资源 → 不可再生+开采限制，长期价值底</p>
+<p>④ <b>电子级氢氟酸/AI液冷</b>：滨化>中巨芯 → 高壁垒+国产替代+AI增量，弹性大但体量小</p>
+</div>
+</div>
+
+<!-- ============ PART 2: 硫磺→化肥链 ============ -->
+<div id="sulfur-chain" class="section">
+<div class="section-title">🧪 三、中东局势 → 硫磺 → 化肥全产业链</div>
+
+<div class="chain-box">
+<h3 style="color:var(--gold); margin-bottom:8px;">硫磺→化肥商品流（进口依存度56%来自中东）</h3>
+<div class="chain-flow">
+<div class="chain-node up">中东硫磺<span class="price-tag">进口占56%</span></div>
+<div class="chain-arrow">海运45-60天→</div>
+<div class="chain-node mid">镇江港颗粒硫磺<span class="price-tag down">11750→8500-10000</span></div>
+<div class="chain-arrow">→</div>
+<div class="chain-node mid">硫酸<span class="price-tag">~2000元/吨</span></div>
+<div class="chain-arrow">↘</div>
+<div class="chain-node down">磷酸一铵MAP</div>
+<div class="chain-arrow">↘</div>
+<div class="chain-node down">磷酸二铵DAP<span class="price-tag red">吨亏3250元</span></div>
+</div>
+<div style="display:flex; gap:12px; flex-wrap:wrap; justify-content:center; margin-top:12px;">
+<div class="chain-node mid">天然气<span class="price-tag">中东气头停工</span></div>
+<div class="chain-arrow">→</div>
+<div class="chain-node down">尿素（氮肥）<span class="price-tag">国际$850 vs 国内1830元</span></div>
+<div class="chain-node up" style="margin-left:20px;">钾矿<span class="price-tag">加拿大/俄/老挝</span></div>
+<div class="chain-arrow">→</div>
+<div class="chain-node down">氯化钾KCl<span class="price-tag">海运受阻推升</span></div>
+</div>
+</div>
+
+<div class="grid2">
+<div class="chain-box">
+<h3 style="color:var(--red); margin-bottom:8px;">🔴 磷肥：生产即亏损</h3>
+<table>
+<tr><th>成本项</th><th>金额</th></tr>
+<tr><td>硫磺原料（0.45吨×11450元）</td><td class="red">5153元/吨</td></tr>
+<tr><td>磷矿石+合成氨+能源+折旧</td><td>~2647元/吨</td></tr>
+<tr><td><b>完全成本</b></td><td class="red"><b>~7800元/吨</b></td></tr>
+<tr><td>保供指导价（售价）</td><td>4550元/吨</td></tr>
+<tr><td><b>吨亏损</b></td><td class="red"><b>-3250元/吨</b></td></tr>
+</table>
+<p style="color:var(--red); font-size:0.85em; margin-top:8px;">⚠️ 仅硫磺原料一项就超过成品售价603元！</p>
+</div>
+<div class="chain-box">
+<h3 style="color:var(--green); margin-bottom:8px;">🟢 替代制酸：暴利窗口</h3>
+<table>
+<tr><th>制酸路径</th><th>吨成本</th><th>吨利润</th></tr>
+<tr><td>硫磺制酸</td><td class="red">极高</td><td class="red">严重亏损</td></tr>
+<tr><td>冶炼烟气制酸</td><td class="green">170元</td><td class="green">~1830元</td></tr>
+<tr><td>硫铁矿制酸</td><td class="green">500-600元</td><td class="green">~800元+</td></tr>
+<tr><td>磷石膏制酸</td><td class="green">废渣利用</td><td class="green">ROE 400%</td></tr>
+</table>
+</div>
+</div>
+
+<div class="highlight">
+<p><strong>美伊停战后的硫磺价格三情景</strong></p>
+<p>① <b>协议顺利执行+中东全面恢复出口</b>：5000-6500元/吨（8月中旬后）</p>
+<p>② <b>协议反复、地缘持续紧张</b>：8000-10000元/吨（当前基准情景）</p>
+<p>③ <b>霍尔木兹再度封锁或冲突升级</b>：10000-15000元/吨</p>
+<p style="margin-top:8px; font-size:0.85em; color:var(--text2);">核心逻辑：船期物理延迟45-60天 + 港口库存仅76.65万吨历史低位 + 协议尚未正式签署（6/19签字，60天谈判期）→ 短期（7-8月）硫磺不会暴跌，6,000-9,000元剧烈震荡</p>
+</div>
+</div>
+
+<!-- ============ 化肥A股全梳理 ============ -->
+<div id="fertilizer-stocks" class="section">
+<div class="section-title">🌾 四、化肥产业链A股上市公司全梳理</div>
+
+<h4 style="color:var(--red); margin:12px 0;">▎磷肥链：硫磺涨价 → 成本暴增 → 吨亏3000（受损最大）</h4>
+<table>
+<tr><th>公司</th><th>代码</th><th>定位</th><th>受损/受益</th><th>关键数据</th></tr>
+<tr>
+<td>云天化</td><td>600096</td><td>磷肥龙头</td><td><span class="tag tag-bear">严重受损</span></td>
+<td>磷铵年产500+万吨，吨亏3000+；27亿投建硫磺装置自救</td>
+</tr>
+<tr>
+<td>湖北宜化</td><td>000422</td><td>磷铵+尿素</td><td><span class="tag tag-bear">成本承压</span></td>
+<td>磷矿自给部分对冲；Q1净利+432%含新疆并表因素</td>
+</tr>
+<tr>
+<td>新洋丰</td><td>000902</td><td>磷复肥龙头</td><td><span class="tag tag-bear">受损</span></td>
+<td>磷铵原料成本飙升，复合肥利润被压缩</td>
+</tr>
+<tr>
+<td>司尔特</td><td>002538</td><td>磷肥+硫铁矿</td><td><span class="tag tag-neut">部分对冲</span></td>
+<td>自有硫铁矿制酸降低硫磺依赖</td>
+</tr>
+</table>
+
+<h4 style="color:var(--green); margin:12px 0;">▎硫资源受益方（替代进口硫磺）</h4>
+<table>
+<tr><th>公司</th><th>代码</th><th>受益逻辑</th><th>关键数据</th><th>弹性</th></tr>
+<tr>
+<td><b>粤桂股份</b></td><td>000833</td><td>硫铁矿开采（亚洲最大）</td><td>云浮2.08亿吨储量，成本500元/吨vs售价1500+</td><td><span class="tag tag-bull">极高</span></td></tr>
+<tr>
+<td>红星发展</td><td>600367</td><td>硫磺副产品</td><td>年初至今涨2.3倍，融资净买6.72亿</td><td><span class="tag tag-bull">极高</span></td></tr>
+<tr>
+<td>中金岭南</td><td>000060</td><td>冶炼烟气制酸+硫磺</td><td>硫酸212万吨+硫磺3.4万吨</td><td><span class="tag tag-bull">高</span></td></tr>
+<tr>
+<td>荣盛石化</td><td>002493</td><td>炼化副产硫磺</td><td>浙石化+中金石化合计121万吨/年</td><td><span class="tag tag-bull">高</span></td></tr>
+<tr>
+<td>东方盛虹</td><td>000301</td><td>炼化副产硫磺</td><td>硫磺产能60万吨/年</td><td><span class="tag tag-bull">中高</span></td></tr>
+<tr>
+<td>宝丰能源</td><td>600989</td><td>煤化工副产硫磺</td><td>Q1销量约6万吨</td><td><span class="tag tag-neut">中</span></td></tr>
+<tr>
+<td>鲁北化工</td><td>600727</td><td>磷石膏制酸</td><td>40万吨/年已投产，ROE极高</td><td><span class="tag tag-bull">中高</span></td></tr>
+</table>
+
+<h4 style="color:var(--blue); margin:12px 0;">▎氮肥（尿素）链：国际暴涨 vs 国内稳定</h4>
+<table>
+<tr><th>公司</th><th>代码</th><th>核心逻辑</th><th>关键数据</th><th>弹性</th></tr>
+<tr>
+<td>华鲁恒升</td><td>600426</td><td>煤头尿素成本最低</td><td>年产200万吨，成本比行业低20%</td><td><span class="tag tag-bull">中</span></td></tr>
+<tr>
+<td><b>四川美丰</b></td><td>000731</td><td>气头尿素纯标的</td><td>产能1.3倍弹性，四川低价气源</td><td><span class="tag tag-bull">极高</span></td></tr>
+<tr>
+<td>泸天化</td><td>000912</td><td>气头尿素+产能翻倍</td><td>国内长协气源，成本可控</td><td><span class="tag tag-bull">高</span></td></tr>
+<tr>
+<td>湖北宜化</td><td>000422</td><td>煤头+磷铵双驱动</td><td>尿素扩产50%</td><td><span class="tag tag-bull">中高</span></td></tr>
+</table>
+
+<p style="color:var(--text2); font-size:0.85em; margin:4px 0;">核心矛盾：国际尿素$850/吨（FOB中东）vs 国内1830元/吨——差价3倍+，<b>中国煤头/气头尿素是全球成本洼地</b>，但出口受限，国内价格被压制</p>
+
+<h4 style="color:var(--purple); margin:12px 0;">▎钾肥链：海运受阻→进口成本推升</h4>
+<table>
+<tr><th>公司</th><th>代码</th><th>核心逻辑</th><th>关键数据</th><th>弹性</th></tr>
+<tr>
+<td>盐湖股份</td><td>000792</td><td>钾肥龙头+锂盐</td><td>钾肥530万吨产能→远期1000万吨</td><td><span class="tag tag-bull">中高</span></td></tr>
+<tr>
+<td>亚钾国际</td><td>000893</td><td>老挝钾矿+低成本</td><td>成本954元/吨（行业最低），Q1产量64.65万吨+28%</td><td><span class="tag tag-bull">高</span></td></tr>
+<tr>
+<td>藏格矿业</td><td>000408</td><td>钾肥+碳酸锂</td><td>净利率高但持续性存疑</td><td><span class="tag tag-bull">中</span></td></tr>
+<tr>
+<td>东方铁塔</td><td>002545</td><td>钾肥+钢结构双主业</td><td>老挝钾矿，抗风险能力强</td><td><span class="tag tag-neut">中</span></td></tr>
+</table>
+</div>
+
+<!-- ============ PART 3: 中东局势传导矩阵 ============ -->
+<div id="middle-east" class="section">
+<div class="section-title">🌍 五、中东局势对大宗商品的完整传导矩阵</div>
+
+<table>
+<tr><th>地缘事件</th><th>影响品种</th><th>传导路径</th><th>方向</th><th>关键数据</th></tr>
+<tr>
+<td rowspan="4"><b>霍尔木兹海峡<br>封锁/重开</b></td>
+<td>硫磺</td>
+<td>中东→中国海运断流→进口骤降72%→价格从4000→11750</td>
+<td><span class="tag tag-bull">暴涨</span></td>
+<td>中国进口56%来自中东，4月进口仅29.55万吨（近20年次低）</td>
+</tr>
+<tr>
+<td>原油</td>
+<td>海峡封锁→全球1/3海运原油受阻→布伦特冲107</td>
+<td><span class="tag tag-bull">暴涨</span></td>
+<td>停战后从107回落至78-80</td>
+</tr>
+<tr>
+<td>LPG/丙烷</td>
+<td>中东→中国LPG断供→PDH装置成本暴增</td>
+<td><span class="tag tag-bull">暴涨</span></td>
+<td>影响PP等聚烯烃生产成本</td>
+</tr>
+<tr>
+<td>化肥海运</td>
+<td>全球1/3化肥海运贸易受阻→尿素/钾肥/DAP运费飙升</td>
+<td><span class="tag tag-bull">暴涨</span></td>
+<td>中东尿素FOB从$500→$850/吨（+70%）</td>
+</tr>
+<tr style="background:rgba(64,184,104,0.05);">
+<td rowspan="3"><b>美伊停战MOU<br>（6月15日宣布）</b></td>
+<td>硫磺</td>
+<td>镇江港从11750断崖跌至8500-10000</td>
+<td><span class="tag tag-bear">暴跌</span></td>
+<td>但船期延迟45-60天，8月中旬前供给难恢复</td>
+</tr>
+<tr style="background:rgba(64,184,104,0.05);">
+<td>原油</td>
+<td>地缘溢价消退，布伦特从107→78-80</td>
+<td><span class="tag tag-bear">回落</span></td>
+<td>补库需求或在7-9月推动反弹至85-95</td>
+</tr>
+<tr style="background:rgba(64,184,104,0.05);">
+<td>化肥</td>
+<td>硫磺成本回落预期→磷肥企业困境缓解预期</td>
+<td><span class="tag tag-bear">利好远期</span></td>
+<td>短期无法兑现（船期+库存极低）</td>
+</tr>
+<tr>
+<td rowspan="2"><b>天然气价格<br>飙升</b></td>
+<td>尿素（氮肥）</td>
+<td>中东气头尿素成本倒挂→全球尿素缺口2100万吨</td>
+<td><span class="tag tag-bull">国际暴涨</span></td>
+<td>中国煤头尿素成本仅1800-1978元，全球成本洼地</td>
+</tr>
+<tr>
+<td>甲醇</td>
+<td>中东气头甲醇成本飙升→出口减少→港口库存53万吨低位</td>
+<td><span class="tag tag-bull">推升</span></td>
+<td>伊朗三套396万吨装置刚重启未形成有效供给</td>
+</tr>
+</table>
+
+<div class="highlight">
+<p><strong>中东局势的三条核心传导链</strong></p>
+<p>① <b>霍尔木兹→硫磺→磷肥成本</b>：最直接、最暴力、影响最广。硫磺从4000→11750元/吨，中国磷肥行业吨亏3000+元。</p>
+<p>② <b>天然气→尿素/甲醇→国际国内价差</b>：国际尿素$850 vs 国内1830，差价3倍+。中国煤头尿素是全球成本洼地但出口受限。</p>
+<p>③ <b>原油→能化成本→PTA/PP等</b>：原油107→78-80回落，能化中间品成本支撑松动。补库反弹窗口7-9月。</p>
+</div>
+</div>
+
+<!-- ============ 交叉品种 ============ -->
+<div id="cross" class="section">
+<div class="section-title">🔗 六、氟化工 × 化肥 交叉品种与公司</div>
+
+<p style="margin-bottom:12px;">部分公司同时在氟化工和硫磺/化肥两条链上有业务布局，形成"双重弹性"：</p>
+
+<table>
+<tr><th>公司</th><th>代码</th><th>氟化工角色</th><th>硫磺/化肥角色</th><th>双重弹性</th></tr>
+<tr>
+<td><b>中金岭南</b></td><td>000060</td><td>萤石资源（万侯矿）</td><td>冶炼烟气制硫酸212万吨/年+硫磺3.4万吨</td><td><span class="tag tag-bull">极高</span></td>
+</tr>
+<tr>
+<td><b>粤桂股份</b></td><td>000833</td><td>硫酸→氟化工上游原料</td><td>云浮硫铁矿2.08亿吨+硫铁矿制酸</td><td><span class="tag tag-bull">极高</span></td>
+</tr>
+<tr>
+<td>湖北宜化</td><td>000422</td><td>磷矿→氟硅酸（磷矿伴生氟）</td><td>磷铵（受损）+尿素（受益）</td><td><span class="tag tag-bull">中高</span></td>
+</tr>
+<tr>
+<td>云天化</td><td>600096</td><td>磷矿伴生氟资源</td><td>磷铵龙头（严重受损）+27亿投硫磺装置</td><td><span class="tag tag-neut">中</span></td>
+</tr>
+<tr>
+<td>巨化股份</td><td>600160</td><td>氟化工全产业链</td><td>硫酸（氟化工原料）自产</td><td><span class="tag tag-neut">中</span></td>
+</tr>
+</table>
+
+<div class="highlight">
+<p><strong>关键发现：硫酸是两条链的"十字路口"</strong></p>
+<p>硫酸既是<b>氟化工</b>的核心原料（萤石+硫酸→氢氟酸），又是<b>磷肥</b>的中间品（硫磺→硫酸→磷铵）。硫磺涨价同时推高两条链的成本，但也让<b>替代制酸路径</b>（硫铁矿制酸、冶炼烟气制酸、磷石膏制酸）的企业获得暴利——这就是<b>粤桂股份和中金岭南</b>双重受益的本质。</p>
+</div>
+</div>
+
+<!-- ============ 综合策略 ============ -->
+<div id="summary" class="section">
+<div class="section-title">🎯 七、综合策略汇总</div>
+
+<div class="grid3">
+<div class="chain-box">
+<h3 style="color:var(--red);">🔴 最确定的做多逻辑</h3>
+<table>
+<tr><th>品种/标的</th><th>逻辑</th></tr>
+<tr><td><b>制冷剂配额</b></td><td>供给锁死，景气周期持续</td></tr>
+<tr><td><b>巨化/三美/永和</b></td><td>配额龙头，确定性最高</td></tr>
+<tr><td><b>硫铁矿资源</b></td><td>替代进口硫磺，结构红利</td></tr>
+<tr><td><b>粤桂股份</b></td><td>亚洲最大硫铁矿+成本优势</td></tr>
+<tr><td><b>六氟磷酸锂</b></td><td>储能+75%拉动，价格+276%</td></tr>
+<tr><td><b>多氟多</b></td><td>全球六氟龙头市占25-30%</td></tr>
+</table>
+</div>
+
+<div class="chain-box">
+<h3 style="color:var(--green);">🟢 需要等信号的机会</h3>
+<table>
+<tr><th>品种/标的</th><th>等待信号</th></tr>
+<tr><td><b>湖北宜化</b></td><td>硫磺见顶回落→成本压力解除</td></tr>
+<tr><td><b>云天化</b></td><td>保供定价机制调整或硫磺装置投产</td></tr>
+<tr><td><b>钾肥（亚钾）</b></td><td>化肥季节性需求+海运恢复</td></tr>
+<tr><td><b>尿素（四川美丰）</b></td><td>出口政策松动或国际价差收窄</td></tr>
+<tr><td><b>电子级氢氟酸</b></td><td>韩国断供催化→国产替代加速</td></tr>
+</table>
+</div>
+
+<div class="chain-box">
+<h3 style="color:var(--blue);">🔵 跨品种对冲组合</h3>
+<table>
+<tr><th>组合</th><th>逻辑</th></tr>
+<tr><td><b>粤桂（多）+ 云天化（空）</b></td><td>硫磺涨→粤桂赚/云天化亏</td></tr>
+<tr><td><b>巨化（多）+ 湖北宜化（多）</b></td><td>氟化工独立逻辑+化肥困境反转</td></tr>
+<tr><td><b>金石资源（多）+ 中金岭南（多）</b></td><td>萤石+硫磺双资源组合</td></tr>
+<tr><td><b>多氟多（多）+ 四川美丰（多）</b></td><td>锂电材料+尿素高弹性双驱动</td></tr>
+</table>
+</div>
+</div>
+
+<div class="highlight" style="margin-top:20px;">
+<p><strong>核心结论</strong></p>
+<p>① <b>氟化工</b>是当前最确定的商品景气板块：制冷剂配额锁量+六氟磷酸锂储能拉动+萤石资源稀缺，三重逻辑共振</p>
+<p>② <b>硫磺→化肥链</b>的核心矛盾是"进口替代"：美伊停战短期无法解决供给（船期45-60天+库存极低），硫铁矿制酸和磷石膏制酸迎来结构性机遇</p>
+<p>③ <b>中东局势</b>对商品的影响远未结束：60天谈判期（6/19-8/19）是关键窗口，若破裂→硫磺/原油/化肥将二次冲顶</p>
+<p>④ <b>最优策略组合</b>：多巨化/三美（制冷剂）+ 多粤桂（硫铁矿）+ 多亚钾国际（钾肥低成本）+ 等硫磺见顶后多加仓宜化（化肥困境反转）</p>
+</div>
+</div>
+
+<div class="footnote">
+<p><strong>数据来源</strong>：生意社/中国硫酸工业协会/隆众资讯/中信建投期货/中信期货/巨丰投顾/同花顺/东方财富/westockdata（腾讯自选股） | <strong>生成时间</strong>：2026年6月22日 | <strong>免责声明</strong>：以上分析仅供研究参考，不构成投资建议</p>
+</div>
+
+</div>
+
+<script>
+function scrollToSection(id) {
+  document.getElementById(id).scrollIntoView({behavior:'smooth'});
+  document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+  event.target.classList.add('active');
+}
+</script>
+
+</body>
+</html>

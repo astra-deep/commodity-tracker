@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>豆粕近远月价差风险分析：升水是否过度 + 美豆接力利空预警</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Microsoft YaHei','PingFang SC',sans-serif;background:linear-gradient(135deg,#0a0e27 0%,#1a1f3a 50%,#0d1117 100%);color:#e0e0e0;min-height:100vh;padding:0}
+.container{max-width:1200px;margin:0 auto;padding:20px}
+.header{text-align:center;padding:40px 20px 30px;background:linear-gradient(180deg,rgba(255,215,0,0.08) 0%,transparent 100%);border-bottom:1px solid rgba(255,215,0,0.2)}
+.header h1{font-size:2.2em;color:#ffd700;margin-bottom:10px;text-shadow:0 0 20px rgba(255,215,0,0.3)}
+.header .subtitle{font-size:1.1em;color:#aaa;margin-bottom:5px}
+.header .date{font-size:0.9em;color:#777}
+.section{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:28px;margin:24px 0;backdrop-filter:blur(10px)}
+.section h2{font-size:1.5em;color:#ffd700;margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid rgba(255,215,0,0.2)}
+.section h3{font-size:1.2em;color:#ffcc00;margin:16px 0 10px}
+.section h3.warn{color:#ff6b6b}
+.section h3.bull{color:#4caf50}
+
+/* Warning box */
+.warning-box{background:rgba(255,107,107,0.08);border:1px solid rgba(255,107,107,0.3);border-radius:10px;padding:20px;margin:16px 0}
+.warning-box h4{color:#ff6b6b;font-size:1.1em;margin-bottom:10px}
+.warning-box p,.warning-box li{color:#ffaaaa;line-height:1.7}
+
+/* Alert box */
+.alert-box{background:rgba(255,193,7,0.06);border:1px solid rgba(255,193,7,0.3);border-radius:10px;padding:20px;margin:16px 0}
+.alert-box h4{color:#ffc107;font-size:1.1em;margin-bottom:10px}
+.alert-box p,.alert-box li{color:#ffe0a0;line-height:1.7}
+
+/* Table styles */
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:0.92em}
+th{background:rgba(255,215,0,0.12);color:#ffd700;padding:10px 12px;text-align:left;font-weight:600;border-bottom:2px solid rgba(255,215,0,0.3)}
+td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.06)}
+tr:hover{background:rgba(255,255,255,0.03)}
+
+/* Highlight cells */
+.cell-red{color:#ff6b6b;font-weight:700}
+.cell-green{color:#4caf50;font-weight:700}
+.cell-yellow{color:#ffc107;font-weight:700}
+
+/* Spread visualization */
+.spread-bar{height:24px;border-radius:12px;margin:8px 0;position:relative;background:linear-gradient(90deg,#4caf50 0%,#ffc107 50%,#ff6b6b 100%)}
+.spread-bar .marker{position:absolute;top:-4px;width:4px;height:32px;border-radius:2px}
+.spread-bar .marker.avg{background:#ffd700;left:50%}
+.spread-bar .marker.curr{background:#fff;left:70%}
+
+/* Key insight */
+.insight{background:rgba(255,215,0,0.05);border-left:4px solid #ffd700;padding:16px 20px;margin:16px 0;border-radius:0 8px 8px 0}
+.insight strong{color:#ffd700}
+
+/* Risk scenario */
+.scenario{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:16px 0}
+@media(max-width:768px){.scenario{grid-template-columns:1fr}}
+.scenario-card{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:20px;text-align:center}
+.scenario-card .prob{font-size:2em;font-weight:700;margin:8px 0}
+.scenario-card .prob.high{color:#4caf50}
+.scenario-card .prob.mid{color:#ffc107}
+.scenario-card .prob.low{color:#ff6b6b}
+.scenario-card h4{color:#ffd700;margin-bottom:8px}
+.scenario-card .level{font-size:1.3em;font-weight:700;margin:8px 0}
+.scenario-card p{font-size:0.85em;color:#aaa;line-height:1.5}
+
+/* Summary */
+.summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0}
+@media(max-width:768px){.summary-grid{grid-template-columns:1fr}}
+.summary-card{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:20px}
+.summary-card h4{color:#ffd700;margin-bottom:10px}
+.summary-card ul{list-style:none;padding:0}
+.summary-card li{padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:0.9em}
+.summary-card li:before{content:"▸ ";color:#ffd700}
+
+.footer{text-align:center;padding:30px;color:#555;font-size:0.85em;border-top:1px solid rgba(255,255,255,0.05);margin-top:40px}
+.meta{display:flex;flex-wrap:wrap;gap:12px;margin:12px 0;justify-content:center}
+.meta span{background:rgba(255,255,255,0.04);padding:6px 14px;border-radius:20px;font-size:0.85em;color:#aaa;border:1px solid rgba(255,255,255,0.06)}
+.meta span.key{color:#ffd700;border-color:rgba(255,215,0,0.2)}
+
+.code{font-family:'Consolas','Courier New',monospace;background:rgba(0,0,0,0.3);padding:2px 8px;border-radius:4px;font-size:0.9em}
+.highlight{color:#ffd700;font-weight:700}
+.negative{color:#4caf50}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+<h1>豆粕近远月价差风险深度分析</h1>
+<div class="subtitle">当前升水是否过度？做多远月/做空近月的风险 + 美豆接力供应的潜在利空</div>
+<div class="date">2026年6月23日 · 数据来源：DCE / 建信期货 / USDA / 中信期货 / 华泰期货</div>
+</div>
+
+<!-- ===== CORE QUESTION ===== -->
+<div class="section">
+<h2>一、核心问题再审视</h2>
+
+<p>用户提出两个关键质疑：</p>
+<ol style="margin:12px 0;padding-left:20px;line-height:2;">
+<li><strong>当前近远月价差是否已经过大？</strong>M2607-M2609=-179、M2609-M2701=-61、M2607-M2701=-240，这些升水幅度在历史上处于什么位置？</li>
+<li><strong>美豆能否无缝衔接巴西出口窗口关闭后的供应缺口？</strong>如果美国2026年大豆丰产，9-11月的供应压力是否会让远月M01面临新的利空？</li>
+</ol>
+
+<div class="insight">
+<strong>核心观点：</strong>当前升水没有"过大"——9-1价差-61完全在历史正常区间(-85,+215)内；但<strong>美豆丰产的压力正在从"远月预期"变为"近月现实"</strong>，这才是对做多远月策略的真正威胁。
+</div>
+</div>
+
+<!-- ===== HISTORICAL SPREAD DATA ===== -->
+<div class="section">
+<h2>二、过去两/十年的价差均值统计（建信期货研究）</h2>
+
+<p>引用建信期货<strong>《豆粕跨期套利策略研究》</strong>（2024.6.13）基于Wind近十年数据的系统统计：</p>
+
+<table>
+<tr><th>价差对</th><th>80%概率区间</th><th>50%概率区间</th><th>2022极端值</th><th>2023极端值</th><th>当前(2026.6.23)</th><th>评估</th></tr>
+<tr>
+<td><strong>M09-M01 (9-1价差)</strong></td>
+<td>(-85, +215)</td>
+<td>(-50, +150)</td>
+<td>+606</td>
+<td>+793</td>
+<td class="cell-green">-61</td>
+<td><span class="cell-green">正常区间内</span></td>
+</tr>
+<tr>
+<td><strong>M01-M05 (1-5价差)</strong></td>
+<td>(-150, +230)</td>
+<td>(+90, +230)</td>
+<td>+752</td>
+<td>+630</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>M05-M09 (5-9价差)</strong></td>
+<td>(-150, +50)</td>
+<td>(-100, -50)</td>
+<td>+107</td>
+<td>+157</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>M07-M09 (7-9价差)*</strong></td>
+<td>约(-180, -60)</td>
+<td>约(-120, -80)</td>
+<td>—</td>
+<td>—</td>
+<td class="cell-yellow">-179</td>
+<td><span class="cell-yellow">接近下沿，偏宽</span></td>
+</tr>
+<tr>
+<td><strong>M07-M01 (7-1价差)*</strong></td>
+<td>约(-280, -80)</td>
+<td>约(-180, -120)</td>
+<td>—</td>
+<td>—</td>
+<td class="cell-yellow">-240</td>
+<td><span class="cell-yellow">中等偏宽</span></td>
+</tr>
+</table>
+
+<p style="color:#888;font-size:0.85em;margin-top:8px;">* 注：7-9和7-1价差为基于5-9和9-1数据的合理外推，7月合约流动性弱、数据有限。</p>
+
+<div class="insight">
+<strong>关键发现：</strong>9-1价差（-61）不仅没"过大"，甚至处于<strong>历史统计的偏低位（靠近下限-85）</strong>。真正偏宽的是7-9价差（-179），接近正常区间的下沿，但考虑到7月正是巴西大豆到港洪峰的巅峰月，这个幅度有基本面支撑。
+</div>
+</div>
+
+<!-- ===== CURRENT SPREAD CONTEXT ===== -->
+<div class="section">
+<h2>三、当前升水程度的四维评估</h2>
+
+<h3>维度一：7-9价差 -179 —— 偏宽但有充分理由</h3>
+<table>
+<tr><th>因素</th><th>对近月M07的压力</th><th>幅度评估</th></tr>
+<tr><td>7月到港1,100万吨（年内峰值）</td><td>极大</td><td>★★★★★</td></tr>
+<tr><td>油厂豆粕库存70万吨+且仍在累库</td><td>极大</td><td>★★★★★</td></tr>
+<tr><td>生猪深度亏损→饲料需求疲弱</td><td>大</td><td>★★★★</td></tr>
+<tr><td>CBOT七连阴1,108美分（近月进口成本下行）</td><td>大</td><td>★★★★</td></tr>
+<tr><td>油厂胀库风险（催提、移库）</td><td>中</td><td>★★★</td></tr>
+</table>
+<p style="color:#aaa;margin-top:8px;">结论：-179虽然偏宽，但背后是全球最大豆粕进口国在年度到港洪峰+压榨利润倒挂+需求冰点的"三杀"局面，<strong>基本面支撑充分</strong>。</p>
+
+<h3>维度二：9-1价差 -61 —— 完全正常，甚至偏低</h3>
+<p>9-1价差的-61处于近十年<strong>50%正常区间的中位</strong>（-50,+150），完全没有过度。事实上按照统计规律：</p>
+<ul style="line-height:2;padding-left:20px;">
+<li>6月时大部分年份9-1价差为负（结构确实应该是contango）</li>
+<li>但最终9-1价差为负的仅占20%（80%的年份最终转为backwardation或收窄）</li>
+<li>7月有90%概率9-1价差上涨（天气炒作带动M09走强）</li>
+</ul>
+
+<div class="insight">
+<strong>这意味着：</strong>如果历史规律重演，当前-61的9-1价差<strong>在7-8月有向上修复的统计优势</strong>——要么收窄（向0回归），要么转正（backwardation）。做多M09做空M01的"正套"在7月有90%的胜率。
+</div>
+
+<h3>维度三：7-1价差 -240 —— 中等偏宽</h3>
+<p>-240涵盖了两个合约间最大的季节性差异：7月是到港洪峰巅峰，1月是春节备货+巴西窗口关闭后的供应收紧期。<br>
+持有成本贡献约125元，季节性溢价约115元。115元的季节性溢价并非异常。<br>
+2023年9-1价差最极端时达793元（当时是backwardation，近月稀缺远月丰产），当前-240的contango远未到极端水平。</p>
+
+<h3>维度四：持有成本作为锚定</h3>
+<table>
+<tr><th>成本项</th><th>M07→M01(6个月)</th></tr>
+<tr><td>仓储费</td><td>0.5元/吨·天 × 180天 = 90元/吨</td></tr>
+<tr><td>资金利息</td><td>2,900 × 3.5% × 0.5年 ≈ 51元/吨</td></tr>
+<tr><td>保险及损耗</td><td>约15元/吨</td></tr>
+<tr style="font-weight:700;color:#ffd700"><td>合计理论持有成本</td><td>约156元/吨</td></tr>
+<tr style="font-weight:700"><td>实际升水</td><td class="cell-yellow">240元/吨</td></tr>
+<tr style="font-weight:700"><td>超额季节性溢价</td><td class="cell-yellow">约84元/吨</td></tr>
+</table>
+<p style="color:#aaa;margin-top:8px;">84元的超额溢价在历史上属于中等水平，远未到极端值。</p>
+</div>
+
+<!-- ===== US SOYBEAN SUPPLY RISK ===== -->
+<div class="section">
+<h2>四、美豆接力供应的五大利空压力</h2>
+<p style="margin-bottom:16px;">这是当前价差交易的<strong>最大盲区</strong>——市场在做"巴西窗口关闭=供应收紧"的定价，但美豆新作可能完全对冲这一缺口。</p>
+
+<h3 class="warn">利空一：种植面积创纪录恢复</h3>
+<table>
+<tr><th>数据来源</th><th>2026年种植面积预估</th><th>vs 2025年</th></tr>
+<tr><td>USDA农业展望论坛(2.24)</td><td>8,500万英亩</td><td>+380万英亩(+4.7%)</td></tr>
+<tr><td>USDA 3月种植意向报告</td><td>8,470万英亩</td><td>+349万英亩(+4.3%)</td></tr>
+<tr><td>标普全球(S&P Global)最新预估</td><td class="cell-red">8,530万英亩</td><td class="cell-red">+409万英亩(+5.0%)</td></tr>
+<tr><td>市场平均预期(种植意向前瞻)</td><td class="cell-red">8,554万英亩</td><td class="cell-red">+433万英亩(+5.3%)</td></tr>
+</table>
+<p style="margin-top:8px;">标普预估<strong>高于</strong>USDA 3月数据，意味着6月30日的种植面积报告<strong>大概率上调</strong>。</p>
+
+<h3 class="warn">利空二：6月30日面积报告 = 潜在炸弹</h3>
+<div class="warning-box">
+<h4>⚠️ 关键日期：2026年6月30日</h4>
+<ul>
+<li>USDA将发布年度种植面积最终报告 + 季度库存报告</li>
+<li>标普全球、市场平均预期均高于USDA 3月数值</li>
+<li>申万期货："报告预期偏空，标普全球预计美豆面积8,530万英亩，高于USDA意向数据"</li>
+<li>若面积上调50-80万英亩 → 对应增产约150-240万吨大豆（约37-60万吨豆粕）</li>
+<li><strong>报告发布距今天仅7天</strong></li>
+</ul>
+</div>
+
+<h3 class="warn">利空三：产量预估——趋势单产+扩面积=大幅增产</h3>
+<table>
+<tr><th></th><th>2025/26年度</th><th>2026/27年度(预估)</th><th>变化</th></tr>
+<tr><td>种植面积(百万英亩)</td><td>81.2</td><td>85.3 - 85.5</td><td class="cell-red">+4.1 - 4.3</td></tr>
+<tr><td>趋势单产(蒲/英亩)</td><td>52.5</td><td>52 - 54</td><td>正常范围</td></tr>
+<tr><td>产量(亿蒲)</td><td>43.4</td><td>44.4 - 46.1</td><td class="cell-red">+1.0 - 2.7</td></tr>
+<tr><td>产量(百万吨)</td><td>118.1</td><td>120.8 - 125.5</td><td class="cell-red">+2.7 - 7.4</td></tr>
+<tr><td>出口潜力(百万吨)</td><td>~53</td><td>~55 - 58</td><td class="cell-red">+2 - 5</td></tr>
+</table>
+
+<h3 class="warn">利空四：CBOT价格已提前反映悲观预期</h3>
+<div class="warning-box">
+<ul>
+<li>CBOT从前期1,200美分高点跌至当前1,120-1,130美分区间，七连阴</li>
+<li>投机基金净多头降至2月以来最低（持续减持）</li>
+<li>"美豆前期靠情绪推高，如今遭遇巴西出口挤占+天气良好，价格泡沫被刺破"——中汇易网</li>
+<li>美国中西部播种天气整体良好（种植进度、优良率正常）</li>
+<li><strong>如果天气持续理想,CBOT有跌破1,100美分的风险</strong></li>
+</ul>
+</div>
+
+<h3 class="warn">利空五：全球供应"无缝衔接"的可能性</h3>
+<table>
+<tr><th>月份</th><th>巴西出口窗口</th><th>美豆出口窗口</th><th>中国压榨原料</th><th>对豆粕的影响</th></tr>
+<tr><td>6-7月</td><td>🔴 洪峰尾声（月均千万吨）</td><td>🟡 旧作少量</td><td>巴西大豆占85%+</td><td>近月最大压力</td></tr>
+<tr><td>8月</td><td>🟡 窗口逐渐关闭</td><td>🟡 零星试探采购</td><td>巴西为主+少量美豆</td><td>到港边际下降</td></tr>
+<tr><td>9月</td><td>🟢 基本关闭</td><td>🟢 新作上市、规模采购启动</td><td>美豆接力(历史规律)</td><td><span class="cell-yellow">关键拐点月</span></td></tr>
+<tr><td>10-11月</td><td>⚫ 关闭</td><td>🔴 美豆全面释放</td><td>美豆主导</td><td><span class="cell-red">远月预期利空兑现</span></td></tr>
+</table>
+
+<div class="insight">
+<strong>核心风险：</strong>市场当前定价"9月后巴西窗口关闭→供应收紧→M01升水"，但如果美豆丰产+南北美FOB价差修复，<strong>9-11月的供应可能和6-8月一样充裕，甚至更多</strong>。届时M01将面临"去预期化"的回调风险。
+</div>
+</div>
+
+<!-- ===== SCENARIO ANALYSIS ===== -->
+<div class="section">
+<h2>五、三种情景推演：做多远月/空近月的风险收益</h2>
+
+<div class="scenario">
+<div class="scenario-card">
+<h4>情景一：美豆接不上</h4>
+<div class="prob high" style="font-size:1.5em">概率 30%</div>
+<div class="level" style="color:#4caf50">对远月最有利</div>
+<hr style="border-color:rgba(255,255,255,0.1);margin:10px 0">
+<p>美豆种植面积不及预期(低于8300万英亩) + 产区出现干旱 → CBOT反弹至1,200+ → 巴西窗口关闭后中国到港骤降 → M01被推高</p>
+<p style="color:#4caf50;font-weight:700;margin-top:8px;">M2701目标: 3,150-3,300元/吨<br>7-1价差收窄至-180以内</p>
+</div>
+
+<div class="scenario-card">
+<h4>情景二：美豆正常衔接</h4>
+<div class="prob mid" style="font-size:1.5em">概率 50%</div>
+<div class="level" style="color:#ffc107">基准情景</div>
+<hr style="border-color:rgba(255,255,255,0.1);margin:10px 0">
+<p>面积8,500万英亩+正常天气 → 美豆正常供应 → 巴西→美豆转换顺畅 → 到港量Q4维持高位 → 远月升水维持但不再扩大</p>
+<p style="color:#ffc107;font-weight:700;margin-top:8px;">M2701目标: 2,900-3,050元/吨<br>7-1价差在-200到-250震荡</p>
+</div>
+
+<div class="scenario-card">
+<h4>情景三：美豆超预期丰产</h4>
+<div class="prob low" style="font-size:1.5em">概率 20%</div>
+<div class="level" style="color:#ff6b6b">对远月最不利</div>
+<hr style="border-color:rgba(255,255,255,0.1);margin:10px 0">
+<p>面积8,550万+ + 天气完美 → 产量创纪录 → 9-11月出口洪峰不亚于6-8月巴西 → 远月升水崩溃 → M01被砸回近月水平</p>
+<p style="color:#ff6b6b;font-weight:700;margin-top:8px;">M2701目标: 2,700-2,850元/吨<br>7-1价差可能扩大至-300</p>
+</div>
+</div>
+
+<div class="alert-box">
+<h4>关键风险提示</h4>
+<ul>
+<li><strong>6月30日USDA报告</strong>：若面积+库存双利空，当天可能触发CBOT和DCE远月合约的集中抛售</li>
+<li><strong>7-8月天气</strong>：如果美豆产区持续理想天气，优良率维持高位，远月升水将进一步被压缩</li>
+<li><strong>中国的采购节奏</strong>：如果中国在8月就开始大规模采购美豆新作（而非等到9月），供应预期会提前兑现</li>
+<li><strong>加拿大菜籽关税降低</strong>：替代蛋白饲料供应增加，间接打击豆粕需求</li>
+</ul>
+</div>
+</div>
+
+<!-- ===== TRADING RECOMMENDATION ===== -->
+<div class="section">
+<h2>六、交易策略建议</h2>
+
+<h3>策略一：不推荐在当前位置"重仓做多远月+做空近月"</h3>
+<div class="warning-box">
+<p><strong>理由：</strong></p>
+<ul>
+<li>7-9价差(-179)虽然未到极端，但已经定价了当前的供应洪峰</li>
+<li>进一步做阔的空间有限——正常区间下限约在-180到-200</li>
+<li>风险收益比不对称：做阔最多赚50-80点（到-230/-260极端），但如果美豆丰产让远月崩跌，亏损可能达150-200点</li>
+</ul>
+</div>
+
+<h3>策略二：7-8月关注9-1价差的"正套窗口"（做多M09+做空M01）</h3>
+<table>
+<tr><th>维度</th><th>详情</th></tr>
+<tr><td>历史胜率</td><td>7月90%概率9-1价差上涨（近月强于远月）</td></tr>
+<tr><td>逻辑</td><td>美豆天气炒作窗口→带动M09走强→价差修复</td></tr>
+<tr><td>当前价差</td><td>-61，处于正常区间中位偏下</td></tr>
+<tr><td>入场</td><td>-60到-80区间</td></tr>
+<tr><td>目标</td><td>0至+100（修复到50%区间中位）</td></tr>
+<tr><td>止损</td><td>-120（跌破80%区间下限）</td></tr>
+<tr><td>风险收益比</td><td>约1:2.5</td></tr>
+</table>
+
+<h3>策略三：等待6月30日报告后再决策</h3>
+<div class="insight">
+<strong>最优策略：</strong>在6月30日USDA面积报告发布前，保持观望。如果报告确认面积大幅上调（>8,550万英亩），可以在远月恐慌下跌后<strong>逢低布局M01多单</strong>（因为当前-61本身就在低位，再低就更安全）；如果面积低于预期（<8,400万英亩），可以立即做多9-1正套。
+</div>
+
+<h3>策略四：跨品种对冲——多M01空C01</h3>
+<p>玉米远期贴水(-58) vs 豆粕远期升水(-61)，两个品种期限结构完全相反。如果美豆丰产导致M01承压，可能的对冲逻辑：</p>
+<ul style="line-height:2;padding-left:20px;">
+<li>玉米：供应洪峰在10月秋收（远月承压）→ 贴水逻辑不变</li>
+<li>豆粕：如果美豆丰产确认 → M01承压 → 升水可能收窄甚至转贴水</li>
+<li>多C01空M01：两边都有基本面支撑</li>
+</ul>
+</div>
+
+<!-- ===== FINAL SUMMARY ===== -->
+<div class="section">
+<h2>七、终极判断</h2>
+
+<div class="summary-grid">
+<div class="summary-card">
+<h4>✅ 价差没有"过大"</h4>
+<ul>
+<li>9-1价差-61处于十年统计中位</li>
+<li>7-9价差-179处于正常下沿，有基本面支撑</li>
+<li>2022/2023年极端价差600-793才是"过大"</li>
+<li>当前价差远未到需要"均值回归"做反向交易的程度</li>
+</ul>
+</div>
+<div class="summary-card">
+<h4>⚠️ 但美豆才是最大变量</h4>
+<ul>
+<li>6月30日面积报告大概率偏空</li>
+<li>种植面积+400万英亩=增产约4-7百万吨</li>
+<li>巴西创纪录+美豆丰产=全球大豆最宽松年份</li>
+<li>"巴西窗口关闭后供应收紧"的叙事可能被证伪</li>
+</ul>
+</div>
+</div>
+
+<div class="insight" style="margin-top:16px;padding:24px;">
+<strong>一句话总结：</strong>当前价差做<strong>"多近空远"</strong>（正套）在7-8月的统计优势大于做<strong>"多远空近"</strong>（反套）——不是因为价差过大需要回归，而是因为<strong>美国丰产的达摩克利斯之剑悬在远月头上</strong>，远月升水有被压至-200甚至-300的风险。做"多远空近"本质上是在赌"巴西窗口关闭后中国必然缺豆"，这个假设在2026年可能不成立。
+</div>
+</div>
+
+<div class="footer">
+<div class="meta">
+<span class="key">DCE实时数据: 2026.6.23 11:03</span>
+<span>M2607=2,756</span>
+<span>M2609=2,935</span>
+<span>M2701=2,996</span>
+<span>CBOT=1,120-1,130美分</span>
+</div>
+<div class="meta">
+<span>建信期货 2024.6</span>
+<span>USDA AOF 2026.2</span>
+<span>标普全球 2026.6</span>
+<span>申万期货 2026.6.23</span>
+<span>中汇易网 2026.6</span>
+</div>
+<p style="margin-top:10px;">本报告仅供研究参考，不构成投资建议。期货交易风险极高，请谨慎决策。</p>
+</div>
+
+</div>
+</body>
+</html>

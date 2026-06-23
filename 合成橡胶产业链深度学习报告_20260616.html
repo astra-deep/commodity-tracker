@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>合成橡胶产业链深度学习报告 — 2026年6月16日</title>
+<style>
+  :root {
+    --bg: #0d1117; --card: #161b22; --text: #c9d1d9; --text2: #8b949e;
+    --border: #30363d; --red: #E7484C; --green: #14A86B; --blue: #58a6ff;
+    --amber: #d2991d; --teal: #3fb950; --coral: #f78166; --purple: #a371f7;
+    --info-bg: #0d1117; --warn-bg: #1a1a2e; --danger-bg: #1a0f0f;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, 'Microsoft YaHei', sans-serif; background: var(--bg); color: var(--text); font-size: 14px; line-height: 1.8; padding: 0; }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 40px 24px 80px; }
+  .header { text-align: center; padding: 40px 0 32px; border-bottom: 1px solid var(--border); }
+  .header h1 { font-size: 26px; font-weight: 600; margin-bottom: 8px; color: #fff; }
+  .header .meta { font-size: 13px; color: var(--text2); }
+  .header .tags { display: flex; gap: 8px; justify-content: center; margin-top: 12px; flex-wrap: wrap; }
+  .tag { padding: 2px 10px; border-radius: 4px; font-size: 12px; font-weight: 500; }
+  .tag-red { background: #2a1010; color: var(--red); }
+  .tag-green { background: #0d2818; color: var(--green); }
+  .tag-blue { background: #0d1b36; color: var(--blue); }
+  .tag-amber { background: #2a1f00; color: var(--amber); }
+  .tag-purple { background: #1a0f2e; color: var(--purple); }
+  h2 { font-size: 20px; font-weight: 600; margin: 48px 0 16px; padding-bottom: 8px; border-bottom: 2px solid var(--border); color: #fff; }
+  h3 { font-size: 16px; font-weight: 600; margin: 32px 0 12px; color: #e6edf3; }
+  h4 { font-size: 14px; font-weight: 600; margin: 20px 0 8px; color: var(--text); }
+  p { margin: 0 0 12px; color: var(--text2); }
+  .source { font-size: 12px; color: var(--text2); margin-top: 8px; opacity: 0.7; }
+  .card { background: var(--card); border: 0.5px solid var(--border); border-radius: 12px; padding: 24px; margin: 16px 0; }
+  .card h3 { margin-top: 0; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 13px; }
+  th { background: #1a1f2e; font-weight: 600; text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); font-size: 12px; color: var(--text2); }
+  td { padding: 10px 12px; border-bottom: 0.5px solid var(--border); }
+  .metric-row { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 16px; margin: 20px 0; }
+  .metric { text-align: center; min-width: 120px; }
+  .metric .val { font-size: 22px; font-weight: 700; }
+  .metric .lbl { font-size: 12px; color: var(--text2); margin-top: 4px; }
+  .callout { padding: 16px 20px; border-radius: 8px; margin: 16px 0; line-height: 1.7; font-size: 13px; }
+  .callout-info { background: #0d1b36; border-left: 3px solid var(--blue); }
+  .callout-warn { background: #2a1f00; border-left: 3px solid var(--amber); }
+  .callout-danger { background: #2a1010; border-left: 3px solid var(--red); }
+  .callout-success { background: #0d2818; border-left: 3px solid var(--green); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
+  .toc { background: var(--card); border: 0.5px solid var(--border); border-radius: 12px; padding: 20px 28px; margin: 20px 0; }
+  .toc ol { margin: 8px 0 0 20px; }
+  .toc li { margin: 4px 0; color: var(--text2); }
+  .highlight-red { color: var(--red); font-weight: 600; }
+  .highlight-green { color: var(--green); font-weight: 600; }
+  .highlight-amber { color: var(--amber); font-weight: 600; }
+  .highlight-blue { color: var(--blue); font-weight: 600; }
+  .fn { font-size: 12px; color: var(--text2); }
+  ul { margin: 8px 0 8px 20px; color: var(--text2); }
+  ul li { margin: 4px 0; }
+  ol { margin: 8px 0 8px 20px; color: var(--text2); }
+  ol li { margin: 4px 0; }
+  .chart-bg { background: #161b22; border: 0.5px solid var(--border); border-radius: 8px; padding: 16px; margin: 12px 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="header">
+  <h1>🏭 合成橡胶产业链深度学习报告</h1>
+  <div class="meta">2026年6月16日 | 数据截至2026年6月16日 15:00</div>
+  <div class="tags">
+    <span class="tag tag-red">BR ~13,185元/吨</span>
+    <span class="tag tag-amber">自4/1累计-24.1%</span>
+    <span class="tag tag-blue">丁二烯 11,400元/吨</span>
+    <span class="tag tag-green">NR-BR价差走扩</span>
+    <span class="tag tag-purple">顺丁开工69.26%</span>
+  </div>
+</div>
+
+<!-- TOC -->
+<div class="toc">
+  <h3 style="margin-top:0;font-size:14px;color:#fff;">目录</h3>
+  <ol>
+    <li>合成橡胶是什么 — 石化产业链的一环</li>
+    <li>上游原料：丁二烯 — 合成橡胶的"命门"</li>
+    <li>中游生产：顺丁橡胶(BR)产能全景</li>
+    <li class="toc-new">BR-丁二烯价差：加工利润"晴雨表"</li>
+    <li>丁苯橡胶(SBR) — 合成橡胶的另一半</li>
+    <li>下游消费：轮胎配方中的合成胶</li>
+    <li>天胶 vs 合成胶：替代关系的深层逻辑</li>
+    <li class="toc-new">替代边界完整框架 — 掺用比例·临界价差·替代上限</li>
+    <li>原油传导链 — 从原油到合成橡胶的六步传导</li>
+    <li>当前供需格局 — BR为何暴跌24%</li>
+    <li class="toc-new">BR仓单：近月合约"压力测试"</li>
+    <li>A股合成橡胶产业链映射</li>
+    <li>天然橡胶 vs 合成橡胶 — 投资策略总结</li>
+    <li>关键风险与不确定性</li>
+  </ol>
+</div>
+
+<!-- ===== 第1章 ===== -->
+<h2>1. 合成橡胶是什么 — 石化产业链的一环</h2>
+
+<div class="card">
+  <h3>合成橡胶分类与定位</h3>
+  <table>
+    <tr><th>品种</th><th>原料</th><th>中国产量(万t/年)</th><th>期货标的</th><th>核心用途</th></tr>
+    <tr><td><strong>顺丁橡胶(BR)</strong></td><td>丁二烯（单体聚合）</td><td>~120</td><td><strong>BR（上期所）</strong></td><td>轮胎胎面（70%）+ 鞋底 + 胶管</td></tr>
+    <tr><td><strong>丁苯橡胶(SBR)</strong></td><td>丁二烯+苯乙烯</td><td>~160</td><td>无期货</td><td>轮胎胎体（50%）+ 输送带</td></tr>
+    <tr><td><strong>丁基橡胶(IIR)</strong></td><td>异丁烯+少量异戊二烯</td><td>~30</td><td>无期货</td><td>内胎/气密层（轮胎）</td></tr>
+    <tr><td><strong>乙丙橡胶(EPDM)</strong></td><td>乙烯+丙烯</td><td>~20</td><td>无期货</td><td>密封件、防水卷材、汽车密封条</td></tr>
+    <tr><td><strong>丁腈橡胶(NBR)</strong></td><td>丁二烯+丙烯腈</td><td>~25</td><td>无期货</td><td>耐油制品（密封圈/手套）</td></tr>
+  </table>
+  <p><strong>核心结论：</strong>合成橡胶家族中，<strong>顺丁橡胶(BR)是唯一有期货的品种</strong>（上期所2023年7月上市），也是我们研究的核心标的。丁二烯是所有合成橡胶的共性原料——谁控制了丁二烯，谁就控制了合成橡胶的成本。</p>
+</div>
+
+<div class="callout callout-danger">
+  <strong>🔴 合成橡胶的本质定位：石化产业链的"副产品经济"。</strong>丁二烯是乙烯裂解的副产品——它的产量不由自身需求决定，而由乙烯装置的开工率决定。当原油涨价→乙烯利润好→开工率高→丁二烯被动增产→合成橡胶成本下降。这个"副产品"定位决定了合成橡胶的供给极其被动，经常出现"越亏越产"的异常现象。
+</div>
+
+<!-- ===== 第2章 ===== -->
+<h2>2. 上游原料：丁二烯 — 合成橡胶的"命门"</h2>
+
+<div class="metric-row">
+  <div class="metric"><div class="val" style="color:var(--amber);">11,400元/吨</div><div class="lbl">丁二烯山东市场价</div></div>
+  <div class="metric"><div class="val" style="color:var(--blue);">1,560美元/吨</div><div class="lbl">丁二烯CIF中国</div></div>
+  <div class="metric"><div class="val" style="color:var(--green);">37,600吨</div><div class="lbl">丁二烯港口库存(6/10)</div></div>
+  <div class="metric"><div class="val" style="color:var(--amber);">45.8万t</div><div class="lbl">5月丁二烯产量 (+3%)</div></div>
+</div>
+
+<div class="card">
+  <h3>丁二烯供需拆解</h3>
+  <table>
+    <tr><th>项目</th><th>2026年5-6月数据</th><th>趋势</th></tr>
+    <tr><td>中国月产量</td><td>~45.8万吨（5月）</td><td>环比+3%（装置恢复）</td></tr>
+    <tr><td>进口量</td><td>~3万吨/月</td><td>日韩装置恢复→进口增加</td></tr>
+    <tr><td>总供应</td><td>~49万吨/月</td><td>↑ 供应逐步恢复</td></tr>
+    <tr><td>消费结构</td><td>顺丁17% + 丁苯23% + ABS 25% + SBS 15% + 其他20%</td><td>顺丁/丁苯需求稳定</td></tr>
+    <tr><td>港口库存</td><td>37,600吨（6/10，环比+2,150吨）</td><td>累库（利空）</td></tr>
+    <tr><td>核心驱动</td><td>日韩乙烯装置开工率恢复 → 丁二烯产出增加</td><td>供应恢复中</td></tr>
+  </table>
+  <p><strong>关键转折：</strong>之前丁二烯因日韩装置检修严重紧缺（3-4月价格飙升至13,000+），现在装置逐步恢复→供应增加→价格从高位回落至11,400元/吨。但<strong>产量仍未恢复到检修前水平</strong>（中泰期货6/7周报："丁二烯产量仍未恢复"），意味着下方空间有限。</p>
+  <p class="source">来源：隆众资讯；国泰君安期货 2026.06.07；中泰期货 2026.06.07</p>
+</div>
+
+<div class="callout callout-warn">
+  <strong>🟡 丁二烯定价权在哪里？</strong>中国丁二烯定价很大程度上取决于<strong>日韩乙烯装置开工率</strong>——日韩是全球丁二烯主要出口国。当乙烯利润好→日韩满负荷→丁二烯供应过剩→价格承压。当前日韩装置正在从检修中恢复，供应边际增加，这是BR下跌的首要原因。
+</div>
+
+<!-- ===== 第3章 ===== -->
+<h2>3. 中游生产：顺丁橡胶(BR)产能全景</h2>
+
+<div class="metric-row">
+  <div class="metric"><div class="val" style="color:var(--blue);">69.26%</div><div class="lbl">顺丁产能利用率(6/11)</div></div>
+  <div class="metric"><div class="val" style="color:var(--amber);">2.94万t/周</div><div class="lbl">顺丁周产量</div></div>
+  <div class="metric"><div class="val" style="color:var(--green);">3.04万t</div><div class="lbl">企业库存 (-5.54%)</div></div>
+  <div class="metric"><div class="val" style="color:var(--red);">13,620元/吨</div><div class="lbl">华东BR9000现货价(6/11)</div></div>
+</div>
+
+<div class="card">
+  <h3>中国顺丁橡胶产能格局</h3>
+  <table>
+    <tr><th>企业</th><th>产能(万t/年)</th><th>占比</th><th>当前状态</th></tr>
+    <tr><td><strong>中石化（齐鲁+燕山+茂名+高桥）</strong></td><td>~45</td><td>~30%</td><td>大部分正常运行</td></tr>
+    <tr><td><strong>中石油（大庆+独山子+四川）</strong></td><td>~25</td><td>~17%</td><td>独山子停车中（检修）</td></tr>
+    <tr><td><strong>民营（齐翔腾达+传化+玉皇+万达）</strong></td><td>~50</td><td>~33%</td><td>锦州石化刚开车</td></tr>
+    <tr><td><strong>其他（振华+威特等）</strong></td><td>~30</td><td>~20%</td><td>威特/振华停车</td></tr>
+    <tr><td><strong>全国合计</strong></td><td><strong>~150</strong></td><td>100%</td><td>产能利用率69.26%</td></tr>
+  </table>
+  <p>当前停车装置：扬子石化、锦州石化（刚恢复）、独山子石化、山东威特、振华新材料。锦州石化刚开车→产能利用率从67.13%→69.26%（+2.13pp）→供应边际宽松。</p>
+  <p class="source">来源：隆众资讯 2026.06.11；国泰君安期货 2026.06.07</p>
+</div>
+
+<div class="callout callout-info">
+  <h4>💡 BR成本公式</h4>
+  <p>顺丁橡胶的理论完全成本 = <strong>丁二烯价格 × 1.02 + 辅剂人工费(1,800-2,500元/吨)</strong></p>
+  <p>以当前丁二烯11,400元/吨计算：完全成本 ≈ 11,400×1.02 + 2,500 ≈ <strong>14,100元/吨</strong></p>
+  <p>最低成本（最低固定费用）：≈ 11,400×1.02 + 1,800 ≈ <strong>13,400元/吨</strong></p>
+  <p>而当前BR期货价格仅13,185元/吨——<strong>已低于最低完全成本</strong>，行业处于全行业亏损状态！</p>
+  <p class="source">来源：国泰君安期货 2026.06.07</p>
+</div>
+
+<!-- ===== BR-丁二烯价差：加工利润"晴雨表" ===== -->
+<div class="card" style="border-left:3px solid var(--coral);">
+  <h3>📐 BR-丁二烯价差：顺丁橡胶加工利润的"晴雨表"</h3>
+  <p>BR期货价格与原料丁二烯的价差，是判断顺丁橡胶行业景气度最直接、最灵敏的指标。它直接反映<strong>独立顺丁装置（无配套丁二烯产能）</strong>的加工利润状况。</p>
+
+  <h4 style="margin-top:16px;">1. 价差区间与行业状态映射</h4>
+  <div class="chart-bg">
+    <table>
+      <tr><th>BR-丁二烯价差</th><th>行业状态</th><th>装置行为</th><th>供给信号</th></tr>
+      <tr style="background:var(--green-bg);"><td><strong>&gt; 3,500元/吨</strong></td><td style="color:var(--green);"><strong>暴利区间</strong></td><td>满负荷运行，扩产冲动</td><td>供给即将增加 → 偏空</td></tr>
+      <tr><td><strong>2,500-3,500元/吨</strong></td><td><strong>正常利润</strong></td><td>装置正常开工，行业健康</td><td>供给中性</td></tr>
+      <tr style="background:var(--amber-bg);"><td><strong>2,000-2,500元/吨</strong></td><td style="color:var(--amber);"><strong>微利预警</strong></td><td>部分高成本装置面临停车</td><td>供给边际收缩 → 偏多</td></tr>
+      <tr style="background:var(--red-bg);"><td><strong>&lt; 2,000元/吨</strong></td><td style="color:var(--red);"><strong>亏损区间</strong></td><td>独立装置集中停车</td><td>供给被动收缩 → 利多</td></tr>
+    </table>
+  </div>
+
+  <h4 style="margin-top:20px;">2. 当前价差：1,785元/吨 → 深度亏损，近年最低</h4>
+  <div class="metric-row" style="justify-content:flex-start;gap:24px;">
+    <span class="metric"><span class="lbl">BR主力</span><span class="val" style="color:var(--coral);">13,185元/吨</span></span>
+    <span class="metric"><span class="lbl">丁二烯山东</span><span class="val" style="color:var(--amber);">11,400元/吨</span></span>
+    <span class="metric"><span class="lbl">BR-丁二烯价差</span><span class="val" style="color:var(--red);">1,785元/吨</span></span>
+    <span class="metric"><span class="lbl">vs 2,000亏损线</span><span class="val" style="color:var(--red);">低于215元</span></span>
+  </div>
+
+  <p style="margin-top:12px;"><strong>三重含义：</strong></p>
+  <ol style="margin:4px 0 0 20px;">
+    <li><strong>已进入"亏损区间"</strong>（&lt;2,000元/吨），且处于<strong style="color:var(--red);">近年最低位</strong></li>
+    <li><strong>独立顺丁装置（无配套丁二烯）全面亏损</strong>——这些装置的丁二烯需要外购，价差就是它们的全部毛利，1,785元/吨的价差完全不足以覆盖辅料、人工、折旧和能耗</li>
+    <li><strong>高成本装置已停车或计划停车：</strong>威特化工、振华石油、锦州石化等独立装置的开工率已在低位或停产边缘</li>
+  </ol>
+
+  <h4 style="margin-top:20px;">3. 价差收窄的自我纠正机制</h4>
+  <p>BR-丁二烯价差收窄至亏损区间后，存在<strong>自发的供给侧纠正机制</strong>：</p>
+  <div style="background:var(--bg); border-radius:8px; padding:16px; margin:12px 0; text-align:center; line-height:2;">
+    <strong>价差&lt;2,000 → 独立装置亏损</strong> → 高成本装置停车<br>
+    → <strong>顺丁橡胶供给减少</strong> → BR价格相对丁二烯走强<br>
+    → <strong>价差修复 → 回到2,000-2,500区间</strong>
+  </div>
+  <p>这也是当前BR<strong>"跌不动"的核心原因</strong>——价格已低于成本，停产是最好的选择。供给端正通过被动收缩来消化过剩，这个过程虽然缓慢但方向确定。</p>
+
+  <h4 style="margin-top:20px;">4. 投资应用：价差作为择时信号</h4>
+  <table>
+    <tr><th>价差信号</th><th>操作含义</th><th>历史胜率</th></tr>
+    <tr><td>价差&lt;1,800元/吨（如当前）</td><td>接近供给侧收缩触发点 → <strong>不宜追空BR</strong>，关注装置停车消息</td><td>高</td></tr>
+    <tr><td>价差1,800-2,000元/吨</td><td>底部区域，做空风险收益比差 → 观望或轻仓试多</td><td>中高</td></tr>
+    <tr><td>价差修复至2,500+元/吨</td><td>利润恢复，装置恢复开车 → 供给增加预期 → 多单止盈窗口</td><td>中</td></tr>
+    <tr><td>价差&gt;3,500元/吨</td><td>利润驱动扩产 → <strong>逢高做空BR</strong></td><td>中高</td></tr>
+  </table>
+</div>
+
+<!-- ===== 第4章 ===== -->
+<h2>4. 丁苯橡胶(SBR) — 合成橡胶的另一半</h2>
+
+<div class="card">
+  <p>丁苯橡胶(SBR)是产量最大的合成橡胶品种（~160万吨/年 vs 顺丁~120万吨），但无期货品种。其原料是<strong>丁二烯 + 苯乙烯</strong>（比例约75:25），苯乙烯价格跟随纯苯/原油产业链。</p>
+  <p><strong>与顺丁的对比：</strong></p>
+  <table>
+    <tr><th>维度</th><th>顺丁橡胶(BR)</th><th>丁苯橡胶(SBR)</th></tr>
+    <tr><td>原料成本构成</td><td>丁二烯 100%（单体聚合）</td><td>丁二烯 ~75% + 苯乙烯 ~25%</td></tr>
+    <tr><td>期货标的</td><td>✅ BR（上期所）</td><td>❌ 无</td></tr>
+    <tr><td>轮胎用途</td><td>胎面（耐磨、低滚阻）</td><td>胎体（抓着性、湿滑性能）</td></tr>
+    <tr><td>替代天胶能力</td><td>中（耐磨性不如NR）</td><td>强（与NR物理共混性最好）</td></tr>
+    <tr><td>当前价格</td><td>13,620元/吨（全行业亏损）</td><td>~13,000-13,500元/吨</td></tr>
+  </table>
+  <p><strong>关键投资含义：</strong>BR期货反映的是顺丁橡胶，但轮胎厂配方中同时使用NR+BR+SBR。当研究"天胶vs合成胶替代"时，需要同时看NR/BR/SBR三个品种的价差，而非仅看NR-BR。</p>
+</div>
+
+<!-- ===== 第5章 ===== -->
+<h2>5. 下游消费：轮胎配方中的合成胶</h2>
+
+<div class="card">
+  <h3>乘用车轮胎配方（典型半钢胎）</h3>
+  <table>
+    <tr><th>原料</th><th>占比</th><th>品种</th><th>作用</th></tr>
+    <tr><td><strong>天然橡胶(NR)</strong></td><td>30-40%</td><td>STR20/SCRWF</td><td>胎体强度、耐撕裂</td></tr>
+    <tr><td><strong>合成橡胶(SR)</strong></td><td>20-30%</td><td>BR+SBR</td><td>耐磨性(BR)、抓着性(SBR)</td></tr>
+    <tr><td><strong>炭黑</strong></td><td>25-35%</td><td>N220/N330/N550</td><td>补强、耐磨、抗UV</td></tr>
+    <tr><td><strong>油/助剂/硫化剂</strong></td><td>8-12%</td><td>-</td><td>加工助剂</td></tr>
+    <tr><td><strong>钢丝帘线/纤维</strong></td><td>5-10%</td><td>-</td><td>骨架材料</td></tr>
+  </table>
+  <p><strong>合成胶在轮胎中的掺用比例是有弹性的</strong>——轮胎厂可以在一定范围内（通常±5-10pp）调整NR和SR的比例。当合成橡胶比天然橡胶便宜到一定程度，轮胎厂会增加合成橡胶用量替代天然橡胶——这就是NR-BR价差的意义。</p>
+  <p class="source">来源：赛轮轮胎/玲珑轮胎技术资料；国泰君安期货</p>
+</div>
+
+<!-- ===== 第6章 ===== -->
+<h2>6. 天胶 vs 合成胶：替代关系的深层逻辑</h2>
+
+<div class="card">
+  <h3>NR-BR替代阈值分析</h3>
+  
+  <div class="chart-bg">
+    <table>
+      <tr><th>NR-BR价差</th><th>替代方向</th><th>当前状态</th></tr>
+      <tr><td>NR大幅升水BR >2,000元/t</td><td>轮胎厂增加合成胶掺比，替代天胶</td><td rowspan="3" style="background:#0d2818;text-align:center;"><strong>✅ 正处于此区间<br>NR-BR价差≈3,000-4,000元/吨<br>→ 合成胶替代窗口打开</strong></td></tr>
+      <tr><td>NR小幅升水BR 1,000-2,000</td><td>中性区间，按配方正常生产</td></tr>
+      <tr><td>NR与BR持平或倒挂</td><td>轮胎厂增加天胶掺比，替代合成胶</td></tr>
+    </table>
+  </div>
+
+  <p><strong>关键量化：</strong>半钢胎配方中合成胶占比20-30%，当前NR-BR价差3,000-4,000元/吨意味着每吨替换用合成胶可节省3,000-4,000元。对于一个年产500万条半钢胎的工厂（每条用胶3-4kg），将合成胶掺比从25%提升到30%，节省成本约750万-1,000万元/年。</p>
+
+  <p><strong>但替代有极限：</strong>合成胶不能完全替代天然橡胶。NR的撕裂强度、动态疲劳性能是SR难以替代的——尤其在载重子午胎（全钢胎）中，NR占比不可能低于40%。替代主要发生在半钢胎的胎面胶中（BR含量可适当提高）。</p>
+  <p class="source">来源：国泰君安期货；轮胎行业技术手册</p>
+</div>
+
+<div class="callout callout-warn">
+  <strong>🟡 当前NR-BR价差对BR是利多信号：</strong>NR-BR价差走扩意味着合成胶性价比凸显→轮胎厂增加BR采购→BR需求边际改善→BR价格获得支撑。国泰君安6/7周报明确："NR-BR主力合约价差低位反转，逐步回到合理水平。合成橡胶整体需求预计受价差影响逐步改善。"
+</div>
+
+<!-- ===== 替代边界完整框架 ===== -->
+<div class="card" style="border-left:3px solid var(--coral);">
+  <h3>📐 替代边界的完整框架：从价差信号到需求约束</h3>
+
+  <h4 style="margin-top:12px;">1. 正常掺用比例基线</h4>
+  <p>在轮胎配方中，天然橡胶（NR）和合成橡胶（BR/SBR）处于一个<strong>动态平衡</strong>状态。正常情况下，乘用车轮胎（半钢胎）和载重轮胎（全钢胎）中的NR与合成橡胶掺用比例如下：</p>
+
+  <div class="chart-bg">
+    <table>
+      <tr><th>轮胎品类</th><th>NR正常占比</th><th>合成胶正常占比</th><th>可调节弹性</th><th>关键约束</th></tr>
+      <tr><td><strong>半钢胎（乘用车）</strong></td><td>40-55%</td><td>45-60%</td><td>±10pp</td><td>胎面胶可多掺BR，胎体不可</td></tr>
+      <tr><td><strong>全钢胎（载重）</strong></td><td>65-80%</td><td>20-35%</td><td>±5pp</td><td>NR撕裂强度不可替代，合成胶最多到35%</td></tr>
+      <tr><td><strong>工程胎/巨胎</strong></td><td>90%+</td><td>&lt;10%</td><td>极小</td><td>合成胶几乎不用</td></tr>
+    </table>
+  </div>
+
+  <h4 style="margin-top:20px;">2. 替代触发临界点：2,000元/吨价差</h4>
+  <p>当NR价格高于BR/SBR超过<strong style="color:var(--red);">2,000元/吨</strong>时，轮胎厂的成本核算模型开始触发"配方调整信号"——增加合成胶掺用比例、减少天然橡胶用量。这是行业经验的"替代临界点"。</p>
+
+  <div class="chart-bg">
+    <table>
+      <tr><th>NR-BR价差区间</th><th>替代行为</th><th>对需求的影响</th></tr>
+      <tr><td>&lt; 1,000元/吨</td><td>按正常配方生产，无调整动力</td><td>无影响</td></tr>
+      <tr><td>1,000-2,000元/吨</td><td>轮胎厂开始关注，小幅预调</td><td>NR需求边际-2~3%</td></tr>
+      <tr style="background:#3d1818;"><td><strong>2,000-3,000元/吨</strong></td><td><strong style="color:var(--red);">触发积极调整配方</strong>，系统性地增加合成胶掺比</td><td><strong style="color:var(--red);">NR需求边际-5~8%</strong></td></tr>
+      <tr style="background:#3d1818;"><td><strong>&gt; 3,000元/吨</strong></td><td><strong style="color:var(--red);">最大化合成胶替代</strong>，仅在不可替代配方中保留NR</td><td><strong style="color:var(--red);">NR需求边际-10~15%<br>但无法再增加</strong></td></tr>
+    </table>
+  </div>
+
+  <h4 style="margin-top:20px;">3. 当前价差判断：3,900元/吨 → 远超临界点</h4>
+  <div class="metric-row" style="justify-content:flex-start;gap:24px;">
+    <span class="metric"><span class="lbl">RU主力</span><span class="val" style="color:var(--coral);">~17,400元/吨</span></span>
+    <span class="metric"><span class="lbl">BR主力</span><span class="val" style="color:var(--coral);">~13,500元/吨</span></span>
+    <span class="metric"><span class="lbl">NR-BR价差</span><span class="val" style="color:var(--red);">~3,900元/吨</span></span>
+    <span class="metric"><span class="lbl">vs 2,000临界点</span><span class="val" style="color:var(--red);">超出+1,900元/吨</span></span>
+  </div>
+
+  <p style="margin-top:12px;"><strong>核心判断：当前价差3,900元/吨已远超2,000元/吨的替代触发临界点。</strong>轮胎厂正处于"最大化合成胶替代"区间。这意味着天胶价格在17,500以上的区域，处于<strong style="color:var(--red);">"高价抑制需求"的区间</strong>——轮胎厂采购意愿明显减弱，每多采购一吨天胶就多承担约3,900元的额外成本。</p>
+
+  <p style="margin-top:8px;">这也解释了为什么当前胶价（17,400）虽然在厄尔尼诺题材下有一定上行预期，但<strong>17,500以上时轮胎厂采购意愿显著下降</strong>——不是停产，而是<strong>"能不用天胶就不用"</strong>的配方策略，边际需求被大量挤出。</p>
+
+  <h4 style="margin-top:20px;">4. 替代上限：15-20%的硬约束</h4>
+  <p>合成橡胶不能无限替代天然橡胶。<strong>物理性能的鸿沟</strong>决定了完全替代的上限不超过15-20%：</p>
+
+  <div class="chart-bg">
+    <table>
+      <tr><th>性能维度</th><th>天然橡胶(NR)</th><th>合成橡胶(BR/SBR)</th><th>替代后果</th></tr>
+      <tr><td><strong>撕裂强度</strong></td><td style="color:var(--green);">极高（结晶自补强）</td><td>低（无应变结晶）</td><td>合成胶过多→轮胎易撕裂</td></tr>
+      <tr><td><strong>动态疲劳性能</strong></td><td style="color:var(--green);">优良（低生热）</td><td>差（高滞后→高生热）</td><td>合成胶过多→高速行驶生热爆胎</td></tr>
+      <tr><td><strong>抗湿滑性</strong></td><td>中</td><td style="color:var(--green);">SBR优秀</td><td>SBR在胎面可部分替代NR</td></tr>
+      <tr><td><strong>耐磨性</strong></td><td>中</td><td style="color:var(--green);">BR优秀</td><td>BR在胎面可部分替代NR</td></tr>
+      <tr><td><strong>加工性</strong></td><td style="color:var(--green);">好（可塑性强）</td><td>差（需塑解剂）</td><td>完全合成胶配方加工困难</td></tr>
+    </table>
+  </div>
+
+  <p style="margin-top:12px;">NR的撕裂强度和动态疲劳性能源于其<strong>应变诱导结晶</strong>效应——NR在拉伸时分子链会自发排列成晶体，大幅提高强度。这是所有合成橡胶无法复现的物理特性。因此：</p>
+  <ul style="margin:8px 0 8px 20px;">
+    <li><strong>全钢胎中NR占比不可能低于40%</strong>——载重行驶条件下生热和撕裂风险太高</li>
+    <li><strong>半钢胎中NR占比不可能低于30%</strong>——胎体帘布层必须用NR保证强度</li>
+    <li>替代主要发生部位：<strong>胎面胶</strong>（BR可适当增加）和<strong>胎侧胶</strong>（NR/BR共混）</li>
+    <li><strong>总替代上限：NR需求最多被替代15-20%</strong>，超出此比例将导致轮胎性能严重劣化</li>
+  </ul>
+
+  <div class="callout callout-info">
+    <strong>📊 投资含义：</strong>NR-BR巨大价差虽然抑制了天胶的边际需求（15-20%的NR消费量被合成胶替代），但<strong>80-85%的NR核心需求因物理性能的不可替代性而被"锁定"</strong>。这意味着：
+    <ol style="margin:8px 0 0 20px;">
+      <li><strong>高价会抑制边际需求</strong> → RU在17,500以上缺乏轮胎厂采购支撑，需要有投机资金或天气事件才能突破</li>
+      <li><strong>但不会消灭核心需求</strong> → NR在16,000-17,000有极强的需求底部（核心配方必须用NR）</li>
+      <li><strong>合成胶替代是"缓冲垫"而非"替代品"</strong> → NR和BR最终会通过价差收敛达到均衡，NR不会跌到合成胶的价格</li>
+    </ol>
+  </div>
+
+  <p class="source">来源：合成橡胶替代边界分析框架；轮胎行业配方技术手册；国泰君安期货</p>
+</div>
+
+<!-- ===== 第7章 ===== -->
+<h2>7. 原油传导链 — 从原油到合成橡胶的六步传导</h2>
+
+<div class="card">
+  <div style="background:#1a1f2e;border-radius:8px;padding:16px;margin-bottom:16px;text-align:center;line-height:2.5;">
+    <strong>原油（$90.54/桶 WTI）</strong> → 石脑油（裂解）<br>
+    → <strong>乙烯装置裂解</strong> → 丁二烯（副产品）<br>
+    → <strong>单体聚合</strong> → 顺丁橡胶(BR)<br>
+    → <strong>轮胎厂配方</strong> → 橡胶制品
+  </div>
+
+  <table>
+    <tr><th>传导环节</th><th>传导效率</th><th>时滞</th><th>当前状态</th></tr>
+    <tr><td>原油→石脑油</td><td>高度跟随（r≈0.9）</td><td>0-1周</td><td>美伊签约→油价暴跌→石脑油跌</td></tr>
+    <tr><td>石脑油→乙烯→丁二烯</td><td>中（副产品逻辑）</td><td>2-4周</td><td>日韩装置恢复→丁二烯供给增加</td></tr>
+    <tr><td>丁二烯→顺丁橡胶</td><td>强（成本占比~75%）</td><td>1-2周</td><td>丁二烯跌→BR成本下移</td></tr>
+    <tr><td>BR→轮胎定价</td><td>弱（轮胎厂议价能力强）</td><td>2-4周</td><td>轮胎厂压价能力增强</td></tr>
+  </table>
+
+  <p><strong>关键理解：</strong>BR的下跌逻辑不同于天胶。天胶下跌的逻辑是"供应增加+需求减弱"，而BR的下跌逻辑是"<strong>原料（丁二烯）跌价→成本下移→估值重塑</strong>"。BR价格的锚是丁二烯，丁二烯的锚是原油——因此研究BR，本质上是在研究<strong>原油→乙烯→丁二烯</strong>的传导。</p>
+</div>
+
+<!-- ===== 第8章 ===== -->
+<h2>8. 当前供需格局 — BR为何暴跌24%</h2>
+
+<div class="card">
+  <h3>BR暴跌的时间线与驱动因素</h3>
+  <table>
+    <tr><th>时间</th><th>BR价格</th><th>触发事件</th></tr>
+    <tr><td>2026年4月1日</td><td>~17,300元/吨</td><td>美伊冲突爆发初期→原油暴涨→丁二烯暴涨→BR冲高</td></tr>
+    <tr><td>2026年4月10日</td><td>~18,140元/吨（阶段高点）</td><td>霍尔木兹海峡封锁恐慌→油价飙升至$100+</td></tr>
+    <tr><td>2026年5月</td><td>震荡回落</td><td>美伊边打边谈→原油回落；日韩装置恢复→丁二烯供应增加</td></tr>
+    <tr><td>2026年6月9日</td><td class="highlight-red">13,185元/吨</td><td>单日-4.80%！美伊和平协议预期强化→油价大跌→BR崩盘</td></tr>
+    <tr><td>2026年6月16日</td><td>~13,200元/吨</td><td>美伊正式签约→市场price-in和平→BR弱势运行</td></tr>
+  </table>
+  <p><strong>自4月1日以来累计跌幅24.1%</strong>，远超天然橡胶（同期跌幅不足5%）。核心原因：合成橡胶的<strong>"先涨后跌"模式</strong>——冲突爆发时BR是"最敏感"的橡胶品种（原油直接传导），但冲突缓解时也是"最脆弱"的（丁二烯被动增产+成本崩塌）。</p>
+</div>
+
+<div class="callout callout-success">
+  <h3>📊 当前估值判断</h3>
+  <p>BR期货基本面静态估值区间为<strong>13,200-14,500元/吨</strong>（国泰君安）。当前价格13,185元/吨已<strong>跌破估值下沿</strong>，且低于最低完全成本（13,400元/吨）。</p>
+  <p><strong>下方支撑逻辑（三层）：</strong></p>
+  <ol>
+    <li><strong>成本支撑：</strong>BR已低于最低成本 → 高成本装置（独山子/振华/威特）停车→供应收紧</li>
+    <li><strong>NR-BR替代支撑：</strong>NR-BR价差3,000-4,000元/吨 → 轮胎厂加大BR采购→需求边际改善</li>
+    <li><strong>丁二烯下方空间有限：</strong>丁二烯港口库存37,600吨（中性偏低），日韩装置恢复进程是渐进式</li>
+  </ol>
+  <p><strong>上方压力（双层）：</strong></p>
+  <ol>
+    <li><strong>原油压制：</strong>美伊签约→油价中枢系统性下移→丁二烯估值承压</li>
+    <li><strong>供应恢复：</strong>锦州石化刚开车、产能利用率提升至69.26%→供应边际宽松</li>
+  </ol>
+  <p><strong>结论：BR大概率在13,200-14,500区间震荡筑底。跌破13,000的可能性较低（成本支撑+NR替代支撑），但反弹至14,500以上的空间也有限（原油压制）。</strong></p>
+  <p class="source">来源：国泰君安期货 2026.06.07（静态估值13,200-14,500）</p>
+</div>
+
+<!-- ===== BR仓单：近月合约"压力测试" ===== -->
+<div class="card" style="border-left:3px solid var(--amber);">
+  <h3>📦 BR仓单：近月合约的"压力测试"</h3>
+  <p>BR作为一个交割制度完善的期货品种，仓单数量是判断近月合约多空博弈方向的关键变量。仓单反映的是<strong>可交割货源的实际压力</strong>，直接作用于近月合约的交割博弈。</p>
+
+  <h4 style="margin-top:16px;">1. 仓单量与近月方向</h4>
+  <div class="chart-bg">
+    <table>
+      <tr><th>仓单量</th><th>交割压力</th><th>近月合约倾向</th><th>说明</th></tr>
+      <tr style="background:var(--red-bg);"><td><strong>&gt; 15,000吨</strong></td><td style="color:var(--red);">高位</td><td style="color:var(--red);"><strong>偏空</strong></td><td>交货压力大 → 多头接货意愿弱 → 近月承压</td></tr>
+      <tr><td><strong>5,000-10,000吨</strong></td><td>中性</td><td><strong>中性</strong></td><td>交割压力可控，仓单对价格影响力有限</td></tr>
+      <tr style="background:var(--green-bg);"><td><strong>&lt; 2,000吨</strong></td><td style="color:var(--green);">历史低位</td><td style="color:var(--green);"><strong>偏多</strong></td><td>可交割货源稀缺 → 空头交货能力不足 → 有"挤仓"可能</td></tr>
+    </table>
+  </div>
+
+  <h4 style="margin-top:20px;">2. 当前仓单实况：13,310吨（6/11）</h4>
+  <div class="metric-row" style="justify-content:flex-start;gap:24px;">
+    <span class="metric"><span class="lbl">BR仓单总量</span><span class="val" style="color:var(--amber);">13,310吨</span></span>
+    <span class="metric"><span class="lbl">仓库仓单</span><span class="val">9,320吨</span></span>
+    <span class="metric"><span class="lbl">厂库仓单</span><span class="val">~3,990吨</span></span>
+    <span class="metric"><span class="lbl">当日增减</span><span class="val" style="color:var(--green);">-120吨</span></span>
+  </div>
+
+  <table style="margin-top:12px;">
+    <tr><th>地区</th><th>仓库</th><th>仓单(吨)</th><th>占比</th></tr>
+    <tr><td>山东</td><td>青岛中储物流</td><td><strong>5,440</strong></td><td>40.9%</td></tr>
+    <tr><td>山东</td><td>中储青州</td><td>1,870</td><td>14.0%</td></tr>
+    <tr><td>上海</td><td>中储临港</td><td>1,830</td><td>13.7%</td></tr>
+    <tr><td>浙江</td><td>杭州临港</td><td>1,820</td><td>13.7%</td></tr>
+    <tr><td>山东</td><td>奥润特</td><td>1,420</td><td>10.7%</td></tr>
+    <tr><td>山东</td><td>外运华中胶州</td><td>490</td><td>3.7%</td></tr>
+    <tr><td>江苏</td><td>中储南京</td><td>340</td><td>2.6%</td></tr>
+    <tr><td>山东</td><td>象屿速传青岛</td><td>100</td><td>0.8%</td></tr>
+    <tr><td>山东</td><td>山港青岛/外运青州/建发黄岛</td><td>0</td><td>0%</td></tr>
+  </table>
+  <p class="source">来源：上期所仓单日报 2026.06.11；99期货网</p>
+
+  <h4 style="margin-top:20px;">3. 当前仓单判断：中性偏空，但压力可控</h4>
+  <ul style="margin:4px 0 0 20px;">
+    <li><strong>13,310吨处于5,000-15,000吨的中性区间</strong>——不属于"挤仓"级别（&lt;2,000吨），也没有达到严重压制的"高位"（&gt;15,000吨）</li>
+    <li><strong>仓单高度集中</strong>：青岛中储物流独占40.9%，这一仓库的仓单变动对整个盘面影响最大</li>
+    <li><strong>6月仓单注销压力：</strong>BR仓单有效期为12个月，6月面临一批旧仓单注销。注销后如果新仓单注册不积极，仓单量可能向下突破</li>
+    <li><strong>净减少趋势：</strong>当日-120吨，仓单在缓慢减少而非累积——这是偏多的边际信号</li>
+  </ul>
+
+  <h4 style="margin-top:20px;">4. 投资应用：仓单作为择时和仓位管理的参考</h4>
+  <table>
+    <tr><th>仓单信号</th><th>操作建议</th></tr>
+    <tr><td>仓单持续增加 → 逼近15,000</td><td>近月合约不宜重仓做多，关注空头交货压力</td></tr>
+    <tr><td>仓单在5,000-10,000中性</td><td>仓单对价格影响有限，回归供需基本面判断</td></tr>
+    <tr><td>仓单持续减少 → 逼近2,000</td><td><strong>密切关注"挤仓"风险</strong>，近月可轻仓试多</td></tr>
+    <tr><td>青岛中储仓单集中注销</td><td>若该仓库存量骤降 → 仓单总量可能快速跌破5,000 → 近月偏多</td></tr>
+  </table>
+
+  <div class="callout callout-info">
+    <strong>💡 实操建议：</strong>BR交易者应<strong>每日关注上期所BR仓单日报</strong>（上期所官网每个交易日下午发布），这是判断近月合约多空力量的最直接指标。尤其是在临近交割月（最后交易日倒数第5个交易日仓单必须形成）前后，仓单量变化往往成为价格的决定性力量。
+  </div>
+</div>
+
+<hr>
+
+<!-- ===== 第9章 ===== -->
+<h2>9. A股合成橡胶产业链映射</h2>
+
+<div class="card">
+  <h3>直接标的</h3>
+  <table>
+    <tr><th>标的</th><th>代码</th><th>现价</th><th>PE</th><th>产业链位置</th><th>投资逻辑</th></tr>
+    <tr>
+      <td><strong>齐翔腾达</strong></td>
+      <td>002408</td>
+      <td>待查(今日未覆盖)</td>
+      <td>-</td>
+      <td>丁二烯+顺丁橡胶+甲乙酮</td>
+      <td>国内丁二烯加工龙头，顺丁橡胶产能~15万吨。丁二烯涨价→齐翔腾达最受益</td>
+    </tr>
+    <tr>
+      <td><strong>传化智联</strong></td>
+      <td>002010</td>
+      <td>待查</td>
+      <td>-</td>
+      <td>顺丁橡胶（民营）</td>
+      <td>物流+化工双主业，顺丁橡胶产能~10万吨</td>
+    </tr>
+  </table>
+  <p style="margin-top:12px;"><strong>⚠️ A股纯合成橡胶标的非常稀缺。</strong>齐翔腾达和传化智联虽有顺丁产能，但化工业务占比有限且混合多种产品线，非纯合成橡胶标的。投资合成橡胶最直接的方式是<strong>BR期货</strong>而非A股。</p>
+</div>
+
+<div class="card">
+  <h3>关联标的（产业链辐射）</h3>
+  <table>
+    <tr><th>标的</th><th>代码</th><th>现价</th><th>PE</th><th>关联逻辑</th></tr>
+    <tr>
+      <td><strong>黑猫股份</strong></td>
+      <td>002068</td>
+      <td>10.08 (-0.10%)</td>
+      <td>亏损</td>
+      <td>炭黑是轮胎的第三大原料（仅次于NR和SR）。原油跌→炭黑原料油跌→炭黑成本降</td>
+    </tr>
+    <tr>
+      <td><strong>龙星科技</strong></td>
+      <td>002442</td>
+      <td>5.16 (-1.15%)</td>
+      <td>73.5x</td>
+      <td>炭黑第二梯队。原油跌价是炭黑股的利多（原料端成本下降）</td>
+    </tr>
+    <tr>
+      <td><strong>鲁西化工</strong></td>
+      <td>000830</td>
+      <td>12.99 (-2.40%)</td>
+      <td class="highlight-green">14.1x</td>
+      <td>化工龙头，丁二烯产能有但占比小。原油跌价对整体化工品有限</td>
+    </tr>
+  </table>
+  <p class="source">来源：通达信TDX 2026.06.16 15:00</p>
+</div>
+
+<hr>
+
+<!-- ===== 第10章 ===== -->
+<h2>10. 天然橡胶 vs 合成橡胶 — 投资策略总结</h2>
+
+<div class="card" style="border:2px solid var(--amber);">
+  <h3>双品种对比矩阵</h3>
+  <table>
+    <tr><th>维度</th><th>🌳 天然橡胶(RU)</th><th>🏭 合成橡胶(BR)</th></tr>
+    <tr><td>当前价格</td><td>~17,400元/吨</td><td>~13,185元/吨</td></tr>
+    <tr><td>近期走势</td><td style="color:var(--amber);">震荡偏弱（-5% from 4月高）</td><td style="color:var(--red);">暴跌（-24.1% from 4月高）</td></tr>
+    <tr><td>供给弹性</td><td style="color:var(--red);">极低（生物周期6-8年）</td><td>中（产能利用率可调，丁二烯跟随原油）</td></tr>
+    <tr><td>核心驱动</td><td style="color:var(--red);"><strong>厄尔尼诺 + 树龄老化</strong></td><td><strong>原油 → 丁二烯 → 成本</strong></td></tr>
+    <tr><td>当前估值</td><td>中性（高于成本，低于历史均值）</td><td style="color:var(--green);">极端低估（跌破最低成本）</td></tr>
+    <tr><td>中长期方向</td><td style="color:var(--green);"><strong>看多</strong>（供给见顶+厄尔尼诺）</td><td>中性偏空（原油压制）</td></tr>
+    <tr><td>交易策略</td><td style="color:var(--green);"><strong>逢低布局多单</strong></td><td>区间操作（13,200-14,500）</td></tr>
+    <tr><td>关键买点</td><td>RU 17,000-17,500元/吨</td><td>BR 13,000-13,200元/吨</td></tr>
+    <tr><td>A股替代</td><td>海南橡胶(601118)、赛轮轮胎(601058)</td><td>黑猫股份(002068)、鲁西化工(000830)</td></tr>
+  </table>
+</div>
+
+<div class="callout callout-success">
+  <h3>📊 核心投资判断</h3>
+  <p><strong>1. 近期（1-3个月）：天然橡胶 > 合成橡胶。</strong>厄尔尼诺题材在Q3将进入验证期，RU向上弹性大于BR；BR被原油和丁二烯双杀后需要时间筑底。</p>
+  <p><strong>2. 中长期（6-12个月）：两个品种都有故事。</strong>RU看厄尔尼诺产量冲击+树龄老化结构性短缺；BR看NR-BR替代需求支撑+成本底部估值修复。</p>
+  <p><strong>3. 跨品种套利：多NR(RU)空BR。</strong>国泰君安6/7明确建议"多NR/RU空BR"，核心逻辑是天然橡胶的基本面远强于合成橡胶。但美伊签约后BR已大幅下跌，该策略已兑现大部分利润，后续空间收窄。</p>
+  <p><strong>4. 关键风险点：原油。</strong>若中东局势再度恶化→原油暴涨→丁二烯暴涨→BR反弹→策略需要重新评估。但当前美伊签约背景下，原油中枢下移是基准情形。</p>
+</div>
+
+<hr>
+
+<!-- ===== 第11章 ===== -->
+<h2>11. 关键风险与不确定性</h2>
+
+<div class="card">
+  <table>
+    <tr><th>风险因素</th><th>影响</th><th>概率</th><th>程度</th></tr>
+    <tr><td><strong>美伊协议执行不及预期</strong> — 中东再度紧张→原油反弹→BR反弹</td><td>利多BR/利空RU相对</td><td>20%</td><td>★★★★</td></tr>
+    <tr><td><strong>日韩乙烯装置超预期检修</strong> — 丁二烯供给骤减→BR暴涨</td><td>利多BR</td><td>15%</td><td>★★★★★</td></tr>
+    <tr><td><strong>NR-BR替代"天花板"</strong> — 轮胎厂已最大化合成胶掺比，无法再增加</td><td>利空BR</td><td>25%</td><td>★★</td></tr>
+    <tr><td><strong>东南亚暴雨洪涝</strong> — 割胶中断→NR供应骤减→RU暴涨→NR-BR继续走扩</td><td>利多RU/利空BR替代</td><td>15%</td><td>★★★</td></tr>
+    <tr><td><strong>欧盟反倾销关税落地</strong> — 中国轮胎出口受阻→NR+BR需求双重打击</td><td>利空RU+BR</td><td>30%</td><td>★★★★</td></tr>
+    <tr><td><strong>新能源车持有量暴增</strong> — 替换胎需求超预期→NR+BR需求共振</td><td>利多RU+BR</td><td>25%</td><td>★★★</td></tr>
+  </table>
+</div>
+
+<div class="callout callout-danger">
+  <strong>⚠️ 摘要来自桌面橡胶专题报告（合成橡胶部分）：</strong>
+  <ul>
+    <li>国泰君安期货(6/7)：弱势运行，下方空间收窄；压力14,500-14,700，支撑13,200-13,400</li>
+    <li>中泰期货(6/7)：丁二烯产量仍未恢复，谨慎追空，整体仍延续区间宽幅震荡</li>
+    <li>方正中期(6/6)：油价拖累BR期价大幅转跌，市场风偏降低</li>
+  </ul>
+  <strong>机构共识：BR已接近底部区域（13,200以下），但缺乏上行驱动（原油压制+供应恢复）。区间震荡是最可能的情景。</strong>
+</div>
+
+<div class="fn" style="text-align:center;margin-top:40px;padding:20px;border-top:1px solid var(--border);">
+  <p><strong>免责声明：</strong>本报告仅供研究参考，不构成任何投资建议。数据来源：通达信TDX、国泰君安期货、方正中期期货、中泰期货、五矿期货、广发期货、隆众资讯、生意社、上期所（SHFE/INE）、新浪财经。</p>
+  <p>报告生成时间：2026年6月16日 16:00 | 含桌面"国内报告"文件夹11份橡胶专题报告数据</p>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>大宗商品投资研究大全</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,'Microsoft YaHei',sans-serif;background:#0a0e17;color:#e0e6f0;min-height:100vh;padding:20px;line-height:1.8}
+h1{text-align:center;color:#f0d060;font-size:26px;margin-bottom:4px}
+.update{text-align:center;color:#6b7b95;font-size:13px;margin-bottom:20px}
+.nav{max-width:900px;margin:0 auto 20px;display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.nb{padding:6px 14px;border-radius:20px;border:1px solid #2a3548;background:#111827;color:#8a9bbf;cursor:pointer;font-size:13px;transition:all 0.2s}
+.nb:hover,.nb.active{background:#1a2744;color:#f0d060;border-color:#f0d060}
+.srch{max-width:600px;margin:0 auto 20px}
+.srch input{width:100%;padding:10px 16px;border-radius:10px;border:1px solid #2a3548;background:#111827;color:#e0e6f0;font-size:14px;outline:none}
+.srch input:focus{border-color:#f0d060}
+.sec{max-width:1000px;margin:0 auto 16px}
+.st{font-size:18px;font-weight:700;color:#f0d060;padding:10px 0;border-bottom:1px solid #1e293b;margin-bottom:12px;cursor:pointer}
+.card{background:#111827;border:1px solid #1e293b;border-radius:10px;margin-bottom:12px;overflow:hidden}
+.ch{padding:14px 18px;cursor:pointer;display:flex;align-items:center;gap:12px;transition:background 0.2s}
+.ch:hover{background:#1a2236}
+.ci{font-size:24px}
+.ct{font-size:16px;font-weight:700;color:#f0f4fa}
+.cs{font-size:12px;color:#6b7b95}
+.tags{display:flex;gap:6px;margin-left:auto;flex-wrap:wrap}
+.tg{padding:2px 8px;border-radius:4px;font-size:11px}
+.tg0{background:#1a3a2a;color:#4ade80}
+.tg1{background:#3a1a1a;color:#f87171}
+.tg2{background:#1a2a3a;color:#60a5fa}
+.tg3{background:#3a2a1a;color:#fbbf24}
+.cb{padding:0 18px 18px;display:none;color:#8a9bbf;font-size:13.5px}
+.cb.show{display:block}
+.cb h3{color:#f0d060;font-size:14px;margin:12px 0 6px}
+.cb h4{color:#60a5fa;font-size:13px;margin:8px 0 4px}
+.cb table{width:100%;border-collapse:collapse;margin:8px 0;font-size:12px}
+.cb th{background:#1a2236;color:#f0d060;padding:5px 8px;text-align:left}
+.cb td{padding:4px 8px;border-bottom:1px solid #1a2236}
+.hl{color:#f0d060;font-weight:600}
+.ris{color:#f87171}
+.op{color:#4ade80}
+.arr{transition:transform 0.2s}
+.arr.open{transform:rotate(90deg)}
+.footer{text-align:center;color:#4a5a6f;font-size:12px;margin-top:40px}
+</style>
+</head>
+<body>
+
+<h1>📊 大宗商品投资研究大全</h1>
+<div class="update">更新至 2026年6月22日 · 共17个品种 · 点击 ▶ 展开详细分析</div>
+
+<div class="nav" id="navBar"></div>
+<div class="srch"><input type="text" id="searchInput" placeholder="搜索品种名称、代码或关键词..." oninput="filterCards()"></div>
+
+<div id="content"></div>
+
+<div class="footer">大宗商品投资研究大全 · 最后更新：2026年6月22日</div>
+
+<script>
+// 数据：每种品种一段精简HTML（~200字）
+const SECTIONS = [
+  {name:"有色金属", items:[
+    {n:"沪铜",c:"SHFE:CU | LME:CA",i:"🟡",t:["🟢强烈看多","中线持有"],tc:["tg0","tg3"],
+     b:`<h3>核心逻辑：TC深度负值，结构性短缺</h3><p>铜精矿现货TC <span class="hl">-110~-120美元/干吨</span>，冶炼厂倒贴钱买矿（历史极端）。新矿投产需10-15年，供给约束是<span class="hl">结构性</span>的（非周期性）。</p><h4>关键数据</h4><table><tr><th>指标</th><th>数值</th></tr><tr><td>铜精矿TC</td><td>-110~-120$</td></tr><tr><td>LME铜库存</td><td>35.75万吨（两月低点）</td></tr><tr><td>上期所库存</td><td>约18.82万吨（年内低位）</td></tr><tr><td>新能源车产量同比</td><td>+17.8%</td></tr></table><h4>机构目标</h4><p>高盛：12,650$/吨（约10.7万人民币）。当前SHFE铜约10.4-10.5万/吨。</p><h4>催化剂（风险）</h4><p>6月末美商务部铜关税调查；沃什加息预期。操作：<span class="op">适合单边做多</span>（远月也不弱），建议分批建仓。</p>`},
+    {n:"沪锌",c:"SHFE:ZN",i:"🔵",t:["🟢最硬多头","中线持有"],tc:["tg0","tg3"],
+     b:`<h3>核心逻辑：TC负值比铜更极端</h3><p>锌精矿TC <span class="hl">-500至200元/吨</span>（负值区间），冶炼厂每处理一吨矿就要倒贴钱。这是<span class="hl">矿端物理性枯竭</span>，不是周期性利润压缩，供给瓶颈至少持续到2027年。</p><h4>关键数据</h4><table><tr><th>指标</th><th>数值</th></tr><tr><td>现货锌周涨跌</td><td><span class="hl">+5.22%</span>（6月15-18日领涨有色）</td></tr><tr><td>TC加工费</td><td>负值区间（历史罕见）</td></tr><tr><td>冶炼厂状态</td><td>被迫减产</td></tr></table><h4>与铜对比</h4><p>锌的TC负值更极端，但需求端依赖地产（偏弱）；铜的需求是AI+电网（结构性增长）。<span class="op">沪锌是当前大宗商品中确定性最高的多头品种</span>，建议作为组合多头核心配置。</p>`},
+    {n:"沪锡/锡业股份(000960)",c:"SHFE:SN | SZ:000960",i:"🔷",t:["⚠️观望/回调介入","事件驱动"],tc:["tg2","tg3"],
+     b:`<h3>锡业股份：全球锡龙头，但股价已跑在前面</h3><table><tr><th>指标</th><th>数值</th></tr><tr><td>当前股价（6/18）</td><td>41.74元</td></tr><tr><td>PE(2026E)</td><td>约20.9~24.7x</td></tr><tr><td>机构平均目标价</td><td>33.41~41.00元</td></tr><tr><td>上行空间</td><td>有限（当前价已超出目标）</td></tr></table><h4>埃博拉对锡供给的冲击</h4><p>Bisie锡矿（占全球~6.3%）位于北基伍省，<span class="ris">与埃博拉疫区重叠</span>。矿未停产，但运输随时可能中断。LME锡库存低位，中断将推高锡价（利多锡业股份）。</p><h4>操作建议</h4><p>⚠️ 已持仓：41.74元附近分批减仓。未持仓：<span class="ris">不建议追高</span>，等回调至35元以下再介入。埃博拉是额外上行期权。</p>`},
+    {n:"沪铝",c:"SHFE:AL",i:"⚪",t:["⚠️观望","区间操作"],tc:["tg2","tg3"],
+     b:`<h3>核心逻辑：产能天花板构成底部，但需求拖累</h3><p>国内电解铝产能天花板（约4500万吨）是长期底部支撑，但地产需求持续走弱（新开工-15.4%）对冲这一支撑。电解铝利润1000-2000元/吨，继续扩张空间有限。</p><h4>关键数据</h4><table><tr><td>6月现货铝涨跌</td><td>-0.19%（基本持平）</td></tr><tr><td>产能天花板</td><td>约4500万吨（政策硬约束）</td></tr></table><p>操作：1.8-1.9万区间操作，<span class="ris">不适合单边持多</span>。绿色铝（水电铝）有主题性机会，但需精选标的。</p>`},
+    {n:"沪镍",c:"SHFE:NI",i:"⬛",t:["⚠️偏弱","区间操作"],tc:["tg2","tg3"],
+     b:`<h3>核心逻辑：供给压力大，需求偏弱</h3><p>菲律宾雨季结束供应恢复 + 印尼镍铁产能持续释放，供给端压力较大。不锈钢需求偏弱，电池用镍（硫酸镍）增长被不锈钢需求下滑抵消。</p><h4>关键数据</h4><table><tr><td>6月沪镍涨跌</td><td>-0.51%（偏弱）</td></tr><tr><td>菲律宾雨季</td><td>结束，镍矿供应恢复</td></tr></table><p>操作：暂无清晰趋势，以<span class="ris">区间操作（12-15万）</span>为主。电池用镍长期增长逻辑仍在，但短期被不锈钢拖累。</p>`},
+    {n:"沪银",c:"SHFE:AG",i:"🔘",t:["⚠️逆向布局","等美元见顶"],tc:["tg2","tg3"],
+     b:`<h3>核心逻辑：工业+金融属性双轮驱动</h3><p>工业属性（光伏银浆+AI电子）提供长期需求支撑；金融属性（避险+实际利率）被美联储鹰派压制（沃什首秀后美元走强）。</p><h4>关键数据</h4><table><tr><td>6月15-18日周涨跌</td><td><span class="hl">+3.26%</span>（V型修复）</td></tr><tr><td>光伏银浆需求</td><td>持续增长</td></tr></table><p>操作：<span class="op">等美元见顶信号</span>（沃什国会证词/非农走弱）后，在15900-16400元/千克区间建仓。<span class="ris">当前不建议追高</span>。</p>`}
+  ]},
+  {name:"黑色系", items:[
+    {n:"螺纹钢",c:"SHFE:RB",i:"🏗️",t:["🔴空头首选","反套（空近多远）"],tc:["tg1","tg3"],
+     b:`<h3>核心逻辑：地产需求崩塌是慢变量</h3><p>5月地产新开工同比-15.4%，开发投资-16.2%，无好转迹象。螺纹社会库存去化速度慢于往年。</p><h4>关键数据</h4><table><tr><td>螺纹期货价格</td><td>3000-3200元/吨区间</td></tr><tr><td>3000元/吨</td><td>重要心理/技术分水岭</td></tr></table><p>操作：① <span class="ris">反弹至3150-3200布局空单</span>，止损3200以上；② 反套：空RB2510/多RB2605（近月反应现实差，远月赌政策预期）。</p>`},
+    {n:"铁矿石",c:"DCE:I",i:"🪨",t:["🔴空头","中期偏空"],tc:["tg1","tg3"],
+     b:`<h3>核心逻辑：港口库存累积+地产需求崩塌</h3><p>港口库存持续累积，地产需求崩塌导致钢铁产量见顶回落，废钢替代效应增强（电炉钢占比提升）。供给端澳洲/巴西发运量维持高位，无约束。</p><p>操作：<span class="ris">700-750元/吨区间布局空单</span>，止损780元/吨。<span class="op">铁矿石空头比螺纹更安全</span>（供给端无政策干扰）。</p>`},
+    {n:"焦煤",c:"DCE:JM",i:"⚫",t:["🔴空头首选","中线持有"],tc:["tg1","tg3"],
+     b:`<h3>核心逻辑：黑色系最弱品种</h3><p>三重压制：①地产需求崩塌→钢铁产量回落→焦煤需求减少；②动力煤价格走弱→焦煤比价优势消失；③进口蒙古煤恢复→供给增加。周跌近6%（6月15-18日），全市场最弱。</p><p>操作：<span class="ris">反弹至1100-1150布局空单</span>，止损1200元/吨。焦煤是<span class="ris">黑色系中最适合作为组合空头配置</span>的品种。</p>`}
+  ]},
+  {name:"能化", items:[
+    {n:"PTA",c:"ZCE:TA",i:"🧴",t:["🟡正套（多近空远）","窗口2-4周"],tc:["tg0","tg2"],
+     b:`<h3>核心逻辑：装置检修制造人为缺口，但高利润不可持续</h3><p>PTA负荷56.95%（历史新低），连续6周去库，库存近5年同期最低。但加工费479元/吨（暴利区间），高利润驱使装置提负，低负荷最多维持2-4周。</p><h4>关键数据</h4><table><tr><td>PTA装置负荷</td><td>56.95%（历史新低）</td></tr><tr><td>加工费</td><td>479元/吨（暴利区间）</td></tr></table><p>操作：<span class="op">正套（多TA2509/空TA2601）</span>，7100-7200区间建仓，严格止损。<span class="ris">不适合单边持多</span>。</p>`},
+    {n:"甲醇",c:"ZCE:MA",i:"🧪",t:["🟡正套（多近空远）","跟踪伊朗船货"],tc:["tg0","tg2"],
+     b:`<h3>核心逻辑：港口库存低位+进口缺失 vs 进口恢复预期</h3><p>港口库存53万吨（历史低位），进口缺失（美伊冲突）。但伊朗装置刚重启，美伊MOU签署后海峡恢复通航只是时间问题（约6个月），进口恢复预期压制远月。</p><h4>关键数据</h4><table><tr><td>港口库存</td><td>53万吨（历史低位）</td></tr><tr><td>MTO需求</td><td>断崖（盛虹/富德已停车）</td></tr></table><p>操作：<span class="op">正套（多MA2509/空MA2601）</span>，能化中确定性最高。⚠️ 风险：伊朗船货提前到港，需每周跟踪港口到船数据。</p>`},
+    {n:"乙二醇(EG)",c:"DCE:EG",i:"🧫",t:["🟡正套（多近空远）","近月强势窗口"],tc:["tg0","tg2"],
+     b:`<h3>核心逻辑：与甲醇高度相似</h3><p>社会库存从3月高位降约50万吨至163万吨以下。中东进口占比超65%，进口恢复预期压制远月。可作为甲醇正套的补充（分散单一品种风险）。</p><p>操作：<span class="op">正套（多EG2509/空EG2601）</span>。</p>`},
+    {n:"聚丙烯(PP)",c:"DCE:PP",i:"📦",t:["🟡正套（多近空远）","新产能投放预期"],tc:["tg0","tg2"],
+     b:`<h3>核心逻辑：C3路线成本推升+新产能投放预期</h3><p>上游开工率64.71%（历史低位），基差曾高达+961元/吨（10%，近6年新高）。但下半年新装置投产计划压制远月，呈现近强远弱。</p><h4>关键数据（6/15）</h4><table><tr><td>PP2607（近月）</td><td>9200元/吨</td></tr><tr><td>PP2701（远月）</td><td>7949元/吨</td></tr><tr><td>近远月价差</td><td>约1250元/吨</td></tr></table><p>操作：<span class="op">正套（多PP2607/空PP2701）</span>。</p>`},
+    {n:"纯碱",c:"ZCE:SA",i:"🧊",t:["⚠️偏弱","观望"],tc:["tg2","tg2"],
+     b:`<h3>核心逻辑：光伏+平板玻璃需求双弱</h3><p>光伏玻璃产能利用率恢复至81.03%，但需求增速放缓；平板玻璃受地产拖累持续走弱。纯碱新增产能释放，供给压力大。周跌超3%（6月15-18日）。</p><p>操作：<span class="ris">暂无清晰方向，观望为主</span>。关注光伏政策变化。</p>`}
+  ]},
+  {name:"能源", items:[
+    {n:"原油",c:"Brent/WTI/INE:SC",i:"🛢️",t:["⚠️反弹窗口7-9月","非趋势反转"],tc:["tg2","tg3"],
+     b:`<h3>核心逻辑：美伊停战后补库需求 vs 2027年过剩预期</h3><p>美伊停战MOU签署后，布伦特从107跌至78-80美元/桶。但全球库存触达危险水位（OECD储备1990年以来最低），补库需求真实紧迫。</p><h4>关键数据</h4><table><tr><td>布伦特（停战后）</td><td>78-80美元/桶</td></tr><tr><td>OECD石油储备</td><td>1990年12月以来最低</td></tr><tr><td>反弹窗口</td><td>7-9月（Brent 78-80→85-95）</td></tr><tr><td>2027年一致预期</td><td>Brent 65-79美元/桶（过剩）</td></tr></table><p>操作：7-9月可做多（目标85-95），但明确：<span class="ris">这是反弹，不是趋势反转</span>。反弹后必回落。</p>`}
+  ]},
+  {name:"农产品", items:[
+    {n:"豆粕",c:"DCE:M",i:"🌱",t:["🟢事件驱动（6/30）","低风险高赔率"],tc:["tg0","tg3"],
+     b:`<h3>核心逻辑：6月30日USDA双报告，事件驱动</h3><p>USDA将同时发布种植面积报告和季度库存报告。面积共识8530万英亩，优良率66%已充分定价。如果面积<8500万英亩，空头将踩踏。</p><h4>关键数据</h4><table><tr><td>M2609（主力）</td><td>约2946元/吨</td></tr><tr><td>颈线阻力</td><td>3204元/吨</td></tr><tr><td>止损位</td><td>2850元/吨（风险3%）</td></tr><tr><td>赔率</td><td>约1:3</td></tr></table><p>操作：当前至6/29<span class="op">轻仓布局（30%以内）</span>，报告落地后加仓。这是当前农产品中赔率最好的机会。</p>`},
+    {n:"油脂（豆油/棕榈油/菜油）",c:"DCE:Y/P/OI",i:"🥥",t:["⚠️观望","区间操作"],tc:["tg2","tg3"],
+     b:`<h3>核心逻辑：多因素交织，暂无清晰趋势</h3><p>棕榈油产地（印尼/马来）进入增产季；豆油受美豆面积不确定性影响；菜油受中加贸易关系影响。暂无统一趋势。</p><p>操作：<span class="ris">暂无清晰趋势性机会</span>。可关注棕榈油减产季（Q1）的季节性机会。</p>`}
+  ]},
+  {name:"新能源金属", items:[
+    {n:"碳酸锂",c:"GFEX:LC",i:"🔋",t:["🔴空头/观望","等宜春政策+澳洲减产"],tc:["tg1","tg2"],
+     b:`<h3>核心逻辑：全球过剩格局，尚无见底信号</h3><p>澳洲锂辉石+南美盐湖产能持续释放，2026-2027年全球过剩一致预期。宜春锂矿整改是边际扰动，但不足以扭转格局。</p><h4>关键数据</h4><table><tr><td>碳酸锂价格（6月中）</td><td>跌破17万人民币/吨</td></tr><tr><td>6月15-18日周涨跌</td><td>跌超6%（全市场最弱）</td></tr><tr><td>见底信号</td><td>澳洲高成本锂矿出现实质性减产</td></tr></table><p>操作：<span class="ris">观望为主，不建议抄底</span>。宜春政策落地后可关注短期反弹，但中线反转需看到全球高成本产能出清。</p>`},
+    {n:"硬碳负极（钠电供应链）",c:"相关A股：元力/贝特瑞/杉杉",i:"🪨",t:["🟢主题投资","长期布局"],tc:["tg0","tg3"],
+     b:`<h3>核心逻辑：钠电供应链最明显短板</h3><p>硬碳负极决定钠电池容量和循环寿命。当前价格3.5-4万/吨，长期看<2.5万/吨。市场集中度高（贝特瑞~40%）。</p><h4>最被低估标的</h4><p><span class="hl">元力股份(300174)</span>：CATL主要供应商，市值仅52亿（最被低估）。</p><p>操作：<span class="op">元力股份适合长期布局钠电主题</span>。风险：钠电商业化进度不及预期。</p>`}
+  ]},
+  {name:"A股标的", items:[
+    {n:"锡业股份(000960)",c:"SZ:000960",i:"📊",t:["⚠️已超出机构目标价","等回调至35元以下"],tc:["tg2","tg3"],
+     b:`<h3>核心结论：股价已跑在基本面前面</h3><table><tr><th>项目</th><th>结论</th></tr><tr><td>当前股价</td><td>41.74元</td></tr><tr><td>PE(2026E)</td><td>约20.9~24.7x</td></tr><tr><td>机构平均目标价</td><td>33.41~41.00元</td></tr><tr><td>操作建议</td><td>已持仓分批减仓；未持仓等35元以下</td></tr></table><p>埃博拉期权：Bisie矿运输中断将推高锡价，是额外上行期权。</p>`},
+    {n:"柯力传感(603662)",c:"SH:603662",i:"🤖",t:["🟢看多","10月关键催化剂"],tc:["tg0","tg3"],
+     b:`<h3>核心逻辑：国内唯一六维力传感器批量供货</h3><p>已向特斯拉送样，10月是Q3业绩验证关键时点（Optimus Gen-3量产进度）。</p><h4>风险提示</h4><p>PE已偏高，一致预期目标价72.18元（仅+2.3%上行空间），预期已充分定价。10月若Q3业绩不及预期，回调风险大。</p><p>操作：已持仓可继续持有，但<span class="ris">需在10月前减仓</span>（事件兑现卖出）。未持仓不建议追高。</p>`},
+    {n:"敏芯股份(688286)",c:"SH:688286",i:"🔬",t:["⚠️技术超买","RSI 86/CCI 208"],tc:["tg2","tg1"],
+     b:`<h3>核心逻辑：MEMS六维力，技术更前沿但商业化更远</h3><table><tr><th></th><th>敏芯</th><th>柯力</th></tr><tr><td>量产</td><td>尚未量产</td><td>已批量供货</td></tr><tr><td>特斯拉送样</td><td>未送样</td><td>已送样</td></tr><tr><td>技术面</td><td>RSI 86（严重超买）</td><td>技术面健康</td></tr></table><p>操作：<span class="ris">暂缓介入，等待RSI回归50-60</span>。敏芯技术路径更前沿，但商业化进度远落后于柯力。</p>`},
+    {n:"湖北宜化(000422)",c:"SZ:000422",i:"🏭",t:["🟢看多","磷化工+煤炭双主线"],tc:["tg0","tg3"],
+     b:`<h3>核心逻辑：磷化工+煤炭双主业，2026年业绩爆发</h3><p>2026Q1净利润同比大幅增长（磷化工高景气+新疆煤矿放量）。PE约17.6x（化工股中偏低），PB约2.0x，PS约0.52x（严重低估）。</p><h4>关键数据</h4><table><tr><td>2026Q1净利润</td><td>约6.88亿元（同比高增）</td></tr><tr><td>2026E一致预期净利润</td><td>32.95亿元（10jqka均值）</td></tr><tr><td>机构评级</td><td>8家全部看多（4家买入+2家推荐+2家增持）</td></tr><tr><td>平均目标价</td><td>33.41~41.00元（较当前价有20-40%上行空间）</td></tr></table><h4>风险提示</h4><p>有息负债率33.46%（偏高），现金流偏紧；磷化工高景气能否持续存疑（需跟踪磷酸铁锂需求）。</p><p>操作：<span class="op">当前估值合理偏低，可分批建仓</span>，目标33-41元。止损：跌破28元（技术支撑位）。</p>`}
+  ]},
+  {name:"产业链全景", items:[
+    {n:"人形机器人产业链全景",c:"34只A股+大宗商品联动",i:"🦾",t:["🟢长期主题","2026-2027放量"],tc:["tg0","tg3"],
+     b:`<h3>10层金字塔</h3><ol><li>整机：特斯拉Optimus、小米CyberOne</li><li>灵巧手：鸣志电器、兆威机电</li><li>控制器：汇川技术、埃斯顿</li><li>传感器（核心）：柯力传感、奥普特</li><li>电机：鸣志电器、江苏雷利</li><li>丝杠：贝斯特、恒立液压</li><li>减速器：绿的谐波、双环传动</li><li>执行器：三花智控、拓普集团</li><li>结构件：爱柯迪、旭升集团</li><li>电池：宁德时代、比亚迪</li></ol><h4>大宗商品联动</h4><p>铜（电机/线束）、稀土（永磁体）、PEEK（轻量化）、碳纤维（结构件）、锂（电池）。</p><p>投资主线：传感器（柯力传感）最被低估；丝杠和减速器是产能瓶颈环节。</p>`},
+    {n:"刚果（金）矿产供应链风险地图",c:"埃博拉疫情冲击全景",i:"🗺️",t:["🟡高风险跟踪中","每周更新"],tc:["tg0","tg3"],
+     b:`<h3>全球占比 + 埃博拉风险矩阵</h3><table><tr><th>矿产</th><th>DRC占比</th><th>是否在疫区</th><th>风险</th></tr><tr><td>钴</td><td>70-74%</td><td>❌否（南部）</td><td>🟡中等</td></tr><tr><td>铜</td><td>12-14%</td><td>❌否（南部）</td><td>🟡中等</td></tr><tr><td>钽</td><td>~41%</td><td>✅是（北基伍）</td><td>🔴高</td></tr><tr><td>锡</td><td>6-8%</td><td>✅是（北基伍）</td><td>🔴高</td></tr><tr><td>金</td><td>3-4%</td><td>⚠️邻近</td><td>🟠中高</td></tr></table><h4>跟踪清单</h4><ul><li>Bisie锡矿是否宣布停产</li><li>LME锡库存周度数据</li><li>埃博拉确诊数（当前超900例）</li><li>Kibali金矿运营状态</li></ul>`}
+  ]}
+];
+
+// 渲染导航
+const nav = document.getElementById('navBar');
+SECTIONS.forEach((s,i) => {
+  const b = document.createElement('button');
+  b.className = 'nb' + (i===0?' active':'');
+  b.textContent = s.name;
+  b.onclick = () => {
+    document.querySelectorAll('.nb').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    document.querySelectorAll('.sec').forEach(x=>x.style.display='none');
+    const t = document.getElementById('sec-'+i);
+    if(t) t.style.display='';
+  };
+  nav.appendChild(b);
+});
+
+// 渲染内容
+const cont = document.getElementById('content');
+SECTIONS.forEach((s,i) => {
+  const div = document.createElement('div');
+  div.className = 'sec';
+  div.id = 'sec-'+i;
+  if(i!==0) div.style.display='none';
+  const st = document.createElement('div');
+  st.className = 'st';
+  st.textContent = s.name;
+  div.appendChild(st);
+  s.items.forEach(item => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `<div class="ch" onclick="this.nextElementSibling.classList.toggle('show');this.querySelector('.arr').classList.toggle('open')"><span class="arr">▶</span><span class="ci">${item.i}</span><div><div class="ct">${item.n}</div><div class="cs">${item.c}</div></div><div class="tags">${item.t.map((t,j)=>`<span class="tg ${item.tc[j]}">${t}</span>`).join('')}</div></div><div class="cb">${item.b}</div>`;
+    div.appendChild(card);
+  });
+  cont.appendChild(div);
+});
+
+function filterCards(){
+  const k = document.getElementById('searchInput').value.toLowerCase();
+  document.querySelectorAll('.card').forEach(c => {
+    c.style.display = (!k || c.textContent.toLowerCase().includes(k)) ? '' : 'none';
+  });
+  if(k) document.querySelectorAll('.sec').forEach(s => s.style.display='');
+}
+</script>
+</body>
+</html>

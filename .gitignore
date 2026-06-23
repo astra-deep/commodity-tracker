@@ -1,0 +1,18 @@
+# 不在版本库中保存的源文件
+*.pdf
+*.docx
+*.pptx
+*.xlsx
+
+# 临时文件
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db
+
+# 排除从根目录泄露的系统文件夹
+/Program Files/
+/Program Files (x86)/
+
+# Git 自身
+.git/
