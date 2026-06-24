@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>太空经济产业链深度分析 | 高盛GSSZSPCE篮子 + A股映射</title>
+<style>
+:root {
+  --bg: #0f172a;
+  --bg-card: #1e293b;
+  --bg-card-alt: #243044;
+  --text: #e2e8f0;
+  --text-dim: #94a3b8;
+  --accent: #38bdf8;
+  --green: #22c55e;
+  --red: #ef4444;
+  --orange: #f59e0b;
+  --border: #334155;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.7; }
+.container { max-width: 960px; margin: 0 auto; padding: 40px 20px; }
+h1 { font-size: 1.8em; margin-bottom: 4px; color: #f1f5f9; }
+h2 { font-size: 1.3em; margin: 32px 0 16px; padding-bottom: 8px; border-bottom: 2px solid var(--accent); color: var(--accent); }
+h3 { font-size: 1.1em; margin: 20px 0 10px; color: #e2e8f0; }
+.subtitle { color: var(--text-dim); font-size: 0.85em; margin-bottom: 24px; }
+.card { background: var(--bg-card); border-radius: 10px; padding: 20px; margin: 16px 0; border: 1px solid var(--border); }
+.card-accent { border-left: 4px solid var(--accent); }
+.card-green { border-left: 4px solid var(--green); }
+.card-orange { border-left: 4px solid var(--orange); }
+.card-title { font-weight: 700; font-size: 1.05em; margin-bottom: 10px; color: #f1f5f9; }
+table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.88em; }
+th { background: rgba(56,189,248,0.1); padding: 8px 10px; text-align: left; border-bottom: 2px solid var(--border); color: var(--accent); font-weight: 600; }
+td { padding: 8px 10px; border-bottom: 1px solid var(--border); }
+tr:hover td { background: rgba(255,255,255,0.02); }
+.up { color: var(--red); font-weight: 600; }
+.down { color: var(--green); font-weight: 600; }
+.insight { background: rgba(56,189,248,0.08); border-radius: 8px; padding: 14px 18px; margin: 14px 0; border: 1px solid rgba(56,189,248,0.2); }
+.box-r { background: rgba(239,68,68,0.08); border-radius: 8px; padding: 14px 18px; margin: 14px 0; border: 1px solid rgba(239,68,68,0.2); border-left: 3px solid var(--red); }
+.box-g { background: rgba(34,197,94,0.06); border-radius: 8px; padding: 14px 18px; margin: 14px 0; border: 1px solid rgba(34,197,94,0.15); border-left: 3px solid var(--green); }
+.warn { background: rgba(245,158,11,0.08); border-radius: 8px; padding: 14px 18px; margin: 14px 0; border: 1px solid rgba(245,158,11,0.2); border-left: 3px solid var(--orange); }
+.highlight { color: var(--accent); font-weight: 700; }
+.hl-green { color: var(--green); font-weight: 700; }
+.hl-red { color: var(--red); font-weight: 700; }
+.hl-orange { color: var(--orange); font-weight: 700; }
+.source { text-align: center; color: var(--text-dim); font-size: 0.75em; margin-top: 6px; }
+.divider { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+.tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.78em; margin: 2px; }
+.tag-blue { background: rgba(56,189,248,0.15); color: var(--accent); }
+.tag-green { background: rgba(34,197,94,0.15); color: var(--green); }
+.tag-red { background: rgba(239,68,68,0.12); color: var(--red); }
+.tag-orange { background: rgba(245,158,11,0.12); color: var(--orange); }
+ul, ol { margin: 10px 0 10px 24px; }
+li { margin: 4px 0; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>🚀 太空经济产业链深度分析</h1>
+<p class="subtitle">基于高盛亚洲太空经济篮子(GSSZSPCE) | 2026-06-24 | TDX实时行情 | 宏观 & 产业链研究</p>
+
+<!-- 一、高盛核心判断 -->
+<h2>一、高盛核心判断：太空经济进入"部署阶段"</h2>
+
+<div class="card card-accent">
+<div class="card-title">📊 三个核心理由看多亚洲太空经济</div>
+<ol>
+<li><strong>结构性需求</strong>：2025年卫星发射4,434颗（+65% YoY），~70,000颗计划未来5年发射。GS科技分析师预计LEO卫星市场2035年达<span class="highlight">$1,080亿</span>（2024年$150亿→2035E $1,080亿，~20% CAGR）</li>
+<li><strong>可衡量的盈利交付</strong>：主权星座计划已锁定资金至2028年，非可自由支配需求（ITU申报截止驱动）</li>
+<li><strong>AI融合延伸主题持续期</strong>：轨道AI计算2026年进入采购阶段，将太空经济叙事从"纯太空部署"扩展到"AI基础设施"</li>
+</ol>
+<div class="insight" style="margin-top:12px;">
+<strong>GS一句话：</strong>"亚洲太空经济股票正以-60% P/E、-25% P/B的深度折价交易 vs 全球同行，而盈利动能持续改善——这一错位创造了引人注目的相对风险/回报。"（Alvin So, CFA · 2026-06-23）
+</div>
+</div>
+
+<!-- GS市场数据 -->
+<div class="card">
+<h3>全球太空经济规模</h3>
+<table>
+<tr><th>维度</th><th>当前值</th><th>未来预测</th></tr>
+<tr><td>全球太空经济（2025年，SIA）</td><td>$4,290亿</td><td>WEF/McKinsey: 2035年 $1.8万亿</td></tr>
+<tr><td>商业卫星价值链</td><td>$3,030亿</td><td>Novaspace: 2034年 >$1万亿</td></tr>
+<tr><td>LEO卫星TAM（GS）</td><td>$150亿（2024）</td><td>$1,080亿（2035E） ~20% CAGR</td></tr>
+<tr><td>在轨卫星总数</td><td>14,266颗</td><td>+70,000颗 计划未来5年</td></tr>
+<tr><td>太空主题基金AUM</td><td>~$250亿（峰值）</td><td>2025年初仅~$10亿，40+产品</td></tr>
+<tr><td>亚洲太空经济篮子总市值</td><td>$4,978亿</td><td>53只成分股，日均成交$108亿</td></tr>
+</table>
+</div>
+
+<hr class="divider">
+
+<!-- 二、产业链四层拆解 -->
+<h2>二、产业链四层拆解（GSSZSPCE分类法）</h2>
+
+<div class="card">
+<h3>第1层：上游 — 发射与推进（Launch & Propulsion）<span class="tag tag-blue">16%权重</span></h3>
+<p>设计、制造和运营发射系统及深空基础设施。轨道运载火箭、液/固发动机、上面级推进器、姿态控制系统(AOCS)、商用月球着陆器。</p>
+<p><strong>核心A股标的缺失</strong>：中国发射环节由航天科技/航天科工（未上市）主导，A股直接发射标的不在篮子内。日本<span class="highlight">三菱重工(MHI)</span>和韩国<span class="highlight">韩华航空航天(012450)</span>是篮子核心发射标的。</p>
+<p style="margin-top:8px;color:var(--text-dim);font-size:0.85em;">⚠️ 这是太空产业链中A股暴露最薄弱的环节，但A股在卫星制造和地面设备领域弥补了这一缺口。</p>
+</div>
+
+<div class="card">
+<h3>第2层：卫星制造与组件（Satellite Manufacturing & Components）<span class="tag tag-green">40%权重</span></h3>
+<p><strong>篮子最大板块</strong>，涵盖卫星平台/载荷、SAR/光学成像、RF应答器、通信载荷、在轨服务。</p>
+<table>
+<tr><th>A股标的</th><th>GS篮子角色</th><th>市占/优势</th></tr>
+<tr><td><strong>信维通信 (300136)</strong></td><td>卫星通信组件（5.0%篮子权重）</td><td>RF天线/相位阵列天线，中国卫星通信核心供应商</td></tr>
+<tr><td><strong>三安光电 (600703)</strong></td><td>卫星制造半导体（2.5%权重）</td><td>化合物半导体（GaAs/GaN），卫星通信芯片衬底</td></tr>
+<tr><td>蓝思科技 (300433)</td><td>地面段（5.0%权重，第3层）</td><td>玻璃/蓝宝石精密结构件，卫星终端防护</td></tr>
+</table>
+<p style="margin-top:8px;color:var(--text-dim);font-size:0.85em;">日本三菱电机(5.0%权重)、NEC(5.0%)是该板块全球龙头。韩国韩华航空(2.8%)、KAI(2.3%)有卫星系统集成能力。</p>
+</div>
+
+<div class="card">
+<h3>第3层：地面段与下游应用（Ground Segment & Applications）<span class="tag tag-orange">27%权重</span></h3>
+<p>最大营收板块（全球$1,650亿），卫星部署最直接的硬件需求杠杆。涵盖卫星运营商、地面终端/网关天线、RF前端、TT&C、NTN/D2D模块、卫星图像分析、北斗/GNSS芯片。</p>
+<table>
+<tr><th>A股标的</th><th>细分子领域</th><th>核心看点</th></tr>
+<tr><td><strong>中兴通讯 (000063)</strong></td><td>通信设备/卫星地面网络（4.8%权重）</td><td>5G NTN(非地面网络)标准核心参与方，卫星互联网基站/核心网</td></tr>
+<tr><td><strong>华测导航 (300627)</strong></td><td>北斗/GNSS高精度定位（1.2%权重）</td><td>北斗三代核心终端商，农机自动驾驶+灾害监测</td></tr>
+<tr><td>海格通信 (002465)</td><td>军工通信/北斗导航（1.5%权重）</td><td>军工卫星通信全产业链，短波/超短波/卫星通信</td></tr>
+<tr><td>北斗星通 (002151)</td><td>北斗芯片/导航（0.8%权重）</td><td>北斗/GNSS芯片龙头，22nm自主芯片量产</td></tr>
+<tr><td>华力创通 (300045)</td><td>卫星仿真/雷达测试（0.6%权重）</td><td>卫星导航仿真测试系统，军工电子</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h3>第4层：航天级材料与电子（Space-Grade Materials & Electronics）<span class="tag tag-red">18%权重</span></h3>
+<p>辐射加固半导体、航天级PCB/HDI基板、RF前端芯片、气密封装、碳纤维复合材料、特种合金（镍/钛）、III-V族高效太阳能衬底、热管理材料。</p>
+<table>
+<tr><th>A股标的</th><th>细分子领域</th><th>核心看点</th></tr>
+<tr><td><strong>西部超导 (688122)</strong></td><td>特种合金（1.1%权重）</td><td>钛合金/高温合金龙头，航空发动机+航天结构件</td></tr>
+<tr><td><strong>卓胜微 (300782)</strong></td><td>RF前端芯片（1.7%权重）</td><td>射频开关/LNA，卫星通信RF前端国产替代</td></tr>
+<tr><td><strong>臻镭科技 (688270)</strong></td><td>航天级芯片（1.2%权重）</td><td>抗辐射ADC/DAC、微波毫米波芯片，星载核心器件</td></tr>
+</table>
+</div>
+
+<hr class="divider">
+
+<!-- 三、A股核心标的估值总览 -->
+<h2>三、A股核心标的估值一览（TDX实时 2026-06-24 10:03）</h2>
+
+<div class="card">
+<table>
+<tr><th>代码</th><th>名称</th><th>现价</th><th>涨跌</th><th>PE(TTM)</th><th>PB</th><th>总市值(亿)</th><th>年内涨跌</th><th>产业链层级</th><th>GS权重</th></tr>
+<tr>
+  <td>000063</td><td><strong>中兴通讯</strong></td>
+  <td>37.80</td><td class="down">-0.55%</td><td>40.4x</td><td>2.4x</td><td>1,808</td><td class="up">+2.3%</td><td>第3层·地面网络</td><td>4.8%</td>
+</tr>
+<tr>
+  <td>300136</td><td><strong>信维通信</strong></td>
+  <td>96.70</td><td class="up">+1.28%</td><td>127x</td><td>11.7x</td><td>936</td><td class="up">+56%</td><td>第2层·卫星组件</td><td>5.0%</td>
+</tr>
+<tr>
+  <td>600703</td><td><strong>三安光电</strong></td>
+  <td>21.81</td><td class="up">+9.98%涨停</td><td>亏损</td><td>3.1x</td><td>1,088</td><td class="up">+54%</td><td>第2层·化合物半导体</td><td>2.5%</td>
+</tr>
+<tr>
+  <td>300433</td><td>蓝思科技</td>
+  <td>51.60</td><td class="down">-3.23%</td><td>79x</td><td>5.0x</td><td>2,724</td><td class="up">+70%</td><td>第3层·地面终端</td><td>5.0%</td>
+</tr>
+<tr>
+  <td>300782</td><td>卓胜微</td>
+  <td>112.00</td><td class="down">-1.69%</td><td>亏损</td><td>6.2x</td><td>644</td><td class="up">+37%</td><td>第4层·RF芯片</td><td>1.7%</td>
+</tr>
+<tr>
+  <td>688122</td><td>西部超导</td>
+  <td>56.66</td><td class="down">-0.02%</td><td>52x</td><td>5.1x</td><td>368</td><td class="down">-24%</td><td>第4层·航天合金</td><td>1.1%</td>
+</tr>
+<tr>
+  <td>002465</td><td>海格通信</td>
+  <td>12.79</td><td class="up">+0.39%</td><td>亏损</td><td>2.8x</td><td>317</td><td class="down">-18%</td><td>第3层·军工卫通</td><td>1.5%</td>
+</tr>
+<tr>
+  <td>300627</td><td>华测导航</td>
+  <td>27.86</td><td class="down">-0.36%</td><td>33x</td><td>5.1x</td><td>221</td><td class="down">-19%</td><td>第3层·北斗定位</td><td>1.2%</td>
+</tr>
+<tr>
+  <td>688270</td><td>臻镭科技</td>
+  <td>72.56</td><td class="down">-0.62%</td><td>145x</td><td>9.5x</td><td>217</td><td class="down">-17%</td><td>第4层·航天芯片</td><td>1.2%</td>
+</tr>
+<tr>
+  <td>002151</td><td>北斗星通</td>
+  <td>32.00</td><td class="down">-0.37%</td><td>亏损</td><td>3.6x</td><td>174</td><td class="down">-30%</td><td>第3层·北斗芯片</td><td>0.8%</td>
+</tr>
+<tr>
+  <td>300045</td><td>华力创通</td>
+  <td>17.21</td><td class="down">-0.29%</td><td>亏损</td><td>7.6x</td><td>114</td><td class="down">-40%</td><td>第3层·卫星仿真</td><td>0.6%</td>
+</tr>
+</table>
+<p class="source">数据来源：通达信TDX实时行情 2026-06-24 10:03 | GS篮子权重来自GSSZSPCE</p>
+</div>
+
+<div class="insight">
+<strong>🔑 关键观察：</strong>
+<ul>
+<li><span class="hl-green">三安光电涨停（+9.98%）</span>——化合物半导体（GaAs/GaN）同时受益太空+AI双重催化，今日领涨</li>
+<li><span class="hl-red">信维通信PE 127x 但年内+56%</span>——市场正在定价其卫星通信RF组件的高增长预期</li>
+<li><span class="hl-orange">4只亏损股（三安/卓胜微/海格/北斗/华力）</span>——太空经济仍处商业化早期，多数标的盈利尚未兑现</li>
+<li>估值撕裂：中兴(40x PE)→信维(127x)→臻镭(145x)，反映产业链不同环节的盈利能力差异</li>
+</ul>
+</div>
+
+<hr class="divider">
+
+<!-- 四、亚洲各国太空定位 -->
+<h2>四、亚洲太空供应链国别分化</h2>
+
+<div class="card">
+<table>
+<tr><th>市场</th><th>太空暴露度</th><th>价值链位置</th><th>核心优势</th><th>政府锚定</th></tr>
+<tr>
+  <td><span class="highlight">中国</span></td>
+  <td>高</td>
+  <td>全栈（上游→下游）</td>
+  <td>卫星总线/载荷量产、液固发动机、700+商业航天企业、RF/地面电子</td>
+  <td>CNSA商业航天行动计划2025-27、ITU星座部署(至2028)、20+省级航天政策</td>
+</tr>
+<tr>
+  <td><span class="highlight">日本</span></td>
+  <td>高</td>
+  <td>上游：发射/推进/卫星总线/在轨可持续</td>
+  <td>H3火箭、唯一商业在轨碎片清除能力(Astroscale)、精密系统</td>
+  <td>JPY1万亿太空战略基金(10年期)、第2大国家航天计划</td>
+</tr>
+<tr>
+  <td><span class="highlight">韩国</span></td>
+  <td>高</td>
+  <td>中游：发射系统/卫星制造</td>
+  <td>KSLV-III、SAR/EO卫星出口7+国、财阀主导集成模式</td>
+  <td>KASA(2024成立)、KRW2,000亿民间太空基金、目标2045全球航天前7</td>
+</tr>
+<tr>
+  <td>中国台湾</td>
+  <td>中高</td>
+  <td>中游：地面电子/RF/GNSS/LEO硬件</td>
+  <td>RF前端/相位阵列天线（半导体优势）、PCB/光纤连接器</td>
+  <td>NT$527亿6G/卫星联盟(6年期)、NT$1万亿产值目标(2029-30)</td>
+</tr>
+<tr>
+  <td>印度</td>
+  <td>中</td>
+  <td>中下游：发射/制造/EO数据</td>
+  <td>ISRO、NavIC导航系统、300+初创企业</td>
+  <td>IN-SPACe PPP框架、FDI全面开放、目标2033年$440亿</td>
+</tr>
+<tr>
+  <td>新加坡/东盟</td>
+  <td>低中</td>
+  <td>下游：EO数据需求/LEO连接</td>
+  <td>区域HQ/金融枢纽（~70家航天企业）、海事/农业EO需求</td>
+  <td>NSAS(2026.4)、SGD2亿+承诺</td>
+</tr>
+</table>
+</div>
+
+<hr class="divider">
+
+<!-- 五、盈利动能与估值 -->
+<h2>五、盈利动能 vs 全球估值折价</h2>
+
+<div class="card">
+<h3>📈 盈利修正趋势（2025-2026）</h3>
+<table>
+<tr><th>细分板块</th><th>EPS增速</th><th>盈利修正方向</th><th>领跑市场</th></tr>
+<tr><td>发射与推进</td><td class="up">+105%</td><td class="up">↑ 持续上修</td><td>最强——订单确定性强</td></tr>
+<tr><td>卫星制造与组件</td><td class="up">+35%</td><td class="up">↑ 持续上修</td><td>第二强——星座部署推动</td></tr>
+<tr><td>地面段与应用</td><td class="up">+5%</td><td>→ 持平</td><td>滞后——市场等待量价拐点</td></tr>
+<tr><td>航天级材料</td><td class="down">-10%</td><td class="down">↓ 承压</td><td>最弱——需求未规模释放</td></tr>
+</table>
+</div>
+
+<div class="card card-accent">
+<h3>📉 亚洲太空 vs 全球太空：深度折价</h3>
+<table>
+<tr><th>估值指标</th><th>亚洲太空</th><th>全球太空</th><th>折价幅度</th></tr>
+<tr><td>Forward P/E</td><td>15x</td><td>38x</td><td class="hl-red">-60%</td></tr>
+<tr><td>P/B</td><td>3.0x</td><td>4.0x</td><td class="hl-orange">-25%</td></tr>
+<tr><td>2027E ROE</td><td>13%</td><td>18%</td><td>略低（利润释放滞后）</td></tr>
+</table>
+<div class="insight" style="margin-top:8px;">
+<strong>核心逻辑：</strong>亚洲太空标的相对估值处于5年历史区间低端，但盈利动能正在改善（日本/韩国领先，中国部分抵消）。<strong>市场尚未充分定价亚洲太空供应链的盈利拐点。</strong>
+</div>
+</div>
+
+<hr class="divider">
+
+<!-- 六、风险收益指引 -->
+<h2>六、风险收益指引 & 投资策略</h2>
+
+<div class="card card-orange">
+<h3>🎯 分产业链层级的投资策略</h3>
+<table>
+<tr><th>策略类型</th><th>标的方向</th><th>逻辑</th><th>持仓周期</th></tr>
+<tr>
+  <td><span class="highlight">确定性最强</span></td>
+  <td>中兴通讯 (000063)</td>
+  <td>5G NTN标准核心受益，PE 40x合理，地面网络最直接量价杠杆</td>
+  <td>中长期（6-12月）</td>
+</tr>
+<tr>
+  <td><span class="highlight">高弹性</span></td>
+  <td>三安光电 (600703) · 信维通信 (300136)</td>
+  <td>化合物半导体+RF组件，太空+AI双主题共振；三安今日涨停反映资金开始定价</td>
+  <td>短期催化（1-3月，主题驱动）</td>
+</tr>
+<tr>
+  <td><span class="hl-orange">价值洼地</span></td>
+  <td>海格通信 (002465) · 华测导航 (300627)</td>
+  <td>PE合理（华测33x）+ PB低（海格2.8x），年内回调-18~19%，北斗三代放量在即</td>
+  <td>中期埋伏（3-6月）</td>
+</tr>
+<tr>
+  <td><span class="hl-red">高风险/高赔率</span></td>
+  <td>臻镭科技 (688270) · 西部超导 (688122)</td>
+  <td>航天级芯片+特种合金，技术壁垒极高但商业化放量周期长</td>
+  <td>长期（12月+，等订单验证）</td>
+</tr>
+<tr>
+  <td><span class="hl-red">回避</span></td>
+  <td>卓胜微 (300782) · 华力创通 (300045)</td>
+  <td>亏损+PE极高+年内大幅回调，太空暴露度较低或尚未兑现</td>
+  <td>暂不参与</td>
+</tr>
+</table>
+</div>
+
+<div class="box-g">
+<h3>📅 关键催化剂时间表</h3>
+<table>
+<tr><th>时间</th><th>事件</th><th>影响标的</th></tr>
+<tr><td>2026年7-8月</td><td>Meta/微软/谷歌Q2资本开支指引（含卫星互联网/轨道AI）</td><td>信维通信、中兴通讯</td></tr>
+<tr><td>2026年9月</td><td>韩国KARI SAR星座合同（KRW1.2万亿）评估节点</td><td>韩国太空链映射A股（间接）</td></tr>
+<tr><td>2026年Q3-Q4</td><td>中国GW星座第二批招标（预计300+颗）</td><td>信维通信、三安光电</td></tr>
+<tr><td>2026年底</td><td>ITU中国星座申报截止——部署加速</td><td>全链</td></tr>
+<tr><td>2027年</td><td>6G标准Release 19冻结（NTN卫星直连正式纳入）</td><td>中兴通讯、华测导航</td></tr>
+</table>
+</div>
+
+<div class="box-r">
+<h3>⚠️ 主要风险</h3>
+<ol>
+<li><strong>商业化周期过长</strong>：亚洲太空经济大量依赖政府合同（非市场化收入），盈利拐点可能晚于市场预期</li>
+<li><strong>主题退潮</strong>：全球太空ETF AUM从峰值$250亿回落可能触发亚洲标的跟跌（4-5月已有预演）</li>
+<li><strong>A股标的暴露度不均</strong>：多数A股太空概念股实际太空收入占比<15%，主题标签溢价可能过高</li>
+<li><strong>技术迭代风险</strong>：6G NTN标准未定、D2D（卫星直连手机）商业模式不确定</li>
+<li><strong>地缘政治</strong>：太空军事化趋势可能影响商业航天国际合作</li>
+</ol>
+</div>
+
+<hr class="divider">
+
+<!-- 七、总结判断 -->
+<h2>📌 总结判断</h2>
+
+<div class="card card-accent">
+<div class="card-title">核心投资逻辑</div>
+<p>太空经济是<span class="highlight">"2025-2028确定性增量部署 + 2030后AI融合的长期叙事"</span>——它不是元宇宙式的纯概念，而是有4,400+颗卫星、$4,290亿市场、主权合同锁定至2028年的实际产业。</p>
+
+<div class="insight" style="margin-top:12px;">
+<strong>一句话：</strong>亚洲太空供应链存在<strong>-60% P/E折价</strong>，这一折价将在以下三个催化剂逐一兑现时收窄——<strong>① 中国GW星座第二批招标（2026H2）、② 6G NTN标准冻结（2027）、③ 轨道AI计算商业化验证（2026-2027）</strong>。当前阶段适合配置确定性强的地面设备标的（中兴/华测），等2026H2订单催化剂出现后加仓高弹性标的（信维/三安）。
+</div>
+</div>
+
+<div class="warn" style="margin-top:16px;">
+<strong>⚠️ 对昨日AI硬件成本危机的补充：</strong>太空经济的"AI融合"叙事（轨道AI计算）是AI硬件成本问题的一个<strong>潜在解决方案</strong>——如果地面数据中心因电力和许可瓶颈无法扩展，轨道AI计算可能成为替代路径。这为太空经济增添了传统太空叙事之外的额外价值。
+</div>
+
+<p style="text-align:center;color:var(--text-dim);font-size:0.85em;margin-top:24px;">—— 数据来源：高盛亚洲太空经济篮子(GSSZSPCE 2026.6.23) · TDX实时行情(2026.6.24 10:03) · SIA/Novaspace/WEF/McKinsey · 彭博社 ——</p>
+
+</div>
+</body>
+</html>
