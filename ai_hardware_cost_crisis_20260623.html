@@ -95,13 +95,14 @@
 </table>
 <p style="margin-top:8px;color:#f59e0b;font-weight:700;">⚡ 一台VR200机架 ≈ $780万 ≈ 约5600万人民币</p>
 
-<!-- 摩根士丹利原图：GB200 vs GB300 vs VR200 NVL72 BOM占比对比 -->
+<!-- 摩根士丹利原图Exhibit 3：VR200 NVL72 单机架BOM详细金额拆解 -->
 <div style="margin:16px 0;text-align:center;">
-<img src="images/ms_bom_comparison_gb200_gb300_vr200_20260624.jpg" alt="MS GB200-GB300-VR200 BOM Comparison" style="max-width:100%;border-radius:8px;border:1px solid #334155;" />
-<p class="source">Exhibit 1：GB200/GB300/VR200 NVL72 BOM材料成本占比对比（摩根士丹利）</p>
-</div>
+<img src="images/ms_vr200_bom_cost_detail_20260624.jpg" alt="MS VR200 BOM Cost Detail" style="max-width:100%;border-radius:8px;border:1px solid #334155;" />
+<p class="source">Exhibit 3：VR200 NVL72 单机架BOM详细金额拆解（$780万总成本，Memory +435%至$200万）（摩根士丹利）</p>
 </div>
 
+
+<!-- 摩根士丹利原图：GB200 vs GB300 vs VR200 NVL72 BOM占比对比 -->
 <h3>内存占比从9%→26%：发生了什么？</h3>
 
 <p>GB300用的是<strong>HBM3e</strong>（8层堆叠），VR200升级到<strong>HBM4</strong>（12层堆叠），每GB成本暴增：</p>
@@ -114,105 +115,13 @@
 <tr><td>单机架内存成本</td><td>$374K</td><td>$2,002K（5.4倍）</td></tr>
 </table>
 
+<!-- 摩根士丹利原图Exhibit 1：GB200/GB300/VR200 NVL72 BOM占比对比柱状图 -->
 <div style="margin:16px 0;text-align:center;">
-<img src="images/ms_vr200_bom_cost_detail_20260624.jpg" alt="MS VR200 BOM Cost Detail" style="max-width:100%;border-radius:8px;border:1px solid #334155;" />
-<p class="source">Exhibit 3：VR200 NVL72 单机架BOM详细金额拆解（$780万总成本，Memory +435%至$200万）（摩根士丹利）</p>
+<img src="images/ms_bom_comparison_gb200_gb300_vr200_20260624.jpg" alt="MS GB200-GB300-VR200 BOM Comparison" style="max-width:100%;border-radius:8px;border:1px solid #334155;" />
+<p class="source">Exhibit 1：GB200/GB300/VR200 NVL72 BOM材料成本占比对比（摩根士丹利）</p>
 </div>
 
-<div class="box-r">
-<div class="card-title">⚠️ 含义：内存从"配件"变成与GPU平起平坐的大头</div>
-<p>一台Blackwell机架，GPU占65%，内存只占9%——内存是"配件"。</p>
-<p>一台Rubin机架，GPU占51%，<strong>内存占26%</strong>——内存是"第二大成本中心"，和GPU的比值从1:7变成<strong>1:2</strong>。</p>
-<p>云厂商看到这个BOM结构，第一反应是：<strong>"太贵了，我得重新算ROI"</strong>。</p>
-</div>
 
-<hr class="divider">
-
-<!-- 消息③ -->
-<h2>消息③：英伟达Rubin + HBM4生产预测下修</h2>
-
-<div class="box">
-
-
-<h3>下修的两种解释（互相不矛盾）</h3>
-<table>
-<tr><th>解释</th><th>逻辑链</th><th>概率</th></tr>
-<tr><td><strong>需求侧：云厂商砍单</strong></td><td>看到MS的BOM数据 → 780万/机架 vs 原计划400万 → 重新评估资本开支ROI → 推迟/削减Rubin采购订单 → NVIDIA下修生产预测</td><td class="yel">高</td></tr>
-<tr><td><strong>供给侧：HBM4良率不达标</strong></td><td>SK海力士HBM4良率爬坡慢 → 无法按计划交付 → NVIDIA被迫下修依赖HBM4的Rubin产量预测</td><td class="yel">高</td></tr>
-</table>
-
-<p>两条逻辑<strong>同时成立</strong>：供给侧良率问题推高成本 → 需求侧看到高价后砍单 → 形成负反馈循环。</p>
-
-<hr class="divider">
-
-<!-- 完整逻辑链 -->
-<h2>🔗 完整逻辑链：三条消息如何串联</h2>
-
-<div class="card">
-<div class="card-title">从GPU狂飙到存储焦虑：AI硬件链的"成本拐点"</div>
-<div class="chain" style="flex-direction:column;align-items:stretch;gap:6px;">
-  <div class="chain-item" style="width:100%;text-align:center;">HBM4价格爆炸（MS BOM：内存+435%）</div>
-  <div class="chain-arrow" style="text-align:center;">↓</div>
-  <div class="chain-item" style="width:100%;text-align:center;">VR200机架总成本+95%（$400万→$780万）</div>
-  <div class="chain-arrow" style="text-align:center;">↓</div>
-  <div class="chain-item" style="width:100%;text-align:center;">云厂商重新评估ROI → 砍单/推迟采购</div>
-  <div class="chain-arrow" style="text-align:center;">↓</div>
-  <div class="chain-item" style="width:100%;text-align:center;">NVIDIA下修Rubin生产预测</div>
-  <div class="chain-arrow" style="text-align:center;">↓</div>
-  <div class="chain-item" style="width:100%;text-align:center;">SK海力士：HBM扩产风险太大 → 转向确定性更强的大宗DRAM</div>
-</div>
-</div>
-
-<div style="margin:16px 0;text-align:center;">
-<img src="images/ms_vr200_bom_cost_detail_20260624.jpg" alt="MS VR200 BOM Cost Detail" style="max-width:100%;border-radius:8px;border:1px solid #334155;" />
-<p class="source">Exhibit 3：VR200 NVL72 单机架BOM详细金额拆解（$780万总成本，Memory +435%至$200万）（摩根士丹利）</p>
-</div>
-
-<div class="box-r">
-<div class="card-title">⚠️ 这是AI硬件链的"成本危机"信号</div>
-<p>过去2年，市场定价的是"AI需求无限增长"——NVIDIA股价、HBM需求、铜/锂等"AI金属"都是这个叙事的受益者。</p>
-<p>今天的三条消息同时指向：<strong>这个叙事第一次遇到了"成本墙"</strong>。当最激进的参与者（SK海力士）都开始犹豫，说明定价模型正在重塑。</p>
-</div>
-
-<hr class="divider">
-
-<!-- 对大宗商品的影响 -->
-<h2>🏗️ 对大宗商品的影响路径</h2>
-
-<table>
-<tr><th>品种</th><th>影响路径</th><th>方向</th><th>强度</th><th>时间窗口</th></tr>
-<tr><td><strong>铜</strong></td><td>AI数据中心用铜量巨大（PCB/连接器/线缆）。若Rubin装机量下修 → 铜需求预期下调</td><td class="red">偏空</td><td>中</td><td>3-6个月</td></tr>
-<tr><td><strong>碳酸锂</strong></td><td>AI基建放缓 → 储能（数据中心备电）需求预期下调 → 锂价额外承压</td><td class="red">偏空</td><td>中</td><td>6-12个月</td></tr>
-<tr><td><strong>镍</strong></td><td>电池材料同理，但镍更多在电动车，AI传导更弱</td><td class="red">偏空</td><td>弱</td><td>6-12个月</td></tr>
-<tr><td><strong>金</strong></td><td>科技股估值回调风险 → 风险偏好收缩 → 避险资金流入黄金</td><td class="green">偏多</td><td>中</td><td>即时</td></tr>
-<tr><td><strong>原油</strong></td><td>宏观风险偏好下降 → 整体大宗商品承压；但AI硬件制造本身耗油极少，直接关联弱</td><td class="red">偏空</td><td>弱</td><td>1-3个月</td></tr>
-</table>
-
-<div class="box">
-<div class="card-title">💡 关键判断：这是"需求预期下修"，不是"需求崩塌"</div>
-<p>当前阶段是<strong>预期调整</strong>，不是2000年互联网泡沫破裂那种"需求消失"。AI资本开支仍在增长，只是增速可能低于此前最乐观的预期。</p>
-<p>对大宗商品的传导链条较长（需先影响NVIDIA股价 → 影响科技股估值 → 影响宏观风险偏好 → 影响大宗商品），<strong>短期（1-2周）主要是情绪层面</strong>，实质性需求影响需要等云厂商真正削减资本开支指引。</p>
-</div>
-
-<hr class="divider">
-
-<!-- 交易含义 -->
-<h2>🎯 交易含义</h2>
-
-<div class="grid2">
-<div class="card">
-<div class="card-title" style="color:#f59e0b;">✅ 可以做的事</div>
-<p>① <strong>关注铜的回调机会</strong>：若Rubin下修引发科技股调整，铜的"AI溢价"可能回吐，提供更好的做多入场点</p>
-<p>② <strong>黄金作为对冲</strong>：科技股估值回调 + 宏观不确定性上升 → 黄金受益</p>
-<p>③ <strong>观察A股存储板块</strong>：SK转向DDR5 → 国产DDR5替代逻辑强化（兆易创新/北京君正/东芯股份）</p>
-</div>
-<div class="card">
-<div class="card-title" style="color:#f87171;">⚠️ 需要观察的事</div>
-<p>① <strong>是否蔓延到其他AI金属</strong>：锂/镍/稀土是否跟随铜调整？</p>
-<p>② <strong>云厂商Q2财报指引</strong>：Meta/微软/谷歌/亚马逊的资本开支指引是否真的下修？</p>
-<p>③ <strong>NVIDIA股价反应</strong>：若跌破关键支撑，情绪传导会加速</p>
-<p>④ <strong>这是短期调整还是趋势转折</strong>：需要2-4周确认</p>
-</div>
 </div>
 
 <hr class="divider">
