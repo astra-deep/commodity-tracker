@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>铜金比 & 铜银比走势</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;background:#0d1117;color:#e6edf3;padding:20px}
+h1{font-size:22px;font-weight:600;margin-bottom:4px;color:#58a6ff}
+.subtitle{font-size:12px;color:#6e7681;margin-bottom:18px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:1400px}
+.card{background:#161b22;border:1px solid #30363d;border-radius:10px;padding:18px}
+.card h2{font-size:14px;color:#8b949e;margin-bottom:10px;border-bottom:1px solid #21262d;padding-bottom:8px;font-weight:500}
+.stat-row{display:flex;justify-content:space-between;align-items:center;font-size:13px;padding:3px 0;border-bottom:1px solid #21262d20}
+.stat-row:last-child{border-bottom:none}
+.lbl{color:#8b949e}
+.val{font-weight:500;font-variant-numeric:tabular-nums}
+.up{color:#3fb950}.down{color:#f85149}.warn{color:#e3b341}
+canvas{width:100%!important}
+.foot{font-size:11px;color:#484f58;text-align:center;margin-top:14px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:1400px;margin-top:16px}
+.highlight{background:#21262d;border-radius:6px;padding:12px;margin-top:10px}
+.highlight h3{font-size:13px;color:#8b949e;margin-bottom:8px;font-weight:400}
+</style>
+</head>
+<body>
+<h1>铜金比 & 铜银比走势</h1>
+<div class="subtitle">上海金 Au99.99 (元/克) · 上海铜 CU99 (元/吨→元/克) · 上海银 AG99 (元/千克→元/克) &nbsp;|&nbsp; 2020-01-02 ~ 2026-06-26 &nbsp;|&nbsp; 1569 个交易日</div>
+
+<div class="grid">
+  <div class="card">
+    <h2>铜金比 Cu/Au</h2>
+    <canvas id="cuAuChart"></canvas>
+    <div class="highlight">
+      <h3>关键数据</h3>
+      <div class="stat-row"><span class="lbl">起始值</span><span class="val">0.0001</span></div>
+      <div class="stat-row"><span class="lbl">当前值</span><span class="val down">0.0001</span></div>
+      <div class="stat-row"><span class="lbl">历史最高</span><span class="val up">0.0002 (2021-10-18)</span></div>
+      <div class="stat-row"><span class="lbl">历史最低</span><span class="val">0.0001 (2025-10-17)</span></div>
+      <div class="stat-row"><span class="lbl">均值</span><span class="val">0.0001</span></div>
+      <div class="stat-row"><span class="lbl">当前百分位</span><span class="val warn">24%</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>铜银比 Cu/Ag</h2>
+    <canvas id="cuAgChart"></canvas>
+    <div class="highlight">
+      <h3>关键数据</h3>
+      <div class="stat-row"><span class="lbl">起始值</span><span class="val">0.01</span></div>
+      <div class="stat-row"><span class="lbl">当前值</span><span class="val down">0.01</span></div>
+      <div class="stat-row"><span class="lbl">历史最高</span><span class="val up">0.02 (2021-10-18)</span></div>
+      <div class="stat-row"><span class="lbl">历史最低</span><span class="val">0.00 (2026-01-28)</span></div>
+      <div class="stat-row"><span class="lbl">均值</span><span class="val">0.01</span></div>
+      <div class="stat-row"><span class="lbl">当前百分位</span><span class="val warn">9%</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="grid2">
+  <div class="card">
+    <h2>三品种绝对价格走势</h2>
+    <canvas id="priceChart"></canvas>
+    <div class="foot">金→883.30 · 银→14.212 · 铜→102元/吨 &nbsp;|&nbsp; 2026-06-26</div>
+  </div>
+  <div class="card">
+    <h2>收益率相关性 & 宏观解读</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px">
+      <div style="background:#21262d;border-radius:6px;padding:10px;text-align:center">
+        <div style="font-size:11px;color:#8b949e">金-铜</div>
+        <div style="font-size:22px;font-weight:600;color:#3fb950">0.33</div>
+      </div>
+      <div style="background:#21262d;border-radius:6px;padding:10px;text-align:center">
+        <div style="font-size:11px;color:#8b949e">金-银</div>
+        <div style="font-size:22px;font-weight:600;color:#3fb950">0.70</div>
+      </div>
+      <div style="background:#21262d;border-radius:6px;padding:10px;text-align:center">
+        <div style="font-size:11px;color:#8b949e">铜-银</div>
+        <div style="font-size:22px;font-weight:600;color:#3fb950">0.46</div>
+      </div>
+    </div>
+    <div style="font-size:12px;color:#8b949e;line-height:1.7">
+      <p><span style="color:#f0883e">▍铜金比</span> = 铜(元/吨) ÷ 金(元/克) × 10⁶</p>
+      <p><span style="color:#79c0ff">▍铜银比</span> = 铜(元/吨) ÷ 银(元/千克) × 10³</p>
+      <p style="margin-top:8px">铜金比↑ = 铜强金弱（通胀/工业需求旺盛）</p>
+      <p>铜金比↓ = 金强铜弱（避险/衰退信号）</p>
+      <p>当前铜金比处于历史24%分位，较2021高点已下跌45%</p>
+    </div>
+  </div>
+</div>
+
+<script>
+const dates  = ["2020-01-02", "2020-02-03", "2020-03-02", "2020-04-01", "2020-05-06", "2020-06-01", "2020-07-01", "2020-08-03", "2020-09-01", "2020-10-09", "2020-11-02", "2020-12-01", "2021-01-04", "2021-02-01", "2021-03-01", "2021-04-01", "2021-05-06", "2021-06-01", "2021-07-01", "2021-08-02", "2021-09-01", "2021-10-08", "2021-11-01", "2021-12-01", "2022-01-04", "2022-02-07", "2022-03-01", "2022-04-01", "2022-05-05", "2022-06-01", "2022-07-01", "2022-08-01", "2022-09-01", "2022-10-10", "2022-11-01", "2022-12-01", "2023-01-03", "2023-02-01", "2023-03-01", "2023-04-03", "2023-05-04", "2023-06-01", "2023-07-03", "2023-08-01", "2023-09-01", "2023-10-09", "2023-11-01", "2023-12-01", "2024-01-02", "2024-02-01", "2024-03-01", "2024-04-01", "2024-05-06", "2024-06-03", "2024-07-01", "2024-08-01", "2024-09-02", "2024-10-08", "2024-11-01", "2024-12-02", "2025-01-02", "2025-02-05", "2025-03-03", "2025-04-01", "2025-05-06", "2025-06-03", "2025-07-01", "2025-08-01", "2025-09-01", "2025-10-09", "2025-11-03", "2025-12-01", "2026-01-05", "2026-02-02", "2026-03-02", "2026-04-01", "2026-05-06", "2026-06-01"];
+const cuAuD  = [0.00014, 0.00013, 0.00013, 0.00011, 0.00011, 0.00011, 0.00012, 0.00012, 0.00012, 0.00013, 0.00013, 0.00015, 0.00014, 0.00015, 0.00018, 0.00018, 0.00019, 0.00019, 0.00018, 0.00019, 0.00018, 0.00019, 0.00019, 0.00019, 0.00019, 0.00019, 0.00018, 0.00018, 0.00018, 0.00018, 0.00016, 0.00016, 0.00016, 0.00016, 0.00016, 0.00016, 0.00016, 0.00017, 0.00017, 0.00016, 0.00015, 0.00015, 0.00015, 0.00015, 0.00015, 0.00015, 0.00014, 0.00014, 0.00014, 0.00014, 0.00014, 0.00014, 0.00015, 0.00015, 0.00014, 0.00013, 0.00013, 0.00013, 0.00012, 0.00012, 0.00012, 0.00011, 0.00011, 0.00011, 0.0001, 0.0001, 0.0001, 0.0001, 0.0001, 9e-05, 9e-05, 9e-05, 0.0001, 0.0001, 9e-05, 9e-05, 0.0001, 0.00011];
+const cuAgD  = [0.011, 0.01, 0.011, 0.011, 0.012, 0.01, 0.011, 0.009, 0.008, 0.01, 0.01, 0.012, 0.01, 0.01, 0.012, 0.013, 0.013, 0.013, 0.012, 0.013, 0.013, 0.014, 0.014, 0.015, 0.015, 0.015, 0.014, 0.015, 0.015, 0.015, 0.014, 0.014, 0.015, 0.013, 0.014, 0.013, 0.012, 0.013, 0.014, 0.013, 0.012, 0.012, 0.012, 0.012, 0.012, 0.012, 0.012, 0.011, 0.011, 0.012, 0.012, 0.011, 0.012, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.009, 0.01, 0.01, 0.009, 0.009, 0.009, 0.009, 0.008, 0.008, 0.008, 0.007, 0.006, 0.004, 0.004, 0.005, 0.005, 0.006];
+const auD    = [346.24, 359.3, 361.24, 358.62, 380.08, 398.0, 403.1, 431.4, 426.98, 405.36, 400.68, 377.38, 402.38, 392.64, 367.94, 364.98, 376.28, 396.9, 371.78, 377.84, 379.12, 367.54, 368.78, 368.74, 373.4, 372.14, 389.14, 396.26, 404.52, 397.46, 390.42, 385.8, 383.7, 393.24, 391.46, 407.1, 411.2, 421.58, 414.84, 435.62, 455.26, 450.98, 450.54, 457.58, 462.9, 454.8, 477.86, 475.78, 484.1, 482.84, 484.62, 534.04, 548.32, 551.56, 551.42, 570.9, 572.62, 596.22, 629.72, 613.28, 624.14, 670.64, 673.98, 736.3, 797.2, 783.1, 776.1, 770.72, 802.2, 914.32, 922.58, 963.28, 995.0, 1008.6, 1197.22, 1053.18, 1028.48, 983.58];
+const cuD    = [49.23, 45.04, 45.23, 39.0, 42.72, 44.6, 49.35, 51.05, 52.99, 51.44, 51.07, 57.04, 58.16, 57.91, 67.45, 65.09, 73.24, 74.16, 68.26, 71.48, 68.9, 68.84, 70.14, 69.65, 69.73, 70.43, 71.05, 73.16, 72.76, 71.6, 61.63, 60.84, 60.68, 61.26, 63.35, 65.89, 65.78, 69.7, 70.08, 69.15, 66.92, 65.72, 68.26, 70.6, 69.73, 67.4, 67.28, 68.36, 68.96, 69.0, 68.92, 73.1, 81.3, 81.51, 78.06, 74.78, 73.61, 77.31, 76.52, 73.72, 73.28, 75.29, 77.05, 80.43, 77.6, 77.65, 80.64, 78.4, 79.78, 86.75, 87.3, 89.28, 101.35, 98.58, 103.85, 97.03, 102.66, 104.68];
+const agD    = [4.377, 4.337, 4.095, 3.402, 3.672, 4.515, 4.436, 5.72, 6.375, 5.111, 5.086, 4.838, 5.705, 5.939, 5.573, 5.103, 5.551, 5.893, 5.476, 5.386, 5.111, 4.788, 4.87, 4.79, 4.774, 4.737, 4.981, 5.038, 4.92, 4.673, 4.351, 4.443, 4.12, 4.544, 4.634, 5.104, 5.426, 5.222, 4.935, 5.294, 5.759, 5.492, 5.501, 5.832, 5.945, 5.657, 5.762, 6.178, 6.036, 5.923, 5.914, 6.495, 7.058, 7.957, 7.773, 7.524, 7.223, 7.672, 7.964, 7.596, 7.614, 8.107, 7.907, 8.432, 8.235, 8.456, 8.81, 8.918, 9.775, 11.169, 11.455, 13.278, 18.247, 24.832, 24.431, 18.918, 18.851, 18.156];
+
+const fmt = v => v.toFixed(4);
+const BFONT = {color:'#6e7681',font:{family:'sans-serif',size:10}};
+
+function grad(ctx,c){
+  const g=ctx.createLinearGradient(0,0,0,260);
+  g.addColorStop(0,c+'33');g.addColorStop(1,c+'00');return g;
+}
+
+const TOOLTIP = {mode:'index',intersect:false};
+
+const SCALE = {
+  x:{type:'category',ticks:{maxTicksLimit:16,...BFONT},grid:{color:'#21262d'},border:{color:'#30363d'}},
+  y:{grid:{color:'#21262d'},border:{display:false},ticks:{...BFONT}}
+};
+
+new Chart(document.getElementById('cuAuChart'),{
+  type:'line',
+  data:{labels:dates,datasets:[{
+    data:cuAuD,borderColor:'#f0883e',backgroundColor:ctx=>grad(ctx,'#f0883e'),
+    fill:true,tension:0.2,pointRadius:0,borderWidth:1.8
+  }]},
+  options:{responsive:true,plugins:{legend:{display:false},tooltip:TOOLTIP},scales:{...SCALE,y:{...SCALE.y,position:'right'}}}
+});
+
+new Chart(document.getElementById('cuAgChart'),{
+  type:'line',
+  data:{labels:dates,datasets:[{
+    data:cuAgD,borderColor:'#79c0ff',backgroundColor:ctx=>grad(ctx,'#79c0ff'),
+    fill:true,tension:0.2,pointRadius:0,borderWidth:1.8
+  }]},
+  options:{responsive:true,plugins:{legend:{display:false},tooltip:TOOLTIP},scales:{...SCALE,y:{...SCALE.y,position:'right'}}}
+});
+
+const normAu = auD.map(v=>v/auD[0]*100);
+const normCu = cuD.map(v=>v/cuD[0]*100);
+const normAg = agD.map(v=>v/agD[0]*100);
+
+new Chart(document.getElementById('priceChart'),{
+  type:'line',
+  data:{labels:dates,datasets:[
+    {label:'黄金(归一)',data:normAu,borderColor:'#ffd700',pointRadius:0,borderWidth:1.8,tension:0.2},
+    {label:'铜(归一)',data:normCu,borderColor:'#f0883e',pointRadius:0,borderWidth:1.8,tension:0.2},
+    {label:'白银(归一)',data:normAg,borderColor:'#c9d1d9',pointRadius:0,borderWidth:1.8,tension:0.2},
+  ]},
+  options:{
+    responsive:true,
+    interaction:TOOLTIP,
+    plugins:{
+      legend:{position:'top',labels:{boxWidth:12,font:{size:11},color:'#6e7681'}},
+      tooltip:TOOLTIP
+    },
+    scales:{...SCALE,y:{...SCALE.y,position:'right',title:{display:true,text:'起点=100',...BFONT}}}
+  }
+});
+</script>
+</body>
+</html>
